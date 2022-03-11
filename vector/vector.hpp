@@ -10,16 +10,16 @@ namespace ft {
 	template <class T, class Alloc = std::allocator<T> >
 	class vector {
 		private:
-			T *array;
+			pointer array;
 		public:
 			/* member type */
-			typedef T									value_type;
-			typedef Alloc								allocator_type;
-			typedef allocator_type::reference			reference;
-			typedef allocator_type::const_reference		const_reference;
-			typedef allocator_type::pointer				pointer;
-			typedef allocator_type::const_pointer		const_pointer;
-			typedef allocator_type::size_type			size_t;
+			typedef T										value_type;
+			typedef Alloc									allocator_type;
+			typename allocator_type::reference				reference;
+			typename allocator_type::const_reference		const_reference;
+			typename allocator_type::pointer				pointer;
+			typename allocator_type::const_pointer		const_pointer;
+			typedef size_t								size_type;
 
 			/* default */
 			explicit vector (const allocator_type& alloc = allocator_type())
@@ -30,10 +30,10 @@ namespace ft {
 			/* fill */
 			explicit vector (size_type n, const value_type& val = value_type(), const allocator_type& alloc = allocator_type())
 			{
-				this->array = _alloc.allocate(n);
-				for (size_t i = 0; i < n; i++)
+				this->array = alloc.allocate(n);
+				for (size_type i = 0; i < n; i++)
 				{
-					this->array[i] = init_value;
+					this->array[i] = val;
 				}
 			}
 			
@@ -43,27 +43,10 @@ namespace ft {
 			//				const allocator_type& alloc = allocator_type());
 			
 			/* copy */
-			vector (const vector& x);
-
-			/* one parametre */
-			vector(size_t lenght)
-			{
-				this->array = _alloc.allocate(lenght);
-			}
-			
-			/* two parametres */
-			vector(size_t lenght, T init_value)
-			{
-				this->array = _alloc.allocate(lenght);
-				for (size_t i = 0; i < lenght; i++)
-				{
-					this->array[i] = init_value;
-				}
-
-			}
+			//vector (const vector& x);
 
 			/* [] overwrite */
-			T get(size_t index)
+			value_type get(size_t index)
 			{
 				return array[index];
 			}
