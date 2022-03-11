@@ -9,25 +9,34 @@ namespace ft {
 	/* vector class template */
 	template <class T, class alloc = std::allocator<T> >
 	class vector {
+		private:
+			alloc _alloc;
 		protected:
 			T *array;
 		public:
-			vector(void);
-			~vector(void);
+			vector()
+			{
+				
+			}
 			/* one parametre */
 			vector(size_t lenght)
 			{
-				this->array = alloc.allocate(lenght);
+				this->array = _alloc.allocate(lenght);
+
 			}
 			/* two parametres */
 			vector(size_t lenght, T init_value)
 			{
-				this->array = alloc.allocate(lenght);
+				this->array = _alloc.allocate(lenght);
 				for (size_t i = 0; i < lenght; i++)
 				{
 					this->array[i] = init_value;
 				}
 				
+			}
+			~vector()
+			{
+
 			}
 			/* [] overwrite */
 			T get(size_t index)
