@@ -11,10 +11,26 @@ namespace ft {
 	class vector {
 		private:
 			alloc _alloc;
-		protected:
 			T *array;
 		public:
-			vector() {}
+		
+
+			//default (1)
+			explicit vector (const allocator_type& alloc = allocator_type());
+			//fill (2)	
+			explicit vector (size_type n, const value_type& val = value_type(),
+							const allocator_type& alloc = allocator_type());
+			//range (3)	
+			//template <class InputIterator>
+			//		vector (InputIterator first, InputIterator last,
+			//				const allocator_type& alloc = allocator_type());
+			//copy (4)	
+			vector (const vector& x);	
+
+			vector() 
+			{
+				/* constructor */
+			}
 			/* one parametre */
 			vector(size_t lenght)
 			{
@@ -32,7 +48,7 @@ namespace ft {
 			}
 			~vector()
 			{
-
+				/* dectructor */
 			}
 			/* [] overwrite */
 			T get(size_t index)
