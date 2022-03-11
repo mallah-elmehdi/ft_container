@@ -13,13 +13,13 @@ namespace ft {
 			pointer array;
 		public:
 			/* member type */
-			typedef T										value_type;
-			typedef Alloc									allocator_type;
+			typedef T				value_type;
+			typedef Alloc			allocator_type;
 			typedef T&				reference;
 			typedef const T&		const_reference;
 			typedef T*				pointer;
-			typedef const 			const_pointer;
-			typedef size_t									size_type;
+			typedef const T*		const_pointer;
+			typedef size_t			size_type;
 
 			/* default */
 			explicit vector (const allocator_type& alloc = allocator_type())
