@@ -10,7 +10,6 @@ namespace ft {
 	template <class T, class Alloc = std::allocator<T> >
 	class vector {
 		private:
-			alloc _alloc;
 			T *array;
 		public:
 			/* member type */
@@ -20,14 +19,23 @@ namespace ft {
 			typedef allocator_type::const_reference		const_reference;
 			typedef allocator_type::pointer				pointer;
 			typedef allocator_type::const_pointer		const_pointer;
-			typedef allocator_type::reference			const_reference;
-			typedef allocator_type::reference			const_reference;
+			typedef allocator_type::size_type			size_t;
 
 			/* default */
-			explicit vector (const allocator_type& alloc = allocator_type());
+			explicit vector (const allocator_type& alloc = allocator_type())
+			{
+				this->array = alloc.allocate();
+			}
 			
 			/* fill */
-			explicit vector (size_type n, const value_type& val = value_type(), const allocator_type& alloc = allocator_type());
+			explicit vector (size_type n, const value_type& val = value_type(), const allocator_type& alloc = allocator_type())
+			{
+				this->array = _alloc.allocate(n);
+				for (size_t i = 0; i < n; i++)
+				{
+					this->array[i] = init_value;
+				}
+			}
 			
 			/* range */
 			//template <class InputIterator>
