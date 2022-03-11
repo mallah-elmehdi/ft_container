@@ -15,11 +15,11 @@ namespace ft {
 			/* member type */
 			typedef T										value_type;
 			typedef Alloc									allocator_type;
-			typename allocator_type::reference				reference;
-			typename allocator_type::const_reference		const_reference;
-			typename allocator_type::pointer				pointer;
-			typename allocator_type::const_pointer		const_pointer;
-			typedef size_t								size_type;
+			typedef T&				reference;
+			typedef const T&		const_reference;
+			typedef T*				pointer;
+			typedef const 			const_pointer;
+			typedef size_t									size_type;
 
 			/* default */
 			explicit vector (const allocator_type& alloc = allocator_type())
