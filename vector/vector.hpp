@@ -13,8 +13,7 @@ namespace ft {
 			alloc _alloc;
 			T *array;
 		public:
-		
-
+			typedef T value_type;
 			//default (1)
 			explicit vector (const allocator_type& alloc = allocator_type());
 			//fill (2)	
