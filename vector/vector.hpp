@@ -8,8 +8,6 @@ namespace ft {
 	/* vector class template */
 	template <class T, class Alloc = std::allocator<T> >
 	class vector {
-		private:
-			T *array;
 		public:
 			/* member type */
 			typedef T											value_type;
@@ -19,6 +17,10 @@ namespace ft {
 			typedef typename allocator_type::pointer			pointer;
 			typedef typename allocator_type::const_pointer		const_pointer;
 			typedef size_t										size_type;
+		private:
+			T *array;
+			allocator_type _alloc;
+		public:
 			/* default */
 			explicit vector (const allocator_type& alloc = allocator_type())
 			{
@@ -27,7 +29,8 @@ namespace ft {
 			/* fill */
 			explicit vector (size_type n, const value_type& val = value_type(), const allocator_type& alloc = allocator_type())
 			{
-				this->array = alloc.allocate(n);
+				_alloc = alloc;
+				this->array = _alloc.allocate(n);
 				for (size_type i = 0; i < n; i++)
 				{
 					this->array[i] = val;
@@ -44,6 +47,7 @@ namespace ft {
 			{
 				return array[index];
 			}
+
 	};
 
 }
