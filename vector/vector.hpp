@@ -1,6 +1,6 @@
 #ifndef _VECTOR_HPP_
 #define _VECTOR_HPP_
-// ****************** FT NAMESPACE
+// *********************** FT NAMESPACE
 namespace ft {
 	/* include libraries */
 	# include <iostream>
@@ -22,7 +22,7 @@ namespace ft {
 			/* default */
 			explicit vector (const allocator_type& alloc = allocator_type())
 			{
-				this->array = alloc.allocate();
+				this->array = nullptr;
 			}
 			/* fill */
 			explicit vector (size_type n, const value_type& val = value_type(), const allocator_type& alloc = allocator_type())
