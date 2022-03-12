@@ -28,7 +28,7 @@ namespace ft {
 			}
 			
 			/* fill */
-			explicit vector (size_type n, const value_type& val = value_type(), const allocator_type& alloc = allocator_type())
+			explicit vector (size_type n, const value_type& val = value_type(), const allocator_type& alloc = allocator_type()) const
 			{
 				this->array = alloc.allocate(n);
 				for (size_type i = 0; i < n; i++)
