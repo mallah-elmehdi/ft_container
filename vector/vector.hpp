@@ -1,6 +1,6 @@
 #ifndef _VECTOR_HPP_
 #define _VECTOR_HPP_
-// *********************** FT NAMESPACE
+// ****************************************************************** FT NAMESPACE
 namespace ft {
 	/* include libraries */
 	# include <iostream>
@@ -18,7 +18,7 @@ namespace ft {
 			typedef typename allocator_type::const_pointer		const_pointer;
 			typedef size_t										size_type;
 		private:
-			T *array;
+			pointer array;
 			allocator_type _alloc;
 		public:
 			/* default */
