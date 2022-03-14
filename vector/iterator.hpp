@@ -24,7 +24,7 @@ namespace ft {
 			iterator &operator=(const iterator &it)
 			{
 				this->ptr = it->ptr;
-				return (this);
+				return (*this);
 			}
 			/* operator == */
 			bool &operator==(const iterator &it)
@@ -40,14 +40,14 @@ namespace ft {
 			iterator &operator++(void)
 			{
 				this->ptr++;
-				return (this);
+				return (*this);
 			}
 			/* operator ++ (post) */
 			iterator &operator++(int)
 			{
-				T *temp = this->ptr;
+				iterator temp = *this;
 				this->ptr++;
-				return ();
+				return (temp);
 			}
 	};
 
