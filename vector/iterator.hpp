@@ -13,12 +13,12 @@ namespace ft {
 			/* default constuctor */
 			iterator()
 			{
-				ptr = nullptr;
+				// null
 			}
 			/* copy constuctor */
 			iterator(iterator &it)
 			{
-				this->ptr = it->ptr;
+				this->ptr = it.ptr;
 			}
 			// * OPERATOR OVERLOAD * 
 			/* operator * */

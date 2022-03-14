@@ -6,10 +6,14 @@
 int main()
 {
 	//std::vector<int>::iterator it;
+	//std::vector<int>::iterator it2 = it;
 	//std::cout << *it << std::endl;
+	//std::cout << *it2 << std::endl;
 	
 	ft::iterator<int> _it;
+	ft::iterator<int> _it2 = _it;
 	std::cout << *_it << std::endl;
+	std::cout << *_it2 << std::endl;
 
 	//std::vector<int> test(5);
 	//std::vector<int>::iterator it2 = test.begin();
