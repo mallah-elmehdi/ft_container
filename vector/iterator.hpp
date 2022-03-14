@@ -3,13 +3,28 @@
 // * FT NAMESPACE - [ITERATOR] *  
 namespace ft {
 	/* include libraries */
+	// none
 	/* iterator class template */
 	template <class T>
 	class iterator {
 		private:
+			T* ptr;
 		public:
 			/* default constuctor */
-			
+			iterator()
+			{
+				// none
+			}
+			/* copy constuctor */
+			iterator(iterator &copy)
+			{
+				this->ptr = copy->ptr;
+			}
+			/* copy assignmenr */
+			iterator(iterator &copy)
+			{
+				this->ptr = copy->ptr;
+			}
 
 	};
 
