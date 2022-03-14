@@ -37,12 +37,18 @@ namespace ft {
 				return (this->ptr != it->ptr);
 			}
 			/* operator ++ (pre) */
-			bool &operator++(void)
+			iterator &operator++(void)
 			{
-				
-				this->ptr != it->ptr;
+				this->ptr++;
+				return (this);
 			}
 			/* operator ++ (post) */
+			iterator &operator++(int)
+			{
+				T *temp = this->ptr;
+				this->ptr++;
+				return ();
+			}
 	};
 
 }
