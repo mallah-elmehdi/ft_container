@@ -5,6 +5,7 @@ namespace ft {
 	/* include libraries */
 	# include <iostream>
 	# include <memory>
+	std::vector<int>;
 	/* vector class template */
 	template <class T, class Alloc = std::allocator<T> >
 	class vector {
