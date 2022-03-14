@@ -26,12 +26,13 @@ namespace ft {
 			{
 				return *this->ptr;
 			}
-			///* operator = */
-			//iterator &operator=(const iterator &it)
-			//{
-			//	this->ptr = it->ptr;
-			//	return (*this);
-			//}
+			/* operator = */
+			iterator &operator=(const iterator &it)
+			{
+				this->ptr = it->ptr;
+				return (*this);
+			}
+			// +++++++++++++++++++++++++++++++++++++++++
 			///* operator == */
 			//bool &operator==(const iterator &it)
 			//{
