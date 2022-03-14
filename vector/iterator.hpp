@@ -38,11 +38,11 @@ namespace ft {
 			{
 				return (this->ptr == it.ptr);
 			}
-			///* operator != */
-			//bool &operator!=(const iterator &it)
-			//{
-			//	return (this->ptr != it->ptr);
-			//}
+			/* operator != */
+			bool operator!=(const iterator &it)
+			{
+				return (this->ptr != it.ptr);
+			}
 			///* operator ++ (pre) */
 			//iterator &operator++(void)
 			//{
