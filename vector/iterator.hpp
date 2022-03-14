@@ -68,7 +68,7 @@ namespace ft {
 				return (temp);
 			}
 			/* operator -- */
-			void operator--()
+			void *operator--()
 			{
 				this->*ptr--;
 			}
