@@ -1,10 +1,11 @@
-#ifndef _VECTOR_HPP_
-#define _VECTOR_HPP_
+#ifndef _ITERATOR_HPP_
+#define _ITERATOR_HPP_
 // * FT NAMESPACE *  
 namespace ft {
 	/* include libraries */
 	# include <iostream>
 	# include <memory>
+	std::vector<int>;
 	/* vector class template */
 	template <class T, class Alloc = std::allocator<T> >
 	class vector {
@@ -16,7 +17,7 @@ namespace ft {
 			typedef typename allocator_type::const_reference			const_reference;
 			typedef typename allocator_type::pointer					pointer;
 			typedef typename allocator_type::const_pointer				const_pointer;
-			//typedef typename ft::iterator<T> 							iterator;
+			typedef typename ft::iterator<T> 							iterator;
 			typedef size_t												size_type;
 		private:
 			pointer array;

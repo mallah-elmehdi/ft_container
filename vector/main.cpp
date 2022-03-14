@@ -4,20 +4,8 @@
 
 int main()
 {
-	std::vector<int> salam(50000, 2);
-
-	for (size_t i = 0; i < 50000; i++)
-	{
-		std::cout << salam[i] << std::endl;
-	}
-	
-	std::cout << "=========================\n";
-	
-	ft::vector<int> ok(50000, 2);
-
-	for (size_t i = 0; i < 50000; i++)
-	{
-		std::cout << ok.get(i) << std::endl;
-	}
-
+	std::vector<int> test(5, 1);
+	std::cout << "capacity : " << test.capacity() << std::endl;
+	std::cout << "size : " << test.size() << std::endl;
+	test.push_back()
 }
