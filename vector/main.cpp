@@ -4,17 +4,11 @@
 
 int main()
 {
-	std::vector<int> test(5, 1);
-	std::cout << "capacity : " << test.capacity() << std::endl;
-	std::cout << "size : " << test.size() << std::endl;
-	test.push_back(10);
-	test.push_back(10);
-	test.push_back(10);
-	test.push_back(10);
-	test.push_back(10);
-	std::cout << "capacity : " << test.capacity() << std::endl;
-	std::cout << "size : " << test.size() << std::endl;
-	test.push_back(10);
-	std::cout << "capacity : " << test.capacity() << std::endl;
-	std::cout << "size : " << test.size() << std::endl;
+	std::vector<int> test(5);
+	std::iterator<int>
+	for (size_t i = 0; i < 5; i++)
+	{
+		test[i] = i;
+	}
+	std::cout << test << std::endl;
 }

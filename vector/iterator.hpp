@@ -49,6 +49,19 @@ namespace ft {
 				this->ptr++;
 				return (temp);
 			}
+			/* operator -- (pre) */
+			iterator &operator--(void)
+			{
+				this->ptr--;
+				return (*this);
+			}
+			/* operator -- (post) */
+			iterator &operator--(int)
+			{
+				iterator temp = *this;
+				this->ptr--;
+				return (temp);
+			}
 	};
 
 }
