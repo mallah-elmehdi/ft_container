@@ -41,6 +41,8 @@ if [ -z "$1" ]
                         #echo -en "${BPurple}${On_White}please enter the commit message: ${Color_Off}"
                         #read commitmessage
                         #git commit -m "$commitmessage"
+                        sleep 5
+                        echo -en "${BPurple}${On_White}Commit message: $2${Color_Off}"
                         git commit -m "$2"
                         git push
                         clear
