@@ -5,7 +5,12 @@
 
 int main()
 {
-	std::vector<int>::iterator it;
+	std::vector<int> test(5);
+	for (size_t i = 0; i < 5; i++)
+	{
+		test[i] = i + 1;
+	}
+	std::vector<int>::iterator it = test.begin();
 	std::vector<int>::iterator it2;
 	std::cout << "vector : "<< it-> << std::endl;
 	
