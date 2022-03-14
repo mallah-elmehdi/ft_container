@@ -12,7 +12,7 @@ int main()
 	}
 	std::vector<int>::iterator it = test.begin();
 	std::vector<int>::iterator it2;
-	std::cout << "vector : "<< it-> << std::endl;
+	std::cout << "vector : "<< it. << std::endl;
 	
 	ft::iterator<int> _it;
 	ft::iterator<int> _it2;
