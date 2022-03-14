@@ -34,10 +34,10 @@ namespace ft {
 			}
 			// +++++++++++++++++++++++++++++++++++++++++
 			///* operator == */
-			//bool &operator==(const iterator &it)
-			//{
-			//	return (this->ptr == it->ptr);
-			//}
+			bool &operator==(const iterator &it)
+			{
+				return (this->ptr == temp.ptr);
+			}
 			///* operator != */
 			//bool &operator!=(const iterator &it)
 			//{
