@@ -20,9 +20,7 @@ namespace ft {
 			{
 				this->ptr = it->ptr;
 			}
-
 			// * OPERATOR OVERLOAD * 
-			
 			/* operator = */
 			iterator &operator=(const iterator &it)
 			{
@@ -52,11 +50,6 @@ namespace ft {
 				this->ptr++;
 				return (temp);
 			}
-			/* operator *++ */
-			iterator &operator*++(int)
-			{
-				this->*ptr++;
-			}
 			/* operator -- (pre) */
 			iterator &operator--(void)
 			{
@@ -69,11 +62,6 @@ namespace ft {
 				iterator temp = *this;
 				this->ptr--;
 				return (temp);
-			}
-			/* operator -- */
-			void *operator--()
-			{
-				this->*ptr--;
 			}
 	};
 
