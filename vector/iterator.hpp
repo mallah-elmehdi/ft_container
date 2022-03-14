@@ -16,16 +16,25 @@ namespace ft {
 				// none
 			}
 			/* copy constuctor */
-			iterator(iterator &copy)
+			iterator(iterator &it)
 			{
 				this->ptr = copy->ptr;
 			}
 			/* operator = */
-			iterator &operator=(const iterator &copy)
+			iterator &operator=(const iterator &it)
 			{
 				this->ptr = copy->ptr;
 			}
-
+			/* operator == */
+			bool &operator==(const iterator &it)
+			{
+				this->ptr == copy->ptr;
+			}
+			/* operator != */
+			bool &operator==(const iterator &it)
+			{
+				this->ptr != copy->ptr;
+			}
 	};
 
 }
