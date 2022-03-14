@@ -1,6 +1,6 @@
 #ifndef _VECTOR_HPP_
 #define _VECTOR_HPP_
-// * FT NAMESPACE *  
+// * FT NAMESPACE - [VECTOR] *  
 namespace ft {
 	/* include libraries */
 	# include <iostream>
