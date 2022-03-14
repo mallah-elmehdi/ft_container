@@ -5,8 +5,8 @@
 
 int main()
 {
-	std::vector<int>::iterator it;
-	std::cout << *it << std::endl;
+	//std::vector<int>::iterator it;
+	//std::cout << *it << std::endl;
 	
 	ft::iterator<int> _it;
 	std::cout << *_it << std::endl;

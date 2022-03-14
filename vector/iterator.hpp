@@ -21,6 +21,11 @@ namespace ft {
 				this->ptr = it->ptr;
 			}
 			// * OPERATOR OVERLOAD * 
+			/* operator * */
+			T operator*(void)
+			{
+				return *this->ptr;
+			}
 			///* operator = */
 			//iterator &operator=(const iterator &it)
 			//{
