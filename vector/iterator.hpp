@@ -49,6 +49,11 @@ namespace ft {
 				this->ptr++;
 				return (temp);
 			}
+			/* operator *++ */
+			iterator &operator*++(int)
+			{
+				this->*ptr++;
+			}
 			/* operator -- (pre) */
 			iterator &operator--(void)
 			{
@@ -61,6 +66,11 @@ namespace ft {
 				iterator temp = *this;
 				this->ptr--;
 				return (temp);
+			}
+			/* operator -- */
+			void operator--()
+			{
+				this->*ptr--;
 			}
 	};
 
