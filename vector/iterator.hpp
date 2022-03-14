@@ -18,23 +18,31 @@ namespace ft {
 			/* copy constuctor */
 			iterator(iterator &it)
 			{
-				this->ptr = copy->ptr;
+				this->ptr = it->ptr;
 			}
 			/* operator = */
 			iterator &operator=(const iterator &it)
 			{
-				this->ptr = copy->ptr;
+				this->ptr = it->ptr;
+				return (this);
 			}
 			/* operator == */
 			bool &operator==(const iterator &it)
 			{
-				this->ptr == copy->ptr;
+				return (this->ptr == it->ptr);
 			}
 			/* operator != */
-			bool &operator==(const iterator &it)
+			bool &operator!=(const iterator &it)
 			{
-				this->ptr != copy->ptr;
+				return (this->ptr != it->ptr);
 			}
+			/* operator ++ (pre) */
+			bool &operator++(void)
+			{
+				
+				this->ptr != it->ptr;
+			}
+			/* operator ++ (post) */
 	};
 
 }
