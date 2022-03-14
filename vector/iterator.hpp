@@ -13,7 +13,7 @@ namespace ft {
 			/* default constuctor */
 			iterator()
 			{
-				// none
+				ptr = nullptr;
 			}
 			/* copy constuctor */
 			iterator(iterator &it)
@@ -21,48 +21,48 @@ namespace ft {
 				this->ptr = it->ptr;
 			}
 			// * OPERATOR OVERLOAD * 
-			/* operator = */
-			iterator &operator=(const iterator &it)
-			{
-				this->ptr = it->ptr;
-				return (*this);
-			}
-			/* operator == */
-			bool &operator==(const iterator &it)
-			{
-				return (this->ptr == it->ptr);
-			}
-			/* operator != */
-			bool &operator!=(const iterator &it)
-			{
-				return (this->ptr != it->ptr);
-			}
-			/* operator ++ (pre) */
-			iterator &operator++(void)
-			{
-				this->ptr++;
-				return (*this);
-			}
-			/* operator ++ (post) */
-			iterator &operator++(int)
-			{
-				iterator temp = *this;
-				this->ptr++;
-				return (temp);
-			}
-			/* operator -- (pre) */
-			iterator &operator--(void)
-			{
-				this->ptr--;
-				return (*this);
-			}
-			/* operator -- (post) */
-			iterator &operator--(int)
-			{
-				iterator temp = *this;
-				this->ptr--;
-				return (temp);
-			}
+			///* operator = */
+			//iterator &operator=(const iterator &it)
+			//{
+			//	this->ptr = it->ptr;
+			//	return (*this);
+			//}
+			///* operator == */
+			//bool &operator==(const iterator &it)
+			//{
+			//	return (this->ptr == it->ptr);
+			//}
+			///* operator != */
+			//bool &operator!=(const iterator &it)
+			//{
+			//	return (this->ptr != it->ptr);
+			//}
+			///* operator ++ (pre) */
+			//iterator &operator++(void)
+			//{
+			//	this->ptr++;
+			//	return (*this);
+			//}
+			///* operator ++ (post) */
+			//iterator &operator++(int)
+			//{
+			//	iterator temp = *this;
+			//	this->ptr++;
+			//	return (temp);
+			//}
+			///* operator -- (pre) */
+			//iterator &operator--(void)
+			//{
+			//	this->ptr--;
+			//	return (*this);
+			//}
+			///* operator -- (post) */
+			//iterator &operator--(int)
+			//{
+			//	iterator temp = *this;
+			//	this->ptr--;
+			//	return (temp);
+			//}
 	};
 
 }
