@@ -36,13 +36,13 @@ if [ -z "$1" ]
                         echo -e "${BBlue}${On_White}Waiting...${Color_Off}"
                         #sleep 300
                         echo
-                        echo -e "${BGreen}${On_White}PUSHING${Color_Off}"
+                        echo -e "${BGreen}${On_White}Push changes starting...${Color_Off}"
                         git add .
                         #echo -en "${BPurple}${On_White}please enter the commit message: ${Color_Off}"
                         #read commitmessage
                         #git commit -m "$commitmessage"
+                        echo -en "${BPurple}${On_White}Commit message is: ${Color_Off}${BBlue}${On_White}$2 ${Color_Off}"
                         sleep 5
-                        echo -en "${BPurple}${On_White}Commit message: $2${Color_Off}"
                         git commit -m "$2"
                         git push
                         clear
