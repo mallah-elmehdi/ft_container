@@ -20,8 +20,8 @@ namespace ft {
 			{
 				this->ptr = copy->ptr;
 			}
-			/* copy assignmenr */
-			iterator(iterator &copy)
+			/* operator = */
+			iterator &operator=(const iterator &copy)
 			{
 				this->ptr = copy->ptr;
 			}
