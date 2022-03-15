@@ -43,9 +43,9 @@ namespace ft {
 				return *this->ptr;
 			}
 			/* operator -> */
-			T* operator->(void)
+			T& operator->(void)
 			{
-				return this->ptr;
+				return *this->ptr;
 			}
 			// +++++++++++++++++++++++++++++++++++++++++
 			/* operator = T */

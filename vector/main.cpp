@@ -19,6 +19,9 @@ int main()
 	ft::iterator<int> _it;
 	ft::iterator<int> _it2;
 	*_it = -5;
+	
+	&abc = ab;
+ 
 	//std::cout << "ft : "<< *_it2 << std::endl;
 
 	//std::vector<int> test(5);
