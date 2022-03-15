@@ -11,14 +11,13 @@ int main()
 		test[i] = i + 1;
 	}
 	std::vector<int>::iterator it = test.begin();
-	std::vector<int>::iterator it2 = ++it;
+	std::vector<int>::iterator it2 = test.begin();
 	std::cout << "vector : " << *it << " " << *it2 << std::endl;
 	
 	ft::iterator<int> _it;
 	ft::iterator<int> _it2;
-	//*_it = -5;
 	
-	std::cout << "ft : "<< _it.operator->() << std::endl;
+	std::cout << "ft : " << _it[1] << " " << _it2[1] << std::endl;
 
 	//std::vector<int> test(5);
 	//std::vector<int>::iterator it2 = test.begin();

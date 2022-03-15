@@ -13,6 +13,8 @@ namespace ft {
 			/* default constuctor */
 			iterator()
 			{
+				T list[5] = {100,2,3,4,5};
+				ptr = list;
 				// null
 			}
 			/* copy constuctor */
@@ -22,18 +24,18 @@ namespace ft {
 			}
 			// * OPERATOR OVERLOAD * 
 			/* operator = iterator */
-			iterator &operator=(const iterator &it)
+			iterator& operator=(const iterator& it)
 			{
 				this->ptr = it->ptr;
 				return (*this);
 			}
 			/* operator == */
-			bool operator==(const iterator &it)
+			bool operator==(const iterator& it)
 			{
 				return (this->ptr == it->ptr);
 			}
 			/* operator != */
-			bool operator!=(const iterator &it)
+			bool operator!=(const iterator& it)
 			{
 				return (this->ptr != it->ptr);
 			}
@@ -49,13 +51,19 @@ namespace ft {
 			}
 			// +++++++++++++++++++++++++++++++++++++++++
 			///* operator ++ (pre) */
-			//iterator &operator++(void)
-			//{
-			//	this->ptr++;
-			//	return (*this);
-			//}
+			iterator& operator++(void)
+			{
+				this->ptr++;
+				return (*this);
+			}
+			
+			T& operator[](int n)
+			{
+				return (this->ptr[n]);
+			}
+
 			///* operator ++ (post) */
-			//iterator &operator++(int)
+			//iterator& operator++(int)
 			//{
 			//	iterator temp = *this;
 			//	this->ptr++;
