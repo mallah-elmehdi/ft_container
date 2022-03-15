@@ -11,10 +11,9 @@ namespace ft {
 			T* ptr;
 		public:
 			/* default constuctor */
-			iterator()
+			iterator(T* _ptr)
 			{
-				T list[5] = {100,2,3,4,5};
-				ptr = list;
+				this->ptr = _ptr;
 				// null
 			}
 			/* copy constuctor */
@@ -26,18 +25,18 @@ namespace ft {
 			/* operator = iterator */
 			iterator& operator=(const iterator& it)
 			{
-				this->ptr = it->ptr;
+				this->ptr = it.ptr;
 				return (*this);
 			}
 			/* operator == */
 			bool operator==(const iterator& it)
 			{
-				return (this->ptr == it->ptr);
+				return (this->ptr == it.ptr);
 			}
 			/* operator != */
 			bool operator!=(const iterator& it)
 			{
-				return (this->ptr != it->ptr);
+				return (this->ptr != it.ptr);
 			}
 			/* operator * */
 			T& operator*(void)
@@ -49,26 +48,26 @@ namespace ft {
 			{
 				return this->ptr;
 			}
-			// +++++++++++++++++++++++++++++++++++++++++
 			///* operator ++ (pre) */
 			iterator& operator++(void)
 			{
 				this->ptr++;
 				return (*this);
 			}
-			
+			// +++++++++++++++++++++++++++++++++++++++++
+			/* operator ++ (post) */
+			iterator operator++(int)
+			{
+				iterator temp = *this;
+				this->ptr++;
+				std::
+				return (temp);
+			}
+
 			T& operator[](int n)
 			{
 				return (this->ptr[n]);
 			}
-
-			///* operator ++ (post) */
-			//iterator& operator++(int)
-			//{
-			//	iterator temp = *this;
-			//	this->ptr++;
-			//	return (temp);
-			//}
 			///* operator -- (pre) */
 			//iterator &operator--(void)
 			//{
