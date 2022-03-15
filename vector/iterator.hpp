@@ -43,17 +43,11 @@ namespace ft {
 				return *this->ptr;
 			}
 			/* operator -> */
-			T& operator->(void)
+			T* operator->(void)
 			{
-				return *this->ptr;
+				return this->ptr;
 			}
 			// +++++++++++++++++++++++++++++++++++++++++
-			/* operator = T */
-			T operator=(const T t)
-			{
-				*this->ptr = t;
-				return (*this->ptr);
-			}
 			///* operator ++ (pre) */
 			//iterator &operator++(void)
 			//{
