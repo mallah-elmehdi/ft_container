@@ -38,16 +38,12 @@ namespace ft {
 				return (this->ptr != it.ptr);
 			}
 			/* operator * */
-			T operator*(void)
+			T& operator*(void)
 			{
 				return *this->ptr;
 			}
-			T &operator=(int n)
-			{
-				it = n;
-			}
 			/* operator -> */
-			T *operator->(void)
+			T* operator->(void)
 			{
 				return this->ptr;
 			}
