@@ -42,6 +42,10 @@ namespace ft {
 			{
 				return *this->ptr;
 			}
+			T &operator=(int n)
+			{
+				it = n;
+			}
 			/* operator -> */
 			T *operator->(void)
 			{

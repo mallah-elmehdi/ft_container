@@ -12,13 +12,14 @@ int main()
 	}
 	std::vector<int>::iterator it = test.begin();
 	//std::vector<int>::iterator it2;
-	int a = it.operator*() = -5;
-	std::cout << "vector : "<< a << std::endl;
+	*it = -5;
+	std::cout << "std it " << *it << std::endl;
+	//std::cout << "vector : "<< a << std::  endl;
 	
 	ft::iterator<int> _it;
 	ft::iterator<int> _it2;
-	*_it = -5;
-	std::cout << "ft : "<< *_it2 << std::endl;
+	//*_it = -5;÷
+	//std::cout << "ft : "<< *_it2 << std::endl;
 
 	//std::vector<int> test(5);
 	//std::vector<int>::iterator it2 = test.begin();
