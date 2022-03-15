@@ -27,15 +27,15 @@ namespace ft {
 				this->ptr = it->ptr;
 				return (*this);
 			}
-			///* operator == */
+			/* operator == */
 			bool operator==(const iterator &it)
 			{
-				return (this->ptr == it.ptr);
+				return (this->ptr == it->ptr);
 			}
 			/* operator != */
 			bool operator!=(const iterator &it)
 			{
-				return (this->ptr != it.ptr);
+				return (this->ptr != it->ptr);
 			}
 			/* operator * */
 			T& operator*(void)

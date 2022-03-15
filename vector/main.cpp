@@ -14,7 +14,7 @@ int main()
 	std::vector<int>::iterator it2 = ++it;
 	std::cout << "vector : " << *it << " " << *it2 << std::endl;
 	
-	ft::iterator<int> _it = test.begin();
+	ft::iterator<int> _it;
 	ft::iterator<int> _it2;
 	//*_it = -5;
 	
