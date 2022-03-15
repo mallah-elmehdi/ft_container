@@ -42,12 +42,12 @@ namespace ft {
 			{
 				return *this->ptr;
 			}
-			// +++++++++++++++++++++++++++++++++++++++++
 			/* operator -> */
 			T *operator->(void)
 			{
 				return this->ptr;
 			}
+			// +++++++++++++++++++++++++++++++++++++++++
 			///* operator ++ (pre) */
 			//iterator &operator++(void)
 			//{
