@@ -17,13 +17,13 @@ namespace ft {
 				// null
 			}
 			/* copy constuctor */
-			iterator(iterator &it)
+			iterator(iterator const &it)
 			{
 				this->ptr = it.ptr;
 			}
 			// * OPERATOR OVERLOAD * 
 			/* operator = iterator */
-			iterator& operator=(const iterator& it)
+			iterator& operator=(iterator const &it)
 			{
 				this->ptr = it.ptr;
 				return (*this);
@@ -48,7 +48,7 @@ namespace ft {
 			{
 				return this->ptr;
 			}
-			///* operator ++ (pre) */
+			/* operator ++ (pre) */
 			iterator& operator++(void)
 			{
 				this->ptr++;
@@ -58,9 +58,8 @@ namespace ft {
 			/* operator ++ (post) */
 			iterator operator++(int)
 			{
-				iterator temp = *this;
+				iterator<T> temp(*this);
 				this->ptr++;
-				std::
 				return (temp);
 			}
 

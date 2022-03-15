@@ -20,8 +20,7 @@ int main()
 	}
 	ft::iterator<int> _it(_test);
 	_it++;
-	ft::iterator<int> _it2 = _it++; 
-	
+	ft::iterator<int> _it2(_it); 
 	std::cout << "ft : " << *_it << " " << *_it2 << std::endl;
 
 	//std::vector<int> test(5);
