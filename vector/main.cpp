@@ -12,8 +12,8 @@ int main()
 	}
 	std::vector<int>::iterator it = test.begin();
 	//std::vector<int>::iterator it2;
-	*it = -5;
-	std::cout << "vector : "<< *it << std::endl;
+	int a = it.operator*() = -5;
+	std::cout << "vector : "<< a << std::endl;
 	
 	ft::iterator<int> _it;
 	ft::iterator<int> _it2;
