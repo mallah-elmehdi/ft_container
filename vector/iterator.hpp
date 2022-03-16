@@ -2,14 +2,14 @@
 #define _ITERATOR_HPP_
 // * FT NAMESPACE - [ITERATOR] *  
 namespace ft {
-	/* include libraries */
-	// none
-	/* iterator class template */
 	template <class T>
 	class iterator {
+		public:
+			// + + + + + + + + + Member type
 		private:
 			T* ptr;
 		public:
+			// + + + + + + + + + Member functions
 			/* default constuctor */
 			iterator(T* _ptr)
 			{
