@@ -10,12 +10,12 @@ namespace ft {
 		public:
 			// + + + + + + + + + Member type
 			typedef T									value_type; 
-			/* typedef Distance  							difference_type; */
+			typedef std::ptrdiff_t  					difference_type; 
 			typedef T*  								pointer; 
 			typedef T&									reference; 
 			typedef std::random_access_iterator_tag		iterator_category;
 		private:
-			T* iter;
+			pointer iter;
 		public:
 			// + + + + + + + + + Member functions
 			//default constuctor
@@ -78,18 +78,21 @@ namespace ft {
 				this->iter--;
 				return (temp);
 			}
-			// * --------------------------------------------- DONE 
-			// ! operator+
-			iterator operator+(value_type n) const
+			//operator+
+			iterator operator+(difference_type n) const
 			{
-				iterator<value_type> temp(*this )
-				return (this->iter + n);
+				iterator<value_type> temp(*this);
+				for (difference_type i = 0; i < n; i++)
+					++temp
+				return (temp);
 			}
-			// ! operator-
-			iterator operator-(value_type n) const
+			//operator-
+			iterator operator-(difference_type n) const
 			{
-				this->iter = this->iter - n;
-				return (this);
+				iterator<value_type> temp(*this);
+				for (difference_type i = 0; i < n; i++)
+					--temp
+				return (temp);
 			}
 			//operator<
 			bool operator<(const iterator &it)
@@ -102,28 +105,28 @@ namespace ft {
 				return (this->iter > it.iter)
 			}
 			//operator<=
-			bool operator<(const iterator &it)
+			bool operator<=(const iterator &it)
 			{
 				return (this->iter <= it.iter)
 			}
 			//operator>=
-			bool operator>(const iterator &it)
+			bool operator>=(const iterator &it)
 			{
 				return (this->iter >= it.iter)
 			}
 			//operator+=
-			/* iterator operator+=(value_type n)
+			iterator operator+=(difference_type n)
 			{
 				this->iter = this->iter + n;
 				return (this);
-			} */
+			}
 			//operator-=
-			/* iterator operator-(value_type n) const
+			iterator operator-=(difference_type n)
 			{
 				this->iter = this->iter - n;
 				return (this);
-			} */
-			T& operator[](int n)
+			}
+			reference operator[](difference_type n)
 			{
 				return (this->iter[n]);
 			}

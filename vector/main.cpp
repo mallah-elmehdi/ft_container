@@ -18,5 +18,4 @@ int main()
 	{
 		_test[i] = i + 1;
 	}
-	it.op
 }
