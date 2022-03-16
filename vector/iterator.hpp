@@ -19,7 +19,7 @@ namespace ft {
 		public:
 			// + + + + + + + + + Member functions
 			//default constuctor
-			iterator() {}
+			iterator(void) {}
 			//copy constuctor
 			iterator(iterator const &it)
 			{
@@ -61,7 +61,7 @@ namespace ft {
 			//operator++ (post)
 			iterator operator++(int)
 			{
-				iterator<value_type> temp(*this);
+				iterator temp(*this);
 				this->iter++;
 				return (temp);
 			}
@@ -74,14 +74,14 @@ namespace ft {
 			//operator-- (post)
 			iterator operator++(int)
 			{
-				iterator<value_type> temp(*this);
+				iterator temp(*this);
 				this->iter--;
 				return (temp);
 			}
 			//operator+
 			iterator operator+(difference_type n) const
 			{
-				iterator<value_type> temp(*this);
+				iterator temp(*this);
 				for (difference_type i = 0; i < n; i++)
 					++temp
 				return (temp);
@@ -89,7 +89,7 @@ namespace ft {
 			//operator-
 			iterator operator-(difference_type n) const
 			{
-				iterator<value_type> temp(*this);
+				iterator temp(*this);
 				for (difference_type i = 0; i < n; i++)
 					--temp
 				return (temp);
@@ -126,6 +126,7 @@ namespace ft {
 				this->iter = this->iter - n;
 				return (this);
 			}
+			//operator[]
 			reference operator[](difference_type n)
 			{
 				return (this->iter[n]);

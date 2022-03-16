@@ -21,9 +21,10 @@ namespace ft {
 			typedef	ft::iterator<T> 							iterator;
 		private:
 			pointer 			vect;
-			allocator_type 		_alloc;
+			allocator_type 		allocator;
 		public:
 			// + + + + + + + + + Member functions 
+			/* Constructor */
 			//default
 			explicit vector (const allocator_type& alloc = allocator_type())
 			{
@@ -32,8 +33,8 @@ namespace ft {
 			//fill
 			explicit vector (size_type n, const value_type& val = value_type(), const allocator_type& alloc = allocator_type())
 			{
-				_alloc = alloc;
-				this->vect = _alloc.allocate(n);
+				this->allocator = alloc;
+				this->vect = allocator.allocate(n);
 				for (size_type i = 0; i < n; i++)
 				{
 					this->vect[i] = val;
@@ -48,13 +49,19 @@ namespace ft {
 			//{
 
 			//}
-			//destructor
-			/* [] overwrite */
-			value_type get(size_t index)
+			/* Destructor */
+			~vector() {};
+			/* Iterators */
+			iterator begin()
 			{
-				return vect[index];
+				iterator it_begin();
+				return ()
 			}
-
+			/* Allocator */
+			allocator_type get_allocator(void) const
+			{
+				return this->allocator;
+			}
 	};
 
 }
