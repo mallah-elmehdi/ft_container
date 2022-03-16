@@ -1,85 +1,71 @@
 #ifndef _ITERATOR_HPP_
 #define _ITERATOR_HPP_
-// * FT NAMESPACE - [ITERATOR] *  
+// * FT NAMESPACE - [ITERATOR] * 
 namespace ft {
 	template <class T>
 	class iterator {
 		public:
 			// + + + + + + + + + Member type
+			/* typedef T         value_type; */
+			/* typedef Distance  difference_type; */
+			/* typedef Pointer   pointer; */
+			/* typedef Reference reference; */
+			/* typedef Category  iterator_category; */
 		private:
-			T* ptr;
+			T* iter;
 		public:
 			// + + + + + + + + + Member functions
-			/* default constuctor */
-			iterator(T* _ptr)
-			{
-				this->ptr = _ptr;
-				// null
-			}
-			/* copy constuctor */
+			//default constuctor
+			iterator() {}
+			//copy constuctor
 			iterator(iterator const &it)
 			{
-				this->ptr = it.ptr;
+				this->iter = it.iter;
 			}
-			// * OPERATOR OVERLOAD * 
-			/* operator = iterator */
+			// + + + + + + + + + Operator overload
+			//operator=
 			iterator& operator=(iterator const &it)
 			{
-				this->ptr = it.ptr;
+				this->iter = it.iter;
 				return (*this);
 			}
-			/* operator == */
+			//operator==
 			bool operator==(const iterator& it)
 			{
-				return (this->ptr == it.ptr);
+				return (this->iter == it.iter);
 			}
-			/* operator != */
+			//operator!=
 			bool operator!=(const iterator& it)
 			{
-				return (this->ptr != it.ptr);
+				return (this->iter != it.iter);
 			}
-			/* operator * */
+			//operator*
 			T& operator*(void)
 			{
-				return *this->ptr;
+				return *this->iter;
 			}
-			/* operator -> */
+			//operator->
 			T* operator->(void)
 			{
-				return this->ptr;
+				return this->iter;
 			}
-			/* operator ++ (pre) */
+			//operator++ (pre)
 			iterator& operator++(void)
 			{
-				this->ptr++;
+				this->iter++;
 				return (*this);
 			}
-			// +++++++++++++++++++++++++++++++++++++++++
-			/* operator ++ (post) */
+			//operator++ (post)
 			iterator operator++(int)
 			{
 				iterator<T> temp(*this);
-				this->ptr++;
+				this->iter++;
 				return (temp);
 			}
-
 			T& operator[](int n)
 			{
-				return (this->ptr[n]);
+				return (this->iter[n]);
 			}
-			///* operator -- (pre) */
-			//iterator &operator--(void)
-			//{
-			//	this->ptr--;
-			//	return (*this);
-			//}
-			///* operator -- (post) */
-			//iterator &operator--(int)
-			//{
-			//	iterator temp = *this;
-			//	this->ptr--;
-			//	return (temp);
-			//}
 	};
 
 }
