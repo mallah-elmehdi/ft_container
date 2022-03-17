@@ -1,4 +1,4 @@
-#include <iostream>
+/*#include <iostream>
 #include <vector>
 #include "vector.hpp"
 #include "iterator.hpp"
@@ -20,4 +20,4 @@ int main()
 	{
 		_test[i] = i + 1;
 	}
-}
+}*/
