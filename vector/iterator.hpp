@@ -20,6 +20,11 @@ namespace ft {
 			// + + + + + + + + + Member functions
 			//default constuctor
 			iterator(void) : iter() {}
+			//test
+			iterator(pointer ptr)
+			{
+				this->iter = ptr;
+			}
 			//copy constuctor
 			iterator(const iterator &it)
 			{
@@ -86,50 +91,46 @@ namespace ft {
 			//operator+
 			iterator operator+(difference_type n) const
 			{
-				iterator temp(*this);
-				for (difference_type i = 0; i < n; i++)
-					++temp
+				iterator temp(this->iter + n);
 				return (temp);
 			}
 			//operator-
 			iterator operator-(difference_type n) const
 			{
-				iterator temp(*this);
-				for (difference_type i = 0; i < n; i++)
-					--temp
+				iterator temp(this->iter - n);
 				return (temp);
 			}
 			//operator<
 			bool operator<(const iterator &it)
 			{
-				return (this->iter < it.iter)
+				return (this->iter < it.iter);
 			}
 			//operator>
 			bool operator>(const iterator &it)
 			{
-				return (this->iter > it.iter)
+				return (this->iter > it.iter);
 			}
 			//operator<=
 			bool operator<=(const iterator &it)
 			{
-				return (this->iter <= it.iter)
+				return (this->iter <= it.iter);
 			}
 			//operator>=
 			bool operator>=(const iterator &it)
 			{
-				return (this->iter >= it.iter)
+				return (this->iter >= it.iter);
 			}
 			//operator+=
 			iterator& operator+=(difference_type n)
 			{
 				this->iter = this->iter + n;
-				return (this);
+				return (*this);
 			}
 			//operator-=
 			iterator& operator-=(difference_type n)
 			{
 				this->iter = this->iter - n;
-				return (this);
+				return (*this);
 			}
 			//operator[]
 			reference operator[](difference_type n) const
