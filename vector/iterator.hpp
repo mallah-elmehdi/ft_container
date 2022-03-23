@@ -9,21 +9,26 @@ namespace ft {
 	class iterator {
 		public:
 			// + + + + + + + + + Member type
-			typedef T									value_type;
-			typedef std::ptrdiff_t  					difference_type;
-			typedef T*  								pointer;
-			typedef T&									reference;
+			typedef T																	value_type;
+			typedef std::ptrdiff_t										difference_type;
+			typedef T*  															pointer;
+			typedef T&																reference;
 			typedef std::random_access_iterator_tag		iterator_category;
 		private:
 			pointer iter;
 		public:
 			// + + + + + + + + + Member functions
 			//default constuctor
-			iterator(void) {}
+			iterator(void) : iter() {}
 			//copy constuctor
-			iterator(iterator const &it)
+			iterator(const iterator &it)
 			{
 				this->iter = it.iter;
+			}
+			// base
+			pointer base(void) const
+			{
+				return this->iter;
 			}
 			// + + + + + + + + + Operator overload
 			//operator=
@@ -43,12 +48,12 @@ namespace ft {
 				return (this->iter != it.iter);
 			}
 			//operator*
-			reference operator*(void)
+			reference operator*(void) const
 			{
 				return *this->iter;
 			}
 			//operator->
-			pointer operator->(void)
+			pointer operator->(void) const
 			{
 				return this->iter;
 			}
@@ -72,7 +77,7 @@ namespace ft {
 				return (*this);
 			}
 			//operator-- (post)
-			iterator operator++(int)
+			iterator operator--(int)
 			{
 				iterator temp(*this);
 				this->iter--;
@@ -115,19 +120,19 @@ namespace ft {
 				return (this->iter >= it.iter)
 			}
 			//operator+=
-			iterator operator+=(difference_type n)
+			iterator& operator+=(difference_type n)
 			{
 				this->iter = this->iter + n;
 				return (this);
 			}
 			//operator-=
-			iterator operator-=(difference_type n)
+			iterator& operator-=(difference_type n)
 			{
 				this->iter = this->iter - n;
 				return (this);
 			}
 			//operator[]
-			reference operator[](difference_type n)
+			reference operator[](difference_type n) const
 			{
 				return (this->iter[n]);
 			}

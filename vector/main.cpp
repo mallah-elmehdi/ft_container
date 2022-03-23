@@ -1,23 +1,22 @@
-/*#include <iostream>
+#include <iostream>
 #include <vector>
-#include "vector.hpp"
-#include "iterator.hpp"
+// #include "vector.hpp"
+// #include "iterator.hpp"
+
+template <class T>
+class ok {
+	private:
+		T* i;
+	public:
+		ok() : i() {
+			std::cout << i << "\n";
+		}
+};
 
 int main()
 {
-	std::vector<int> test(5);
-	for (size_t i = 0; i < 5; i++)
-	{
-		test[i] = i + 1;
-	}
-	std::vector<int>::iterator it = test.begin();
-	std::vector<int>::iterator it2 = it++;
-
-	
-	std::cout << "vector : " << *it << " " << *it2 << std::endl;
-	int *_test = new int(5);
-	for (size_t i = 0; i < 5; i++)
-	{
-		_test[i] = i + 1;
-	}
-}*/
+	std::vector<int>::iterator it;
+	//
+	std::cout << it.base() << "\n";
+	// ok<int> a;
+}
