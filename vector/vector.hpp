@@ -1,6 +1,6 @@
 #ifndef _VECTOR_HPP_
 #define _VECTOR_HPP_
-// * FT NAMESPACE - [VECTOR] *  
+// * FT NAMESPACE - [VECTOR] *
 namespace ft {
 	//include libraries
 	# include <iostream>
@@ -23,7 +23,7 @@ namespace ft {
 			pointer 			vect;
 			allocator_type 		allocator;
 		public:
-			// + + + + + + + + + Member functions 
+			// + + + + + + + + + Member functions
 			/* Constructor */
 			//default
 			explicit vector (const allocator_type& alloc = allocator_type())
