@@ -20,7 +20,7 @@ class ra_iterator {
 		// + + + + + + + + + Member functions
 		//default constuctor
 		ra_iterator(void) : iter() {}
-		//test
+		//iterator with ptr param
 		ra_iterator(pointer ptr)
 		{
 			this->iter = ptr;

@@ -28,13 +28,15 @@ namespace ft {
 		private:
 			pointer 					vect;
 			allocator_type 		allocator;
+			size_type					_size;
+			size_type					_capacity;
 		public:
 			// + + + + + + + + + Member functions
 			/* Constructor */
 			//default
-			explicit vector (const allocator_type& alloc = allocator_type()) : vect(), allocator(alloc) {}
+			explicit vector (const allocator_type& alloc = allocator_type()) : vect(), allocator(alloc), _size(0), _capacity(0) {}
 			//fill
-			explicit vector (size_type n, const value_type& val = value_type(), const allocator_type& alloc = allocator_type()) : allocator(alloc)
+			explicit vector (size_type n, const value_type& val = value_type(), const allocator_type& alloc = allocator_type()) : allocator(alloc), _size(n), _capacity(n)
 			{
 				this->vect = this->allocator.allocate(n);
 				for (size_type i = 0; i < n; i++)
@@ -57,11 +59,80 @@ namespace ft {
 			/* Iterators */
 			iterator begin()
 			{
-				return (iterator(this->vect[0]));
+				return (iterator(this->vect));
 			}
 			const_iterator begin() const
 			{
-				return (const_iterator(this->vect[0]));
+				return (const_iterator(this->vect));
+			}
+			iterator end()
+			{
+				return (iterator(this->vect + this->_size));
+			}
+			const_iterator end() const
+			{
+				return (const_iterator(this->vect + this->_size));
+			}
+			iterator rbegin()
+			{
+				return (reverse_iterator(this->vect));
+			}
+			const_iterator rbegin() const
+			{
+				return (const_reverse_iterator(this->vect));
+			}
+			iterator rend()
+			{
+				return (reverse_iterator(this->vect + this->_size));
+			}
+			const_iterator rend() const
+			{
+				return (const_reverse_iterator(this->vect + this->_size));
+			}
+			/* Capacity */
+			size_type size() const
+			{
+				return (this->_size);
+			}
+			size_type max_size() const
+			{
+				return (this->allocator.max_size());
+			}
+			void resize(size_type n, value_type val = value_type())
+			{
+				if (n >= this->_capacity)
+				{
+					size_type temp_capacity = this->_capacity;
+					//change capacity
+					this->_capacity = n >= 2 * this->_capacity ? n : this->_capacity * 2;
+					//get the new temp_vect
+					pointer temp_vect = this->allocator.allocate(this->_capacity);
+					for (size_type i = 0; i < this->_size; i++) {
+						temp_vect[i] = this->vect[i];
+					}
+					//dealocate the vect
+					this->allocator.deallocate(this->vect, temp_capacity);
+					for (size_type i = this->_size; i < n; i++) {
+						temp_vect[i] = val;
+					}
+					//change size
+					this->_size = n;
+					this->vect = temp_vect;
+				}
+				else
+				{
+					if (n > this->_size)
+					{
+						for (size_type i = this->_size; i < n; i++) {
+							this->vect[i] = val;
+						}
+					}
+					this->_size = n;
+				}
+			}
+			size_type capacity() const
+			{
+				return (this->_capacity);
 			}
 			/* Allocator */
 			allocator_type get_allocator(void) const
