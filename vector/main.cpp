@@ -1,17 +1,16 @@
 #include <iostream>
 #include <vector>
-// #include "vector.hpp"
-#include "iterator.hpp"
+#include "vector.hpp"
+// #include "iterator.hpp"
 
 int main()
 {
-	std::vector<int> v(10);
-	for (size_t i = 0; i < 10; i++) {
-		v[i] = i;
-	}
-	std::vector<int>::iterator vit = v.begin();
-	std::reverse_iterator<std::vector<int>::iterator> ex(vit);
-	std::cout << *ex << std::endl;
+	// std::vector<int> v(10);
+	// for (size_t i = 0; i < 10; i++) {
+	// 	v[i] = i;
+	// }
+	// std::vector<int>::iterator vit = v.begin();
+	// std::cout << *vit << std::endl;
 
 	// int *ptr1 = new int[10];
 	// int *ptr2 = new int[10];
