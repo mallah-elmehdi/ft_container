@@ -5,18 +5,36 @@
 
 int main()
 {
-  std::vector<int> v(10, 4);
-	ft::vector<int> iv(10, 4);
-	// for (size_t i = 0; i < 10; i++) {
-	// 	v[i] = i;
-	// }
-	// // std::vector<int>::iterator vit = v.begin();
-  // std::cout << v.size() << std::endl;
-  // std::cout << v.capacity() << std::endl;
-  v.resize(5, 9);
-  for (std::vector<int>::iterator it = v.begin(); it != v.end(); it++) {
-    std::cout << *it << std::endl;
+  std::cout << "====== vector ======\n";
+
+  ft::vector<int> v(100);
+  for (size_t i = 0; i < 100; i++) {
+    v[i] = i;
   }
+  v.resize(10);
+  // std::cout << v.capacity() << "\n";
+  // for (std::vector<int>::iterator it = v.begin(); it != v.end(); it++) {
+  try {
+    std::cout << v.at(9) << std::endl;
+
+  }
+  catch (const std::out_of_range& oor) {
+    std::cerr << "Out of Range error: " << oor.what() << '\n';
+  }
+  // }
+
+  // std::cout << "====== ft ======\n";
+  // ft::vector<int> v(10);
+  // for (size_t i = 0; i < 10; i++) {
+  //   v[i] = i;
+  //   std::cout << v[i] << std::endl;
+  // }
+  // for (ft::vector<int>::iterator it = v.begin(); it != v.end(); it++) {
+  //   std::cout << [] << std::endl;
+  // }
+
+  // ft::vector<int> iv(1);
+  // std::cout << iv.empty() << std::endl;
   // std::cout << v.size() << std::endl;
   // std::cout << v.capacity() << std::endl;
   // v.resize(30, 9);

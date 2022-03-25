@@ -4,6 +4,7 @@
 # include <iostream>
 # include <memory>
 # include <cstddef>
+# include <stdexcept>
 # include "iterator.hpp"
 # include "reverse_iterator.hpp"
 // * FT NAMESPACE - [VECTOR] *
@@ -55,7 +56,10 @@ namespace ft {
 			//
 			// }
 			/* Destructor */
-			// ~vector() {};
+			~vector()
+			{
+				this->allocator.deallocate(this->vect, this->_capacity);
+			};
 			/* Iterators */
 			iterator begin()
 			{
@@ -133,6 +137,44 @@ namespace ft {
 			size_type capacity() const
 			{
 				return (this->_capacity);
+			}
+			bool empty() const
+			{
+				return (this->_size == 0);
+			}
+			void reserve(size_type n)
+			{
+				if (this->_capacity < n)
+				{
+					pointer temp_vect = this->allocator.allocate(n);
+					for (size_type i = 0; i < this->_size; i++) {
+						temp_vect[i] = this->vect[i];
+					}
+					this->allocator.deallocate(this->vect, this->_capacity);
+					this->_capacity = n;
+					this->vect = temp_vect;
+				}
+			}
+			/* Element access */
+			reference operator[](size_type n)
+			{
+				return (this->vect[n]);
+			}
+			const_reference operator[](size_type n) const
+			{
+				return (this->vect[n]);
+			}
+			reference at(size_type n)
+			{
+				if (n < this->_size)
+					return (this->vect[n]);
+				throw std::out_of_range("out_of_range");
+			}
+			const_reference at(size_type n) const
+			{
+				if (n < this->_size)
+					return (this->vect[n]);
+				throw std::out_of_range("out_of_range");
 			}
 			/* Allocator */
 			allocator_type get_allocator(void) const
