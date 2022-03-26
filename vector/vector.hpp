@@ -252,7 +252,7 @@ namespace ft {
 			// single element
 			iterator insert(iterator position, const value_type& val)
 			{
-
+				
 			}
 			// fill
 			void insert(iterator position, size_type n, const value_type& val)
