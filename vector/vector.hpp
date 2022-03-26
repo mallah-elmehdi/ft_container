@@ -83,9 +83,6 @@ namespace ft {
 			/* Destructor */
 			~vector()
 			{
-				for (size_t i = 0; i < this->_size; i++) {
-					this->pop_back();
-				}
 				this->allocator.deallocate(this->vect, this->_capacity);
 			};
 			/* Iterators */

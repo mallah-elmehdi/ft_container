@@ -1,20 +1,12 @@
 #include <iostream>
 #include <vector>
-// #include "vector.hpp"
-// #include "iterator.hpp"
+#include "vector.hpp"
+#include "iterator.hpp"
 
 int main()
 {
-  std::vector<int> v(5);
-  try {
+  ft::vector<int> v(5);
 
-    v.reserve(v.max_size() + 100);
-  }
-  catch(const std::length_error& le)
-  {
-    std::cerr << le.what() << '\n';
-
-}
   // ft::vector<int>::iterator _it = v.begin();
   // _it += 5;
   // v.insert(_it, 1, 3);
