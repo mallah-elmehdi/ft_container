@@ -23,119 +23,123 @@ class ra_iterator {
 		//iterator with ptr param
 		ra_iterator(pointer ptr)
 		{
-			this->iter = ptr;
+			iter = ptr;
 		}
 		//copy constuctor
 		ra_iterator(const ra_iterator &it)
 		{
-			this->iter = it.iter;
+			iter = it.iter;
 		}
 		// base
 		pointer base(void) const
 		{
-			return this->iter;
+			return iter;
 		}
 		// + + + + + + + + + Operator overload
 		//operator=
 		ra_iterator& operator=(ra_iterator const &it)
 		{
-			this->iter = it.iter;
+			iter = it.iter;
 			return (*this);
 		}
 		//operator==
 		bool operator==(const ra_iterator &it)
 		{
-			return (this->iter == it.iter);
+			return (iter == it.iter);
 		}
 		//operator!=
 		bool operator!=(const ra_iterator &it)
 		{
-			return (this->iter != it.iter);
+			return (iter != it.iter);
 		}
 		//operator*
 		reference operator*(void) const
 		{
-			return *this->iter;
+			return *iter;
 		}
 		//operator->
 		pointer operator->(void) const
 		{
-			return this->iter;
+			return iter;
 		}
 		//operator++ (pre)
 		ra_iterator& operator++(void)
 		{
-			this->iter++;
+			iter++;
 			return (*this);
 		}
 		//operator++ (post)
 		ra_iterator operator++(int)
 		{
 			ra_iterator temp(*this);
-			this->iter++;
+			iter++;
 			return (temp);
 		}
 		//operator-- (pre)
 		ra_iterator& operator--(void)
 		{
-			this->iter--;
+			iter--;
 			return (*this);
 		}
 		//operator-- (post)
 		ra_iterator operator--(int)
 		{
 			ra_iterator temp(*this);
-			this->iter--;
+			iter--;
 			return (temp);
 		}
 		//operator+
 		ra_iterator operator+(difference_type n) const
 		{
-			ra_iterator temp(this->iter + n);
+			ra_iterator temp(iter + n);
 			return (temp);
 		}
 		//operator-
 		ra_iterator operator-(difference_type n) const
 		{
-			ra_iterator temp(this->iter - n);
+			ra_iterator temp(iter - n);
 			return (temp);
+		}
+		difference_type operator-(const ra_iterator& _it)
+		{
+			return (iter - _it.iter);
 		}
 		//operator<
 		bool operator<(const ra_iterator &it)
 		{
-			return (this->iter < it.iter);
+			return (iter < it.iter);
 		}
 		//operator>
 		bool operator>(const ra_iterator &it)
 		{
-			return (this->iter > it.iter);
+			return (iter > it.iter);
 		}
 		//operator<=
 		bool operator<=(const ra_iterator &it)
 		{
-			return (this->iter <= it.iter);
+			return (iter <= it.iter);
 		}
 		//operator>=
 		bool operator>=(const ra_iterator &it)
 		{
-			return (this->iter >= it.iter);
+			return (iter >= it.iter);
 		}
 		//operator+=
 		ra_iterator& operator+=(difference_type n)
 		{
-			this->iter = this->iter + n;
+			iter = iter + n;
 			return (*this);
 		}
 		//operator-=
 		ra_iterator& operator-=(difference_type n)
 		{
-			this->iter = this->iter - n;
+			iter = iter - n;
 			return (*this);
 		}
 		//operator[]
 		reference operator[](difference_type n) const
 		{
-			return (this->iter[n]);
+			return (iter[n]);
 		}
 };
 
