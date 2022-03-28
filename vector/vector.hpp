@@ -52,13 +52,14 @@ namespace ft {
 			vector (const vector& x) : _size(x._size), _capacity(x._capacity), allocator(x.allocator)
 			{
 					vect = allocator.allocate(capacity());
-					std::copy(x.begin(), x.end(), begin());
+					std::copy(x.begin(), x.endspo(), begin());
 			}
 			vector& operator=(const vector& x)
 			{
-				this->~vector();
-				_size = x._size; _capacity = x._capacity; allocator = x.allocator;
-				vect = allocator.allocate(capacity());
+				allocator = x.allocator;
+				clear();
+				reserve(x.capacity());
+				_size = x._size;
 				std::copy(x.begin(), x.end(), begin());
 				return (*this);
 			}
@@ -110,38 +111,12 @@ namespace ft {
 			{
 				return (allocator.max_size());
 			}
-			// ============================================================================++++++++++
 			void resize(size_type n, value_type val = value_type())
 			{
-				if (n >= _capacity)
-				{
-					size_type temp_capacity = _capacity;
-					//change capacity
-					_capacity = n >= 2 * _capacity ? n : _capacity * 2;
-					//get the new temp_vect
-					pointer temp_vect = allocator.allocate(_capacity);
-					for (size_type i = 0; i < _size; i++) {
-						temp_vect[i] = vect[i];
-					}
-					//dealocate the vect
-					allocator.deallocate(vect, temp_capacity);
-					for (size_type i = _size; i < n; i++) {
-						temp_vect[i] = val;
-					}
-					//change size
-					_size = n;
-					vect = temp_vect;
-				}
-				else
-				{
-					if (n > _size)
-					{
-						for (size_type i = _size; i < n; i++) {
-							vect[i] = val;
-						}
-					}
-					_size = n;
-				}
+				if (n > capacity())
+					(n > capacity() * 2) ? reserve(n) : reserve(capacity() * 2);
+				while (size() > n) pop_back();
+				while (size() < n) push_back(val);
 			}
 			size_type capacity() const
 			{
@@ -155,14 +130,14 @@ namespace ft {
 			{
 				if (n > max_size())
 					throw std::length_error("length_error");
-				if (_capacity < n)
+				if (n > capacity())
 				{
+					value_type temp_size = size();
 					pointer temp_vect = allocator.allocate(n);
-					for (size_type i = 0; i < _size; i++) {
-						temp_vect[i] = vect[i];
-					}
-					allocator.deallocate(vect, _capacity);
+					std::copy(begin(), end(), temp_vect);
+					this->~vector();
 					_capacity = n;
+					_size = temp_size;
 					vect = temp_vect;
 				}
 			}
@@ -209,29 +184,15 @@ namespace ft {
 			// fill
 			void assign (size_type n, const value_type& val)
 			{
-				if (_capacity < n)
-				{
-					*this = vector(n, val);
-				}
+				clear();
+				if (n > capacity()) reserve(n);
+				resize(n, val);
 			}
 			void push_back (const value_type& val)
 			{
-				if (_size == _capacity)
-				{
-					size_type temp_capacity = _capacity;
-					_capacity = _capacity ? _capacity * 2 : 1;
-					pointer temp_vect = allocator.allocate(_capacity);
-					for (size_type i = 0; i < _size; i++) {
-						temp_vect[i] = vect[i];
-					}
-					//dealocate the vect
-					allocator.deallocate(vect, temp_capacity);
-					temp_vect[_size] = val;
-					//change size
-					vect = temp_vect;
-				}
-				else
-					vect[_size] = val;
+				if (size() == capacity())
+					reserve(capacity() * 2);
+				vect[size()] = val;
 				_size++;
 			}
 			void pop_back()
@@ -239,10 +200,26 @@ namespace ft {
 				allocator.destroy(&back());
 				_size--;
 			}
+			// ============================================================================++++++++++
 			// single element
 			iterator insert(iterator position, const value_type& val)
 			{
-
+				if (size() == capacity())
+				{
+					value_type temp_size = size();
+					pointer temp_vect = allocator.allocate(capacity() * 2);
+					std::copy(begin(), position, temp);
+					
+					std::copy_backward(position, end(), end() + 1);
+					this->~vector();
+					_capacity *= 2;
+					_size = temp_size;
+					vect = temp_vect;
+				}
+				else
+					std::copy_backward(position, end(), end());
+				// *position = val;
+				return position;
 			}
 			// fill
 			void insert(iterator position, size_type n, const value_type& val)
