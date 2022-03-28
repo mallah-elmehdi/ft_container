@@ -204,27 +204,22 @@ namespace ft {
 			// single element
 			iterator insert(iterator position, const value_type& val)
 			{
-				if (size() == capacity())
-				{
-					value_type temp_size = size();
-					pointer temp_vect = allocator.allocate(capacity() * 2);
-					std::copy(begin(), position, temp);
-					
-					std::copy_backward(position, end(), end() + 1);
-					this->~vector();
-					_capacity *= 2;
-					_size = temp_size;
-					vect = temp_vect;
-				}
-				else
-					std::copy_backward(position, end(), end());
-				// *position = val;
-				return position;
+				difference_type distance = position > end() ? -1 : std::distance(begin(), position);
+				if (size() == capacity()) reserve(capacity() * 2);
+				std::copy_backward(begin() + distance, end(), end() + 1);
+				*(begin() + distance) = val;
+				_size++;
+				return begin() + distance;
+
 			}
 			// fill
 			void insert(iterator position, size_type n, const value_type& val)
 			{
-
+				difference_type distance = position > end() ? -1 : std::distance(begin(), position);
+				if (size() + n > capacity()) (size() + n > capacity() * 2) ? reserve(size() + n) : reserve(capacity() * 2);
+				std::copy_backward(begin() + distance, end(), end() + n);
+				std::fill(begin() + distance, begin() + distance + n, val);
+				_size += n;
 			}
 			// range
 			// template <class InputIterator>
