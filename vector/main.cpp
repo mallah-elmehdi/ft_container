@@ -27,75 +27,91 @@
 // }
 
 // BFS algorithm in C++
-
 #include <iostream>
 #include <string>
+#include <queue>
 #include <vector>
 #include <algorithm>
 
 using namespace std;
 
-class Bobnet {
+class Deck {
     private:
-        int nodes;
-        int links;
-        int gatways;
-        vector<int> *graph;
-        vector<int> gates;
+        queue<string> *players = new queue<string>[2];
+        queue<string> holder;
+        vector<string> deck = {"2","3","4","5","6","7","8","9","10","J","Q","K","A"};
+        int tours = 0;
     public:
-        Bobnet()
-        {
-            cin >> nodes >> links >> gatways; cin.ignore();
-            graph = new vector<int>[nodes];
-            for (int i = 0; i < links; i++) {
-                int n1, n2;
-                cin >> n1 >> n2; cin.ignore();
-                if (find(graph[n1].begin(), graph[n1].end(), n2) == graph[n1].end())
-                    graph[n1].push_back(n2);
-                if (find(graph[n2].begin(), graph[n2].end(), n1) == graph[n2].end())
-                    graph[n2].push_back(n1);
-            }
-            for (size_t i = 0; i < nodes; i++) {
-              for (std::vector<int>::iterator it = graph[i].begin(); it != graph[i].end(); it++) {
-                cout << *it;
-              }
-            }
-            for (int i = 0; i < gatways; i++) {
-                int ei;
-                cin >> ei; cin.ignore();
-                gates.push_back(ei);
-              }
-        }
-        void sever_link(int start_node)
-        {
-            vector<bool> visted(nodes, false);
-            vector<int> q;
-
-            q.push_back(start_node);
-            while (!q.empty())
+        Deck() {
+            for (int i = 0; i < 2; i++)
             {
-                visted[q.front()] = true;
-                for (
-                    vector<int>::iterator it = graph[q.front()].begin();
-                    it != graph[q.front()].end();
-                    it++
-                )
-                {
-                    if (find(gates.begin(), gates.end(), *it) != gates.end())
-                        cout << q.front() << " " << *it << endl;
-                    q.push_back(*it);
+                int n;
+                cin >> n; cin.ignore();
+                cout << "n = " << n << endl;
+                for (int j = 0; j < n; j++) {
+                    string card;
+                    cin >> card; cin.ignore();
+                    players[i].push(card);
                 }
-                q.erase(q.begin());
             }
+        }
+        void chuffle(int player, int chfl_nmr)
+        {
+            for (int i = 0; i < chfl_nmr; i++)
+            {
+                holder.push(players[0].front());
+                players[0].pop();
+            }
+            for (int i = 0; i < chfl_nmr; i++)
+            {
+                holder.push(players[1].front());
+                players[1].pop();
+            }
+            if (player != -1) {
+                while (holder.size())
+                {
+                    players[player].push(holder.front());
+                    holder.pop();
+                }
+            }
+        }
+        void play(void)
+        {
+            while (players[0].size() || players[1].size())
+            {
+                tours++;
+                string p1_deck = players[0].front();
+                string p2_deck = players[1].front();
+                p1_deck = p1_deck.substr(0, p1_deck.size() - 1);
+                p2_deck = p2_deck.substr(0, p2_deck.size() - 1);
+                cout << "p1_deck = " << p1_deck << endl;
+                cout << "p2_deck = " << p2_deck << endl;
+                if (find(deck.begin(), deck.end(), p1_deck) > find(deck.begin(), deck.end(), p2_deck)) {
+                    chuffle(0, 1);
+                }
+                else if (find(deck.begin(), deck.end(), p1_deck) < find(deck.begin(), deck.end(), p2_deck)) {
+                    chuffle(1, 1);
+                }
+                else {
+                    chuffle(-1, 3);
+                }
+            }
+        }
+        void result()
+        {
+            if (players[0].size() == 0)
+                cout << "2";
+            else
+                cout << "1";
+            cout << " " << tours << endl;
         }
 };
 
+
+
 int main()
 {
-    Bobnet bob;
-    while (1) {
-        int si;
-        cin >> si; cin.ignore();
-        bob.sever_link(si);
-    }
+    Deck mydeck;
+    mydeck.play();
+    mydeck.result();
 }
