@@ -8,7 +8,7 @@ class integral_constant {
 		static const T						value = v;
 		typedef T							value_type;
 		typedef integral_constant<T,v>		type;
-		const operator T()
+		const integral_constant
 		{
 			return v;
 		}
