@@ -14,23 +14,23 @@ namespace ft {
 	class vector {
 		public:
 			// + + + + + + + + + Member type
-			typedef T																					value_type;
-			typedef std::ptrdiff_t														difference_type;
-			typedef Allocator																	allocator_type;
-			typedef size_t																		size_type;
+			typedef T												value_type;
+			typedef std::ptrdiff_t									difference_type;
+			typedef Allocator										allocator_type;
+			typedef size_t											size_type;
 			typedef typename allocator_type::reference				reference;
-			typedef typename allocator_type::const_reference	const_reference;
-			typedef typename allocator_type::pointer					pointer;
-			typedef typename allocator_type::const_pointer		const_pointer;
-			typedef	ra_iterator<T> 														iterator;
-			typedef	ra_iterator<const T> 											const_iterator;
-			typedef	ra_reverse_iterator<iterator>							reverse_iterator;
+			typedef typename allocator_type::const_reference		const_reference;
+			typedef typename allocator_type::pointer				pointer;
+			typedef typename allocator_type::const_pointer			const_pointer;
+			typedef	ra_iterator<T> 									iterator;
+			typedef	ra_iterator<const T> 							const_iterator;
+			typedef	ra_reverse_iterator<iterator>					reverse_iterator;
 			typedef	ra_reverse_iterator<const_iterator>				const_reverse_iterator;
 		private:
-			pointer 					vect;
-			allocator_type 		allocator;
-			size_type					_size;
-			size_type					_capacity;
+			pointer 				vect;
+			allocator_type 			allocator;
+			size_type				_size;
+			size_type				_capacity;
 		public:
 			// + + + + + + + + + Member functions
 			/* Constructor */
@@ -43,17 +43,18 @@ namespace ft {
 				std::fill(begin(), end(), val);
 			}
 			//range
-			// template <class InputIterator>
-			// vector (InputIterator first, InputIterator last, const allocator_type& alloc = allocator_type()) : allocator(alloc)
-			// {
+			//template <class InputIterator>
+			//vector (InputIterator first, InputIterator last, const allocator_type& alloc = allocator_type()) : allocator(alloc)
+			//{
 			//
-			// }
+			//}
 			//copy
 			vector (const vector& x) : _size(x._size), _capacity(x._capacity), allocator(x.allocator)
 			{
-					vect = allocator.allocate(capacity());
-					std::copy(x.begin(), x.endspo(), begin());
+				vect = allocator.allocate(capacity());
+				std::copy(x.begin(), x.endspo(), begin());
 			}
+			//operator=
 			vector& operator=(const vector& x)
 			{
 				allocator = x.allocator;
@@ -200,8 +201,6 @@ namespace ft {
 				allocator.destroy(&back());
 				_size--;
 			}
-			// ============================================================================++++++++++
-			// single element
 			iterator insert(iterator position, const value_type& val)
 			{
 				difference_type distance = position > end() ? -1 : std::distance(begin(), position);
@@ -212,7 +211,6 @@ namespace ft {
 				return begin() + distance;
 
 			}
-			// fill
 			void insert(iterator position, size_type n, const value_type& val)
 			{
 				difference_type distance = position > end() ? -1 : std::distance(begin(), position);
@@ -221,17 +219,24 @@ namespace ft {
 				std::fill(begin() + distance, begin() + distance + n, val);
 				_size += n;
 			}
-			// range
-			// template <class InputIterator>
-			// void insert (iterator position, InputIterator first, InputIterator last);
-			iterator erase (iterator position)
+			//template <class InputIterator>
+			//void insert (iterator position, InputIterator first, InputIterator last);
+			iterator erase(iterator position)
 			{
+				std::copy(position + 1, end(), position);
 				allocator.destroy(&(*position));
+				_size--;
 				return (position);
 			}
-			iterator erase (iterator first, iterator last)
+			iterator erase(iterator first, iterator last)
 			{
-
+				std::copy(last, end(), first);
+				for (iterator it = last; it != end(); it++)
+				{
+					allocator.destroy(&(*it));
+				}
+				_size -= std::distance(first, last);
+				return (first);
 			}
 			void clear()
 			{
