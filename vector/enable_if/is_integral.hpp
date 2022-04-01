@@ -3,8 +3,9 @@
 // * LIBRARIES *
 // * FT NAMESPACE - [ITERATOR TRAITS] *
 //is_integral class template
-template <class T> 
-class is_integral
-{
+template <class T, T v>
+class integral {
+	public:
+		typedef value_typebool
 };
 #endif
