@@ -224,6 +224,15 @@ namespace ft {
 			// range
 			// template <class InputIterator>
 			// void insert (iterator position, InputIterator first, InputIterator last);
+			iterator erase (iterator position)
+			{
+				allocator.destroy(&(*position));
+				return (position);
+			}
+			iterator erase (iterator first, iterator last)
+			{
+
+			}
 			void clear()
 			{
 				while (size())
