@@ -2,8 +2,6 @@
 #include <vector>
 #include "vector.hpp"
 #include "iterator.hpp"
-#include "equal.hpp"
-#include "lexicographical_compare.hpp"
 
  // int main()
  // {
