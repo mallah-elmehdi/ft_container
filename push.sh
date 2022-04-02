@@ -1,5 +1,5 @@
 
-   
+
 #!/bin/bash
 # Reset
 Color_Off='\033[0m'       # Text Reset
@@ -37,7 +37,7 @@ if [ -z "$1" ]
                 do
                         clear
                         echo -e "${BBlue}${On_White}Push number $push_num : Waiting...${Color_Off}"
-                        sleep 3600
+                        sleep 60
                         echo
                         echo -e "${BGreen}${On_White}Push changes starting...${Color_Off}"
                         git add .
