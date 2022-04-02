@@ -6,83 +6,35 @@
 // * [] *
 //is_integral class template
 template <class T>
-class integral : integral_constant<bool, false> {
-	public:
-		typedef bool	value_type;
-};
+class is_integral : integral_constant<bool, false> {};
 template <>
-class integral<bool> : integral_constant<bool, false> {
-	public:
-		typedef bool	value_type;
-};
+class is_integral<bool> : integral_constant<bool, true> {};
 template <>
-class integral<char> : integral_constant<bool, false> {
-	public:
-		typedef bool	value_type;
-};
+class is_integral<char> : integral_constant<bool, true> {};
 template <>
-class integral<char16_t> : integral_constant<bool, false> {
-	public:
-		typedef bool	value_type;
-};
+class is_integral<char16_t> : integral_constant<bool, true> {};
 template <>
-class integral<char32_t> : integral_constant<bool, false> {
-	public:
-		typedef bool	value_type;
-};
+class is_integral<char32_t> : integral_constant<bool, true> {};
 template <>
-class integral<wchar_t> : integral_constant<bool, false> {
-	public:
-		typedef bool	value_type;
-};
+class is_integral<wchar_t> : integral_constant<bool, true> {};
 template <>
-class integral<signed char> : integral_constant<bool, false> {
-	public:
-		typedef bool	value_type;
-};
+class is_integral<signed char> : integral_constant<bool, true> {};
 template <>
-class integral<short int> : integral_constant<bool, false> {
-	public:
-		typedef bool	value_type;
-};
+class is_integral<short int> : integral_constant<bool, true> {};
 template <>
-class integral<int> : integral_constant<bool, false> {
-	public:
-		typedef bool	value_type;
-};
+class is_integral<int> : integral_constant<bool, true> {};
 template <>
-class integral<long int> : integral_constant<bool, false> {
-	public:
-		typedef bool	value_type;
-};
+class is_integral<long int> : integral_constant<bool, true> {};
 template <>
-class integral<long long int> : integral_constant<bool, false> {
-	public:
-		typedef bool	value_type;
-};
+class is_integral<long long int> : integral_constant<bool, true> {};
 template <>
-class integral<unsigned char> : integral_constant<bool, false> {
-	public:
-		typedef bool	value_type;
-};
+class is_integral<unsigned char> : integral_constant<bool, true> {};
 template <>
-class integral<unsigned short int> : integral_constant<bool, false> {
-	public:
-		typedef bool	value_type;
-};
+class is_integral<unsigned short int> : integral_constant<bool, true> {};
 template <>
-class integral<unsigned int> : integral_constant<bool, false> {
-	public:
-		typedef bool	value_type;
-};
+class is_integral<unsigned int> : integral_constant<bool, true> {};
 template <>
-class integral<unsigned long int> : integral_constant<bool, false> {
-	public:
-		typedef bool	value_type;
-};
+class is_integral<unsigned long int> : integral_constant<bool, true> {};
 template <>
-class integral<unsigned long long int> : integral_constant<bool, false> {
-	public:
-		typedef bool	value_type;
-};
+class is_integral<unsigned long long int> : integral_constant<bool, true> {};
 #endif

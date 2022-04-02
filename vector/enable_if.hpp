@@ -4,7 +4,7 @@
 template<bool Cond, class T = void>
 struct enable_if
 {
-
+	//nothing
 };
 
 template<class T>

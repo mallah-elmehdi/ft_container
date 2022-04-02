@@ -38,7 +38,7 @@ namespace ft {
 			/* Constructor */
 			explicit vector (const allocator_type& alloc = allocator_type()) : vect(), allocator(alloc), _size(0), _capacity(0)
 			{
-
+				//nothing
 			}
 			explicit vector (size_type n, const value_type& val = value_type(), const allocator_type& alloc = allocator_type()) : allocator(alloc), _size(n), _capacity(n)
 			{
