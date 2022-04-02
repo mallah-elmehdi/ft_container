@@ -36,27 +36,26 @@ namespace ft {
 		public:
 			// + + + + + + + + + Member functions
 			/* Constructor */
-			//default
-			explicit vector (const allocator_type& alloc = allocator_type()) : vect(), allocator(alloc), _size(0), _capacity(0) {}
-			//fill
+			explicit vector (const allocator_type& alloc = allocator_type()) : vect(), allocator(alloc), _size(0), _capacity(0)
+			{
+
+			}
 			explicit vector (size_type n, const value_type& val = value_type(), const allocator_type& alloc = allocator_type()) : allocator(alloc), _size(n), _capacity(n)
 			{
 				vect = allocator.allocate(n);
 				std::fill(begin(), end(), val);
 			}
-			//range
-			//template <class InputIterator>
-			//vector (InputIterator first, InputIterator last, const allocator_type& alloc = allocator_type()) : allocator(alloc)
-			//{
-			//
-			//}
-			//copy
+			template <class InputIterator>
+			vector (InputIterator first, InputIterator last, const allocator_type& alloc = allocator_type()) : allocator(alloc)
+			{
+				vect = allocator.allocate(std::distance(first, last));
+				std::copy(first, last, begin());
+			}
 			vector (const vector& x) : _size(x._size), _capacity(x._capacity), allocator(x.allocator)
 			{
 				vect = allocator.allocate(capacity());
 				std::copy(x.begin(), x.end(), begin());
 			}
-			//operator=
 			vector& operator=(const vector& x)
 			{
 				allocator = x.allocator;
@@ -182,9 +181,14 @@ namespace ft {
 				return (*(end() - 1));
 			}
 			/* Modifiers */
-			// range
-			// template <class InputIterator> void assign (InputIterator first, InputIterator last);
-			// fill
+			template <class InputIterator>
+			void assign (InputIterator first, InputIterator last)
+			{
+				clear();
+				int n = std::distance(first, last);
+				if (n > capacity()) reserve(n);
+				std::copy(first, last, begin());
+			}
 			void assign (size_type n, const value_type& val)
 			{
 				clear();
@@ -221,8 +225,17 @@ namespace ft {
 				std::fill(begin() + distance, begin() + distance + n, val);
 				_size += n;
 			}
-			//template <class InputIterator>
-			//void insert (iterator position, InputIterator first, InputIterator last);
+			template <class InputIterator>
+			void insert(iterator position, InputIterator first, InputIterator last)
+			{
+				difference_type distance = std::distance(first, last),
+					this_distance = position > end() ? -1 : std::distance(begin(), position);;
+				if (size() + distance > capacity())
+					(size() + distance > capacity() * 2) ? reserve(size() + distance) : reserve(capacity() * 2);
+				std::copy_backward(begin() + this_distance, end(), end() + distance);
+				std::copy(first, last, begin() + this_distance);
+				_size += distance;
+			}
 			iterator erase(iterator position)
 			{
 				std::copy(position + 1, end(), position);
