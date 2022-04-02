@@ -7,6 +7,8 @@
 # include <stdexcept>
 # include "iterator.hpp"
 # include "reverse_iterator.hpp"
+# include "equal.hpp"
+# include "lexicographical_compare.hpp"
 // * FT NAMESPACE - [VECTOR] *
 namespace ft {
 	//vector class template
@@ -238,7 +240,7 @@ namespace ft {
 				_size -= std::distance(first, last);
 				return (first);
 			}
-			void swap (vector& x)
+			void swap(vector& x)
 			{
 				vector temp(x);
 				x = *this;
@@ -257,21 +259,21 @@ namespace ft {
 				return allocator;
 			}
 			/* Non-member function overloads */
-			// template <class T, class Alloc>
-			// 	bool operator== (const vector<T,Alloc>& lhs, const vector<T,Alloc>& rhs)
-			// 	{
-			// 		return ()
-			// 	}
-			// template <class T, class Alloc>
-			// 	bool operator!= (const vector<T,Alloc>& lhs, const vector<T,Alloc>& rhs);
-			// template <class T, class Alloc>
-			// 	bool operator<  (const vector<T,Alloc>& lhs, const vector<T,Alloc>& rhs);
-			// template <class T, class Alloc>
-			// 	bool operator<= (const vector<T,Alloc>& lhs, const vector<T,Alloc>& rhs);
-			// template <class T, class Alloc>
-			// 	bool operator>  (const vector<T,Alloc>& lhs, const vector<T,Alloc>& rhs);
-			// template <class T, class Alloc>
-			// 	bool operator>= (const vector<T,Alloc>& lhs, const vector<T,Alloc>& rhs);
+			template <class T, class Alloc>
+				bool operator== (const vector<T,Alloc>& lhs, const vector<T,Alloc>& rhs)
+				{
+					return ()
+				}
+			template <class T, class Alloc>
+				bool operator!= (const vector<T,Alloc>& lhs, const vector<T,Alloc>& rhs);
+			template <class T, class Alloc>
+				bool operator<  (const vector<T,Alloc>& lhs, const vector<T,Alloc>& rhs);
+			template <class T, class Alloc>
+				bool operator<= (const vector<T,Alloc>& lhs, const vector<T,Alloc>& rhs);
+			template <class T, class Alloc>
+				bool operator>  (const vector<T,Alloc>& lhs, const vector<T,Alloc>& rhs);
+			template <class T, class Alloc>
+				bool operator>= (const vector<T,Alloc>& lhs, const vector<T,Alloc>& rhs);
 
 	};
 
