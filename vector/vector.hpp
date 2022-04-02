@@ -52,7 +52,7 @@ namespace ft {
 			vector (const vector& x) : _size(x._size), _capacity(x._capacity), allocator(x.allocator)
 			{
 				vect = allocator.allocate(capacity());
-				std::copy(x.begin(), x.endspo(), begin());
+				std::copy(x.begin(), x.end(), begin());
 			}
 			//operator=
 			vector& operator=(const vector& x)
@@ -238,6 +238,12 @@ namespace ft {
 				_size -= std::distance(first, last);
 				return (first);
 			}
+			void swap (vector& x)
+			{
+				vector temp(x);
+				x = *this;
+				*this = temp;
+			}
 			void clear()
 			{
 				while (size())
@@ -250,6 +256,23 @@ namespace ft {
 			{
 				return allocator;
 			}
+			/* Non-member function overloads */
+			// template <class T, class Alloc>
+			// 	bool operator== (const vector<T,Alloc>& lhs, const vector<T,Alloc>& rhs)
+			// 	{
+			// 		return ()
+			// 	}
+			// template <class T, class Alloc>
+			// 	bool operator!= (const vector<T,Alloc>& lhs, const vector<T,Alloc>& rhs);
+			// template <class T, class Alloc>
+			// 	bool operator<  (const vector<T,Alloc>& lhs, const vector<T,Alloc>& rhs);
+			// template <class T, class Alloc>
+			// 	bool operator<= (const vector<T,Alloc>& lhs, const vector<T,Alloc>& rhs);
+			// template <class T, class Alloc>
+			// 	bool operator>  (const vector<T,Alloc>& lhs, const vector<T,Alloc>& rhs);
+			// template <class T, class Alloc>
+			// 	bool operator>= (const vector<T,Alloc>& lhs, const vector<T,Alloc>& rhs);
+
 	};
 
 }
