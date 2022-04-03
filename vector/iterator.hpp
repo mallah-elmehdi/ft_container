@@ -2,7 +2,7 @@
 #define _ITERATOR_HPP_
 // * LIBRARIES *
 # include <iostream>
-# include <cstddef>
+# include <memory>
 // * FT NAMESPACE - [ITERATOR] *
 //vector class template
 template <class T>
@@ -10,7 +10,7 @@ class ra_iterator {
 	public:
 		// + + + + + + + + + Member type
 		typedef T										value_type;
-		typedef std::ptrdiff_t							difference_type;
+		typedef ptrdiff_t								difference_type;
 		typedef T*  									pointer;
 		typedef T&										reference;
 		typedef std::random_access_iterator_tag			iterator_category;
