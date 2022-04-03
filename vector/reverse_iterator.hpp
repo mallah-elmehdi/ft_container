@@ -29,7 +29,8 @@ namespace ft
 				this->iter = ptr;
 			}
 			//copy constuctor
-			reverse_iterator(const reverse_iterator &it) : iter(it.base()) {}
+			template <class Ty>
+			reverse_iterator(const reverse_iterator<Ty> &it) : iter(it.base()) {}
 			// base
 			pointer base(void) const
 			{
