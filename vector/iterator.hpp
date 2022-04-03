@@ -44,12 +44,12 @@ namespace ft
 			//operator==
 			bool operator==(const iterator &it)
 			{
-				return (iter == it.iter);
+				return (iter == it.base());
 			}
 			//operator!=
 			bool operator!=(const iterator &it)
 			{
-				return (iter != it.iter);
+				return (iter != it.base());
 			}
 			//operator*
 			reference operator*(void) const
@@ -101,28 +101,28 @@ namespace ft
 			}
 			difference_type operator-(const iterator& _it)
 			{
-				return (iter - _it.iter);
+				return (iter - _it.base());
 			}
 			//operator<
-			bool operator<(const iterator &it)
-			{
-				return (iter < it.iter);
-			}
-			//operator>
-			bool operator>(const iterator &it)
-			{
-				return (iter > it.iter);
-			}
-			//operator<=
-			bool operator<=(const iterator &it)
-			{
-				return (iter <= it.iter);
-			}
-			//operator>=
-			bool operator>=(const iterator &it)
-			{
-				return (iter >= it.iter);
-			}
+			// bool operator<(const iterator &it)
+			// {
+			// 	return (iter < it.base());
+			// }
+			// //operator>
+			// bool operator>(const iterator &it)
+			// {
+			// 	return (iter > it.bade());
+			// }
+			// //operator<=
+			// bool operator<=(const iterator &it)
+			// {
+			// 	return (iter <= it.base());
+			// }
+			// //operator>=
+			// bool operator>=(const iterator &it)
+			// {
+			// 	return (iter >= it.base());
+			// }
 			//operator+=
 			iterator& operator+=(difference_type n)
 			{
@@ -141,6 +141,46 @@ namespace ft
 				return (iter[n]);
 			}
 	};
+	template <class Iterator>
+	bool operator==(const iterator<Iterator>& x, const iterator<Iterator>& y)
+	{
+		return (x.base() == y.base());
+	}
+	template <class Iterator>
+	bool operator<(const iterator<Iterator>& x, const iterator<Iterator>& y)
+	{
+		return (x.base() < y.base());
+	}
+	template <class Iterator>
+	bool operator!=(const iterator<Iterator>& x, const iterator<Iterator>& y)
+	{
+		return (x.base() != y.base());
+	}
+	template <class Iterator>
+	bool operator>(const iterator<Iterator>& x, const iterator<Iterator>& y)
+	{
+		return (x.base() > y.base());
+	}
+	template <class Iterator>
+	bool operator>=(const iterator<Iterator>& x, const iterator<Iterator>& y)
+	{
+		return (x.base() >= y.base());
+	}
+	template <class Iterator>
+	bool operator<=(const iterator<Iterator>& x, const iterator<Iterator>& y)
+	{
+		return (x.base() <= y.base());
+	}
+	template <class Iterator>
+	typename iterator<Iterator>::difference_type operator-(const iterator<Iterator>& x, const iterator<Iterator>& y)
+	{
+		return (x.base() - y.base());
+	}
+	template <class Iterator>
+ 	iterator<Iterator>operator+(typename iterator<Iterator>::difference_type n, const iterator<Iterator>& x)
+	{
+		return (x + n);
+	}
 }
 
 #endif
