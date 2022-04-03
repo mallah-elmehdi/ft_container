@@ -7,6 +7,5 @@ class integral_constant {
 	public:
 		static const T			value = v;
 		typedef T				value_type;
-
 };
 #endif
