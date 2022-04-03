@@ -6,7 +6,7 @@ namespace ft {
 	# include <algorithm>
 	# include <cstddef>
 	# include <cstdint>
-	// # include <stdexcept>
+	# include <stdexcept>
 	# include "iterator.hpp"
 	# include "reverse_iterator.hpp"
 	# include "equal.hpp"
@@ -309,7 +309,6 @@ namespace ft {
 			{
 				x.swap(y);
 			}
-
 	};
 
 }
