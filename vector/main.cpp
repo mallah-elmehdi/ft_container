@@ -3,8 +3,8 @@
 #include "vector.hpp"
 #include "iterator.hpp"
 
- // int main()
- // {
+ int main()
+ {
      // ft::vector<int> v1(5, -1);
      // ft::vector<int> v2(3, 1);
      //
@@ -53,4 +53,4 @@
 
     // std::is_integral<char> ok;
     // std::cout  <<  ok.value  << "\n";
- // }
+ }
