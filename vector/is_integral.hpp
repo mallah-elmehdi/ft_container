@@ -2,7 +2,6 @@
 #define _IS_INTEGRAL_HPP_
 // * LIBRARIES *
 #include "integral_constant.hpp"
-#include <cstdint>
 //is_integral class template
 template <class T>
 class is_integral : public integral_constant<bool, false> {};

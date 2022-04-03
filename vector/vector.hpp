@@ -5,6 +5,7 @@ namespace ft {
 	# include <memory>
 	# include <algorithm>
 	# include <cstddef>
+	# include <cstdint>
 	// # include <stdexcept>
 	# include "iterator.hpp"
 	# include "reverse_iterator.hpp"

@@ -2,7 +2,6 @@
 #define _ITERATOR_HPP_
 // * LIBRARIES *
 # include <iostream>
-# include <memory>
 // * FT NAMESPACE - [ITERATOR] *
 //vector class template
 template <class T>
