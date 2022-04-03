@@ -1,20 +1,19 @@
 #ifndef _VECTOR_HPP_
 #define _VECTOR_HPP_
+// * LIBRARIES *
+# include <memory>
+# include <algorithm>
+# include <cstddef>
+# include <stdexcept>
+# include "iterator.hpp"
+# include "reverse_iterator.hpp"
+# include "equal.hpp"
+# include "lexicographical_compare.hpp"
+# include "enable_if.hpp"
+# include "is_integral.hpp"
 namespace ft {
-	// * LIBRARIES *
-	# include <memory>
-	# include <algorithm>
-	# include <cstddef>
-	# include <cstdint>
-	# include <stdexcept>
-	# include "iterator.hpp"
-	# include "reverse_iterator.hpp"
-	# include "equal.hpp"
-	# include "lexicographical_compare.hpp"
-	# include "enable_if.hpp"
-	# include "is_integral.hpp"
 	// * FT NAMESPACE - [VECTOR] *
-	template <class T, class Allocator = allocator<T> >
+	template <class T, class Allocator = std::allocator<T> >
 	class vector {
 		public:
 			// + + + + + + + + + Member type
@@ -26,10 +25,10 @@ namespace ft {
 			typedef typename allocator_type::const_reference		const_reference;
 			typedef typename allocator_type::pointer				pointer;
 			typedef typename allocator_type::const_pointer			const_pointer;
-			typedef	ra_iterator<T> 									iterator;
-			typedef	ra_iterator<const T> 							const_iterator;
-			typedef	ra_reverse_iterator<iterator>					reverse_iterator;
-			typedef	ra_reverse_iterator<const_iterator>				const_reverse_iterator;
+			typedef	ft::ra_iterator<T> 								iterator;
+			typedef	ft::ra_iterator<const T> 						const_iterator;
+			typedef	ft::ra_reverse_iterator<iterator>				reverse_iterator;
+			typedef	ft::ra_reverse_iterator<const_iterator>			const_reverse_iterator;
 		private:
 			pointer 				vect;
 			allocator_type 			allocator;
@@ -133,7 +132,7 @@ namespace ft {
 			void reserve(size_type n)
 			{
 				if (n > max_size())
-					throw length_error("length_error");
+					throw std::length_error("length_error");
 				if (n > capacity())
 				{
 					value_type temp_size = size();
@@ -158,13 +157,13 @@ namespace ft {
 			{
 				if (n < _size)
 					return (vect[n]);
-				throw out_of_range("out_of_range");
+				throw std::out_of_range("out_of_range");
 			}
 			const_reference at(size_type n) const
 			{
 				if (n < _size)
 					return (vect[n]);
-				throw out_of_range("out_of_range");
+				throw std::out_of_range("out_of_range");
 			}
 			reference front()
 			{
@@ -275,40 +274,40 @@ namespace ft {
 			}
 			/* Non-member function overloads */
 			template <class Ty, class Alloc>
-			bool operator==(const vector<Ty,Alloc>& lhs, const vector<Ty,Alloc>& rhs)
-			{
-				return  equal(lhs.begin(), lhs.end(), rhs.begin()));
-			}
+				bool operator==(const vector<Ty,Alloc>& lhs, const vector<Ty,Alloc>& rhs)
+				{
+					return (ft::equal(lhs.begin(), lhs.end(), rhs.begin()));
+				}
 			template <class Ty, class Alloc>
-			bool operator!=(const vector<Ty,Alloc>& lhs, const vector<Ty,Alloc>& rhs)
-			{
-				return ( equal(lhs.begin(), lhs.end(), rhs.begin()));
-			}
+				bool operator!=(const vector<Ty,Alloc>& lhs, const vector<Ty,Alloc>& rhs)
+				{
+					return (ft::equal(lhs.begin(), lhs.end(), rhs.begin()));
+				}
 			template <class Ty, class Alloc>
-			bool operator<(const vector<Ty,Alloc>& lhs, const vector<Ty,Alloc>& rhs)
-			{
-				return (lexicographical_compare(lhs.begin(), lhs.end(), rhs.begin(), rhs.end()));
-			}
+				bool operator<(const vector<Ty,Alloc>& lhs, const vector<Ty,Alloc>& rhs)
+				{
+					return (ft::lexicographical_compare(lhs.begin(), lhs.end(), rhs.begin(), rhs.end()));
+				}
 			template <class Ty, class Alloc>
-			bool operator<=(const vector<Ty,Alloc>& lhs, const vector<Ty,Alloc>& rhs)
-			{
-				return (lexicographical_compare(lhs.begin(), lhs.end(), rhs.begin(), rhs.end()) || equal(lhs.begin(), lhs.end(), rhs.begin()));
-			}
+				bool operator<=(const vector<Ty,Alloc>& lhs, const vector<Ty,Alloc>& rhs)
+				{
+					return (ft::lexicographical_compare(lhs.begin(), lhs.end(), rhs.begin(), rhs.end()) || ft::equal(lhs.begin(), lhs.end(), rhs.begin()));
+				}
 			template <class Ty, class Alloc>
-			bool operator>(const vector<Ty,Alloc>& lhs, const vector<Ty,Alloc>& rhs)
-			{
-				return (!lexicographical_compare(lhs.begin(), lhs.end(), rhs.begin(), rhs.end()));
-			}
+				bool operator>(const vector<Ty,Alloc>& lhs, const vector<Ty,Alloc>& rhs)
+				{
+					return (!ft::lexicographical_compare(lhs.begin(), lhs.end(), rhs.begin(), rhs.end()));
+				}
 			template <class Ty, class Alloc>
-			bool operator>=(const vector<Ty,Alloc>& lhs, const vector<Ty,Alloc>& rhs)
-			{
-				return (!lexicographical_compare(lhs.begin(), lhs.end(), rhs.begin(), rhs.end()) || equal(lhs.begin(), lhs.end(), rhs.begin()));
-			}
+				bool operator>=(const vector<Ty,Alloc>& lhs, const vector<Ty,Alloc>& rhs)
+				{
+					return (!ft::lexicographical_compare(lhs.begin(), lhs.end(), rhs.begin(), rhs.end()) || ft::equal(lhs.begin(), lhs.end(), rhs.begin()));
+				}
 			template <class Ty, class Alloc>
-			void swap(vector<T,Alloc>& x, vector<T,Alloc>& y)
-			{
-				x.swap(y);
-			}
+				void swap(vector<T,Alloc>& x, vector<T,Alloc>& y)
+				{
+					x.swap(y);
+				}
 	};
 
 }
