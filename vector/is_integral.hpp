@@ -2,6 +2,7 @@
 #define _IS_INTEGRAL_HPP_
 // * LIBRARIES *
 // # include <cstdint>
+// # include <type_traits>
 # include "integral_constant.hpp"
 namespace ft
 {
