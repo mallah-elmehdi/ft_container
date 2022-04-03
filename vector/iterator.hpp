@@ -27,10 +27,7 @@ namespace ft
 				iter = ptr;
 			}
 			//copy constuctor
-			iterator(const iterator &it)
-			{
-				iter = it.iter;
-			}
+			iterator(const iterator &it) : iter(it.base()) {}
 			// base
 			pointer base(void) const
 			{

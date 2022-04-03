@@ -2,6 +2,7 @@
 #define _IS_INTEGRAL_HPP_
 // * LIBRARIES *
 # include "integral_constant.hpp"
+# include <cuchar>
 namespace ft
 {
     //is_integral class template

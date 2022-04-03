@@ -1,6 +1,6 @@
 OUTPUT = ft
 
-FLAG = -fsanitize=address -std=c++98 #-Wall -Wextra -Werror
+FLAG = -fsanitize=address #-std=c++98 #-Wall -Wextra -Werror
 
 VECTOR_FILES = ./vector/*.cpp
 
