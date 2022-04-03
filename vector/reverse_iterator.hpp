@@ -8,7 +8,7 @@
 namespace ft
 {
 	template <class Iterator>
-	class ra_reverse_iterator {
+	class reverse_iterator {
 		public:
 			// + + + + + + + + + Member type
 			typedef Iterator														iterator_type;
@@ -22,14 +22,14 @@ namespace ft
 		public:
 			// + + + + + + + + + Member functions
 			//default constuctor
-			ra_reverse_iterator(void) : iter() {}
+			reverse_iterator(void) : iter() {}
 			//test
-			ra_reverse_iterator(pointer ptr)
+			reverse_iterator(pointer ptr)
 			{
 				this->iter = ptr;
 			}
 			//copy constuctor
-			ra_reverse_iterator(const ra_reverse_iterator &it)
+			reverse_iterator(const reverse_iterator &it)
 			{
 				this->iter = it.iter;
 			}
@@ -40,18 +40,18 @@ namespace ft
 			}
 			// + + + + + + + + + Operator overload
 			//operator=
-			ra_reverse_iterator& operator=(ra_reverse_iterator const &it)
+			reverse_iterator& operator=(reverse_iterator const &it)
 			{
 				this->iter = it.iter;
 				return (*this);
 			}
 			//operator==
-			bool operator==(const ra_reverse_iterator &it)
+			bool operator==(const reverse_iterator &it)
 			{
 				return (this->iter == it.iter);
 			}
 			//operator!=
-			bool operator!=(const ra_reverse_iterator &it)
+			bool operator!=(const reverse_iterator &it)
 			{
 				return (this->iter != it.iter);
 			}
@@ -67,71 +67,71 @@ namespace ft
 				return &(operator*());;
 			}
 			//operator++ (pre)
-			ra_reverse_iterator& operator++(void)
+			reverse_iterator& operator++(void)
 			{
 				this->iter--;
 				return (*this);
 			}
 			//operator++ (post)
-			ra_reverse_iterator operator++(int)
+			reverse_iterator operator++(int)
 			{
-				ra_reverse_iterator temp(*this);
+				reverse_iterator temp(*this);
 				this->iter--;
 				return (temp);
 			}
 			//operator-- (pre)
-			ra_reverse_iterator& operator--(void)
+			reverse_iterator& operator--(void)
 			{
 				this->iter++;
 				return (*this);
 			}
 			//operator-- (post)
-			ra_reverse_iterator operator--(int)
+			reverse_iterator operator--(int)
 			{
-				ra_reverse_iterator temp(*this);
+				reverse_iterator temp(*this);
 				this->iter++;
 				return (temp);
 			}
 			//operator+
-			ra_reverse_iterator operator+(difference_type n) const
+			reverse_iterator operator+(difference_type n) const
 			{
-				ra_reverse_iterator temp(this->iter - n);
+				reverse_iterator temp(this->iter - n);
 				return (temp);
 			}
 			//operator-
-			ra_reverse_iterator operator-(difference_type n) const
+			reverse_iterator operator-(difference_type n) const
 			{
-				ra_reverse_iterator temp(this->iter + n);
+				reverse_iterator temp(this->iter + n);
 				return (temp);
 			}
 			//operator<
-			bool operator<(const ra_reverse_iterator &it)
+			bool operator<(const reverse_iterator &it)
 			{
 				return (this->iter > it.iter);
 			}
 			//operator>
-			bool operator>(const ra_reverse_iterator &it)
+			bool operator>(const reverse_iterator &it)
 			{
 				return (this->iter < it.iter);
 			}
 			//operator<=
-			bool operator<=(const ra_reverse_iterator &it)
+			bool operator<=(const reverse_iterator &it)
 			{
 				return (this->iter >= it.iter);
 			}
 			//operator>=
-			bool operator>=(const ra_reverse_iterator &it)
+			bool operator>=(const reverse_iterator &it)
 			{
 				return (this->iter <= it.iter);
 			}
 			//operator+=
-			ra_reverse_iterator& operator+=(difference_type n)
+			reverse_iterator& operator+=(difference_type n)
 			{
 				this->iter = this->iter - n;
 				return (*this);
 			}
 			//operator-=
-			ra_reverse_iterator& operator-=(difference_type n)
+			reverse_iterator& operator-=(difference_type n)
 			{
 				this->iter = this->iter + n;
 				return (*this);

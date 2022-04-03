@@ -7,7 +7,7 @@ namespace ft
 {
 	//vector class template
 	template <class T>
-	class ra_iterator {
+	class iterator {
 		public:
 			// + + + + + + + + + Member type
 			typedef T										value_type;
@@ -20,14 +20,14 @@ namespace ft
 		public:
 			// + + + + + + + + + Member functions
 			//default constuctor
-			ra_iterator(void) : iter() {}
+			iterator(void) : iter() {}
 			//iterator with ptr param
-			ra_iterator(pointer ptr)
+			iterator(pointer ptr)
 			{
 				iter = ptr;
 			}
 			//copy constuctor
-			ra_iterator(const ra_iterator &it)
+			iterator(const iterator &it)
 			{
 				iter = it.iter;
 			}
@@ -38,18 +38,18 @@ namespace ft
 			}
 			// + + + + + + + + + Operator overload
 			//operator=
-			ra_iterator& operator=(ra_iterator const &it)
+			iterator& operator=(iterator const &it)
 			{
 				iter = it.iter;
 				return (*this);
 			}
 			//operator==
-			bool operator==(const ra_iterator &it)
+			bool operator==(const iterator &it)
 			{
 				return (iter == it.iter);
 			}
 			//operator!=
-			bool operator!=(const ra_iterator &it)
+			bool operator!=(const iterator &it)
 			{
 				return (iter != it.iter);
 			}
@@ -64,75 +64,75 @@ namespace ft
 				return iter;
 			}
 			//operator++ (pre)
-			ra_iterator& operator++(void)
+			iterator& operator++(void)
 			{
 				iter++;
 				return (*this);
 			}
 			//operator++ (post)
-			ra_iterator operator++(int)
+			iterator operator++(int)
 			{
-				ra_iterator temp(*this);
+				iterator temp(*this);
 				iter++;
 				return (temp);
 			}
 			//operator-- (pre)
-			ra_iterator& operator--(void)
+			iterator& operator--(void)
 			{
 				iter--;
 				return (*this);
 			}
 			//operator-- (post)
-			ra_iterator operator--(int)
+			iterator operator--(int)
 			{
-				ra_iterator temp(*this);
+				iterator temp(*this);
 				iter--;
 				return (temp);
 			}
 			//operator+
-			ra_iterator operator+(difference_type n) const
+			iterator operator+(difference_type n) const
 			{
-				ra_iterator temp(iter + n);
+				iterator temp(iter + n);
 				return (temp);
 			}
 			//operator-
-			ra_iterator operator-(difference_type n) const
+			iterator operator-(difference_type n) const
 			{
-				ra_iterator temp(iter - n);
+				iterator temp(iter - n);
 				return (temp);
 			}
-			difference_type operator-(const ra_iterator& _it)
+			difference_type operator-(const iterator& _it)
 			{
 				return (iter - _it.iter);
 			}
 			//operator<
-			bool operator<(const ra_iterator &it)
+			bool operator<(const iterator &it)
 			{
 				return (iter < it.iter);
 			}
 			//operator>
-			bool operator>(const ra_iterator &it)
+			bool operator>(const iterator &it)
 			{
 				return (iter > it.iter);
 			}
 			//operator<=
-			bool operator<=(const ra_iterator &it)
+			bool operator<=(const iterator &it)
 			{
 				return (iter <= it.iter);
 			}
 			//operator>=
-			bool operator>=(const ra_iterator &it)
+			bool operator>=(const iterator &it)
 			{
 				return (iter >= it.iter);
 			}
 			//operator+=
-			ra_iterator& operator+=(difference_type n)
+			iterator& operator+=(difference_type n)
 			{
 				iter = iter + n;
 				return (*this);
 			}
 			//operator-=
-			ra_iterator& operator-=(difference_type n)
+			iterator& operator-=(difference_type n)
 			{
 				iter = iter - n;
 				return (*this);
