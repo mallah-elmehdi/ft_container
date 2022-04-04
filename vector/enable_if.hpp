@@ -1,18 +1,15 @@
 #ifndef _ENABLE_IF_HPP_
 #define _ENABLE_IF_HPP_
 // * [ENABLE IF] *
-namespace ft
+template<bool Cond, class T = void>
+struct enable_if
 {
-	template<bool Cond, class T = void>
-	struct enable_if
-	{
-		//nothing
-	};
+	//nothing
+};
 
-	template<class T>
-	struct enable_if<true, T>
-	{
-		typedef T	type;
-	};
-}
+template<class T>
+struct enable_if<true, T>
+{
+	typedef T	type;
+};
 #endif

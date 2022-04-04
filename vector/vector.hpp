@@ -1,17 +1,18 @@
 #ifndef _VECTOR_HPP_
 #define _VECTOR_HPP_
 // * LIBRARIES *
-# include <memory>
-# include <algorithm>
-# include <cstddef>
-# include <stdexcept>
-# include "iterator.hpp"
-# include "reverse_iterator.hpp"
-# include "equal.hpp"
-# include "lexicographical_compare.hpp"
-# include "enable_if.hpp"
-# include "is_integral.hpp"
 namespace ft {
+	# include <iostream>
+	# include <algorithm>
+	# include <stdexcept>
+	# include <memory>
+	# include <cstddef>
+	# include "equal.hpp"
+	# include "lexicographical_compare.hpp"
+	# include "iterator.hpp"
+	# include "reverse_iterator.hpp"
+	# include "is_integral.hpp"
+	# include "enable_if.hpp"
 	// * FT NAMESPACE - [VECTOR] *
 	template <class T, class Allocator = std::allocator<T> >
 	class vector {
@@ -25,10 +26,10 @@ namespace ft {
 			typedef typename allocator_type::const_reference		const_reference;
 			typedef typename allocator_type::pointer				pointer;
 			typedef typename allocator_type::const_pointer			const_pointer;
-			typedef	ft::iterator<T> 								iterator;
-			typedef	ft::iterator<const T> 							const_iterator;
-			typedef	ft::reverse_iterator<iterator>					reverse_iterator;
-			typedef	ft::reverse_iterator<const_iterator>			const_reverse_iterator;
+			typedef	iterator<T> 									iterator;
+			typedef	iterator<const T> 								const_iterator;
+			typedef	reverse_iterator<iterator>						reverse_iterator;
+			typedef	reverse_iterator<const_iterator>				const_reverse_iterator;
 		private:
 			pointer 				vect;
 			allocator_type 			allocator;
@@ -47,7 +48,7 @@ namespace ft {
 				std::fill(begin(), end(), val);
 			}
 			template <class InputIterator>
-			vector (InputIterator first, InputIterator last, const allocator_type& alloc = allocator_type(), typename ft::enable_if<!ft::is_integral<InputIterator>::value, InputIterator>::type = false) : allocator(alloc)
+			vector (InputIterator first, InputIterator last, const allocator_type& alloc = allocator_type(), typename enable_if<!is_integral<InputIterator>::value, InputIterator>::type = false) : allocator(alloc)
 			{
 				vect = allocator.allocate(distance(first, last));
 				std::copy(first, last, begin());
@@ -183,7 +184,7 @@ namespace ft {
 			}
 			/* Modifiers */
 			template <class InputIterator>
-			void assign (InputIterator first, InputIterator last, typename ft::enable_if<!ft::is_integral<InputIterator>::value, InputIterator>::type = false)
+			void assign (InputIterator first, InputIterator last, typename enable_if<!is_integral<InputIterator>::value, InputIterator>::type = false)
 			{
 				clear();
 				int n = distance(first, last);
@@ -227,7 +228,7 @@ namespace ft {
 				_size += n;
 			}
 			template <class InputIterator>
-			void insert(iterator position, InputIterator first, InputIterator last, typename ft::enable_if<!ft::is_integral<InputIterator>::value, InputIterator>::type = false)
+			void insert(iterator position, InputIterator first, InputIterator last, typename enable_if<!is_integral<InputIterator>::value, InputIterator>::type = false)
 			{
 				difference_type distance = distance(first, last),
 					this_distance = position > end() ? -1 : distance(begin(), position);;
