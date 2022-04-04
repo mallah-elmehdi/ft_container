@@ -7,4 +7,4 @@ VECTOR_FILES = ./vector/*.cpp
 all: vector
 
 vector: $(VECTOR_FILES)
-	@g++ $(FLAG) $(VECTOR_FILES) -o $(OUTPUT)
+	@clang++ $(FLAG) $(VECTOR_FILES) -o $(OUTPUT)

@@ -23,8 +23,8 @@ class ra_iterator {
 		//copy constuctor
 		ra_iterator(pointer x) : iter(x) {}
 		ra_iterator(const ra_iterator &it) : iter(it.base()) {}
-		// template <class Ty>
-		// ra_iterator(const ra_iterator<Ty> &it) : iter(it.base()) {}
+		template <class Ty>
+		ra_iterator(const ra_iterator<Ty> &it) : iter(it.base()) {}
 		// base
 		pointer base(void) const
 		{

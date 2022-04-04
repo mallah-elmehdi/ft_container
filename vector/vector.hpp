@@ -6,12 +6,12 @@
 # include <stdexcept>
 # include <memory>
 # include <cstddef>
-# include "equal.hpp"
-# include "lexicographical_compare.hpp"
-# include "iterator.hpp"
 # include "reverse_iterator.hpp"
+# include "iterator.hpp"
 # include "is_integral.hpp"
 # include "enable_if.hpp"
+# include "lexicographical_compare.hpp"
+# include "equal.hpp"
 namespace ft {
 	// * FT NAMESPACE - [VECTOR] *
 	template <class T, class Allocator = std::allocator<T> >
@@ -28,8 +28,8 @@ namespace ft {
 			typedef typename allocator_type::const_pointer			const_pointer;
 			typedef	ft::ra_iterator<T> 								iterator;
 			typedef	ft::ra_iterator<const T> 						const_iterator;
-			typedef	ft::ra_reverse_iterator<iterator>				reverse_iterator;
-			typedef	ft::ra_reverse_iterator<const_iterator>			const_reverse_iterator;
+			typedef	ft::reverse_iterator<iterator>					reverse_iterator;
+			typedef	ft::reverse_iterator<const_iterator>			const_reverse_iterator;
 		private:
 			pointer 				vect;
 			allocator_type 			allocator;
