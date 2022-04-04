@@ -1,10 +1,10 @@
 OUTPUT = ft
 
-FLAG = -g -fsanitize=address #-std=c++98 #-Wall -Wextra -Werror
+FLAG = -g -fsanitize=address -std=c++98 #-Wall -Wextra -Werror
 
 VECTOR_FILES = ./vector/*.cpp
 
 all: vector
 
 vector: $(VECTOR_FILES)
-	@clang++-9 $(FLAG) $(VECTOR_FILES) -o $(OUTPUT)
+	@g++ $(FLAG) $(VECTOR_FILES) -o $(OUTPUT)

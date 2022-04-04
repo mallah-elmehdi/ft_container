@@ -3,7 +3,8 @@
 // * LIBRARIES *
 # include <iterator>
 // * FT NAMESPACE - [ITERATOR] *
-//vector class template
+namespace ft
+{
 template <class T>
 class ra_iterator {
 	public:
@@ -18,11 +19,12 @@ class ra_iterator {
 	public:
 		// + + + + + + + + + Member functions
 		//default constuctor
-		ra_iterator() : iter() {}
+		ra_iterator(void) : iter() {}
 		//copy constuctor
-		explicit ra_iterator(pointer x) : iter(x) {}
-		template <class Ty>
-		ra_iterator(const ra_iterator<Ty> &it) : iter(it.base()) {}
+		ra_iterator(pointer x) : iter(x) {}
+		ra_iterator(const ra_iterator &it) : iter(it.base()) {}
+		// template <class Ty>
+		// ra_iterator(const ra_iterator<Ty> &it) : iter(it.base()) {}
 		// base
 		pointer base(void) const
 		{
@@ -133,13 +135,14 @@ bool operator<=(const ra_iterator<Iterator>& x, const ra_iterator<Iterator>& y)
 	return (x.base() <= y.base());
 }
 template <class Iterator>
-typename ra_iterator<Iterator>::difference_type operator-(const ra_iterator<Iterator>& x, const iterator<Iterator>& y)
+typename ra_iterator<Iterator>::difference_type operator-(const ra_iterator<Iterator>& x, const ra_iterator<Iterator>& y)
 {
 	return (x.base() - y.base());
 }
 template <class Iterator>
-	iterator<Iterator>operator+(typename iterator<Iterator>::difference_type n, const iterator<Iterator>& x)
+	ra_iterator<Iterator>operator+(typename ra_iterator<Iterator>::difference_type n, const ra_iterator<Iterator>& x)
 {
-	return (iterator<Iterator> (x.base() + n));
+	return (ra_iterator<Iterator> (x.base() + n));
+}
 }
 #endif

@@ -1,32 +1,33 @@
 #ifndef _REVERSE_ITERATOR_HPP_
 #define _REVERSE_ITERATOR_HPP_
 // * LIBRARIES *
-# include "iterator_traits.hpp"
 # include <iostream>
+# include "iterator_traits.hpp"
 // * FT NAMESPACE - [REVERSE ITERATOR] *
-//vector class template
+namespace ft
+{
 template <class Iterator>
 class ra_reverse_iterator {
 	public:
 		// + + + + + + + + + Member type
-		typedef Iterator														iterator_type;
-		typedef typename ft::iterator_traits<Iterator>::difference_type			difference_type;
-		typedef typename ft::iterator_traits<Iterator>::value_type				value_type;
-		typedef typename ft::iterator_traits<Iterator>::pointer					pointer;
-		typedef typename ft::iterator_traits<Iterator>::reference				reference;
-		typedef typename ft::iterator_traits<Iterator>::iterator_category		iterator_category;
+		typedef Iterator													iterator_type;
+		typedef typename iterator_traits<Iterator>::difference_type			difference_type;
+		typedef typename iterator_traits<Iterator>::value_type				value_type;
+		typedef typename iterator_traits<Iterator>::pointer					pointer;
+		typedef typename iterator_traits<Iterator>::reference				reference;
+		typedef typename iterator_traits<Iterator>::iterator_category		iterator_category;
 	private:
 		Iterator iter;
 	public:
 		// + + + + + + + + + Member functions
 		//default constuctor
-		ra_reverse_iterator() : iter() {}
+		ra_reverse_iterator(void) : iter() {}
 		//copy constuctor
 		explicit ra_reverse_iterator(Iterator x) : iter(x) {}
 		template <class Ty>
 		ra_reverse_iterator(const ra_reverse_iterator<Ty> &it) : iter(it.base()) {}
 		// base
-		pointer base(void) const
+		Iterator base(void) const
 		{
 			return iter;
 		}
@@ -143,5 +144,6 @@ template <class Iterator>
 	ra_reverse_iterator<Iterator>operator+(typename ra_reverse_iterator<Iterator>::difference_type n, const ra_reverse_iterator<Iterator>& x)
 {
 	return (ra_reverse_iterator<Iterator> (x.base() - n));
+}
 }
 #endif

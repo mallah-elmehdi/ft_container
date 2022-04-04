@@ -4,7 +4,6 @@
 # include <iostream>
 # include <cstddef>
 // * FT NAMESPACE - [ITERATOR TRAITS] *
-//iterator_traits class template
 template <class Iterator>
 class iterator_traits {
 	public:
