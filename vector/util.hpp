@@ -9,7 +9,6 @@ namespace ft
 		#include <iostream>
         while (first != last)
         {
-			std::cout << val << "\n";
 			*first = val;
 			first++;
         }

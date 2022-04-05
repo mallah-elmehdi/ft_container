@@ -72,8 +72,8 @@ namespace ft {
 			/* Destructor */
 			~vector()
 			{
-				// clear();
-				// allocator.deallocate(vect, capacity());
+				clear();
+				allocator.deallocate(vect, capacity());
 			};
 			/* Iterators */
 			iterator begin()
