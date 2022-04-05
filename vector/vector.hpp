@@ -46,8 +46,13 @@ namespace ft {
 			}
 			explicit vector (size_type n, const value_type& val = value_type(), const allocator_type& alloc = allocator_type()) : allocator(alloc), _size(n), _capacity(n)
 			{
-				vect = allocator.allocate(n);
-				ft::fill(begin(), begin() + n, val);
+				vect = allocator.allocate(n, val);
+				// ft::fill(begin(), begin() + n, val);
+				// for (size_type i = 0; i < n; i++)
+				// {
+				// 	vect[i] = val;
+				// }
+				
 			}
 			template <class InputIterator>
 			vector (InputIterator first, InputIterator last, const allocator_type& alloc = allocator_type(), typename ft::enable_if<!ft::is_integral<InputIterator>::value, bool>::type = false) : allocator(alloc)

@@ -6,7 +6,6 @@ namespace ft
     template <class Iterator, class T>
     void fill(Iterator first, Iterator last, const T &val)
     {
-		#include <iostream>
         while (first != last)
         {
 			*first = val;

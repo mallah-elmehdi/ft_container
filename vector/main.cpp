@@ -3331,15 +3331,16 @@ void alarm_handler(int seg)
 
 int main(void)
 {
-    std::cout << RED << "________________________________________________________________________________________________________" << std::endl;
-    std::cout << RED << "**** The test is taking so much time to test the all cases and the time complexity of each method ****" << std::endl;
-    std::cout << RED << "--------------------------------------------------------------------------------------------------------" << RESET << std::endl;
-    signal(SIGALRM, alarm_handler);
-    iterator_tests();
-    const_iterator_tests();
-    reverse_iterator_tests();
-    reverse_iterator_with_ft_vector();
-    vector_tests();
+    // std::cout << RED << "________________________________________________________________________________________________________" << std::endl;
+    // std::cout << RED << "**** The test is taking so much time to test the all cases and the time complexity of each method ****" << std::endl;
+    // std::cout << RED << "--------------------------------------------------------------------------------------------------------" << RESET << std::endl;
+    // signal(SIGALRM, alarm_handler);
+    // iterator_tests();
+    // const_iterator_tests();
+    // reverse_iterator_tests();
+    // reverse_iterator_with_ft_vector();
+    // vector_tests();
+	ft::vector<std::string ok = ""
     return 0;
 }
 
