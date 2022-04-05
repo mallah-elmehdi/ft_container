@@ -3331,78 +3331,22 @@ void alarm_handler(int seg)
 
 int main(void)
 {
-    std::cout << RED << "________________________________________________________________________________________________________" << std::endl;
-    std::cout << RED << "**** The test is taking so much time to test the all cases and the time complexity of each method ****" << std::endl;
-    std::cout << RED << "--------------------------------------------------------------------------------------------------------" << RESET << std::endl;
-    signal(SIGALRM, alarm_handler);
-    iterator_tests();
-    const_iterator_tests();
-    reverse_iterator_tests();
-    reverse_iterator_with_ft_vector();
-    vector_tests();
-    /*------------------ std::vectors ---------------------*/
-    // std::vector<std::string> v;
-    // /*------------------ std::vectors ---------------------*/
-    // ft::vector<std::string> ft_v;
-    // /*
-    //  * Strings to store the results
-    //  */
-    // std::string s1, s2, s3, ft_s1, ft_s2, ft_s3;
-    // /*
-    //  * Var to store the size and the capacity
-    //  */
-    // size_t z1, z2, z3, ft_z1, ft_z2, ft_z3;
-    // size_t c1, c2, c3, ft_c1, ft_c2, ft_c3;
-    // ft::vector<std::string>::iterator ft_it;
-    // test for an empty vector
-    // v.push_back("hello");
-    // ft_v.push_back("hello");
-    // ft_it = ft_v.begin();
-    // ft_it->length();
-    //
-    // z1 = v.size();
-    // c1 = v.capacity();
-    // ft_z1 = ft_v.size();
-    // ft_c1 = ft_v.capacity();
-    // for (size_t i = 0; i < v.size(); ++i)
-    //     s1 += v.at(i);
-    //
-    // for (size_t i = 0; i < ft_v.size(); ++i)
-    //     ft_s1 += ft_v.at(i);
-    // /*---------------------------------------------*/
-    // // test for a vector with capacity >= size + the new element
-    // v.reserve(30);
-    // ft_v.reserve(30);
-    // v.push_back("string");
-    // ft_v.push_back("string");
-    // v.push_back("string");
-    // ft_v.push_back("string");
-    //
-    // z2 = v.size();
-    // c2 = v.capacity();
-    // ft_z2 = ft_v.size();
-    // ft_c2 = ft_v.capacity();
-    // for (size_t i = 0; i < v.size(); ++i)
-    //     s2 += v.at(i);
-    //
-    // for (size_t i = 0; i < ft_v.size(); ++i)
-    //     ft_s2 += ft_v.at(i);
-    // /*---------------------------------------------------------*/
-    // // test for a vector with capactiy < size + the new element
-    // for (size_t i = 0; i < 100; ++i)
-    //     v.push_back("string");
-    //
-    // for (size_t i = 0; i < 100; ++i)
-    //     ft_v.push_back("string");
-    //
-    // z3 = v.size();
-    // c3 = v.capacity();
-    // ft_z3 = ft_v.size();
-    // ft_c3 = ft_v.capacity();
-    // for (size_t i = 0; i < v.size(); ++i)
-    //     s3 += v.at(i);
-    //
-    // for (size_t i = 0; i < ft_v.size(); ++i)
-    //     ft_s3 += ft_v.at(i);
+    // std::cout << RED << "________________________________________________________________________________________________________" << std::endl;
+    // std::cout << RED << "**** The test is taking so much time to test the all cases and the time complexity of each method ****" << std::endl;
+    // std::cout << RED << "--------------------------------------------------------------------------------------------------------" << RESET << std::endl;
+    // signal(SIGALRM, alarm_handler);
+    // iterator_tests();
+    // const_iterator_tests();
+    // reverse_iterator_tests();
+    // reverse_iterator_with_ft_vector();
+    // vector_tests();
+
+    std::vector<int> v1(91, 9);
+    std::vector<int> v2(90, 9);
+    // ft::vector<int> ft_v1(10, 9);
+    // ft::vector<int> ft_v2(90, 9);
+    std:: cout << bool(v1 > v2) << std::endl;
+    std:: cout << std::lexicographical_compare(v1.begin(), v1.end(), v2.begin(), v2.end()) << std::endl;
+    // std:: cout << bool(ft_v1 > ft_v2) << std::endl;
     return 0;
 }
