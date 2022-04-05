@@ -1,35 +1,38 @@
 #ifndef _UTIL_HPP_
 #define _UTIL_HPP_
+// * LIBRARIES *
+# include <iostream>
 // * [EQUAL] *
-namespace ft 
+namespace ft
 {
-    template <class Iterator, class T>
-    void fill(Iterator first, Iterator last, const T &val)
+    template <class Iterator, class T, class Allocator>
+    void fill(Iterator first, Iterator last, const T &val, Allocator allocator)
     {
+        ;
         while (first != last)
         {
-			*first = val;
+			allocator.construct(&*first, val);
 			first++;
         }
     }
-    
-	template <class Iterator1, class Iterator2>
-    void copy(Iterator1 first, Iterator1 last, Iterator2 result)
+
+	template <class Iterator1, class Iterator2, class Allocator>
+    void copy(Iterator1 first, Iterator1 last, Iterator2 result, Allocator allocator)
     {
         while (first != last)
         {
-			*result = *first;
-			result++; 
+            allocator.construct(&*result, *first);
+			result++;
 			first++;
         }
     }
-    
-	template<class Iterator1, class Iterator2>
-    void copy_backward(Iterator1 first, Iterator1 last, Iterator2 result)
+
+	template<class Iterator1, class Iterator2, class Allocator>
+    void copy_backward(Iterator1 first, Iterator1 last, Iterator2 result, Allocator allocator)
     {
         while (last != first)
 		{
-			*(--result) = *(--last);
+            allocator.construct(&*(--result), *(--last));
 		}
     }
 }

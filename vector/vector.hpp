@@ -46,24 +46,19 @@ namespace ft {
 			}
 			explicit vector (size_type n, const value_type& val = value_type(), const allocator_type& alloc = allocator_type()) : allocator(alloc), _size(n), _capacity(n)
 			{
-				vect = allocator.allocate(n, val);
-				// ft::fill(begin(), begin() + n, val);
-				// for (size_type i = 0; i < n; i++)
-				// {
-				// 	vect[i] = val;
-				// }
-				
+				vect = allocator.allocate(n);
+				ft::fill(begin(), begin() + n, val, allocator);
 			}
 			template <class InputIterator>
 			vector (InputIterator first, InputIterator last, const allocator_type& alloc = allocator_type(), typename ft::enable_if<!ft::is_integral<InputIterator>::value, bool>::type = false) : allocator(alloc)
 			{
 				vect = allocator.allocate(last - first);
-				ft::copy(first, last, begin());
+				ft::copy(first, last, begin(), allocator);
 			}
 			vector(const vector& x) : _size(x._size), _capacity(x._capacity), allocator(x.allocator)
 			{
 				vect = allocator.allocate(capacity());
-				ft::copy(x.begin(), x.end(), begin());
+				ft::copy(x.begin(), x.end(), begin(), allocator);
 			}
 			vector& operator=(const vector& x)
 			{
@@ -71,7 +66,7 @@ namespace ft {
 				clear();
 				reserve(x.capacity());
 				_size = x._size;
-				ft::copy(x.begin(), x.end(), begin());
+				ft::copy(x.begin(), x.end(), begin(), allocator);
 				return (*this);
 			}
 			/* Destructor */
@@ -145,7 +140,7 @@ namespace ft {
 				{
 					size_type temp_size = size();
 					pointer temp_vect = allocator.allocate(n);
-					ft::copy(begin(), end(), temp_vect);
+					ft::copy(begin(), end(), temp_vect, allocator);
 					this->~vector();
 					_capacity = n;
 					_size = temp_size;
@@ -195,7 +190,7 @@ namespace ft {
 			{
 				clear();
 				if (last - first > capacity()) reserve(last - first);
-				ft::copy(first, last, begin());
+				ft::copy(first, last, begin(), allocator);
 			}
 			void assign (size_type n, const value_type& val)
 			{
@@ -219,7 +214,7 @@ namespace ft {
 			{
 				difference_type distance = position > end() ? -1 : position - begin();
 				if (size() == capacity()) reserve(capacity() * 2);
-				ft::copy_backward(begin() + distance, end(), end() + 1);
+				ft::copy_backward(begin() + distance, end(), end() + 1, allocator);
 				*(begin() + distance) = val;
 				_size++;
 				return begin() + distance;
@@ -229,8 +224,8 @@ namespace ft {
 			{
 				difference_type distance = position > end() ? -1 : position - begin();
 				if (size() + n > capacity()) (size() + n > capacity() * 2) ? reserve(size() + n) : reserve(capacity() * 2);
-				ft::copy_backward(begin() + distance, end(), end() + n);
-				ft::fill(begin() + distance, begin() + distance + n, val);
+				ft::copy_backward(begin() + distance, end(), end() + n, allocator);
+				ft::fill(begin() + distance, begin() + distance + n, val, allocator);
 				_size += n;
 			}
 			template <class InputIterator>
@@ -240,20 +235,20 @@ namespace ft {
 					this_distance = position > end() ? -1 : position - begin();
 				if (size() + distance > capacity())
 					(size() + distance > capacity() * 2) ? reserve(size() + distance) : reserve(capacity() * 2);
-				ft::copy_backward(begin() + this_distance, end(), end() + distance);
-				ft::copy(first, last, begin() + this_distance);
+				ft::copy_backward(begin() + this_distance, end(), end() + distance, allocator);
+				ft::copy(first, last, begin() + this_distance, allocator);
 				_size += distance;
 			}
 			iterator erase(iterator position)
 			{
-				ft::copy(position + 1, end(), position);
+				ft::copy(position + 1, end(), position, allocator);
 				allocator.destroy(&(*position));
 				_size--;
 				return (position);
 			}
 			iterator erase(iterator first, iterator last)
 			{
-				ft::copy(last, end(), first);
+				ft::copy(last, end(), first, allocator);
 				for (iterator it = last; it != end(); it++)
 				{
 					allocator.destroy(&(*it));
