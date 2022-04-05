@@ -50,9 +50,10 @@ namespace ft {
 				ft::fill(begin(), begin() + n, val, allocator);
 			}
 			template <class InputIterator>
-			vector (InputIterator first, InputIterator last, const allocator_type& alloc = allocator_type(), typename ft::enable_if<!ft::is_integral<InputIterator>::value, bool>::type = false) : allocator(alloc)
+			vector (InputIterator first, InputIterator last, const allocator_type& alloc = allocator_type(), typename ft::enable_if<!ft::is_integral<InputIterator>::value, bool>::type = false) : _capacity(last - first), allocator(alloc)
 			{
-				vect = allocator.allocate(last - first);
+				_size = _capacity;
+				vect = allocator.allocate(_capacity);
 				ft::copy(first, last, begin(), allocator);
 			}
 			vector(const vector& x) : _size(x._size), _capacity(x._capacity), allocator(x.allocator)
@@ -202,7 +203,7 @@ namespace ft {
 			{
 				if (size() == capacity())
 					reserve(capacity() * 2);
-				vect[size()] = val;
+				allocator.construct(&vect[size()], val);
 				_size++;
 			}
 			void pop_back()
@@ -215,7 +216,7 @@ namespace ft {
 				difference_type distance = position > end() ? -1 : position - begin();
 				if (size() == capacity()) reserve(capacity() * 2);
 				ft::copy_backward(begin() + distance, end(), end() + 1, allocator);
-				*(begin() + distance) = val;
+				allocator.construct(&*(begin() + distance), val);
 				_size++;
 				return begin() + distance;
 
