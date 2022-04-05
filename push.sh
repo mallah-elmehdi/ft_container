@@ -37,7 +37,7 @@ if [ -z "$1" ]
                 do
                         clear
                         echo -e "${BBlue}${On_White}Push number $push_num : Waiting...${Color_Off}"
-                        sleep 1
+                        sleep 1200
                         echo
                         echo -e "${BGreen}${On_White}Push changes starting...${Color_Off}"
                         git add .
