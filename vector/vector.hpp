@@ -190,8 +190,10 @@ namespace ft {
 			void assign (InputIterator first, InputIterator last, typename ft::enable_if<!ft::is_integral<InputIterator>::value, bool>::type = false)
 			{
 				clear();
-				if (last - first > capacity()) reserve(last - first);
+				difference_type n = last - first;
+				if (n > capacity()) reserve(n);
 				ft::copy(first, last, begin(), allocator);
+				_size = n;
 			}
 			void assign (size_type n, const value_type& val)
 			{
@@ -201,7 +203,9 @@ namespace ft {
 			}
 			void push_back (const value_type& val)
 			{
-				if (size() == capacity())
+				if (capacity() == 0)
+					reserve(1);
+				else if (size() == capacity())
 					reserve(capacity() * 2);
 				allocator.construct(&vect[size()], val);
 				_size++;
@@ -214,7 +218,8 @@ namespace ft {
 			iterator insert(iterator position, const value_type& val)
 			{
 				difference_type distance = position > end() ? -1 : position - begin();
-				if (size() == capacity()) reserve(capacity() * 2);
+				if (capacity() == 0) reserve(1);
+				else if (size() == capacity()) reserve(capacity() * 2);
 				ft::copy_backward(begin() + distance, end(), end() + 1, allocator);
 				allocator.construct(&*(begin() + distance), val);
 				_size++;
@@ -224,7 +229,8 @@ namespace ft {
 			void insert(iterator position, size_type n, const value_type& val)
 			{
 				difference_type distance = position > end() ? -1 : position - begin();
-				if (size() + n > capacity()) (size() + n > capacity() * 2) ? reserve(size() + n) : reserve(capacity() * 2);
+				if (capacity() == 0) reserve(size() + n);
+				else if (size() + n > capacity()) (size() + n > capacity() * 2) ? reserve(size() + n) : reserve(capacity() * 2);
 				ft::copy_backward(begin() + distance, end(), end() + n, allocator);
 				ft::fill(begin() + distance, begin() + distance + n, val, allocator);
 				_size += n;
@@ -234,6 +240,7 @@ namespace ft {
 			{
 				difference_type distance = last - first,
 					this_distance = position > end() ? -1 : position - begin();
+				if (capacity() == 0) reserve(size() + distance);
 				if (size() + distance > capacity())
 					(size() + distance > capacity() * 2) ? reserve(size() + distance) : reserve(capacity() * 2);
 				ft::copy_backward(begin() + this_distance, end(), end() + distance, allocator);
@@ -259,9 +266,10 @@ namespace ft {
 			}
 			void swap(vector& x)
 			{
-				vector temp(x);
-				x = *this;
-				*this = temp;
+				ft::swap(vect, x.vect);
+	            ft::swap(_size, x._size);
+	            ft::swap(_capacity, x._capacity);
+	            ft::swap(allocator, x.allocator);
 			}
 			void clear()
 			{
