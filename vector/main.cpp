@@ -3341,12 +3341,12 @@ int main(void)
     // reverse_iterator_with_ft_vector();
     // vector_tests();
 
-    std::vector<int> v1(91, 9);
-    std::vector<int> v2(90, 9);
-    // ft::vector<int> ft_v1(10, 9);
-    // ft::vector<int> ft_v2(90, 9);
-    std:: cout << bool(v1 > v2) << std::endl;
-    std:: cout << std::lexicographical_compare(v1.begin(), v1.end(), v2.begin(), v2.end()) << std::endl;
-    // std:: cout << bool(ft_v1 > ft_v2) << std::endl;
+    std::vector<std::string> v1(90, "bello");
+    std::vector<std::string> v2(90, "aello");
+    ft::vector<std::string> ft_v1(90, "bello");
+    ft::vector<std::string> ft_v2(90, "aello");
+    std:: cout << bool(v1 < v2) << std::endl;
+    std:: cout << bool(ft_v1 < ft_v2) << std::endl;
+    // std:: cout << std::lexicographical_compare(v1.begin(), v1.end(), v2.begin(), v2.end()) << std::endl;
     return 0;
 }
