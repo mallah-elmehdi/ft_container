@@ -3331,22 +3331,22 @@ void alarm_handler(int seg)
 
 int main(void)
 {
-    // std::cout << RED << "________________________________________________________________________________________________________" << std::endl;
-    // std::cout << RED << "**** The test is taking so much time to test the all cases and the time complexity of each method ****" << std::endl;
-    // std::cout << RED << "--------------------------------------------------------------------------------------------------------" << RESET << std::endl;
-    // signal(SIGALRM, alarm_handler);
-    // iterator_tests();
-    // const_iterator_tests();
-    // reverse_iterator_tests();
-    // reverse_iterator_with_ft_vector();
-    // vector_tests();
+    std::cout << RED << "________________________________________________________________________________________________________" << std::endl;
+    std::cout << RED << "**** The test is taking so much time to test the all cases and the time complexity of each method ****" << std::endl;
+    std::cout << RED << "--------------------------------------------------------------------------------------------------------" << RESET << std::endl;
+    signal(SIGALRM, alarm_handler);
+    iterator_tests();
+    const_iterator_tests();
+    reverse_iterator_tests();
+    reverse_iterator_with_ft_vector();
+    vector_tests();
 
-    std::vector<std::string> v1(90, "bello");
-    std::vector<std::string> v2(90, "aello");
-    ft::vector<std::string> ft_v1(90, "bello");
-    ft::vector<std::string> ft_v2(90, "aello");
-    std:: cout << bool(v1 < v2) << std::endl;
-    std:: cout << bool(ft_v1 < ft_v2) << std::endl;
+    // std::vector<std::string> v1(89, "aello");
+    // std::vector<std::string> v2(90, "aello");
+    // // ft::vector<std::string> ft_v1(90, "bello");
+    // // ft::vector<std::string> ft_v2(90, "aello");
+    // std:: cout << bool(v1 < v2) << std::endl;
+    // // std:: cout << bool(ft_v1 < ft_v2) << std::endl;
     // std:: cout << std::lexicographical_compare(v1.begin(), v1.end(), v2.begin(), v2.end()) << std::endl;
     return 0;
 }
