@@ -30,8 +30,13 @@ private:
         newNode->color = RED;
         return (newNode);
     }
+    // check the Tree
+    void checkTree(Node *newNode);
+    {
+        
+    }
 public:
-    Red_Black_Tree() {}
+    // Red_Black_Tree() {}
     // inserting new node to the Tree
     void insert(T key)
     {
@@ -60,6 +65,7 @@ public:
                 nodeHold->left = newNode;
             else
                 nodeHold->right = newNode;
+            checkTree();
         }
     }
 }
