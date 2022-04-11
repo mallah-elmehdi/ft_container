@@ -36,20 +36,30 @@ public:
     void insert(T key)
     {
         Node *newNode = initNode(key);
+        // creat root node
         if (root == NULL)
         {
             root = newNode;
             root->color = BLACK;
         }
+        // add new nodes after the root
         else
         {
             Node *nodeCheck = root;
-            while (nodeCheck)
+            Node *nodeHold;
+            while (nodeCheck != NULL)
             {
+                nodeHold = nodeCheck;
                 if (newNode->data < nodeCheck->data)
-
-                }
+                    nodeCheck = nodeCheck->left;
+                else
+                    nodeCheck = nodeCheck->right;
             }
+            newNode->parent = nodeHold;
+            if (newNode->data < nodeHold->data)
+                nodeHold->left = newNode;
+            else
+                nodeHold->right = newNode;
         }
     }
 }
