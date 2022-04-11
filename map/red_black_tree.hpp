@@ -41,6 +41,16 @@ public:
             root = newNode;
             root->color = BLACK;
         }
+        else
+        {
+            Node *nodeCheck = root;
+            while (nodeCheck)
+            {
+                if (newNode->data < nodeCheck->data)
+
+                }
+            }
+        }
     }
 }
 
