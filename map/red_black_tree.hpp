@@ -8,20 +8,21 @@
 // inclues
 # include <iostream>
 # include "pair.hpp"
+# include "make_pair.hpp"
 
 // create node
 template <class Key, class T>
     class Node {
         public:
             // attribute
-            ft::pair<const Key, T>      pairv;
+            ft::make_pair<Key, T>       pairv;
             Node<Key, T>                *parent;
             Node<Key, T>                *left;
             Node<Key, T>                *right;
             int                         color;
 };
 
-template <class Key, class T, class Allocator>
+template <class Key, class T, class Allocator = std::allocator<ft::pair<const Key,T> > >
     class Red_Black_Tree {
 
         private:
@@ -34,8 +35,13 @@ template <class Key, class T, class Allocator>
             // private member funtion
             Node<Key, T> *initNode(const ft::pair<const Key, T> &val)
             {
+                // creat new node
                 Node<Key, T> *newNode = new Node<Key, T>();
-                newNode->pairv = allocator.construct(val);
+                // reserve memory to the pair
+                newNode->pairv = alloc.allocate(sizeof(std::pair<const Key, T>));
+                // construct the pair
+                alloc.construct(newNode->pairv, ft::make_pair(val.first, val.second));;
+                // add other node info
                 newNode->color = RED;
                 newNode->right = nil;
                 newNode->left = nil;
@@ -169,6 +175,7 @@ template <class Key, class T, class Allocator>
                 nil->right = NULL;
                 nil->left = NULL;
                 nil->parent = NULL;
+                nil->pairv = NULL;
                 root = NULL;
             }
             // inserting new node to the Tree
