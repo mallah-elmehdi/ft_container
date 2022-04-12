@@ -438,9 +438,12 @@
 #include <string>       // std::string
 #include <iostream>     // std::cout
 #include "pair.hpp"   // std::cout
+#include "less.hpp"   // std::cout
 
 int main () {
-  ft::pair <std::string,double> product1;                     // default constructor
+    int foo[]={10,20,5,15,25};
+    std::cout << std::less<int>()(3, 1) << "\n";
+  // ft::pair <std::string,double> product1;                     // default constructor
   // std::pair <std::string,double> product2 ("tomatoes",2.30);   // value init
   // std::pair <std::string,double> product3 (product2);          // copy constructor
   //
@@ -449,7 +452,7 @@ int main () {
   // product2.first = "shoes";                  // the type of first is string
   // product2.second = 39.90;                   // the type of second is double
 
-  std::cout << "The price of " << product1.first << " is $" << product1.second << '\n';
+  // std::cout << "The price of " << product1.first << " is $" << product1.second << '\n';
   // std::cout << "The price of " << product2.first << " is $" << product2.second << '\n';
   // std::cout << "The price of " << product3.first << " is $" << product3.second << '\n';
   return 0;
