@@ -424,10 +424,10 @@ int main() {
   bst.insert(30);
   bst.insert(25);
   bst.insert(40);
-  // bst.insert(60);
-  // bst.insert(2);
-  // bst.insert(1);
-  // bst.insert(70);
+  bst.insert(60);
+  bst.insert(2);
+  bst.insert(1);
+  bst.insert(70);
 
   bst.printTree();
 }

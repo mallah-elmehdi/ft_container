@@ -55,7 +55,6 @@ template <class T>
                 nodeHold->left->parent = node;
 
             nodeHold->parent = node->parent;
-            // std::cout << "node->parent->data : " << node->parent->data << "\n";
 
             if (node->parent == nil)
             {
@@ -97,16 +96,6 @@ template <class T>
         // make suitableRotation
         void suitableRotation(Node<T> *node)
         {
-            // recolor(node->parent);
-            // recolor(node->parent->parent);
-            // if (node->parent->right == node)
-            //     leftRotate(node->parent);
-            // else if (node->parent->left == node)
-            //     rightRotate(node->parent);
-            // if (node->parent == node->parent->parent->right)
-            //     leftRotate(node->parent);
-            // else if (node->parent == node->parent->parent->left)
-            //     rightRotate(node->parent);
             if (node == node->parent->right && node->parent == node->parent->parent->left)
             {
                 recolor(node);
@@ -148,32 +137,19 @@ template <class T>
             int  i = 0;
             while (conflict(newNode))
             {
-                // std::cout << i++ << '\n';
-                // std::cout << "newNode : " << newNode->data << '\n';
                 // get the new node parent and new node uncle
                 nodeParent = newNode->parent;
                 if (nodeParent->parent->left == nodeParent)
                     nodeUncle = nodeParent->parent->right;
                 else
                     nodeUncle = nodeParent->parent->left;
-                // check if the parent is RED
-                // std::cout<< "nodeUncle : " << nodeUncle->data << "\n";
-                // std::cout<< "nodeUncle->color : " << nodeUncle->color << "\n";
+                // check if the nodeUncle is RED
                 if (nodeUncle != NULL && nodeUncle->color == RED)
                 {
-                    // std::cout<< "newNode : " << newNode->data << "\n";
-                    // std::cout<< "nodeParent : " << nodeParent->data << "\n";
-                    // std::cout<< "nodeUncle : " << nodeUncle->data << "\n";
                     recolor(nodeParent);
                     recolor(nodeUncle);
-                    // std::cout<< "nodeParent->parent->data : " << nodeParent->parent->data << "\n";
-                    // std::cout<< "nodeUncle : " << nodeUncle->data << "\n";
-                    // std::cout<< "root->data : " << root->data << "\n";
                     if (nodeParent->parent != root)
-                    {
-                        // std::cout << "nodeParent->parent = " << nodeParent->parent->data << "\n";
                         recolor(nodeParent->parent);
-                    }
                 }
                 else
                     suitableRotation(newNode);
@@ -223,8 +199,8 @@ template <class T>
                 checkTree(newNode);
             }
         }
-        void printTree() {
-            // std::cout << root->data << "\n";
+        void printTree()
+        {
             if (root) {
               printHelper(root, "", true);
             }
