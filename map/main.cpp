@@ -414,12 +414,15 @@
 // };
 
 #include "map.hpp"
+#include "pair.hpp"
 
 int main() {
     ft::map<int, int> m;
+    ft::pair<int, int> p(10, 33);
+    m.insert(p);
+
   // // RedBlackTree bst;
   // Red_Black_Tree<int> bst;
-  // bst.insert(10);
   // bst.insert(18);
   // bst.insert(7);
   // bst.insert(15);

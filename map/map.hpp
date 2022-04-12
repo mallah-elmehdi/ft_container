@@ -17,7 +17,7 @@ namespace ft
             // +++++++ Member types
             typedef Key                                             key_type;
             typedef T                                               mapped_type;
-            typedef ft::pair<const key_type, mapped_type>           value_type;                                      
+            typedef ft::pair<const key_type, mapped_type>           value_type;
             typedef Compare                                         key_compare;
             typedef Allocator	                                    allocator_type;
             typedef typename allocator_type::reference				reference;
@@ -42,7 +42,7 @@ namespace ft
             // map (const map& x);
 
             // Modifiers
-            void insert (const value_type& val)
+            void insert(const value_type& val)
             {
                 tree.insert(val);
             }

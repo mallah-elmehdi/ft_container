@@ -14,12 +14,11 @@ template <class Key, class T>
     class Node {
         public:
             // attribute
-            Key              key;
-            T                data;
-            Node<Key, T>     *parent;
-            Node<Key, T>     *left;
-            Node<Key, T>     *right;
-            int              color;
+            ft::pair<const Key, T>      pairv;
+            Node<Key, T>                *parent;
+            Node<Key, T>                *left;
+            Node<Key, T>                *right;
+            int                         color;
 };
 
 template <class Key, class T, class Allocator>
@@ -33,11 +32,10 @@ template <class Key, class T, class Allocator>
 
         private:
             // private member funtion
-            Node<Key, T> *initNode(const ft::pair<Key, T> &val)
+            Node<Key, T> *initNode(const ft::pair<const Key, T> &val)
             {
                 Node<Key, T> *newNode = new Node<Key, T>();
-                newNode->key = allocator.construct(val.first);
-                newNode->data = allocator.construct(val.second);
+                newNode->pairv = allocator.construct(val);
                 newNode->color = RED;
                 newNode->right = nil;
                 newNode->left = nil;
@@ -167,8 +165,6 @@ template <class Key, class T, class Allocator>
             Red_Black_Tree()
             {
                 nil = new Node<Key, T>();
-                nil->key = Key();
-                nil->data = T();
                 nil->color = BLACK;
                 nil->right = NULL;
                 nil->left = NULL;
@@ -176,7 +172,7 @@ template <class Key, class T, class Allocator>
                 root = NULL;
             }
             // inserting new node to the Tree
-            void insert(const ft::pair<Key, T> &val)
+            void insert(const ft::pair<const Key, T> &val)
             {
                 Node<Key, T> *newNode = initNode(val);
                 // creat root node
@@ -193,13 +189,13 @@ template <class Key, class T, class Allocator>
                     while (nodeCheck != nil)
                     {
                         nodeHold = nodeCheck;
-                        if (newNode->key < nodeCheck->key)
+                        if (newNode->pairv.first < nodeCheck->pairv.first)
                             nodeCheck = nodeCheck->left;
                         else
                             nodeCheck = nodeCheck->right;
                     }
                     newNode->parent = nodeHold;
-                    if (newNode->key < nodeHold->key)
+                    if (newNode->pairv.first < nodeHold->pairv.first)
                         nodeHold->left = newNode;
                     else
                         nodeHold->right = newNode;
@@ -224,7 +220,7 @@ template <class Key, class T, class Allocator>
                     }
 
                   std::string sColor = root->color == RED ? "RED" : "BLACK";
-                  std::cout << root->key << "(" << sColor << ")" << std::endl;
+                  std::cout << root->pairv.first << "(" << sColor << ")" << std::endl;
                   printHelper(root->left, indent, false);
                   printHelper(root->right, indent, true);
                 }
