@@ -1,16 +1,16 @@
 #ifndef _MAP_
 #define _MAP_
 
-# include  "pair.hpp"
-# include  "less.hpp"
+# include "pair.hpp"
+# include "less.hpp"
 // # include  "iterator.hpp"
-# include  "red_black_tree.hpp"
+# include "red_black_tree.hpp"
 # include <cstddef>
 # include <memory>
 
 namespace ft
 {
-    template < class Key, class T, class Compare = ft::less<Key>, class Allocator = std::allocator<ft::pair<const Key,T> > >
+    template < class Key, class T, class Compare = ft::less<Key>, class Allocator = std::allocator<ft::pair<const Key, T> > >
     class map
     {
         public:
@@ -30,7 +30,7 @@ namespace ft
         private:
             Red_Black_Tree<key_type, mapped_type, allocator_type>	tree;
 			size_t													_size;
-			Allocator												allocator;
+			allocator_type											allocator;
         public:
             // // +++++++ Member functions
             explicit map (const key_compare& comp = key_compare(), const allocator_type& alloc = allocator_type())
@@ -46,6 +46,7 @@ namespace ft
 			// Capacity
 			bool empty() const { return (size() == 0); }
 			size_type size() const { return (_size); }
+			size_type max_size() const { return (allocator.max_size()); }
             // Modifiers
             void insert(const value_type& val)
             {
