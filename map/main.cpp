@@ -422,8 +422,8 @@ int main() {
   bst.insert(15);
   bst.insert(16);
   bst.insert(30);
-  // bst.insert(25);
-  // bst.insert(40);
+  bst.insert(25);
+  bst.insert(40);
   // bst.insert(60);
   // bst.insert(2);
   // bst.insert(1);

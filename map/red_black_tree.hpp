@@ -56,7 +56,7 @@ template <class T>
 
             nodeHold->parent = node->parent;
 
-            if (node->parent == nil)
+            if (node->parent == nil || node->parent == NULL)
             {
                 root = nodeHold;
                 root->color = BLACK;
@@ -79,8 +79,8 @@ template <class T>
                 nodeHold->right->parent = node;
 
             nodeHold->parent = node->parent;
-
-            if (node->parent == nil)
+            std::cout << "node->parent->data : " << node->parent->data << "\n";
+            if (node->parent == nil || node->parent == NULL)
             {
                 root = nodeHold;
                 root->color = BLACK;
@@ -96,8 +96,8 @@ template <class T>
         // make suitableRotation
         void suitableRotation(Node<T> *node)
         {
-            recolor(node->parent);
-            recolor(node->parent->parent);
+            // recolor(node->parent);
+            // recolor(node->parent->parent);
             // if (node->parent->right == node)
             //     leftRotate(node->parent);
             // else if (node->parent->left == node)
@@ -122,10 +122,15 @@ template <class T>
             }
             else if (node == node->parent->right && node->parent == node->parent->parent->right)
             {
+                recolor(node->parent);
+                recolor(node->parent->parent);
                 leftRotate(node->parent);
             }
             else if (node == node->parent->left && node->parent == node->parent->parent->left)
             {
+                std::cout << "here\n"; 
+                recolor(node->parent);
+                recolor(node->parent->parent);
                 rightRotate(node->parent);
             }
         }
@@ -151,7 +156,7 @@ template <class T>
                 // check if the parent is RED
                 // std::cout<< "nodeUncle : " << nodeUncle->data << "\n";
                 // std::cout<< "nodeUncle->color : " << nodeUncle->color << "\n";
-                if (nodeUncle->color == RED)
+                if (nodeUncle != NULL && nodeUncle->color == RED)
                 {
                     // std::cout<< "newNode : " << newNode->data << "\n";
                     // std::cout<< "nodeParent : " << nodeParent->data << "\n";
@@ -163,7 +168,7 @@ template <class T>
                     // std::cout<< "root->data : " << root->data << "\n";
                     if (nodeParent->parent != root)
                     {
-                        std::cout << "nodeParent->parent = " << nodeParent->parent->data << "\n";
+                        // std::cout << "nodeParent->parent = " << nodeParent->parent->data << "\n";
                         recolor(nodeParent->parent);
                     }
                 }
@@ -216,9 +221,10 @@ template <class T>
             }
         }
         void printTree() {
-            if (root) {
-              printHelper(this->root, "", true);
-            }
+            std::cout << root->data << "\n";
+            // if (root) {
+            //   printHelper(root, "", true);
+            // }
         }
         void printHelper(Node<T> *root, std::string indent, bool last) {
             if (root != nil) {
