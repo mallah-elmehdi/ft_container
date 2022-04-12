@@ -96,18 +96,34 @@ template <class T>
         // make suitableRotation
         void suitableRotation(Node<T> *node)
         {
-            std::cout << node->parent->parent->data << "\n";
             recolor(node->parent);
             recolor(node->parent->parent);
-            if (node->parent->right == node)
-                leftRotate(node->parent);
-            else if (node->parent->left == node)
-                rightRotate(node->parent);
-            std::cout << node->parent->right->data << "\n";
-            if (node->parent == node->parent->parent->right)
-                leftRotate(node->parent);
+            // if (node->parent->right == node)
+            //     leftRotate(node->parent);
+            // else if (node->parent->left == node)
+            //     rightRotate(node->parent);
+            // if (node->parent == node->parent->parent->right)
+            //     leftRotate(node->parent);
             // else if (node->parent == node->parent->parent->left)
             //     rightRotate(node->parent);
+            if (node == node->parent->right && node->parent == node->parent->parent->left)
+            {
+                leftRotate(node->parent);
+                rightRotate(node->parent);
+            }
+            else if (node == node->parent->left && node->parent == node->parent->parent->right)
+            {
+                rightRotate(node->parent);
+                leftRotate(node->parent);
+            }
+            else if (node == node->parent->right && node->parent == node->parent->parent->right)
+            {
+                leftRotate(node->parent);
+            }
+            else if (node == node->parent->left && node->parent == node->parent->parent->left)
+            {
+                rightRotate(node->parent);
+            }
         }
         // check the conflict
         bool conflict(Node<T> *node)

@@ -421,7 +421,7 @@ int main() {
   bst.insert(7);
   bst.insert(15);
   bst.insert(16);
-  // bst.insert(30);
+  bst.insert(30);
 
   bst.printTree();
 }
