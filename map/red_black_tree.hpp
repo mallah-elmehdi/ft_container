@@ -7,15 +7,16 @@
 
 // inclues
 # include <iostream>
-# include "pair.hpp"
+# include <memory>
 # include "make_pair.hpp"
+# include "pair.hpp"
 
 // create node
 template <class Key, class T>
     class Node {
         public:
             // attribute
-            ft::make_pair<Key, T>       pairv;
+            ft::pair<const Key, T>		*pairv;
             Node<Key, T>                *parent;
             Node<Key, T>                *left;
             Node<Key, T>                *right;
@@ -38,9 +39,9 @@ template <class Key, class T, class Allocator = std::allocator<ft::pair<const Ke
                 // creat new node
                 Node<Key, T> *newNode = new Node<Key, T>();
                 // reserve memory to the pair
-                newNode->pairv = alloc.allocate(sizeof(std::pair<const Key, T>));
+                newNode->pairv = allocator.allocate(sizeof(std::pair<const Key, T>));
                 // construct the pair
-                alloc.construct(newNode->pairv, ft::make_pair(val.first, val.second));;
+                allocator.construct(newNode->pairv, ft::make_pair(val.first, val.second));;
                 // add other node info
                 newNode->color = RED;
                 newNode->right = nil;
@@ -175,7 +176,6 @@ template <class Key, class T, class Allocator = std::allocator<ft::pair<const Ke
                 nil->right = NULL;
                 nil->left = NULL;
                 nil->parent = NULL;
-                nil->pairv = NULL;
                 root = NULL;
             }
             // inserting new node to the Tree
@@ -196,13 +196,13 @@ template <class Key, class T, class Allocator = std::allocator<ft::pair<const Ke
                     while (nodeCheck != nil)
                     {
                         nodeHold = nodeCheck;
-                        if (newNode->pairv.first < nodeCheck->pairv.first)
+                        if (newNode->pairv->first < nodeCheck->pairv->first)
                             nodeCheck = nodeCheck->left;
                         else
                             nodeCheck = nodeCheck->right;
                     }
                     newNode->parent = nodeHold;
-                    if (newNode->pairv.first < nodeHold->pairv.first)
+                    if (newNode->pairv->first < nodeHold->pairv->first)
                         nodeHold->left = newNode;
                     else
                         nodeHold->right = newNode;
@@ -227,7 +227,7 @@ template <class Key, class T, class Allocator = std::allocator<ft::pair<const Ke
                     }
 
                   std::string sColor = root->color == RED ? "RED" : "BLACK";
-                  std::cout << root->pairv.first << "(" << sColor << ")" << std::endl;
+                  std::cout << root->pairv->first << "(" << sColor << ")" << std::endl;
                   printHelper(root->left, indent, false);
                   printHelper(root->right, indent, true);
                 }

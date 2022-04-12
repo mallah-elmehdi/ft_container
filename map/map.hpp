@@ -28,23 +28,29 @@ namespace ft
             typedef size_t											size_type;
 
         private:
-            Red_Black_Tree<key_type, mapped_type, allocator_type> tree;
+            Red_Black_Tree<key_type, mapped_type, allocator_type>	tree;
+			size_t													_size;
+			Allocator												allocator;
         public:
             // // +++++++ Member functions
-            // explicit map (const key_compare& comp = key_compare(), const allocator_type& alloc = allocator_type())
-            // :
-            //
+            explicit map (const key_compare& comp = key_compare(), const allocator_type& alloc = allocator_type())
+            : _size(0), allocator(alloc) {}
+
+            
             // template <class InputIterator>
             //   map (InputIterator first, InputIterator last,
             //        const key_compare& comp = key_compare(),
             //        const allocator_type& alloc = allocator_type());
             //
             // map (const map& x);
-
+			// Capacity
+			bool empty() const { return (size() == 0); }
+			size_type size() const { return (_size); }
             // Modifiers
             void insert(const value_type& val)
             {
                 tree.insert(val);
+				tree.printTree();
             }
     };
 }
