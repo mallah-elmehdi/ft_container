@@ -7,30 +7,37 @@
 
 // inclues
 # include <iostream>
+# include "pair.hpp"
 
 // create node
-template <class T>
+template <class Key, class T>
     class Node {
         public:
             // attribute
-            T           key;
-            Node<T>     *parent;
-            Node<T>     *left;
-            Node<T>     *right;
-            int         color;
+            Key              key;
+            T                data;
+            Node<Key, T>     *parent;
+            Node<Key, T>     *left;
+            Node<Key, T>     *right;
+            int              color;
 };
 
-template <class T>
+template <class Key, class T, class Allocator>
     class Red_Black_Tree {
+
         private:
             // attribute
-            Node<T> *nil;
-            Node<T> *root;
+            Allocator allocator;
+            Node<Key, T> *nil;
+            Node<Key, T> *root;
+
+        private:
             // private member funtion
-            Node<T> *initNode(T key)
+            Node<Key, T> *initNode(const ft::pair<Key, T> &val)
             {
-                Node<T> *newNode = new Node<T>();
-                newNode->key = key;
+                Node<Key, T> *newNode = new Node<Key, T>();
+                newNode->key = allocator.construct(val.first);
+                newNode->data = allocator.construct(val.second);
                 newNode->color = RED;
                 newNode->right = nil;
                 newNode->left = nil;
@@ -38,15 +45,15 @@ template <class T>
                 return (newNode);
             }
             // recolor methode
-            void recolor(Node<T> *node)
+            void recolor(Node<Key, T> *node)
             {
                 if (node->color == RED) node->color = BLACK;
                 else node->color = RED;
             }
             // leftRotate
-            void leftRotate(Node<T> *node)
+            void leftRotate(Node<Key, T> *node)
             {
-                Node<T> *nodeHold = node->right;
+                Node<Key, T> *nodeHold = node->right;
                 node->right = nodeHold->left;
 
                 if (nodeHold->left != nil)
@@ -69,9 +76,9 @@ template <class T>
 
             }
             // rightRotate
-            void rightRotate(Node<T> *node)
+            void rightRotate(Node<Key, T> *node)
             {
-                Node<T> *nodeHold = node->left;
+                Node<Key, T> *nodeHold = node->left;
                 node->left = nodeHold->right;
 
                 if (nodeHold->right != nil)
@@ -92,7 +99,7 @@ template <class T>
                 node->parent = nodeHold;
             }
             // make suitableRotation
-            void suitableRotation(Node<T> *node)
+            void suitableRotation(Node<Key, T> *node)
             {
                 if (node == node->parent->right && node->parent == node->parent->parent->left)
                 {
@@ -122,16 +129,16 @@ template <class T>
                 }
             }
             // check the conflict
-            bool conflict(Node<T> *node)
+            bool conflict(Node<Key, T> *node)
             {
                 if (node->color == RED && node->parent->color == RED)
                     return (true);
                 return (false);
             }
             // check the Tree
-            void checkTree(Node<T> *newNode)
+            void checkTree(Node<Key, T> *newNode)
             {
-                Node<T> *nodeParent, *nodeUncle;
+                Node<Key, T> *nodeParent, *nodeUncle;
                 int  i = 0;
                 while (conflict(newNode))
                 {
@@ -155,11 +162,13 @@ template <class T>
                     newNode = newNode->parent->parent;
                 }
             }
+
         public:
             Red_Black_Tree()
             {
-                nil = new Node<T>();
-                nil->key = -1;
+                nil = new Node<Key, T>();
+                nil->key = Key();
+                nil->data = T();
                 nil->color = BLACK;
                 nil->right = NULL;
                 nil->left = NULL;
@@ -167,9 +176,9 @@ template <class T>
                 root = NULL;
             }
             // inserting new node to the Tree
-            void insert(T key)
+            void insert(const ft::pair<Key, T> &val)
             {
-                Node<T> *newNode = initNode(key);
+                Node<Key, T> *newNode = initNode(val);
                 // creat root node
                 if (root == NULL)
                 {
@@ -179,8 +188,8 @@ template <class T>
                 // add new nodes after the root
                 else
                 {
-                    Node<T> *nodeCheck = root;
-                    Node<T> *nodeHold;
+                    Node<Key, T> *nodeCheck = root;
+                    Node<Key, T> *nodeHold;
                     while (nodeCheck != nil)
                     {
                         nodeHold = nodeCheck;
@@ -203,7 +212,7 @@ template <class T>
                   printHelper(root, "", true);
                 }
             }
-            void printHelper(Node<T> *root, std::string indent, bool last) {
+            void printHelper(Node<Key, T> *root, std::string indent, bool last) {
                 if (root != nil) {
                     std::cout << indent;
                     if (last) {

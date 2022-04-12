@@ -3,19 +3,21 @@
 
 # include  "pair.hpp"
 # include  "less.hpp"
-# include  "iterator.hpp"
+// # include  "iterator.hpp"
 # include  "red_black_tree.hpp"
+# include <cstddef>
+# include <memory>
 
 namespace ft
 {
-    template < class Key, class T, class Compare = ft::less<Key>, class Allocator = allocator<ft::pair<const Key,T> > >
+    template < class Key, class T, class Compare = ft::less<Key>, class Allocator = std::allocator<ft::pair<const Key,T> > >
     class map
     {
         public:
             // +++++++ Member types
             typedef Key                                             key_type;
             typedef T                                               mapped_type;
-            typedef value_type                                      ft::pair<const key_type, mapped_type>;
+            typedef ft::pair<const key_type, mapped_type>           value_type;                                      
             typedef Compare                                         key_compare;
             typedef Allocator	                                    allocator_type;
             typedef typename allocator_type::reference				reference;
@@ -25,19 +27,26 @@ namespace ft
             typedef ptrdiff_t										difference_type;
             typedef size_t											size_type;
 
+        private:
+            Red_Black_Tree<key_type, mapped_type, allocator_type> tree;
         public:
-            // +++++++ Member functions
-            explicit map (const key_compare& comp = key_compare(), const allocator_type& alloc = allocator_type())
-            :
+            // // +++++++ Member functions
+            // explicit map (const key_compare& comp = key_compare(), const allocator_type& alloc = allocator_type())
+            // :
+            //
+            // template <class InputIterator>
+            //   map (InputIterator first, InputIterator last,
+            //        const key_compare& comp = key_compare(),
+            //        const allocator_type& alloc = allocator_type());
+            //
+            // map (const map& x);
 
-            template <class InputIterator>
-              map (InputIterator first, InputIterator last,
-                   const key_compare& comp = key_compare(),
-                   const allocator_type& alloc = allocator_type());
-
-            map (const map& x);
-
-    }
+            // Modifiers
+            void insert (const value_type& val)
+            {
+                tree.insert(val);
+            }
+    };
 }
 
 #endif
