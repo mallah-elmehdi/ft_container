@@ -224,10 +224,10 @@ template <class T>
             }
         }
         void printTree() {
-            std::cout << root->data << "\n";
-            // if (root) {
-            //   printHelper(root, "", true);
-            // }
+            // std::cout << root->data << "\n";
+            if (root) {
+              printHelper(root, "", true);
+            }
         }
         void printHelper(Node<T> *root, std::string indent, bool last) {
             if (root != nil) {
