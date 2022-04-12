@@ -420,8 +420,8 @@ int main() {
   bst.insert(18);
   bst.insert(7);
   bst.insert(15);
-  // bst.insert(16);
-  // bst.insert(30);
+  bst.insert(16);
+  bst.insert(30);
   // bst.insert(25);
   // bst.insert(40);
   // bst.insert(60);
@@ -429,5 +429,5 @@ int main() {
   // bst.insert(1);
   // bst.insert(70);
 
-  // bst.printTree();
+  bst.printTree();
 }

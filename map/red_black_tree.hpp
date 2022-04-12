@@ -108,11 +108,15 @@ template <class T>
             //     rightRotate(node->parent);
             if (node == node->parent->right && node->parent == node->parent->parent->left)
             {
+                recolor(node);
+                recolor(node->parent->parent);
                 leftRotate(node->parent);
                 rightRotate(node->parent);
             }
             else if (node == node->parent->left && node->parent == node->parent->parent->right)
             {
+                recolor(node);
+                recolor(node->parent->parent);
                 rightRotate(node->parent);
                 leftRotate(node->parent);
             }
@@ -143,16 +147,25 @@ template <class T>
                 if (nodeParent->parent->left == nodeParent)
                     nodeUncle = nodeParent->parent->right;
                 else
-                    nodeParent->parent->left;
+                    nodeUncle = nodeParent->parent->left;
                 // check if the parent is RED
+                // std::cout<< "nodeUncle : " << nodeUncle->data << "\n";
+                // std::cout<< "nodeUncle->color : " << nodeUncle->color << "\n";
                 if (nodeUncle->color == RED)
                 {
-                    std::cout<< "nodeParent : " << nodeParent->data << "\n";
-                    std::cout<< "nodeUncle : " << nodeUncle->data << "\n";
+                    // std::cout<< "newNode : " << newNode->data << "\n";
+                    // std::cout<< "nodeParent : " << nodeParent->data << "\n";
+                    // std::cout<< "nodeUncle : " << nodeUncle->data << "\n";
                     recolor(nodeParent);
                     recolor(nodeUncle);
+                    // std::cout<< "nodeParent->parent->data : " << nodeParent->parent->data << "\n";
+                    // std::cout<< "nodeUncle : " << nodeUncle->data << "\n";
+                    // std::cout<< "root->data : " << root->data << "\n";
                     if (nodeParent->parent != root)
+                    {
+                        std::cout << "nodeParent->parent = " << nodeParent->parent->data << "\n";
                         recolor(nodeParent->parent);
+                    }
                 }
                 else
                     suitableRotation(newNode);
