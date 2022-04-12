@@ -55,8 +55,9 @@ template <class T>
                 nodeHold->left->parent = node;
 
             nodeHold->parent = node->parent;
+            // std::cout << "node->parent->data : " << node->parent->data << "\n";
 
-            if (node->parent == nil || node->parent == NULL)
+            if (node->parent == nil)
             {
                 root = nodeHold;
                 root->color = BLACK;
@@ -68,6 +69,7 @@ template <class T>
 
             nodeHold->left = node;
             node->parent = nodeHold;
+
         }
         // rightRotate
         void rightRotate(Node<T> *node)
@@ -79,8 +81,7 @@ template <class T>
                 nodeHold->right->parent = node;
 
             nodeHold->parent = node->parent;
-            std::cout << "node->parent->data : " << node->parent->data << "\n";
-            if (node->parent == nil || node->parent == NULL)
+            if (node->parent == nil)
             {
                 root = nodeHold;
                 root->color = BLACK;
@@ -124,14 +125,13 @@ template <class T>
             {
                 recolor(node->parent);
                 recolor(node->parent->parent);
-                leftRotate(node->parent);
+                leftRotate(node->parent->parent);
             }
             else if (node == node->parent->left && node->parent == node->parent->parent->left)
             {
-                std::cout << "here\n"; 
                 recolor(node->parent);
                 recolor(node->parent->parent);
-                rightRotate(node->parent);
+                rightRotate(node->parent->parent);
             }
         }
         // check the conflict
@@ -145,8 +145,11 @@ template <class T>
         void checkTree(Node<T> *newNode)
         {
             Node<T> *nodeParent, *nodeUncle;
+            int  i = 0;
             while (conflict(newNode))
             {
+                // std::cout << i++ << '\n';
+                // std::cout << "newNode : " << newNode->data << '\n';
                 // get the new node parent and new node uncle
                 nodeParent = newNode->parent;
                 if (nodeParent->parent->left == nodeParent)
