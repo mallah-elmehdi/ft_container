@@ -3,6 +3,8 @@
 
 # include  "pair.hpp"
 # include  "less.hpp"
+# include  "iterator.hpp"
+# include  "red_black_tree.hpp"
 
 namespace ft
 {
@@ -22,6 +24,18 @@ namespace ft
 			typedef typename allocator_type::const_pointer			const_pointer;
             typedef ptrdiff_t										difference_type;
             typedef size_t											size_type;
+
+        public:
+            // +++++++ Member functions
+            explicit map (const key_compare& comp = key_compare(), const allocator_type& alloc = allocator_type())
+            :
+
+            template <class InputIterator>
+              map (InputIterator first, InputIterator last,
+                   const key_compare& comp = key_compare(),
+                   const allocator_type& alloc = allocator_type());
+
+            map (const map& x);
 
     }
 }
