@@ -1,7 +1,7 @@
 // Implementing Red-Black Tree in C++
 
 #include <iostream>
-#include "red_black_tree.hpp"
+// #include "red_black_tree.hpp"
 // using namespace std;
 //
 // struct Node {
@@ -413,21 +413,44 @@
 //         }
 // };
 
-int main() {
-  // RedBlackTree bst;
-  Red_Black_Tree<int> bst;
-  bst.insert(10);
-  bst.insert(18);
-  bst.insert(7);
-  bst.insert(15);
-  bst.insert(16);
-  bst.insert(30);
-  bst.insert(25);
-  bst.insert(40);
-  bst.insert(60);
-  bst.insert(2);
-  bst.insert(1);
-  bst.insert(70);
+// int main() {
+  // // RedBlackTree bst;
+  // Red_Black_Tree<int> bst;
+  // bst.insert(10);
+  // bst.insert(18);
+  // bst.insert(7);
+  // bst.insert(15);
+  // bst.insert(16);
+  // bst.insert(30);
+  // bst.insert(25);
+  // bst.insert(40);
+  // bst.insert(60);
+  // bst.insert(2);
+  // bst.insert(1);
+  // bst.insert(70);
 
-  bst.printTree();
+  // bst.printTree();
+
+// }
+
+
+#include <utility>      // std::pair, std::make_pair
+#include <string>       // std::string
+#include <iostream>     // std::cout
+#include "pair.hpp"   // std::cout
+
+int main () {
+  ft::pair <std::string,double> product1;                     // default constructor
+  // std::pair <std::string,double> product2 ("tomatoes",2.30);   // value init
+  // std::pair <std::string,double> product3 (product2);          // copy constructor
+  //
+  // product1 = std::make_pair(std::string("lightbulbs"),0.99);   // using make_pair (move)
+  //
+  // product2.first = "shoes";                  // the type of first is string
+  // product2.second = 39.90;                   // the type of second is double
+
+  std::cout << "The price of " << product1.first << " is $" << product1.second << '\n';
+  // std::cout << "The price of " << product2.first << " is $" << product2.second << '\n';
+  // std::cout << "The price of " << product3.first << " is $" << product3.second << '\n';
+  return 0;
 }
