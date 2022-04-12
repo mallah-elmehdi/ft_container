@@ -147,6 +147,8 @@ template <class T>
                 // check if the parent is RED
                 if (nodeUncle->color == RED)
                 {
+                    std::cout<< "nodeParent : " << nodeParent->data << "\n";
+                    std::cout<< "nodeUncle : " << nodeUncle->data << "\n";
                     recolor(nodeParent);
                     recolor(nodeUncle);
                     if (nodeParent->parent != root)
