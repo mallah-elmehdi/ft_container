@@ -99,20 +99,21 @@ template <class Key, class T, class Compare = ft::less<Key>, class Allocator = s
             // clearing the Tree
             void clear()
             {
-                Node<value_type> *node = begin();
-                Node<value_type> *nodeHold;
-
-				while (node != this->nil)
-				{
-                    nodeHold = node;
+                clearHelp(begin());
+                delete this->nil;
+            }
+            void clearHelp(Node<value_type> *node)
+            {
+                if (node != this->nil)
+                {
+                    Node<value_type> *nodeHold = node;
                     this->allocator.destroy(node->pairv);
                     if (node->parent == NULL || node == node->parent->right)
-    					node = node->right;
+    					clearHelp(node->right);
     				else
-    					node = node->parent;
+    					clearHelp(node->parent);
                     delete nodeHold;
-				}
-                delete this->nil;
+                }
             }
 };
 

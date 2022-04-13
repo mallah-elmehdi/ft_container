@@ -6,17 +6,25 @@
 #include "make_pair.hpp"
 #include "pair.hpp"
 
+void ok(std::string str, int i)
+{
+    std::string hold = str;
+    if (i < 10) ok(str.append(i), i + 1);
+    std::cout << hold << "\n";
+}
+
 int main()
 {
-    ft::map<char,int> mymap;
-
-    mymap.insert(ft::make_pair('b', 100));
+    ok("hello", 1);
+    // ft::map<char,int> mymap;
+    //
+    // mymap.insert(ft::make_pair('b', 100));
     // mymap.insert(ft::make_pair('a', 200));
     // mymap.insert(ft::make_pair('c', 300));
 
     // ft::map<char,int> mymap2(mymap);
 
-    ft::map<char,int>::iterator it = mymap.begin();
+    // ft::map<char,int>::iterator it = mymap.begin();
     // ft::map<char,int>::iterator it2=mymap.end();
     // std::cout << bool(it == it) << '\n';
     // it++;

@@ -137,7 +137,7 @@ namespace ft
 
             void clear()
             {
-                tree.clear(size());
+                tree.clear();
             }
     };
 }
