@@ -34,7 +34,7 @@ template <class Key, class T, class Compare = ft::less<Key>, class Allocator = s
 			Node<value_type>* begin()
 			{
                 Node<value_type> *nodeCheck = this->root;
-                Node<value_type> *nodeHold;
+                Node<value_type> *nodeHold = nodeCheck;
 
 				while (nodeCheck != this->nil)
 				{
@@ -96,6 +96,24 @@ template <class Key, class T, class Compare = ft::less<Key>, class Allocator = s
 						nodeCheck = nodeCheck->right;
 				}
 			}
+            // clearing the Tree
+            void clear()
+            {
+                Node<value_type> *node = begin();
+                Node<value_type> *nodeHold;
+
+				while (node != this->nil)
+				{
+                    nodeHold = node;
+                    this->allocator.destroy(node->pairv);
+                    if (node->parent == NULL || node == node->parent->right)
+    					node = node->right;
+    				else
+    					node = node->parent;
+                    delete nodeHold;
+				}
+                delete this->nil;
+            }
 };
 
 #endif

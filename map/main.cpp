@@ -11,8 +11,8 @@ int main()
     ft::map<char,int> mymap;
 
     mymap.insert(ft::make_pair('b', 100));
-    mymap.insert(ft::make_pair('a', 200));
-    mymap.insert(ft::make_pair('c', 300));
+    // mymap.insert(ft::make_pair('a', 200));
+    // mymap.insert(ft::make_pair('c', 300));
 
     // ft::map<char,int> mymap2(mymap);
 
