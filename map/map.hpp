@@ -46,12 +46,17 @@ namespace ft
             : _size(0), allocator(alloc), compare(comp) {}
 
             
-            // template <class InputIterator>
-            //   map (InputIterator first, InputIterator last,
-            //        const key_compare& comp = key_compare(),
-            //        const allocator_type& alloc = allocator_type());
-            //
-            // map (const map& x);
+            template <class InputIterator>
+			map(InputIterator first, InputIterator last, const key_compare& comp = key_compare(), const allocator_type& alloc = allocator_type())
+			: _size(0), compare(comp), allocator(alloc)
+			{
+				for (iterator it = first; it != last; it++) insert(*it);
+			}
+            
+			map (const map& x) : _size(0), allocator(x.alloc), compare(x.comp)
+			{
+				for (iterator it = x.begin(); it != x.end(); it++) insert(*it);
+			}
 			
 			/* Iterators */
 			

@@ -14,6 +14,7 @@ int main()
   mymap.insert(ft::make_pair('a', 200));
   mymap.insert(ft::make_pair('c', 300));
 
+ ft::map<char,int> mymap2;
   // show content:
 	// ft::map<char,int>::iterator it=mymap.begin();
 	// std::cout << it->first << " => " << it->second << '\n';
@@ -22,6 +23,6 @@ int main()
 	// it++;
 	// std::cout << it->first << " => " << it->second << '\n';
 	// it++;
-  for (ft::map<char,int>::iterator it=mymap.begin(); it != mymap.end(); it++)
+  for (ft::map<char,int>::iterator it=mymap2.begin(); it != mymap2.end(); it++)
     std::cout << it->first << " => " << it->second << '\n';
 }

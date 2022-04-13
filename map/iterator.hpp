@@ -43,8 +43,7 @@ namespace ft
     		//operator*
     		reference operator*(void) const
     		{
-    			pointer tmp = iter;
-    			return (*tmp);
+    			return (*iter);
     		}
     		//operator->
     		pointer operator->(void) const
