@@ -14,7 +14,7 @@ namespace ft
     		typedef ft::pair<const Key, T>                  value_type;
     		typedef std::ptrdiff_t							difference_type;
     		typedef Node<Key, T>*  							pointer;
-    		typedef Node<Key, T>&						    reference;
+    		typedef *Node<Key, T>::pairv					reference;
     		typedef std::bidirectional_iterator_tag			iterator_category;
     	private:
     		pointer iter;
@@ -43,7 +43,7 @@ namespace ft
     		reference operator*(void) const
     		{
     			pointer tmp = iter;
-    			return *tmp;
+    			return *(tmp->pairv);
     		}
     		//operator->
     		pointer operator->(void) const
@@ -53,40 +53,46 @@ namespace ft
     		//operator++ (pre)
     		bd_iterator& operator++(void)
     		{
-    			iter++;
+				if (iter == iter->parent->right)
+					iter = iter->right;
+				else
+					iter = iter->parent;
     			return (*this);
     		}
     		//operator++ (post)
     		bd_iterator operator++(int)
     		{
     			bd_iterator temp(*this);
-    			iter++;
+				this->operator++();
     			return (temp);
     		}
     		//operator-- (pre)
     		bd_iterator& operator--(void)
     		{
-    			iter--;
+				if (iter == iter->parent->right)
+					iter = iter->parent;
+				else
+					iter = iter->left;
     			return (*this);
     		}
     		//operator-- (post)
     		bd_iterator operator--(int)
     		{
     			bd_iterator temp(*this);
-    			iter--;
+    			this->operator--();
     			return (temp);
     		}
     };
-    template <class Iterator>
-    bool operator==(const bd_iterator<Iterator>& x, const bd_iterator<Iterator>& y)
-    {
-    	return (x.base() == y.base());
-    }
-    template <class Iterator>
-    bool operator!=(const bd_iterator<Iterator>& x, const bd_iterator<Iterator>& y)
-    {
-    	return (x.base() != y.base());
-    }
+    // template <class Iterator>
+    // bool operator==(const bd_iterator<Iterator>& x, const bd_iterator<Iterator>& y)
+    // {
+    // 	return (x.base() == y.base());
+    // }
+    // template <class Iterator>
+    // bool operator!=(const bd_iterator<Iterator>& x, const bd_iterator<Iterator>& y)
+    // {
+    // 	return (x.base() != y.base());
+    // }
 }
 
 #endif

@@ -3,7 +3,7 @@
 
 # include "pair.hpp"
 # include "less.hpp"
-// # include  "iterator.hpp"
+# include  "iterator.hpp"
 # include "red_black_tree.hpp"
 # include <cstddef>
 # include <memory>
@@ -24,6 +24,7 @@ namespace ft
 			typedef typename allocator_type::const_reference		const_reference;
 			typedef typename allocator_type::pointer				pointer;
 			typedef typename allocator_type::const_pointer			const_pointer;
+			typedef ft::bd_iterator<key_type, mapped_type>			iterator;
             typedef ptrdiff_t										difference_type;
             typedef size_t											size_type;
 
