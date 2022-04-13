@@ -93,12 +93,12 @@ namespace ft
     template <class Iterator>
     bool operator==(const bd_iterator<Iterator>& x, const bd_iterator<Iterator>& y)
     {
-    	return (x.base() == y.base());
+    	return (x.baseNode() == y.baseNode());
     }
     template <class Iterator>
     bool operator!=(const bd_iterator<Iterator>& x, const bd_iterator<Iterator>& y)
     {
-    	return (x.base() != y.base());
+    	return (x.baseNode() != y.baseNode());
     }
 }
 

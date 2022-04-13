@@ -15,7 +15,13 @@ int main()
   mymap.insert(ft::make_pair('c', 300));
 
   // show content:
-
+	// ft::map<char,int>::iterator it=mymap.begin();
+	// std::cout << it->first << " => " << it->second << '\n';
+	// it++;
+	// std::cout << it->first << " => " << it->second << '\n';
+	// it++;
+	// std::cout << it->first << " => " << it->second << '\n';
+	// it++;
   for (ft::map<char,int>::iterator it=mymap.begin(); it != mymap.end(); it++)
     std::cout << it->first << " => " << it->second << '\n';
 }
