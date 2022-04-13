@@ -2,7 +2,7 @@
 #define _REVERSE_ITERATOR_HPP_
 // * LIBRARIES *
 # include <iostream>
-# include "iterator_traits.hpp"
+# include "../util/iterator_traits.hpp"
 // * FT NAMESPACE - [REVERSE ITERATOR] *
 namespace ft
 {

@@ -33,10 +33,6 @@ namespace ft
     		{
     			return iter;
     		}
-    		Node<value_type> *baseNode(void) const
-    		{
-    			return node;
-    		}
     		// + + + + + + + + + Operator overload
     		//operator=
     		bd_iterator& operator=(bd_iterator const &it)
@@ -93,12 +89,12 @@ namespace ft
     template <class Iterator>
     bool operator==(const bd_iterator<Iterator>& x, const bd_iterator<Iterator>& y)
     {
-    	return (x.baseNode() == y.baseNode());
+    	return (x.base() == y.base());
     }
     template <class Iterator>
     bool operator!=(const bd_iterator<Iterator>& x, const bd_iterator<Iterator>& y)
     {
-    	return (x.baseNode() != y.baseNode());
+    	return (x.base() != y.base());
     }
 }
 
