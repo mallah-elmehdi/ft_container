@@ -10,18 +10,8 @@
 # include <memory>
 # include "make_pair.hpp"
 # include "pair.hpp"
+# include "node.hpp"
 
-// create node
-template <class Key, class T>
-    class Node {
-        public:
-            // attribute
-            ft::pair<const Key, T>		*pairv;
-            Node<Key, T>                *parent;
-            Node<Key, T>                *left;
-            Node<Key, T>                *right;
-            int                         color;
-};
 
 template <class Key, class T, class Allocator = std::allocator<ft::pair<const Key,T> > >
     class Red_Black_Tree_Util {
@@ -30,7 +20,7 @@ template <class Key, class T, class Allocator = std::allocator<ft::pair<const Ke
             Allocator allocator;
             Node<Key, T> *nil;
             Node<Key, T> *root;
-        
+
 		protected:
             // private member funtion
             Node<Key, T> *initNode(const ft::pair<const Key, T> &val)

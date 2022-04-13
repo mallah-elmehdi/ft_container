@@ -2,17 +2,19 @@
 #define _BD_ITERATOR_
 
 # include <iterator>
+# include "node.hpp"
+# include "pair.hpp"
 
 namespace ft
 {
-    template <class T>
+    template <class Key, class T>
     class bd_iterator {
     	public:
     		// + + + + + + + + + Member type
-    		typedef T										value_type;
-    		typedef ptrdiff_t								difference_type;
-    		typedef T*  									pointer;
-    		typedef T&										reference;
+    		typedef ft::pair<const Key, T>                  value_type;
+    		typedef std::ptrdiff_t							difference_type;
+    		typedef Node<Key, T>*  							pointer;
+    		typedef Node<Key, T>&						    reference;
     		typedef std::bidirectional_iterator_tag			iterator_category;
     	private:
     		pointer iter;
