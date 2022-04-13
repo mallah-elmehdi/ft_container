@@ -8,9 +8,10 @@
 
 int main()
 {
-    std::map<long long,int> mymap;
-    ft::map<short,int> myvector;
+    ft::map<int, int> mymap;
 
-	std::cout << mymap.max_size() << "\n";
-	std::cout << myvector.max_size() << "\n";
+	mymap.insert(ft::make_pair(10, 22));
+	mymap.insert(ft::make_pair(10, 22));
+
+	std::cout << mymap.size() << "\n";
 }

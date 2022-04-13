@@ -48,12 +48,21 @@ namespace ft
 			size_type size() const { return (_size); }
 			size_type max_size() const { return (allocator.max_size()); }
 			// Element access
-			mapped_type& operator[] (const key_type& k) { return tree.get_value(k, size()); }
+			mapped_type& operator[] (const key_type& k) 
+			{
+				try { return tree[k]; }
+				catch(...) { return ((*((insert(ft::make_pair(k,mapped_type()))).first)).second); }
+			}
             // Modifiers
             void insert(const value_type& val)
             {
-                tree.insert(val);
-				tree.printTree();
+				try { tree[val.first]; }
+				catch(...) {
+					tree.insert(val);
+					tree.printTree();
+					_size++;
+				}
+
             }
     };
 }
