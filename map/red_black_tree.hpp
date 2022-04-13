@@ -22,6 +22,19 @@ template <class Key, class T, class Allocator = std::allocator<ft::pair<const Ke
                 this->nil->parent = NULL;
                 this->root = this->nil;
             }
+			// begin()
+			Node<Key, T>* begin()
+			{
+                Node<Key, T> *nodeCheck = this->root;
+                Node<Key, T> *nodeHold;
+				
+				while (nodeCheck != this->nil)
+				{
+                    nodeHold = nodeCheck;
+					nodeCheck = nodeCheck->left;
+				}
+				return (nodeHold);
+			}
             // inserting new node to the Tree
             int insert(const ft::pair<const Key, T> &val)
             {
@@ -42,7 +55,7 @@ template <class Key, class T, class Allocator = std::allocator<ft::pair<const Ke
                         nodeHold = nodeCheck;
                         if (newNode->pairv->first < nodeCheck->pairv->first)
                             nodeCheck = nodeCheck->left;
-                        else (newNode->pairv->first > nodeCheck->pairv->first)
+                        else if (newNode->pairv->first > nodeCheck->pairv->first)
                             nodeCheck = nodeCheck->right;
 						else return(0);
                     }

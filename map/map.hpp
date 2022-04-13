@@ -44,6 +44,8 @@ namespace ft
             //        const allocator_type& alloc = allocator_type());
             //
             // map (const map& x);
+			// 
+			iterator begin() { return (iterator(tree.begin())); }
 			// Capacity
 			bool empty() const { return (size() == 0); }
 			size_type size() const { return (_size); }
@@ -57,7 +59,6 @@ namespace ft
             pair<iterator,bool> insert(const value_type& val)
             {
 				_size += tree.insert(val);
-				tree.printTree();
             }
 
 			// iterator insert (iterator position, const value_type& val);
