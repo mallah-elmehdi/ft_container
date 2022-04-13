@@ -23,7 +23,7 @@ template <class Key, class T, class Allocator = std::allocator<ft::pair<const Ke
                 this->root = this->nil;
             }
             // inserting new node to the Tree
-            void insert(const ft::pair<const Key, T> &val)
+            int insert(const ft::pair<const Key, T> &val)
             {
                 Node<Key, T> *newNode = this->initNode(val);
                 // creat root node
@@ -42,8 +42,9 @@ template <class Key, class T, class Allocator = std::allocator<ft::pair<const Ke
                         nodeHold = nodeCheck;
                         if (newNode->pairv->first < nodeCheck->pairv->first)
                             nodeCheck = nodeCheck->left;
-                        else
+                        else (newNode->pairv->first > nodeCheck->pairv->first)
                             nodeCheck = nodeCheck->right;
+						else return(0);
                     }
                     newNode->parent = nodeHold;
                     if (newNode->pairv->first < nodeHold->pairv->first)
@@ -52,6 +53,7 @@ template <class Key, class T, class Allocator = std::allocator<ft::pair<const Ke
                         nodeHold->right = newNode;
                     this->checkTree(newNode);
                 }
+				return (1);
             }
 			// find node my key
 			T& operator[] (const Key& k)
@@ -66,7 +68,6 @@ template <class Key, class T, class Allocator = std::allocator<ft::pair<const Ke
 					else
 						return (nodeCheck->pairv->second);
 				}
-				throw -1;
 			}
 };
 

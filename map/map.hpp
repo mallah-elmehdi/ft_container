@@ -50,24 +50,19 @@ namespace ft
 			// Element access
 			mapped_type& operator[] (const key_type& k) 
 			{
-				try { return tree[k]; }
-				catch(...) { /*(*((insert(ft::make_pair(k,mapped_type()))).first)).second*/ }
+				/*(*((insert(ft::make_pair(k,mapped_type()))).first)).second*/
 			}
             // Modifiers
             pair<iterator,bool> insert(const value_type& val)
             {
-				try { tree[val.first]; }
-				catch(...) {
-					tree.insert(val);
-					tree.printTree();
-					_size++;
-				}
+				_size += tree.insert(val);
+				tree.printTree();
             }
 
-			iterator insert (iterator position, const value_type& val);
-			range (3)	
-			template <class InputIterator>
-			void insert (InputIterator first, InputIterator last);
+			// iterator insert (iterator position, const value_type& val);
+			
+			// template <class InputIterator>
+			// void insert (InputIterator first, InputIterator last);
     };
 }
 
