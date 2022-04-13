@@ -51,7 +51,7 @@ namespace ft
 			mapped_type& operator[] (const key_type& k) 
 			{
 				try { return tree[k]; }
-				catch(...) { return ((*((insert(ft::make_pair(k,mapped_type()))).first)).second); }
+				catch(...) { /*(*((insert(ft::make_pair(k,mapped_type()))).first)).second*/ }
 			}
             // Modifiers
             void insert(const value_type& val)

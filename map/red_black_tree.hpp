@@ -20,14 +20,14 @@ template <class Key, class T, class Allocator = std::allocator<ft::pair<const Ke
                 this->nil->right = NULL;
                 this->nil->left = NULL;
                 this->nil->parent = NULL;
-                this->root = NULL;
+                this->root = this->nil;
             }
             // inserting new node to the Tree
             void insert(const ft::pair<const Key, T> &val)
             {
                 Node<Key, T> *newNode = this->initNode(val);
                 // creat root node
-                if (this->root == NULL)
+                if (this->root == this->nil)
                 {
                     this->root = newNode;
                     this->root->color = BLACK;
