@@ -104,10 +104,11 @@ template <class Key, class T, class Compare = ft::less<Key>, class Allocator = s
             }
             void clearHelp(Node<value_type> *node)
             {
+                Node<value_type> *nodeHold = node;
                 if (node != this->nil)
                 {
-                    Node<value_type> *nodeHold = node;
                     this->allocator.destroy(node->pairv);
+                    this->allocator.deallocate(node->pairv, sizeof(value_type));
                     if (node->parent == NULL || node == node->parent->right)
     					clearHelp(node->right);
     				else
