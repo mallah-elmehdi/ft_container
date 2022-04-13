@@ -13,13 +13,13 @@
 template <class Key, class T, class Compare = ft::less<Key>, class Allocator = std::allocator<ft::pair<const Key,T> > >
     class Red_Black_Tree : public Red_Black_Tree_Util<Key, T, Compare, Allocator> {
         private:
-            typedef Key                                             key_type; 
+            typedef Key                                             key_type;
             typedef T                                               mapped_type;
             typedef ft::pair<const key_type, mapped_type>           value_type;
-        
+
 		private:
 			Compare			compare;
-		
+
 		public:
             Red_Black_Tree()
             {
@@ -35,7 +35,7 @@ template <class Key, class T, class Compare = ft::less<Key>, class Allocator = s
 			{
                 Node<value_type> *nodeCheck = this->root;
                 Node<value_type> *nodeHold;
-				
+
 				while (nodeCheck != this->nil)
 				{
                     nodeHold = nodeCheck;

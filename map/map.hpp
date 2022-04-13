@@ -16,7 +16,7 @@ namespace ft
     {
         public:
             // +++++++ Member types
-            typedef Key                                             key_type; 
+            typedef Key                                             key_type;
             typedef T                                               mapped_type;
             typedef ft::pair<const key_type, mapped_type>           value_type;
             typedef Compare                                         key_compare;
@@ -37,29 +37,37 @@ namespace ft
 			size_t															_size;
 			allocator_type													allocator;
 			key_compare														compare;
-        
+
 		public:
 
             /* Member functions */
-           
+
 		    explicit map (const key_compare& comp = key_compare(), const allocator_type& alloc = allocator_type())
             : _size(0), allocator(alloc), compare(comp) {}
 
-            
+
             template <class InputIterator>
 			map(InputIterator first, InputIterator last, const key_compare& comp = key_compare(), const allocator_type& alloc = allocator_type())
 			: _size(0), compare(comp), allocator(alloc)
 			{
-				for (iterator it = first; it != last; it++) insert(*it);
+				while (first != last)
+				{
+					insert(*first);
+					first++;
+				}
 			}
-            
-			map (const map& x) : _size(0), allocator(x.alloc), compare(x.comp)
+
+			map (const map& x) : _size(0), allocator(x.allocator), compare(x.compare)
 			{
 				for (iterator it = x.begin(); it != x.end(); it++) insert(*it);
 			}
-			
+
+            ~map()
+            {
+                clear();
+            }
 			/* Iterators */
-			
+
 			iterator begin()
 			{
 				return (iterator(tree.begin()));
@@ -69,7 +77,7 @@ namespace ft
 				return (const_iterator(tree.begin()));
 			}
 			iterator end()
-			{ 
+			{
 				return (iterator(tree.end()));
 			}
 			const_iterator end() const
@@ -85,16 +93,16 @@ namespace ft
 				return (const_reverse_iterator(tree.end()));
 			}
 			reverse_iterator rend()
-			{ 
+			{
 				return (reverse_iterator(tree.begin()));
 			}
 			const_reverse_iterator rend() const
 			{
 				return (const_reverse_iterator(tree.begin()));
 			}
-			
+
 			/* Capacity */
-			
+
 			bool empty() const
 			{
 				return (size() == 0);
@@ -109,23 +117,28 @@ namespace ft
 			}
 
 			/* Element access */
- 
-			mapped_type& operator[] (const key_type& k) 
+
+			mapped_type& operator[] (const key_type& k)
 			{
 				/*(*((insert(ft::make_pair(k,mapped_type()))).first)).second*/
 			}
-            
+
 			/* Modifiers */
-            
+
 			pair<iterator,bool> insert(const value_type& val)
             {
 				_size += tree.insert(val);
             }
 
 			// iterator insert (iterator position, const value_type& val);
-			
+
 			// template <class InputIterator>
 			// void insert (InputIterator first, InputIterator last);
+
+            void clear()
+            {
+                tree.clear();
+            }
     };
 }
 
