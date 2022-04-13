@@ -15,7 +15,7 @@ namespace ft
     {
         public:
             // +++++++ Member types
-            typedef Key                                             key_type;
+            typedef Key                                             key_type; 
             typedef T                                               mapped_type;
             typedef ft::pair<const key_type, mapped_type>           value_type;
             typedef Compare                                         key_compare;
@@ -47,6 +47,8 @@ namespace ft
 			bool empty() const { return (size() == 0); }
 			size_type size() const { return (_size); }
 			size_type max_size() const { return (allocator.max_size()); }
+			// Element access
+			mapped_type& operator[] (const key_type& k) { return tree.get_value(k, size()); }
             // Modifiers
             void insert(const value_type& val)
             {
