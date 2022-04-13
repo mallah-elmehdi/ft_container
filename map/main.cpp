@@ -8,17 +8,15 @@
 
 int main()
 {
-    ft::map<int, int> mymap;
+ ft::map<char,int> mymap;
 
-	mymap.insert(ft::make_pair(10, 22));
-	mymap.insert(ft::make_pair(1, 3));
-	mymap.insert(ft::make_pair(0, 19999));
-	mymap.insert(ft::make_pair(-2, 232));
-	mymap.insert(ft::make_pair(3, -22));
-	mymap.insert(ft::make_pair(102, 332));
+  mymap['b'] = 100;
+  mymap['a'] = 200;
+  mymap['c'] = 300;
 
-    ft::map<int, int>::iterator it = mymap.begin();
-	it++;
-	it++;
-	std::cout << (*it).second << "\n";
+  // show content:
+  mymap.begin();
+
+//   for (ft::map<char,int>::iterator it=mymap.begin(); it != mymap.end(); ++it)
+    // std::cout << it->first << " => " << it->second << '\n';
 }

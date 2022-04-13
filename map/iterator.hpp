@@ -13,17 +13,18 @@ namespace ft
     		// + + + + + + + + + Member type
     		typedef pair_type			                  	value_type;
     		typedef std::ptrdiff_t							difference_type;
-    		typedef Node<value_type>*  						pointer;
-    		typedef pair_type&								reference;
+    		typedef value_type*  							pointer;
+    		typedef value_type&								reference;
     		typedef std::bidirectional_iterator_tag			iterator_category;
     	private:
-    		pointer iter;
+    		pointer				iter;
+    		Node<value_type>	*node;
     	public:
     		// + + + + + + + + + Member functions
     		//default constuctor
     		bd_iterator(void) : iter() {}
     		//copy constuctor
-    		bd_iterator(pointer x) : iter(x) {}
+    		bd_iterator(Node<value_type> *x) : node(x), iter(x->pairv) {std::cout << "okokokok\n";}
     		bd_iterator(const bd_iterator &it) : iter(it.base()) {}
     		template <class _pair_type>
     		bd_iterator(const bd_iterator<_pair_type> &it) : iter(it.base()) {}
@@ -43,20 +44,21 @@ namespace ft
     		reference operator*(void) const
     		{
     			pointer tmp = iter;
-    			return *(tmp->pairv);
+    			return (*tmp);
     		}
     		//operator->
     		pointer operator->(void) const
     		{
-    			return &(operator*());;
+    			return (iter);;
     		}
     		//operator++ (pre)
     		bd_iterator& operator++(void)
     		{
-				if (iter == iter->parent->right)
-					iter = iter->right;
+				if (node == node->parent->right)
+					node = node->right;
 				else
-					iter = iter->parent;
+					node = node->parent;
+				iter = node->pairv;
     			return (*this);
     		}
     		//operator++ (post)
@@ -69,10 +71,11 @@ namespace ft
     		//operator-- (pre)
     		bd_iterator& operator--(void)
     		{
-				if (iter == iter->parent->right)
-					iter = iter->parent;
+				if (node == node->parent->right)
+					node = node->parent;
 				else
-					iter = iter->left;
+					node = node->left;
+				iter = node->pairv;
     			return (*this);
     		}
     		//operator-- (post)
@@ -83,16 +86,16 @@ namespace ft
     			return (temp);
     		}
     };
-    // template <class Iterator>
-    // bool operator==(const bd_iterator<Iterator>& x, const bd_iterator<Iterator>& y)
-    // {
-    // 	return (x.base() == y.base());
-    // }
-    // template <class Iterator>
-    // bool operator!=(const bd_iterator<Iterator>& x, const bd_iterator<Iterator>& y)
-    // {
-    // 	return (x.base() != y.base());
-    // }
+    template <class Iterator>
+    bool operator==(const bd_iterator<Iterator>& x, const bd_iterator<Iterator>& y)
+    {
+    	return (x.base() == y.base());
+    }
+    template <class Iterator>
+    bool operator!=(const bd_iterator<Iterator>& x, const bd_iterator<Iterator>& y)
+    {
+    	return (x.base() != y.base());
+    }
 }
 
 #endif
