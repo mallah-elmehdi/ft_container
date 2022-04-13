@@ -14,7 +14,7 @@ namespace ft
 
         public:
             // +++++ Member functions
-            bool operator() (const T& x, const T& y) const {return x<y;}
+            bool operator() (const T& x, const T& y) const {return x < y;}
 
     };
 }

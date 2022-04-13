@@ -29,13 +29,14 @@ namespace ft
             typedef size_t											size_type;
 
         private:
-            Red_Black_Tree<key_type, mapped_type, allocator_type>	tree;
-			size_t													_size;
-			allocator_type											allocator;
+            Red_Black_Tree<key_type, mapped_type, Compare, allocator_type>	tree;
+			size_t															_size;
+			allocator_type													allocator;
+			Compare															compare;
         public:
             // // +++++++ Member functions
             explicit map (const key_compare& comp = key_compare(), const allocator_type& alloc = allocator_type())
-            : _size(0), allocator(alloc) {}
+            : _size(0), allocator(alloc), compare(comp) {}
 
             
             // template <class InputIterator>

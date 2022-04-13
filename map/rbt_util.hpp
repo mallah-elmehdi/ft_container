@@ -11,15 +11,17 @@
 # include "make_pair.hpp"
 # include "pair.hpp"
 # include "node.hpp"
+# include "less.hpp"
 
 
-template <class Key, class T, class Allocator = std::allocator<ft::pair<const Key,T> > >
+template <class Key, class T, class Compare = ft::less<Key>, class Allocator = std::allocator<ft::pair<const Key,T> > >
     class Red_Black_Tree_Util {
 
         protected:
-            Allocator allocator;
-            Node<Key, T> *nil;
-            Node<Key, T> *root;
+            Node<Key, T>	*nil;
+            Node<Key, T>	*root;
+			Compare			compare;
+            Allocator		allocator;
 
 		protected:
             // private member funtion

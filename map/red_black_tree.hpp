@@ -8,10 +8,12 @@
 # include "rbt_util.hpp"
 # include "make_pair.hpp"
 # include "pair.hpp"
+# include "less.hpp"
 
-template <class Key, class T, class Allocator = std::allocator<ft::pair<const Key,T> > >
-    class Red_Black_Tree : public Red_Black_Tree_Util<Key, T, Allocator> {
-        
+template <class Key, class T, class Compare = ft::less<Key>, class Allocator = std::allocator<ft::pair<const Key,T> > >
+    class Red_Black_Tree : public Red_Black_Tree_Util<Key, T, Compare, Allocator> {
+        private:
+			Compare			compare;
 		public:
             Red_Black_Tree()
             {
@@ -53,7 +55,7 @@ template <class Key, class T, class Allocator = std::allocator<ft::pair<const Ke
                     while (nodeCheck != this->nil)
                     {
                         nodeHold = nodeCheck;
-                        if (newNode->pairv->first < nodeCheck->pairv->first)
+                        if (compare(newNode->pairv->first, nodeCheck->pairv->first))
                             nodeCheck = nodeCheck->left;
                         else if (newNode->pairv->first > nodeCheck->pairv->first)
                             nodeCheck = nodeCheck->right;
