@@ -54,7 +54,7 @@ namespace ft
 				catch(...) { /*(*((insert(ft::make_pair(k,mapped_type()))).first)).second*/ }
 			}
             // Modifiers
-            void insert(const value_type& val)
+            pair<iterator,bool> insert(const value_type& val)
             {
 				try { tree[val.first]; }
 				catch(...) {
@@ -62,8 +62,12 @@ namespace ft
 					tree.printTree();
 					_size++;
 				}
-
             }
+
+			iterator insert (iterator position, const value_type& val);
+			range (3)	
+			template <class InputIterator>
+			void insert (InputIterator first, InputIterator last);
     };
 }
 
