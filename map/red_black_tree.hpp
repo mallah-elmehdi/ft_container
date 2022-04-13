@@ -37,6 +37,19 @@ template <class Key, class T, class Compare = ft::less<Key>, class Allocator = s
 				}
 				return (nodeHold);
 			}
+			// end()
+			Node<Key, T>* end()
+			{
+                Node<Key, T> *nodeCheck = this->root;
+                Node<Key, T> *nodeHold;
+				
+				while (nodeCheck != this->nil)
+				{
+                    nodeHold = nodeCheck;
+					nodeCheck = nodeCheck->right;
+				}
+				return (nodeHold);
+			}
             // inserting new node to the Tree
             int insert(const ft::pair<const Key, T> &val)
             {
@@ -55,14 +68,15 @@ template <class Key, class T, class Compare = ft::less<Key>, class Allocator = s
                     while (nodeCheck != this->nil)
                     {
                         nodeHold = nodeCheck;
-                        if (compare(newNode->pairv->first, nodeCheck->pairv->first))
+						if (newNode->pairv->first == nodeCheck->pairv->first)
+							return(0);
+                        else if (compare(newNode->pairv->first, nodeCheck->pairv->first))
                             nodeCheck = nodeCheck->left;
-                        else if (newNode->pairv->first > nodeCheck->pairv->first)
+						else
                             nodeCheck = nodeCheck->right;
-						else return(0);
                     }
                     newNode->parent = nodeHold;
-                    if (newNode->pairv->first < nodeHold->pairv->first)
+                    if (compare(newNode->pairv->first, nodeCheck->pairv->first))
                         nodeHold->left = newNode;
                     else
                         nodeHold->right = newNode;
@@ -76,12 +90,12 @@ template <class Key, class T, class Compare = ft::less<Key>, class Allocator = s
 				Node<Key, T> *nodeCheck = this->root;
 				while (nodeCheck != this->nil)
 				{
-					if (k < nodeCheck->pairv->first)
-						nodeCheck = nodeCheck->left;
-					else if (k > nodeCheck->pairv->first)
-						nodeCheck = nodeCheck->right;
-					else
+					if (k == nodeCheck->pairv->second)
 						return (nodeCheck->pairv->second);
+					else if (compare(k, nodeCheck->pairv->first))
+						nodeCheck = nodeCheck->left;
+					else
+						nodeCheck = nodeCheck->right;
 				}
 			}
 };
