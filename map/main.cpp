@@ -10,13 +10,12 @@ int main()
 {
  ft::map<char,int> mymap;
 
-  mymap['b'] = 100;
-  mymap['a'] = 200;
-  mymap['c'] = 300;
+  mymap.insert(ft::make_pair('b', 100));
+  mymap.insert(ft::make_pair('a', 200));
+  mymap.insert(ft::make_pair('c', 300));
 
   // show content:
-  mymap.begin();
 
-//   for (ft::map<char,int>::iterator it=mymap.begin(); it != mymap.end(); ++it)
-    // std::cout << it->first << " => " << it->second << '\n';
+  for (ft::map<char,int>::iterator it=mymap.begin(); it != mymap.end(); it++)
+    std::cout << it->first << " => " << it->second << '\n';
 }

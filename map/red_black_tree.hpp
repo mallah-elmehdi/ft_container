@@ -24,10 +24,17 @@ template <class Key, class T, class Compare = ft::less<Key>, class Allocator = s
             Red_Black_Tree()
             {
                 this->nil = new Node<value_type>();
+                this->past_end = new Node<value_type>();
+
                 this->nil->color = BLACK;
                 this->nil->right = NULL;
                 this->nil->left = NULL;
                 this->nil->parent = NULL;
+            	
+                this->past_end->right = NULL;
+                this->past_end->left = NULL;
+                this->past_end->parent = NULL;
+
                 this->root = this->nil;
             }
 			// begin()
@@ -54,7 +61,10 @@ template <class Key, class T, class Compare = ft::less<Key>, class Allocator = s
                     nodeHold = nodeCheck;
 					nodeCheck = nodeCheck->right;
 				}
-				return (nodeHold);
+				this->past_end->parent = nodeHold;
+				nodeHold->right = this->past_end;
+				nodeHold->left = this->past_end;
+				return (this->past_end);
 			}
             // inserting new node to the Tree
             int insert(const value_type &val)

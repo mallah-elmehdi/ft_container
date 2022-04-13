@@ -23,6 +23,7 @@ template <class Key, class T, class Compare = ft::less<Key>, class Allocator = s
             typedef ft::pair<const key_type, mapped_type>           value_type;
 
         protected:
+            Node<value_type>	*past_end;
             Node<value_type>	*nil;
             Node<value_type>	*root;
 			Compare			compare;
@@ -42,7 +43,7 @@ template <class Key, class T, class Compare = ft::less<Key>, class Allocator = s
                 newNode->color = RED;
                 newNode->right = nil;
                 newNode->left = nil;
-                newNode->parent = nil;
+                newNode->parent = NULL;
                 return (newNode);
             }
             // recolor methode

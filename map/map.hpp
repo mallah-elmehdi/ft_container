@@ -50,7 +50,6 @@ namespace ft
 			/* Iterators */
 			iterator begin()
 			{
-				std::cout << "pppppppppppppppppppp\n";
 				return (iterator(tree.begin()));
 			}
 			const_iterator begin() const

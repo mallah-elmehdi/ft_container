@@ -24,7 +24,7 @@ namespace ft
     		//default constuctor
     		bd_iterator(void) : iter() {}
     		//copy constuctor
-    		bd_iterator(Node<value_type> *x) : node(x), iter(x->pairv) {std::cout << "okokokok\n";}
+    		bd_iterator(Node<value_type> *x) : node(x), iter(x->pairv) {}
     		bd_iterator(const bd_iterator &it) : iter(it.base()) {}
     		template <class _pair_type>
     		bd_iterator(const bd_iterator<_pair_type> &it) : iter(it.base()) {}
@@ -32,6 +32,10 @@ namespace ft
     		pointer base(void) const
     		{
     			return iter;
+    		}
+    		Node<value_type> *baseNode(void) const
+    		{
+    			return node;
     		}
     		// + + + + + + + + + Operator overload
     		//operator=
@@ -49,12 +53,12 @@ namespace ft
     		//operator->
     		pointer operator->(void) const
     		{
-    			return (iter);;
+    			return (iter);
     		}
     		//operator++ (pre)
     		bd_iterator& operator++(void)
     		{
-				if (node == node->parent->right)
+				if (node->parent == NULL || node == node->parent->right)
 					node = node->right;
 				else
 					node = node->parent;
@@ -71,7 +75,7 @@ namespace ft
     		//operator-- (pre)
     		bd_iterator& operator--(void)
     		{
-				if (node == node->parent->right)
+				if (node->parent == NULL || node == node->parent->right)
 					node = node->parent;
 				else
 					node = node->left;
