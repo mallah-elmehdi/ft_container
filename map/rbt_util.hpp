@@ -18,19 +18,24 @@ template <class Key, class T, class Compare = ft::less<Key>, class Allocator = s
     class Red_Black_Tree_Util {
 
         protected:
-            Node<Key, T>	*nil;
-            Node<Key, T>	*root;
+            typedef Key                                             key_type; 
+            typedef T                                               mapped_type;
+            typedef ft::pair<const key_type, mapped_type>           value_type;
+
+        protected:
+            Node<value_type>	*nil;
+            Node<value_type>	*root;
 			Compare			compare;
             Allocator		allocator;
 
 		protected:
             // private member funtion
-            Node<Key, T> *initNode(const ft::pair<const Key, T> &val)
+            Node<value_type> *initNode(const value_type &val)
             {
                 // creat new node
-                Node<Key, T> *newNode = new Node<Key, T>();
+                Node<value_type> *newNode = new Node<value_type>();
                 // reserve memory to the pair
-                newNode->pairv = allocator.allocate(sizeof(std::pair<const Key, T>));
+                newNode->pairv = allocator.allocate(sizeof(value_type));
                 // construct the pair
                 allocator.construct(newNode->pairv, ft::make_pair(val.first, val.second));;
                 // add other node info
@@ -41,15 +46,15 @@ template <class Key, class T, class Compare = ft::less<Key>, class Allocator = s
                 return (newNode);
             }
             // recolor methode
-            void recolor(Node<Key, T> *node)
+            void recolor(Node<value_type> *node)
             {
                 if (node->color == RED) node->color = BLACK;
                 else node->color = RED;
             }
             // leftRotate
-            void leftRotate(Node<Key, T> *node)
+            void leftRotate(Node<value_type> *node)
             {
-                Node<Key, T> *nodeHold = node->right;
+                Node<value_type> *nodeHold = node->right;
                 node->right = nodeHold->left;
 
                 if (nodeHold->left != nil)
@@ -72,9 +77,9 @@ template <class Key, class T, class Compare = ft::less<Key>, class Allocator = s
 
             }
             // rightRotate
-            void rightRotate(Node<Key, T> *node)
+            void rightRotate(Node<value_type> *node)
             {
-                Node<Key, T> *nodeHold = node->left;
+                Node<value_type> *nodeHold = node->left;
                 node->left = nodeHold->right;
 
                 if (nodeHold->right != nil)
@@ -95,7 +100,7 @@ template <class Key, class T, class Compare = ft::less<Key>, class Allocator = s
                 node->parent = nodeHold;
             }
             // make suitableRotation
-            void suitableRotation(Node<Key, T> *node)
+            void suitableRotation(Node<value_type> *node)
             {
                 if (node == node->parent->right && node->parent == node->parent->parent->left)
                 {
@@ -125,16 +130,16 @@ template <class Key, class T, class Compare = ft::less<Key>, class Allocator = s
                 }
             }
             // check the conflict
-            bool conflict(Node<Key, T> *node)
+            bool conflict(Node<value_type> *node)
             {
                 if (node->color == RED && node->parent->color == RED)
                     return (true);
                 return (false);
             }
             // check the Tree
-            void checkTree(Node<Key, T> *newNode)
+            void checkTree(Node<value_type> *newNode)
             {
-                Node<Key, T> *nodeParent, *nodeUncle;
+                Node<value_type> *nodeParent, *nodeUncle;
                 int  i = 0;
                 while (conflict(newNode))
                 {
@@ -158,7 +163,7 @@ template <class Key, class T, class Compare = ft::less<Key>, class Allocator = s
                     newNode = newNode->parent->parent;
                 }
             }
-            void printHelper(Node<Key, T> *root, std::string indent, bool last) {
+            void printHelper(Node<value_type> *root, std::string indent, bool last) {
                 if (root != nil) {
                     std::cout << indent;
                     if (last) {

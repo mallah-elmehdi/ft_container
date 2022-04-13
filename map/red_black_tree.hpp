@@ -12,12 +12,18 @@
 
 template <class Key, class T, class Compare = ft::less<Key>, class Allocator = std::allocator<ft::pair<const Key,T> > >
     class Red_Black_Tree : public Red_Black_Tree_Util<Key, T, Compare, Allocator> {
-        private:
+        // private:
+        //     typedef Key                                             key_type; 
+        //     typedef T                                               mapped_type;
+        //     typedef ft::pair<const key_type, mapped_type>           value_type;
+        
+		private:
 			Compare			compare;
+		
 		public:
             Red_Black_Tree()
             {
-                this->nil = new Node<Key, T>();
+                this->nil = new Node<value_type>();
                 this->nil->color = BLACK;
                 this->nil->right = NULL;
                 this->nil->left = NULL;
@@ -25,10 +31,10 @@ template <class Key, class T, class Compare = ft::less<Key>, class Allocator = s
                 this->root = this->nil;
             }
 			// begin()
-			Node<Key, T>* begin()
+			Node<value_type>* begin()
 			{
-                Node<Key, T> *nodeCheck = this->root;
-                Node<Key, T> *nodeHold;
+                Node<value_type> *nodeCheck = this->root;
+                Node<value_type> *nodeHold;
 				
 				while (nodeCheck != this->nil)
 				{
@@ -38,10 +44,10 @@ template <class Key, class T, class Compare = ft::less<Key>, class Allocator = s
 				return (nodeHold);
 			}
 			// end()
-			Node<Key, T>* end()
+			Node<value_type>* end()
 			{
-                Node<Key, T> *nodeCheck = this->root;
-                Node<Key, T> *nodeHold;
+                Node<value_type> *nodeCheck = this->root;
+                Node<value_type> *nodeHold;
 				
 				while (nodeCheck != this->nil)
 				{
@@ -51,9 +57,9 @@ template <class Key, class T, class Compare = ft::less<Key>, class Allocator = s
 				return (nodeHold);
 			}
             // inserting new node to the Tree
-            int insert(const ft::pair<const Key, T> &val)
+            int insert(const value_type &val)
             {
-                Node<Key, T> *newNode = this->initNode(val);
+                Node<value_type> *newNode = this->initNode(val);
                 // creat root node
                 if (this->root == this->nil)
                 {
@@ -63,8 +69,8 @@ template <class Key, class T, class Compare = ft::less<Key>, class Allocator = s
                 // add new nodes after the this->root
                 else
                 {
-                    Node<Key, T> *nodeCheck = this->root;
-                    Node<Key, T> *nodeHold;
+                    Node<value_type> *nodeCheck = this->root;
+                    Node<value_type> *nodeHold;
                     while (nodeCheck != this->nil)
                     {
                         nodeHold = nodeCheck;
@@ -85,9 +91,9 @@ template <class Key, class T, class Compare = ft::less<Key>, class Allocator = s
 				return (1);
             }
 			// find node my key
-			T& operator[] (const Key& k)
+			T& operator[] (const key_type& k)
 			{
-				Node<Key, T> *nodeCheck = this->root;
+				Node<value_type> *nodeCheck = this->root;
 				while (nodeCheck != this->nil)
 				{
 					if (k == nodeCheck->pairv->second)

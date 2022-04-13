@@ -7,14 +7,14 @@
 
 namespace ft
 {
-    template <class Key, class T>
+    template <class pair_type>
     class bd_iterator {
     	public:
     		// + + + + + + + + + Member type
-    		typedef ft::pair<const Key, T>                  value_type;
+    		typedef pair_type			                  	value_type;
     		typedef std::ptrdiff_t							difference_type;
-    		typedef Node<Key, T>*  							pointer;
-    		typedef ft::pair<const Key, T>					reference;
+    		typedef Node<value_type>*  						pointer;
+    		typedef pair_type&								reference;
     		typedef std::bidirectional_iterator_tag			iterator_category;
     	private:
     		pointer iter;
@@ -25,8 +25,8 @@ namespace ft
     		//copy constuctor
     		bd_iterator(pointer x) : iter(x) {}
     		bd_iterator(const bd_iterator &it) : iter(it.base()) {}
-    		template <class _Key, class _T>
-    		bd_iterator(const bd_iterator<_Key, _T> &it) : iter(it.base()) {}
+    		template <class _pair_type>
+    		bd_iterator(const bd_iterator<_pair_type> &it) : iter(it.base()) {}
     		// base
     		pointer base(void) const
     		{
