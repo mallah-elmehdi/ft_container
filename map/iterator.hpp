@@ -22,16 +22,20 @@ namespace ft
     	public:
     		// + + + + + + + + + Member functions
     		//default constuctor
-    		bd_iterator(void) : iter(), node() {std::cout << "default\n";}
+    		bd_iterator(void) : iter(), node() {}
     		//copy constuctor
-    		bd_iterator(Node<value_type> *x) : node(x), iter(x->pairv) {std::cout << "node\n";}
-    		bd_iterator(const bd_iterator &it) : iter(it.iter), node(it.node) {std::cout << "copy\n";}
+    		bd_iterator(Node<value_type> *x) : node(x), iter(x->pairv) {}
+    		bd_iterator(const bd_iterator &it) : iter(it.iter), node(it.node) {}
     		template <class _pair_type>
-    		bd_iterator(const bd_iterator<_pair_type> &it) : iter(it.iter), node(it.node) {std::cout << "op =\n";}
+    		bd_iterator(const bd_iterator<_pair_type> &it) : iter(it.iter), node(it.node) {}
     		// base
     		pointer base(void) const
     		{
     			return iter;
+    		}
+    		Node<value_type> *nodeBase(void) const
+    		{
+    			return node;
     		}
     		// + + + + + + + + + Operator overload
     		//operator=
@@ -62,7 +66,6 @@ namespace ft
 					{
 						node = node->left;
 					}
-					iter = node->pairv;
 				}
 				else
 				{
@@ -72,10 +75,12 @@ namespace ft
 						node = p;
 						p = p->parent;
 					}
-					if (node != NULL)
-						iter = node->pairv;
+					node = p;
 				}
-				
+				if (node == NULL)
+					iter = NULL;
+				else
+					iter = node->pairv;
     			return (*this);
     		}
     		//operator++ (post)
@@ -88,8 +93,6 @@ namespace ft
     		//operator-- (pre)
     		bd_iterator& operator--(void)
     		{
-				if (node == NULL)
-					std::cout << "NULL" << "\n";
 				if (node->parent == NULL || node == node->parent->right)
 					node = node->parent;
 				else

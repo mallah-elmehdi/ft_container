@@ -102,7 +102,7 @@ template <class Key, class T, class Compare = ft::less<Key>, class Allocator = s
             // clearing the Tree
             void clear()
             {
-                this->clearHelp(begin());
+                // this->clearHelp(begin());
                 delete this->nil;
             }
 };

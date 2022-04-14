@@ -38,6 +38,18 @@ namespace ft
 			allocator_type													allocator;
 			key_compare														compare;
 
+		private:
+			void clearHelp(iterator const &it)
+			{
+				if (it != end())
+				{
+                    allocator.destroy(it.base());
+                    allocator.deallocate(it.base(), sizeof(value_type));
+					clearHelp(++it);
+					delete it.nodeBase();
+				}
+			}
+
 		public:
 
             /* Member functions */
@@ -64,7 +76,7 @@ namespace ft
 
             ~map()
             {
-                // clear();
+                clear();
             }
 			/* Iterators */
 
@@ -141,7 +153,6 @@ namespace ft
 			{
 				while (first != last)
 				{
-					std::cout << first->first <<"\n";
 					insert(*first);
 					++first;
 				}
@@ -149,6 +160,7 @@ namespace ft
 
             void clear()
             {
+				clearHelp(begin());
                 tree.clear();
                 _size = 0;
             }
