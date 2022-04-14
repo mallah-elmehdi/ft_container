@@ -69,7 +69,12 @@ template <class Key, class T, class Compare = ft::less<Key>, class Allocator = s
                     {
                         nodeHold = nodeCheck;
 						if (newNode->pairv->first == nodeCheck->pairv->first)
-							return(ft::make_pair(iterator(newNode), false));
+						{
+							this->allocator.destroy(newNode->pairv);
+							this->allocator.deallocate(newNode->pairv, sizeof(value_type));
+							delete newNode;
+							return(ft::make_pair(iterator(nodeCheck), false));
+						}
                         else if (compare(newNode->pairv->first, nodeCheck->pairv->first))
                             nodeCheck = nodeCheck->left;
 						else

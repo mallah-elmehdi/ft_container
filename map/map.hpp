@@ -39,14 +39,15 @@ namespace ft
 			key_compare														compare;
 
 		private:
-			void clearHelp(iterator const &it)
+			void clearHelp(iterator it)
 			{
 				if (it != end())
 				{
+					Node<value_type> *nodeHold = it.nodeBase();
                     allocator.destroy(it.base());
                     allocator.deallocate(it.base(), sizeof(value_type));
 					clearHelp(++it);
-					delete it.nodeBase();
+					delete nodeHold;
 				}
 			}
 
