@@ -93,11 +93,29 @@ namespace ft
     		//operator-- (pre)
     		bd_iterator& operator--(void)
     		{
-				if (node->parent == NULL || node == node->parent->right)
-					node = node->parent;
+				if (node->right->pairv != NULL)
+				{
+					node = node->right;
+					
+					while (node->left->pairv != NULL)
+					{
+						node = node->left;
+					}
+				}
 				else
-					node = node->left;
-				iter = node->pairv;
+				{
+					Node<value_type> *p = node->parent;
+					while (p != NULL && node == p->right)
+					{
+						node = p;
+						p = p->parent;
+					}
+					node = p;
+				}
+				if (node == NULL)
+					iter = NULL;
+				else
+					iter = node->pairv;
     			return (*this);
     		}
     		//operator-- (post)
