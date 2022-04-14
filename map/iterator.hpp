@@ -93,19 +93,19 @@ namespace ft
     		//operator-- (pre)
     		bd_iterator& operator--(void)
     		{
-				if (node->right->pairv != NULL)
+				if (node->left->pairv != NULL)
 				{
-					node = node->right;
+					node = node->left;
 					
-					while (node->left->pairv != NULL)
+					while (node->right->pairv != NULL)
 					{
-						node = node->left;
+						node = node->right;
 					}
 				}
 				else
 				{
 					Node<value_type> *p = node->parent;
-					while (p != NULL && node == p->right)
+					while (p != NULL && node == p->left)
 					{
 						node = p;
 						p = p->parent;

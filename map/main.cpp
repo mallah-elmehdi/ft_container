@@ -85,19 +85,8 @@ int main()
 
     // mymap2.insert(mymap.begin(), mymap.end());
 
-	ft::map<char, int>::iterator it = mymap.begin();
+	ft::map<char, int>::iterator it = mymap.find('s');
 
-	// ok();
-	++it;
-	++it;
-	++it;
-	++it;
-	++it;
-	it++;
-	it++;
-	it++;
-	it++;
-	it++;
 	
 	// --it2;
     // ft::cout << it2->first << '\n';

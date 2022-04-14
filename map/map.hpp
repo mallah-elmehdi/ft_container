@@ -165,6 +165,36 @@ namespace ft
                 tree.clear();
                 _size = 0;
             }
+
+			/* Operations */
+			
+			iterator find (const key_type& k)
+			{
+				iterator it = begin();
+				while (it != end())
+				{
+					if (it->first == k)
+						break;
+					++it;
+				}
+				return (it);
+			}
+			const_iterator find (const key_type& k) const
+			{
+				const_iterator it = begin();
+				while (it != end())
+				{
+					if (it->first == k)
+						break;
+					++it;
+				}
+				return (it);
+			}
+			size_type count (const key_type& k) const
+			{
+				if (find(k) != end()) return (1);
+				return (0);
+			}
     };
 }
 
