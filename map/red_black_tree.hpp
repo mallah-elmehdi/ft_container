@@ -82,6 +82,7 @@ template <class Key, class T, class Compare = ft::less<Key>, class Allocator = s
                         nodeHold->right = newNode;
                     this->checkTree(newNode);
                 }
+				this->printTree();
                 return(ft::make_pair(iterator(newNode), true));
             }
             // get a node

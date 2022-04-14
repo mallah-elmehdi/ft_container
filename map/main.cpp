@@ -27,15 +27,15 @@ int main()
     mymap2.insert(ft::make_pair('f', 600));
 
 
-    // mymap2.insert(mymap.begin(), mymap.end());
+    mymap2.insert(mymap.begin(), mymap.end());
 
-    // ft::map<char,int>::iterator it2=mymap.end();
-    // ft::cout << it2->first << '\n';
+    // ft::map<char,int>::iterator it2 = mymap2.begin();
+    // std::cout << it2->first << '\n';
     // it++;
     // ft::cout << it->first << " => " << it->second << '\n';
     // it++;
     // ft::cout << it->first << " => " << it->second << '\n';
     // it++;
-    for (ft::map<char,int>::iterator it=mymap2.begin(); it != mymap2.end(); it++)
-        std::cout << it->first << " => " << it->second << '\n';
+    // for (ft::map<char,int>::iterator it = mymap2.begin(); it != mymap2.end(); it++)
+        // std::cout << it->first << " => " << it->second << '\n';
 }
