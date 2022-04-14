@@ -128,7 +128,8 @@ template <class Key, class T, class Compare = ft::less<Key>, class Allocator = s
             // clearing the Tree
             void clear()
             {
-
+                this->allocator.destroy(this->nil->pairv);
+                this->allocator.deallocate(this->nil->pairv, sizeof(value_type));
                 delete this->nil;
             }
 

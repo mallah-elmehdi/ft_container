@@ -85,7 +85,14 @@ int main()
 
     // mymap2.insert(mymap.begin(), mymap.end());
 
-	ft::map<char, int>::iterator it = mymap.lower_bound('z');
+	// std::pair<std::map<char,int>::iterator,std::map<char,int>::iterator> ret;
+	// ret = mymap.equal_range('b');
+
+	std::cout << "lower bound points to: ";
+	std::cout << mymap.equal_range('b').first->first << " => " << mymap.equal_range('b').first->second << '\n';
+
+	std::cout << "upper bound points to: ";
+	std::cout << mymap.equal_range('b').second->first << " => " << mymap.equal_range('b').second->second << '\n';
 
 	
 	// --it2;
@@ -96,5 +103,5 @@ int main()
     // std::cout << it->first << " => " << it->second << '\n';
     // it++;
     // for (ft::map<char,int>::iterator it = mymap.begin(); it != mymap.end(); it++)
-        std::cout << it->first << " => " << it->second << '\n';
+        // std::cout << it->first << " => " << it->second << '\n';
 }

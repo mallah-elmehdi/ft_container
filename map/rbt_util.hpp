@@ -43,7 +43,7 @@ template <class Key, class T, class Compare = ft::less<Key>, class Allocator = s
                 newNode->right = nil;
                 newNode->left = nil;
                 newNode->parent = nil;
-                newNode->nil = true;
+                newNode->nil = false;
                 return (newNode);
             }
             // recolor methode
