@@ -130,7 +130,10 @@ namespace ft
                 return (tree.insert(val));
             }
 
-			// iterator insert (iterator position, const value_type& val);
+			iterator insert (iterator position, const value_type& val)
+            {
+                return (tree.insert(val).first);
+            }
 
 			// template <class InputIterator>
 			// void insert (InputIterator first, InputIterator last);
