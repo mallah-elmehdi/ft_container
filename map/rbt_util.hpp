@@ -62,7 +62,7 @@ template <class Key, class T, class Compare = ft::less<Key>, class Allocator = s
 
                 nodeHold->parent = node->parent;
 
-                if (node->parent == nil)
+                if (node->parent == NULL)
                 {
                     root = nodeHold;
                     root->color = BLACK;
@@ -86,7 +86,7 @@ template <class Key, class T, class Compare = ft::less<Key>, class Allocator = s
                     nodeHold->right->parent = node;
 
                 nodeHold->parent = node->parent;
-                if (node->parent == nil)
+                if (node->parent == NULL)
                 {
                     root = nodeHold;
                     root->color = BLACK;
@@ -132,7 +132,7 @@ template <class Key, class T, class Compare = ft::less<Key>, class Allocator = s
             // check the conflict
             bool conflict(Node<value_type> *node)
             {
-                if (node->color == RED && node->parent->color == RED)
+                if (node && node->parent && node->color == RED && node->parent->color == RED)
                     return (true);
                 return (false);
             }

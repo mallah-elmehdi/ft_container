@@ -16,24 +16,26 @@
 int main()
 {
     ft::map<char,int> mymap;
+    ft::map<char,int> mymap2;
     //
-    mymap.insert(::make_pair('b', 100));
-    mymap.insert(::make_pair('a', 200));
-    mymap.insert(::make_pair('c', 300));
+    mymap.insert(ft::make_pair('b', 200));
+    mymap.insert(ft::make_pair('a', 100));
+    mymap.insert(ft::make_pair('c', 300));
+	// 
+    mymap2.insert(ft::make_pair('d', 400));
+    mymap2.insert(ft::make_pair('e', 500));
+    mymap2.insert(ft::make_pair('f', 600));
 
-    // ft::map<char,int> mymap2(mymap);
 
-    ft::map<char,int>::iterator it = mymap.begin();
-
-    mymap.insert(it, std::make_pair('d', 400));
+    // mymap2.insert(mymap.begin(), mymap.end());
 
     // ft::map<char,int>::iterator it2=mymap.end();
-    // std::cout << bool(it == it) << '\n';
+    // ft::cout << it2->first << '\n';
     // it++;
-    // std::cout << it->first << " => " << it->second << '\n';
+    // ft::cout << it->first << " => " << it->second << '\n';
     // it++;
-    // std::cout << it->first << " => " << it->second << '\n';
+    // ft::cout << it->first << " => " << it->second << '\n';
     // it++;
-    for (ft::map<char,int>::iterator it=mymap.begin(); it != mymap.end(); it++)
+    for (ft::map<char,int>::iterator it=mymap2.begin(); it != mymap2.end(); it++)
         std::cout << it->first << " => " << it->second << '\n';
 }
