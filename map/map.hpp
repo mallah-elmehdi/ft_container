@@ -64,7 +64,7 @@ namespace ft
 
             ~map()
             {
-                clear();
+                // clear();
             }
 			/* Iterators */
 
