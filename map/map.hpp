@@ -6,6 +6,7 @@
 # include "iterator.hpp"
 # include "reverse_iterator.hpp"
 # include "red_black_tree.hpp"
+# include "value_comp.hpp"
 # include <cstddef>
 # include <memory>
 
@@ -21,6 +22,7 @@ namespace ft
             typedef ft::pair<const key_type, mapped_type>           value_type;
             typedef Compare                                         key_compare;
             typedef Allocator	                                    allocator_type;
+            typedef typename ft::value_comp::value_compare			value_compare;
             typedef typename allocator_type::reference				reference;
 			typedef typename allocator_type::const_reference		const_reference;
 			typedef typename allocator_type::pointer				pointer;
@@ -167,7 +169,12 @@ namespace ft
             }
 			/* Observers */
 
-			
+			key_compare key_comp() const
+			{
+				return (compare);
+			}
+
+			value_compare value_comp() const;
 
 			/* Operations */
 			

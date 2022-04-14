@@ -93,7 +93,6 @@ int main()
 
 	std::cout << "upper bound points to: ";
 	std::cout << mymap.equal_range('b').second->first << " => " << mymap.equal_range('b').second->second << '\n';
-
 	
 	// --it2;
     // std::cout << it2->first << '\n';
