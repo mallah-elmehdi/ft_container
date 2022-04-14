@@ -11,6 +11,7 @@ template <class value_type>
             Node<value_type>                *left;
             Node<value_type>                *right;
             int                        		color;
+            bool                        	nil;
 };
 
 #endif

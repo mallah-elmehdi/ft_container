@@ -25,7 +25,6 @@ namespace ft
     		bd_iterator(void) : iter(), node() {}
     		//copy constuctor
     		bd_iterator(Node<value_type> *x) : node(x), iter(x->pairv) {}
-    		bd_iterator(const pointer val) : iter(val) {}
     		bd_iterator(const bd_iterator &it) : iter(it.iter), node(it.node) {}
     		template <class _pair_type>
     		bd_iterator(const bd_iterator<_pair_type> &it) : iter(it.iter), node(it.node) {}
@@ -59,11 +58,11 @@ namespace ft
     		//operator++ (pre)
     		bd_iterator& operator++(void)
     		{
-				if (node->right->pairv != NULL)
+				if (node->right->nil == false)
 				{
 					node = node->right;
 					
-					while (node->left->pairv != NULL)
+					while (node->left->nil == false)
 					{
 						node = node->left;
 					}
@@ -71,7 +70,7 @@ namespace ft
 				else
 				{
 					Node<value_type> *p = node->parent;
-					while (p->pairv != NULL && node == p->right)
+					while (p->nil == false && node == p->right)
 					{
 						node = p;
 						p = p->parent;
@@ -91,11 +90,11 @@ namespace ft
     		//operator-- (pre)
     		bd_iterator& operator--(void)
     		{
-				if (node->left->pairv != NULL)
+				if (node->left->nil == false)
 				{
 					node = node->left;
 					
-					while (node->right->pairv != NULL)
+					while (node->right->nil == false)
 					{
 						node = node->right;
 					}
@@ -103,7 +102,7 @@ namespace ft
 				else
 				{
 					Node<value_type> *p = node->parent;
-					while (p->pairv != NULL && node == p->left)
+					while (p->nil == false && node == p->left)
 					{
 						node = p;
 						p = p->parent;

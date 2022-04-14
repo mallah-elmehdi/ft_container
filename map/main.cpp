@@ -61,7 +61,7 @@ int main()
 	mymap.insert(ft::make_pair('y', 25));
 	mymap.insert(ft::make_pair('f', 6));
 	mymap.insert(ft::make_pair('g', 7));
-	mymap.insert(ft::make_pair('a', 1));
+	// mymap.insert(ft::make_pair('a', 1));
 	mymap.insert(ft::make_pair('i', 9));
 	mymap.insert(ft::make_pair('h', 8));
 	mymap.insert(ft::make_pair('m', 13));
@@ -85,7 +85,7 @@ int main()
 
     // mymap2.insert(mymap.begin(), mymap.end());
 
-	ft::map<char, int>::iterator it = mymap.upper_bound('z');
+	ft::map<char, int>::iterator it = mymap.lower_bound('z');
 
 	
 	// --it2;

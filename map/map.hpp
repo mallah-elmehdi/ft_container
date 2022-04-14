@@ -201,7 +201,7 @@ namespace ft
 				while (it != end())
 				{
 					if (compare(it->first, k) == false)
-						return (it);
+						break ;
 					++it;
 				}
 				return (it);
@@ -212,7 +212,7 @@ namespace ft
 				while (it != end())
 				{
 					if (compare(it->first, k) == false)
-						return (it);
+						break ;
 					++it;
 				}
 				return (it);
@@ -223,7 +223,7 @@ namespace ft
 				while (it != end())
 				{
 					if (compare(k, it->first) == true)
-						return (it);
+						break ;
 					++it;
 				}
 				return (it);
@@ -234,7 +234,7 @@ namespace ft
 				while (it != end())
 				{
 					if (compare(k, it->first) == true)
-						return (it);
+						break ;
 					++it;
 				}
 				return (it);

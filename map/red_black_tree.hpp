@@ -31,7 +31,9 @@ template <class Key, class T, class Compare = ft::less<Key>, class Allocator = s
                 this->nil->right = this->nil;
                 this->nil->left = this->nil;
                 this->nil->parent = this->nil;
-                this->nil->pairv = NULL;
+                this->nil->nil = true;
+                this->nil->pairv = this->allocator.allocate(sizeof(value_type));
+                this->allocator.construct(this->nil->pairv, ft::make_pair(key_type(), mapped_type()));
                 this->root = this->nil;
             }
 			// begin()
@@ -126,7 +128,7 @@ template <class Key, class T, class Compare = ft::less<Key>, class Allocator = s
             // clearing the Tree
             void clear()
             {
-                // this->clearHelp(begin());
+
                 delete this->nil;
             }
 
