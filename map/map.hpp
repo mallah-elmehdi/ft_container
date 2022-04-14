@@ -99,11 +99,11 @@ namespace ft
 			}
 			reverse_iterator rbegin()
 			{
-				return (reverse_iterator(tree.end()));
+				return (reverse_iterator(tree.last()));
 			}
 			const_reverse_iterator rbegin() const
 			{
-				return (const_reverse_iterator(tree.end()));
+				return (const_reverse_iterator(tree.last()));
 			}
 			reverse_iterator rend()
 			{
@@ -194,6 +194,28 @@ namespace ft
 			{
 				if (find(k) != end()) return (1);
 				return (0);
+			}
+			iterator lower_bound (const key_type& k)
+			{
+				iterator it = begin();
+				while (it != end())
+				{
+					if (compare(it->first, k) == false)
+						break;
+					++it;
+				}
+				return (it);
+			}
+			const_iterator lower_bound (const key_type& k) const
+			{
+				const_iterator it = begin();
+				while (it != end())
+				{
+					if (compare(it->first, k) == false)
+						break;
+					++it;
+				}
+				return (it);
 			}
     };
 }

@@ -28,9 +28,10 @@ template <class Key, class T, class Compare = ft::less<Key>, class Allocator = s
             {
                 this->nil = new Node<value_type>();
                 this->nil->color = BLACK;
-                this->nil->right = NULL;
-                this->nil->left = NULL;
-                this->nil->parent = NULL;
+                this->nil->right = this->nil;
+                this->nil->left = this->nil;
+                this->nil->parent = this->nil;
+                this->nil->pairv = NULL;
                 this->root = this->nil;
             }
 			// begin()

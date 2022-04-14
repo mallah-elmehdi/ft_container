@@ -82,9 +82,9 @@ namespace ft
 		return (x.base() == y.base());
 	}
 	template <class Iterator>
-	bool operator<(const reverse_iterator<Iterator>& x, const reverse_iterator<Iterator>& y)
+	bool operator!=(const reverse_iterator<Iterator>& x, const reverse_iterator<Iterator>& y)
 	{
-		return (x.base() > y.base());
+		return (x.base() != y.base());
 	}
 }
 #endif

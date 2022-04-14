@@ -70,17 +70,14 @@ namespace ft
 				else
 				{
 					Node<value_type> *p = node->parent;
-					while (p != NULL && node == p->right)
+					while (p->pairv != NULL && node == p->right)
 					{
 						node = p;
 						p = p->parent;
 					}
 					node = p;
 				}
-				if (node == NULL)
-					iter = NULL;
-				else
-					iter = node->pairv;
+				iter = node->pairv;
     			return (*this);
     		}
     		//operator++ (post)
@@ -105,17 +102,14 @@ namespace ft
 				else
 				{
 					Node<value_type> *p = node->parent;
-					while (p != NULL && node == p->left)
+					while (p->pairv != NULL && node == p->left)
 					{
 						node = p;
 						p = p->parent;
 					}
 					node = p;
 				}
-				if (node == NULL)
-					iter = NULL;
-				else
-					iter = node->pairv;
+				iter = node->pairv;
     			return (*this);
     		}
     		//operator-- (post)
