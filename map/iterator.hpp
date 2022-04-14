@@ -55,9 +55,26 @@ namespace ft
     		//operator++ (pre)
     		bd_iterator& operator++(void)
     		{
-				node = node->right;
-				while (node->left) node = node->left;
-				iter = node->pairv;
+				if (node->right->pairv != NULL)
+				{
+					node = node->right;
+					
+					while (nodePtr->left->pairv != NULL)
+					{
+						nodePtr = nodePtr->left;
+					}
+				}
+				else
+				{
+					p = node->parent;
+					while (p != NULL && nodePtr == p->right)
+					{
+						nodePtr = p;
+						p = p->parent;
+					}
+					nodePtr = p;
+				}
+				
     			return (*this);
     		}
     		//operator++ (post)
