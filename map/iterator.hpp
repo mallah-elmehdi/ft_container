@@ -37,7 +37,10 @@ namespace ft
     		//operator=
     		bd_iterator& operator=(bd_iterator const &it)
     		{
-    			iter = it.base();
+				std::cout << "heeeere";
+    			iter = it.iter;
+    			node = it.node;
+				std::cout << node->pairv->first << "\n";
     			return (*this);
     		}
     		//operator*
@@ -70,6 +73,8 @@ namespace ft
     		//operator-- (pre)
     		bd_iterator& operator--(void)
     		{
+				if (node == NULL)
+					std::cout << "NULL" << "\n";
 				if (node->parent == NULL || node == node->parent->right)
 					node = node->parent;
 				else

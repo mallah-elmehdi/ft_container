@@ -29,7 +29,11 @@ int main()
 
     mymap2.insert(mymap.begin(), mymap.end());
 
-    // ft::map<char,int>::iterator it2 = mymap2.begin();
+    ft::map<char,int>::iterator it2 = mymap2.begin();
+    ft::map<char,int>::iterator it = mymap2.begin();
+
+	it = it2;
+	// --it2;
     // std::cout << it2->first << '\n';
     // it++;
     // ft::cout << it->first << " => " << it->second << '\n';
