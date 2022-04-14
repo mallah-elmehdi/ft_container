@@ -31,7 +31,7 @@ int main()
 
     std::cout << "====================================" << '\n';
     
-	ft::map<char, int>::iterator it = mymap2.begin();
+	ft::map<char, int>::iterator it;
 
 	// ++it;
 	

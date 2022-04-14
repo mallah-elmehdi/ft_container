@@ -141,8 +141,9 @@ namespace ft
 			{
 				while (first != last)
 				{
+					std::cout << first->first <<"\n";
 					insert(*first);
-					first++;
+					++first;
 				}
 			}
 
