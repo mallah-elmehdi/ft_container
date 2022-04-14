@@ -55,14 +55,9 @@ namespace ft
     		//operator++ (pre)
     		bd_iterator& operator++(void)
     		{
-				Node<value_type> *nodeStart;
+				Node<value_type> *nodeStart = node->right;
 
-				if (node->parent == NULL || node == node->parent->right)
-					nodeStart = nodeStart->right;
-				else if (node->parent->right->left->pairv->first > )
-					node = node->parent;
-
-				while (1)
+				while (node->)
 				{
 					if (nodeStart->pairv && nodeStart->pairv->first > node->pairv->first)
 						break;
