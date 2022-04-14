@@ -120,19 +120,14 @@ namespace ft
 
 			mapped_type& operator[] (const key_type& k)
 			{
-				/*(*((insert(ft::make_pair(k,mapped_type()))).first)).second*/
+                return insert(ft::make_pair(k, mapped_type())).first->second;
 			}
 
 			/* Modifiers */
 
-			pair<iterator,bool> insert(const value_type& val)
+			ft::pair<iterator,bool> insert(const value_type& val)
             {
-                if (tree.insert(val))
-                {
-                    _size++;
-                    return (ft::make_pair(tree.getNode(val.first), true)))
-                }
-                return (ft::make_pair(tree.getNode(val.first), false)))
+                return (tree.insert(val));
             }
 
 			// iterator insert (iterator position, const value_type& val);
