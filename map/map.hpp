@@ -201,10 +201,10 @@ namespace ft
 				while (it != end())
 				{
 					if (compare(it->first, k) == false)
-						break;
+						return (it);
 					++it;
 				}
-				return ();
+				return (it);
 			}
 			const_iterator lower_bound (const key_type& k) const
 			{
@@ -212,10 +212,32 @@ namespace ft
 				while (it != end())
 				{
 					if (compare(it->first, k) == false)
-						break;
+						return (it);
 					++it;
 				}
-				return (const_iterator());
+				return (it);
+			}
+			iterator upper_bound (const key_type& k)
+			{
+				iterator it = begin();
+				while (it != end())
+				{
+					if (compare(k, it->first) == true)
+						return (it);
+					++it;
+				}
+				return (it);
+			}
+			const_iterator upper_bound (const key_type& k) const
+			{
+				const_iterator it = begin();
+				while (it != end())
+				{
+					if (compare(k, it->first) == true)
+						return (it);
+					++it;
+				}
+				return (it);
 			}
     };
 }

@@ -85,7 +85,7 @@ int main()
 
     // mymap2.insert(mymap.begin(), mymap.end());
 
-	ft::map<char, int>::iterator it = mymap.lower_bound('g');
+	ft::map<char, int>::iterator it = mymap.upper_bound('z');
 
 	
 	// --it2;
