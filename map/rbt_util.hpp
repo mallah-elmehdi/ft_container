@@ -18,7 +18,7 @@ template <class Key, class T, class Compare = ft::less<Key>, class Allocator = s
     class Red_Black_Tree_Util {
 
         protected:
-            typedef Key                                             key_type; 
+            typedef Key                                             key_type;
             typedef T                                               mapped_type;
             typedef ft::pair<const key_type, mapped_type>           value_type;
 
@@ -178,6 +178,19 @@ template <class Key, class T, class Compare = ft::less<Key>, class Allocator = s
                   std::cout << root->pairv->first << "(" << sColor << ")" << std::endl;
                   printHelper(root->left, indent, false);
                   printHelper(root->right, indent, true);
+                }
+            }
+            void clearHelp(Node<value_type> *node)
+            {
+                if (node != nil)
+                {
+                    allocator.destroy(node->pairv);
+                    allocator.deallocate(node->pairv, sizeof(value_type));
+                    if (node->parent == NULL || node == node->parent->right)
+    					clearHelp(node->right);
+    				else
+    					clearHelp(node->parent);
+                    delete node;
                 }
             }
 		public :

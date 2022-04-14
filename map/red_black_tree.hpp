@@ -82,40 +82,32 @@ template <class Key, class T, class Compare = ft::less<Key>, class Allocator = s
                 }
 				return (1);
             }
-			// find node my key
-			T& operator[] (const key_type& k)
-			{
-				Node<value_type> *nodeCheck = this->root;
+            // get a node
+            Node<value_type>* get_node(const key_type& k)
+            {
+                Node<value_type> *nodeCheck = this->root;
 				while (nodeCheck != this->nil)
 				{
 					if (k == nodeCheck->pairv->second)
-						return (nodeCheck->pairv->second);
+						break;
 					else if (compare(k, nodeCheck->pairv->first))
 						nodeCheck = nodeCheck->left;
 					else
 						nodeCheck = nodeCheck->right;
 				}
-			}
+                return (nodeCheck);
+            }
             // clearing the Tree
             void clear()
             {
-                clearHelp(begin());
+                this->clearHelp(begin());
                 delete this->nil;
             }
-            void clearHelp(Node<value_type> *node)
-            {
-                Node<value_type> *nodeHold = node;
-                if (node != this->nil)
-                {
-                    this->allocator.destroy(node->pairv);
-                    this->allocator.deallocate(node->pairv, sizeof(value_type));
-                    if (node->parent == NULL || node == node->parent->right)
-    					clearHelp(node->right);
-    				else
-    					clearHelp(node->parent);
-                    delete nodeHold;
-                }
-            }
+            // nil value
+            Node<value_type>* nil_node()
+			{
+				return (this->nil);
+			}
 };
 
 #endif

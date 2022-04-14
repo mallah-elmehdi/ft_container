@@ -127,7 +127,12 @@ namespace ft
 
 			pair<iterator,bool> insert(const value_type& val)
             {
-				_size += tree.insert(val);
+                if (tree.insert(val))
+                {
+                    _size++;
+                    return (ft::make_pair(tree.getNode(val.first), true)))
+                }
+                return (ft::make_pair(tree.getNode(val.first), false)))
             }
 
 			// iterator insert (iterator position, const value_type& val);
@@ -138,6 +143,7 @@ namespace ft
             void clear()
             {
                 tree.clear();
+                _size = 0;
             }
     };
 }
