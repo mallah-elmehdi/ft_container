@@ -29,10 +29,7 @@ int main()
 
     mymap2.insert(mymap.begin(), mymap.end());
 
-    ft::map<char,int>::iterator it2 = mymap2.begin();
-    ft::map<char,int>::iterator it = mymap2.begin();
-
-	it = it2;
+    ft::map<char,int>::iterator it2 = ++(mymap2.begin());
 	// --it2;
     // std::cout << it2->first << '\n';
     // it++;
@@ -40,6 +37,6 @@ int main()
     // it++;
     // ft::cout << it->first << " => " << it->second << '\n';
     // it++;
-    // for (ft::map<char,int>::iterator it = mymap2.begin(); it != mymap2.end(); it++)
-        // std::cout << it->first << " => " << it->second << '\n';
+    for (ft::map<char,int>::iterator it = mymap2.begin(); it != mymap2.end(); it++)
+        std::cout << it->first << " => " << it->second << '\n';
 }
