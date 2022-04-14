@@ -52,6 +52,23 @@ template <class Key, class T, class Compare = ft::less<Key>, class Allocator = s
 			{
 				return (this->nil);
 			}
+			// last()
+			Node<value_type>* last()
+			{
+                Node<value_type> *nodeCheck = this->root;
+                Node<value_type> *nodeHold = nodeCheck;
+
+				while (nodeCheck != this->nil)
+				{
+                    nodeHold = nodeCheck;
+					nodeCheck = nodeCheck->right;
+				}
+				return (nodeHold);
+			}
+			Node<value_type>* first()
+			{
+				return (this->nil);
+			}
             // inserting new node to the Tree
             ft::pair<iterator, bool> insert(const value_type &val)
             {
@@ -112,6 +129,7 @@ template <class Key, class T, class Compare = ft::less<Key>, class Allocator = s
                 // this->clearHelp(begin());
                 delete this->nil;
             }
+
 };
 
 #endif

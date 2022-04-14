@@ -49,7 +49,7 @@ int main()
 	mymap.insert(ft::make_pair('l', 12));
 	mymap.insert(ft::make_pair('v', 22));
 	mymap.insert(ft::make_pair('p', 16));
-	mymap.insert(ft::make_pair('z', 26));
+	// mymap.insert(ft::make_pair('z', 26));
 	mymap.insert(ft::make_pair('t', 20));
 	mymap.insert(ft::make_pair('s', 19));
 	mymap.insert(ft::make_pair('c', 3));
@@ -75,7 +75,7 @@ int main()
 	mymap.insert(ft::make_pair('l', 12));
 	mymap.insert(ft::make_pair('v', 22));
 	mymap.insert(ft::make_pair('p', 16));
-	mymap.insert(ft::make_pair('z', 26));
+	// mymap.insert(ft::make_pair('z', 26));
 	mymap.insert(ft::make_pair('t', 20));
 	mymap.insert(ft::make_pair('s', 19));
 	mymap.insert(ft::make_pair('c', 3));
@@ -85,34 +85,16 @@ int main()
 
     // mymap2.insert(mymap.begin(), mymap.end());
 
-	// ft::map<char, int>::iterator it = mymap.begin();
+	ft::map<char, int>::iterator it = mymap.lower_bound('g');
 
-    // it++;
-    // it++;
-    // it++;
-    // it++;
-    // it++;
-	// ++it;
-    // ++it;
-    // ++it;
-    // ++it;
-    // ++it;
-    // it--;
-    // it--;
-    // it--;
-    // it--;
-    // it--;
-	// --it;
-    // --it;
-    // --it;
-    // --it;
-    // --it;
+	
 	// --it2;
     // std::cout << it2->first << '\n';
-    // std::cout << it->first << " => " << it->second << '\n';
     // it++;
     // std::cout << it->first << " => " << it->second << '\n';
     // it++;
-    for (ft::map<char,int>::reverse_iterator it = mymap.rbegin(); it != mymap.rend(); it++)
+    // std::cout << it->first << " => " << it->second << '\n';
+    // it++;
+    // for (ft::map<char,int>::iterator it = mymap.begin(); it != mymap.end(); it++)
         std::cout << it->first << " => " << it->second << '\n';
 }

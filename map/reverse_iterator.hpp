@@ -42,7 +42,7 @@ namespace ft
 			reference operator*(void) const
 			{
 				Iterator tmp = iter;
-				return *--tmp;
+				return *tmp;
 			}
 			//operator->
 			pointer operator->(void) const
@@ -52,27 +52,27 @@ namespace ft
 			//operator++ (pre)
 			reverse_iterator& operator++(void)
 			{
-				iter--;
+				--iter;
 				return (*this);
 			}
 			//operator++ (post)
 			reverse_iterator operator++(int)
 			{
 				reverse_iterator temp(*this);
-				iter--;
+				--iter;
 				return (temp);
 			}
 			//operator-- (pre)
 			reverse_iterator& operator--(void)
 			{
-				iter++;
+				++iter;
 				return (*this);
 			}
 			//operator-- (post)
 			reverse_iterator operator--(int)
 			{
 				reverse_iterator temp(*this);
-				iter++;
+				++iter;
 				return (temp);
 			}
 	};

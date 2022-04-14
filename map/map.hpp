@@ -107,11 +107,11 @@ namespace ft
 			}
 			reverse_iterator rend()
 			{
-				return (reverse_iterator(tree.begin()));
+				return (reverse_iterator(tree.first()));
 			}
 			const_reverse_iterator rend() const
 			{
-				return (const_reverse_iterator(tree.begin()));
+				return (const_reverse_iterator(tree.first()));
 			}
 
 			/* Capacity */
@@ -204,7 +204,7 @@ namespace ft
 						break;
 					++it;
 				}
-				return (it);
+				return ();
 			}
 			const_iterator lower_bound (const key_type& k) const
 			{
@@ -215,7 +215,7 @@ namespace ft
 						break;
 					++it;
 				}
-				return (it);
+				return (const_iterator());
 			}
     };
 }
