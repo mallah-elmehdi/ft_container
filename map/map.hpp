@@ -7,14 +7,32 @@ template < class Key, class T, class Compare = ft::less<Key>, class Allocator = 
 class map
 {
 	public:
-		template <class Key, class T, class Compare, class Alloc>
-		class value_comp
+		// +++++++ Member types
+		typedef Key                                            	key_type;
+		typedef T                                              	mapped_type;
+		typedef ft::pair<const key_type, mapped_type>          	value_type;
+		typedef Compare                                        	key_compare;
+		typedef Allocator	                                   	allocator_type;
+		typedef typename allocator_type::reference				reference;
+		typedef typename allocator_type::const_reference		const_reference;
+		typedef typename allocator_type::pointer				pointer;
+		typedef typename allocator_type::const_pointer			const_pointer;
+		typedef ptrdiff_t										difference_type;
+		typedef size_t											size_type;
+		typedef ft::bd_iterator<value_type>						iterator;
+		typedef ft::bd_iterator<const value_type>				const_iterator;
+		typedef ft::reverse_iterator<iterator>					reverse_iterator;
+		typedef ft::reverse_iterator<const_iterator>			const_reverse_iterator;
+
+	public:
+		template <class __Key, class __T, class __Compare, class __Alloc>
+		class value_comp_class
 		{
 			friend map;
 			
 			protected:
-				Compare comp;
-				value_comp (Compare c) : comp(c) {}
+				__Compare comp;
+				value_comp_class (__Compare c) : comp(c) {}
 			
 			public:
 				typedef bool								result_type;
@@ -25,24 +43,7 @@ class map
 					return comp(x.first, y.first);
 				}
 		};
-	public:
-		// +++++++ Member types
-		typedef Key                                             								key_type;
-		typedef T                                               								mapped_type;
-		typedef ft::pair<const key_type, mapped_type>           								value_type;
-		typedef Compare                                         								key_compare;
-		typedef Allocator	                                    								allocator_type;
-		typedef typename ft::value_comp<key_type, mapped_type, Compare, allocator_type>			value_compare;
-		typedef typename allocator_type::reference												reference;
-		typedef typename allocator_type::const_reference										const_reference;
-		typedef typename allocator_type::pointer												pointer;
-		typedef typename allocator_type::const_pointer											const_pointer;
-		typedef ptrdiff_t																		difference_type;
-		typedef size_t																			size_type;
-		typedef ft::bd_iterator<value_type>														iterator;
-		typedef ft::bd_iterator<const value_type>												const_iterator;
-		typedef ft::reverse_iterator<iterator>													reverse_iterator;
-		typedef ft::reverse_iterator<const_iterator>											const_reverse_iterator;
+		typedef	value_comp_class<key_type, mapped_type, Compare, allocator_type>				value_compare;
 
 	private:
 		Red_Black_Tree<key_type, mapped_type, Compare, allocator_type>	tree;
@@ -84,7 +85,14 @@ class map
 
 		map (const map& x) : _size(0), allocator(x.allocator), compare(x.compare)
 		{
-			for (iterator it = x.begin(); it != x.end(); it++) insert(*it);
+			for (iterator it = x.begin(); it != x.end(); it++) insert(it->first);
+		}
+
+		map& operator= (const map& x)
+		{
+			for (iterator it = x.begin(); it != x.end(); it++)
+				std::cout << it->first;
+			return (*this);
 		}
 
 		~map()

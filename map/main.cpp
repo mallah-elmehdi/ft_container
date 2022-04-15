@@ -1,100 +1,46 @@
 #include "ft.hpp"
 
-char a = 'a';
+int a = 100;
 int b = 1;
 void ok()
 {
-	for (size_t i = 0; i < 26; i++)
+	for (size_t i = 11; i <= 20; i++)
 	{
-		std::cout <<  "mymap.insert(ft::make_pair('" << a++ << "', " << b++ <<"));" << "\n";
+		std::cout <<  "mymap2.insert(ft::make_pair('" << i << "', " <<  a * i <<"));" << "\n";
 	}
 	
 }
 
 int main()
 {
-    ft::map<char,int> mymap; 
-    // ft::map<char,int> mymap2;
-    // //
-    // mymap.insert(ft::make_pair('b', 200));
-    // mymap.insert(ft::make_pair('a', 100));
-    // mymap.insert(ft::make_pair('c', 300));
-	// // 
-    // mymap2.insert(ft::make_pair('d', 400));
-    // mymap2.insert(ft::make_pair('e', 500));
-    // mymap2.insert(ft::make_pair('f', 600));
+    ft::map<int,int> mymap2;
+    ft::map<int,int> mymap; 
 
-	mymap.insert(ft::make_pair('d', 4));
-	mymap.insert(ft::make_pair('j', 10));
-	mymap.insert(ft::make_pair('y', 25));
-	mymap.insert(ft::make_pair('f', 6));
-	mymap.insert(ft::make_pair('g', 7));
-	mymap.insert(ft::make_pair('a', 1));
-	mymap.insert(ft::make_pair('i', 9));
-	mymap.insert(ft::make_pair('h', 8));
-	mymap.insert(ft::make_pair('m', 13));
-	mymap.insert(ft::make_pair('e', 5));
-	mymap.insert(ft::make_pair('b', 2));
-	mymap.insert(ft::make_pair('k', 11));
-	mymap.insert(ft::make_pair('n', 14));
-	mymap.insert(ft::make_pair('r', 18));
-	mymap.insert(ft::make_pair('u', 21));
-	mymap.insert(ft::make_pair('o', 15));
-	mymap.insert(ft::make_pair('l', 12));
-	mymap.insert(ft::make_pair('v', 22));
-	mymap.insert(ft::make_pair('p', 16));
-	// mymap.insert(ft::make_pair('z', 26));
-	mymap.insert(ft::make_pair('t', 20));
-	mymap.insert(ft::make_pair('s', 19));
-	mymap.insert(ft::make_pair('c', 3));
-	mymap.insert(ft::make_pair('w', 23));
-	mymap.insert(ft::make_pair('q', 17));
-	mymap.insert(ft::make_pair('x', 24));
-	mymap.insert(ft::make_pair('d', 4));
-	mymap.insert(ft::make_pair('j', 10));
-	mymap.insert(ft::make_pair('y', 25));
-	mymap.insert(ft::make_pair('f', 6));
-	mymap.insert(ft::make_pair('g', 7));
-	// mymap.insert(ft::make_pair('a', 1));
-	mymap.insert(ft::make_pair('i', 9));
-	mymap.insert(ft::make_pair('h', 8));
-	mymap.insert(ft::make_pair('m', 13));
-	mymap.insert(ft::make_pair('e', 5));
-	mymap.insert(ft::make_pair('b', 2));
-	mymap.insert(ft::make_pair('k', 11));
-	mymap.insert(ft::make_pair('n', 14));
-	mymap.insert(ft::make_pair('r', 18));
-	mymap.insert(ft::make_pair('u', 21));
-	mymap.insert(ft::make_pair('o', 15));
-	mymap.insert(ft::make_pair('l', 12));
-	mymap.insert(ft::make_pair('v', 22));
-	mymap.insert(ft::make_pair('p', 16));
-	// mymap.insert(ft::make_pair('z', 26));
-	mymap.insert(ft::make_pair('t', 20));
-	mymap.insert(ft::make_pair('s', 19));
-	mymap.insert(ft::make_pair('c', 3));
-	mymap.insert(ft::make_pair('w', 23));
-	mymap.insert(ft::make_pair('q', 17));
-	mymap.insert(ft::make_pair('x', 24));
+	// ok();
 
-    // mymap2.insert(mymap.begin(), mymap.end());
+	mymap.insert(ft::make_pair(4, 400));
+	mymap.insert(ft::make_pair(6, 600));
+	mymap.insert(ft::make_pair(9, 900));
+	mymap.insert(ft::make_pair(1, 100));
+	mymap.insert(ft::make_pair(14, 1400));
+	mymap.insert(ft::make_pair(8, 800));
+	mymap.insert(ft::make_pair(3, 300));
+	mymap.insert(ft::make_pair(7, 700));
+	mymap.insert(ft::make_pair(10, 1000));
+	mymap.insert(ft::make_pair(19, 1900));
+	mymap.insert(ft::make_pair(13, 1300));
+	mymap.insert(ft::make_pair(12, 1200));
+	mymap.insert(ft::make_pair(20, 2000));
+	mymap.insert(ft::make_pair(17, 1700));
+	mymap.insert(ft::make_pair(2, 200));
+	mymap.insert(ft::make_pair(15, 1500));
+	mymap.insert(ft::make_pair(16, 1600));
+	mymap.insert(ft::make_pair(18, 1800));
+	mymap.insert(ft::make_pair(11, 1100));
+	mymap.insert(ft::make_pair(5, 500));
 
-	// std::pair<std::map<char,int>::iterator,std::map<char,int>::iterator> ret;
-	// ret = mymap.equal_range('b');
-
-	std::cout << "lower bound points to: ";
-	std::cout << mymap.equal_range('b').first->first << " => " << mymap.equal_range('b').first->second << '\n';
-
-	std::cout << "upper bound points to: ";
-	std::cout << mymap.equal_range('b').second->first << " => " << mymap.equal_range('b').second->second << '\n';
-	
-	// --it2;
-    // std::cout << it2->first << '\n';
-    // it++;
-    // std::cout << it->first << " => " << it->second << '\n';
-    // it++;
-    // std::cout << it->first << " => " << it->second << '\n';
-    // it++;
-    // for (ft::map<char,int>::iterator it = mymap.begin(); it != mymap.end(); it++)
-        // std::cout << it->first << " => " << it->second << '\n';
+	mymap2 = mymap;
+    
+	for (ft::map<int,int>::iterator it = mymap2.begin(); it != mymap2.end(); it++)
+        std::cout << it->first << " => " << it->second << '\n';
 }

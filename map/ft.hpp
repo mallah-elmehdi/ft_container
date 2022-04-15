@@ -19,7 +19,6 @@ namespace ft
 	#include "red_black_tree.hpp"
 	#include "reverse_iterator.hpp"
 	#include "map.hpp"
-	#include "value_comp.hpp"
 }
 
 #endif
