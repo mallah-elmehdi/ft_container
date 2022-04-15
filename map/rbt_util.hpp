@@ -10,9 +10,9 @@ template <class Key_T, class Compare, class Allocator>
     class Red_Black_Tree_Util {
 
         protected:
-            typedef Key_T          						value_type;
-            typedef ft::bd_iterator<value_type>			iterator;
-            typedef ft::bd_iterator<const value_type>	const_iterator;
+            typedef typaname ft::Rbt_Traits<Key_T>::value_type		value_type;
+            typedef ft::bd_iterator<value_type>						iterator;
+            typedef ft::bd_iterator<const value_type>				const_iterator;
         
 		protected:
 			Compare										compare;
