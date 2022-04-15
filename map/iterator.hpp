@@ -15,13 +15,13 @@ class bd_iterator {
 	private:
 		pointer				iter;
 		Node<value_type>	*node;
+		const Node<value_type>	*cnode;
 	public:
 		// + + + + + + + + + Member functions
 		//default constuctor
 		bd_iterator(void) : iter(), node() {}
 		//copy constuctor
 		bd_iterator(Node<value_type> *x) : node(x), iter(x->pairv) {}
-		bd_iterator(const Node<value_type> *x) : node(x), iter(x->pairv) {}
 		bd_iterator(const bd_iterator &it) : iter(it.iter), node(it.node) {}
 		template <class _pair_type>
 		bd_iterator(const bd_iterator<_pair_type> &it) : iter(it.iter), node(it.node) {}
