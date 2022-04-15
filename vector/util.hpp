@@ -6,7 +6,6 @@
 template <class Iterator, class T, class Allocator>
 void fill(Iterator first, Iterator last, const T &val, Allocator allocator)
 {
-	;
 	while (first != last)
 	{
 		allocator.construct(&*first, val);
