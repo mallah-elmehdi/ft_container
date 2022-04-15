@@ -90,7 +90,8 @@ class map
 
 		map& operator= (const map& x)
 		{
-			const_iterator it = x.begin();
+			// const_iterator it = x.begin();
+			*this = map(x.begin(), x.end());
 			return (*this);
 		}
 
