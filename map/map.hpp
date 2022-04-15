@@ -90,8 +90,9 @@ class map
 
 		map& operator= (const map& x)
 		{
-			for (iterator it = x.begin(); it != x.end(); it++)
-				std::cout << it->first;
+			const_iterator it  = x.begin();
+			// for (iterator it = x.begin(); it != x.end(); it++)
+			// std::cout <<;
 			return (*this);
 		}
 
@@ -103,10 +104,12 @@ class map
 
 		iterator begin()
 		{
+			std::cout  << "begin\n";
 			return (iterator(tree.begin()));
 		}
 		const_iterator begin() const
 		{
+			std::cout  << "const begin\n";
 			return (const_iterator(tree.begin()));
 		}
 		iterator end()
