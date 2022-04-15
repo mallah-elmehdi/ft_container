@@ -7,9 +7,12 @@ template <class Key_T, class Compare, class Allocator>
     class Red_Black_Tree : public Red_Black_Tree_Util<Key_T, Compare, Allocator> {
 
 		private:
-			typedef typename	Red_Black_Tree_Util<Key_T, Compare, Allocator>::value_type				value_type;
-			typedef typename	Red_Black_Tree_Util<Key_T, Compare, Allocator>::iterator				iterator;
-			typedef typename	Red_Black_Tree_Util<Key_T, Compare, Allocator>::const_iterator			const_iterator;
+			typedef typename Red_Black_Tree_Util<Key_T, Compare, Allocator>::value_type				value_type;
+			typedef typename Red_Black_Tree_Util<Key_T, Compare, Allocator>::iterator				iterator;
+			typedef typename Red_Black_Tree_Util<Key_T, Compare, Allocator>::const_iterator			const_iterator;
+
+		private:	
+			Compare compare = Red_Black_Tree_Util<Key_T, Compare, Allocator>::compare;
 
 		public:
             Red_Black_Tree()

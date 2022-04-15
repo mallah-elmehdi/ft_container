@@ -10,11 +10,11 @@ class Rbt_Traits
 		typedef Key_T			value_type;
 };
 
-// template <class Key_T>
-// class Rbt_Traits<const Key_T>
-// {
-// 	public:
-// 		typedef const Key_T		value_type;
-// };
+template <class Key_T>
+class Rbt_Traits<const Key_T>
+{
+	public:
+		typedef const Key_T		value_type;
+};
 
 #endif

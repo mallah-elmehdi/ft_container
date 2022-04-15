@@ -16,7 +16,6 @@ namespace ft
 	#include "make_pair.hpp"
 	#include "iterator.hpp"
 	#include "reverse_iterator.hpp"
-	#include "rbt_traits.hpp"
 	#include "rbt_util.hpp"
 	#include "red_black_tree.hpp"
 	#include "map.hpp"
