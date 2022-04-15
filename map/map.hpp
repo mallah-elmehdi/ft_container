@@ -46,7 +46,7 @@ class map
 		typedef	value_comp_class<key_type, mapped_type, Compare, allocator_type>				value_compare;
 
 	private:
-		Red_Black_Tree<value_type, Compare, allocator_type>				tree;
+		Red_Black_Tree<const value_type, Compare, allocator_type>				tree;
 		size_t															_size;
 		allocator_type													allocator;
 		key_compare														compare;
