@@ -1,17 +1,17 @@
-#ifndef _UTIL_HPP_
-#define _UTIL_HPP_
+// #ifndef _UTIL_HPP_
+// #define _UTIL_HPP_
 
-#include "ft.hpp"
+// #include "ft.hpp"
 
-template <class Iterator, class Insert>
-void fill_map(Iterator first, Iterator last, Insert insert)
-{
-	while (first != last)
-	{
-		insert(*first);
-		first++;
-	}
-}
+// template <class Iterator, class Insert>
+// void fill_map(Iterator first, Iterator last, Insert insert)
+// {
+// 	while (first != last)
+// 	{
+// 		insert(*first);
+// 		first++;
+// 	}
+// }
 
 // template <class Iterator1, class Iterator2, class Allocator>
 // void copy(Iterator1 first, Iterator1 last, Iterator2 result, Allocator allocator)

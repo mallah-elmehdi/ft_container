@@ -58,6 +58,10 @@ template <class Key, class T, class Compare = ft::less<Key>, class Allocator = s
 			{
 				return (this->nil);
 			}
+			const Node<value_type>* end() const
+			{
+				return (this->nil);
+			}
 			// last()
 			Node<value_type>* last()
 			{
@@ -71,7 +75,24 @@ template <class Key, class T, class Compare = ft::less<Key>, class Allocator = s
 				}
 				return (nodeHold);
 			}
+			// last()
+			const Node<value_type>* last() const 
+			{
+                Node<value_type> *nodeCheck = this->root;
+                Node<value_type> *nodeHold = nodeCheck;
+
+				while (nodeCheck != this->nil)
+				{
+                    nodeHold = nodeCheck;
+					nodeCheck = nodeCheck->right;
+				}
+				return (nodeHold);
+			}
 			Node<value_type>* first()
+			{
+				return (this->nil);
+			}
+			const Node<value_type>* first() const
 			{
 				return (this->nil);
 			}

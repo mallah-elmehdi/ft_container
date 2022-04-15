@@ -76,17 +76,21 @@ class map
 		map(InputIterator first, InputIterator last, const key_compare& comp = key_compare(), const allocator_type& alloc = allocator_type(), typename ft::enable_if<!ft::is_integral<InputIterator>::value, bool>::type = false)
 		: _size(0), compare(comp), allocator(alloc)
 		{
-			ft::fill_map(first, last, insert);
+			while (first != last)
+			{
+				insert(*first);
+				first++;
+			}
 		}
 
 		map (const map& x) : _size(0), allocator(x.allocator), compare(x.compare)
 		{
-			ft::fill_map(x.begin(), x.end(), insert);
+			const_iterator it = x.begin();
 		}
 
 		map& operator= (const map& x)
 		{
-			ft::fill_map(x.begin(), x.end(), insert);
+			const_iterator it = x.begin();
 			return (*this);
 		}
 
