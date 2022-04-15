@@ -46,7 +46,7 @@ class map
 		typedef	value_comp_class<key_type, mapped_type, Compare, allocator_type>				value_compare;
 
 	private:
-		Red_Black_Tree<value_type, Compare, allocator_type>	tree;
+		Red_Black_Tree<value_type, Compare, allocator_type>				tree;
 		size_t															_size;
 		allocator_type													allocator;
 		key_compare														compare;
@@ -69,7 +69,10 @@ class map
 		/* Member functions */
 
 		explicit map (const key_compare& comp = key_compare(), const allocator_type& alloc = allocator_type())
-		: _size(0), allocator(alloc), compare(comp) {}
+		: _size(0), allocator(alloc), compare(comp) {
+			std::cout << "ok\n";
+			// const_iterator it = tree.begin();
+		}
 
 
 		template <class InputIterator>
