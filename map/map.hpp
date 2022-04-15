@@ -88,12 +88,18 @@ class map
 
 		map (const map& x) : _size(0), allocator(x.allocator), compare(x.compare)
 		{
-			const_iterator it = x.begin();
+			// map temp;
+			// for (size_t i = 0; i < count; i++)
+			// {
+			// 	/* code */
+			// }
+			
+			x.begin();
 		}
 
 		map& operator= (const map& x)
 		{
-			const_iterator it = x.begin();
+			x.begin();
 			// *this = map(x.begin(), x.end());
 			return (*this);
 		}
@@ -112,7 +118,7 @@ class map
 		const_iterator begin() const
 		{
 			std::cout  << "const begin\n";
-			return (const_iterator(tree.begin()));
+			return (const_iterator(tree.cbegin()));
 		}
 		iterator end()
 		{

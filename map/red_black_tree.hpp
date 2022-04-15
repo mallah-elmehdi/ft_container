@@ -51,30 +51,6 @@ template <class Key_T, class Compare, class Allocator>
 				}
 				return (nodeHold);
 			}
-			Node<value_type>* begin()
-			{
-                Node<value_type> *nodeCheck = this->root;
-                Node<value_type> *nodeHold = nodeCheck;
-
-				while (nodeCheck != this->nil)
-				{
-                    nodeHold = nodeCheck;
-					nodeCheck = nodeCheck->left;
-				}
-				return (nodeHold);
-			}
-			const Node<value_type>* begin() const
-			{
-                Node<value_type> *nodeCheck = this->root;
-                Node<value_type> *nodeHold = nodeCheck;
-
-				while (nodeCheck != this->nil)
-				{
-                    nodeHold = nodeCheck;
-					nodeCheck = nodeCheck->left;
-				}
-				return (nodeHold);
-			}
 			// end()
 			Node<value_type>* end()
 			{
