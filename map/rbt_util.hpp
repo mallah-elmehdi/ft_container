@@ -6,19 +6,19 @@
 
 #include "ft.hpp"
 
-template <class Key, class T, class Compare, class Allocator>
+template <class Key_T, class Compare, class Allocator>
     class Red_Black_Tree_Util {
 
         protected:
-            typedef Key                                             key_type;
-            typedef T                                               mapped_type;
-            typedef ft::pair<const key_type, mapped_type>           value_type;
-
-        protected:
+            typedef Key_T          						value_type;
+            typedef ft::bd_iterator<value_type>			iterator;
+            typedef ft::bd_iterator<const value_type>	const_iterator;
+        
+		protected:
+			Compare										compare;
             Node<value_type>	*nil;
             Node<value_type>	*root;
-			Compare			compare;
-            Allocator		allocator;
+            Allocator			allocator;
 
 		protected:
             // private member funtion

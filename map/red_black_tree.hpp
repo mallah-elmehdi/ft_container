@@ -3,17 +3,13 @@
 
 #include "ft.hpp"
 
-template <class Key, class T, class Compare, class Allocator>
-    class Red_Black_Tree : public Red_Black_Tree_Util<Key, T, Compare, Allocator> {
-        private:
-            typedef Key                                             key_type;
-            typedef T                                               mapped_type;
-            typedef ft::pair<const key_type, mapped_type>           value_type;
-            typedef ft::bd_iterator<value_type>						iterator;
-            typedef ft::bd_iterator<const value_type>				const_iterator;
+template <class Key_T, class Compare, class Allocator>
+    class Red_Black_Tree : public Red_Black_Tree_Util<Key_T, Compare, Allocator> {
 
 		private:
-			Compare			compare;
+			typedef typename	Red_Black_Tree_Util<Key_T, Compare, Allocator>::value_type				value_type;
+			typedef typename	Red_Black_Tree_Util<Key_T, Compare, Allocator>::iterator				iterator;
+			typedef typename	Red_Black_Tree_Util<Key_T, Compare, Allocator>::const_iterator			const_iterator;
 
 		public:
             Red_Black_Tree()
@@ -25,7 +21,7 @@ template <class Key, class T, class Compare, class Allocator>
                 this->nil->parent = this->nil;
                 this->nil->nil = true;
                 this->nil->pairv = this->allocator.allocate(sizeof(value_type));
-                this->allocator.construct(this->nil->pairv, ft::make_pair(key_type(), mapped_type()));
+                this->allocator.construct(this->nil->pairv, value_type());
                 this->root = this->nil;
             }
 			// begin()
@@ -135,21 +131,21 @@ template <class Key, class T, class Compare, class Allocator>
                 }
                 return(ft::make_pair(iterator(newNode), true));
             }
-            // get a node
-            Node<value_type>* get_node(const key_type& k)
-            {
-                Node<value_type> *nodeCheck = this->root;
-				while (nodeCheck != this->nil)
-				{
-					if (k == nodeCheck->pairv->second)
-						break;
-					else if (compare(k, nodeCheck->pairv->first))
-						nodeCheck = nodeCheck->left;
-					else
-						nodeCheck = nodeCheck->right;
-				}
-                return (nodeCheck);
-            }
+            // // get a node
+            // Node<value_type>* get_node(const key_type& k)
+            // {
+            //     Node<value_type> *nodeCheck = this->root;
+			// 	while (nodeCheck != this->nil)
+			// 	{
+			// 		if (k == nodeCheck->pairv->second)
+			// 			break;
+			// 		else if (compare(k, nodeCheck->pairv->first))
+			// 			nodeCheck = nodeCheck->left;
+			// 		else
+			// 			nodeCheck = nodeCheck->right;
+			// 	}
+            //     return (nodeCheck);
+            // }
             // clearing the Tree
             void clear()
             {
