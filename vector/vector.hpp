@@ -8,8 +8,8 @@
 
 # include "reverse_iterator.hpp"
 # include "iterator.hpp"
-# include "is_integral.hpp"
-# include "enable_if.hpp"
+# include "../util/is_integral.hpp"
+# include "../util/enable_if.hpp"
 # include "lexicographical_compare.hpp"
 # include "equal.hpp"
 # include "util.hpp"

@@ -1,14 +1,17 @@
 #ifndef _MAP_
 #define _MAP_
 
+# include <cstddef>
+# include <memory>
+
+# include "../util/is_integral.hpp"
+# include "../util/enable_if.hpp"
 # include "pair.hpp"
 # include "less.hpp"
 # include "iterator.hpp"
 # include "reverse_iterator.hpp"
 # include "red_black_tree.hpp"
 # include "value_comp.hpp"
-# include <cstddef>
-# include <memory>
 
 namespace ft
 {
@@ -17,22 +20,22 @@ namespace ft
     {
         public:
             // +++++++ Member types
-            typedef Key                                             key_type;
-            typedef T                                               mapped_type;
-            typedef ft::pair<const key_type, mapped_type>           value_type;
-            typedef Compare                                         key_compare;
-            typedef Allocator	                                    allocator_type;
-            typedef typename ft::value_comp::value_compare			value_compare;
-            typedef typename allocator_type::reference				reference;
-			typedef typename allocator_type::const_reference		const_reference;
-			typedef typename allocator_type::pointer				pointer;
-			typedef typename allocator_type::const_pointer			const_pointer;
-            typedef ptrdiff_t										difference_type;
-            typedef size_t											size_type;
-			typedef ft::bd_iterator<value_type>						iterator;
-			typedef ft::bd_iterator<const value_type>				const_iterator;
-			typedef ft::reverse_iterator<iterator>					reverse_iterator;
-			typedef ft::reverse_iterator<const_iterator>			const_reverse_iterator;
+            typedef Key                                             								key_type;
+            typedef T                                               								mapped_type;
+            typedef ft::pair<const key_type, mapped_type>           								value_type;
+            typedef Compare                                         								key_compare;
+            typedef Allocator	                                    								allocator_type;
+            typedef typename ft::value_comp<key_type, mapped_type, Compare, allocator_type>			value_compare;
+            typedef typename allocator_type::reference												reference;
+			typedef typename allocator_type::const_reference										const_reference;
+			typedef typename allocator_type::pointer												pointer;
+			typedef typename allocator_type::const_pointer											const_pointer;
+            typedef ptrdiff_t																		difference_type;
+            typedef size_t																			size_type;
+			typedef ft::bd_iterator<value_type>														iterator;
+			typedef ft::bd_iterator<const value_type>												const_iterator;
+			typedef ft::reverse_iterator<iterator>													reverse_iterator;
+			typedef ft::reverse_iterator<const_iterator>											const_reverse_iterator;
 
         private:
             Red_Black_Tree<key_type, mapped_type, Compare, allocator_type>	tree;
@@ -62,7 +65,7 @@ namespace ft
 
 
             template <class InputIterator>
-			map(InputIterator first, InputIterator last, const key_compare& comp = key_compare(), const allocator_type& alloc = allocator_type())
+			map(InputIterator first, InputIterator last, const key_compare& comp = key_compare(), const allocator_type& alloc = allocator_type(), typename ft::enable_if<!ft::is_integral<InputIterator>::value, bool>::type = false)
 			: _size(0), compare(comp), allocator(alloc)
 			{
 				while (first != last)
@@ -174,7 +177,10 @@ namespace ft
 				return (compare);
 			}
 
-			value_compare value_comp() const;
+			value_compare value_comp() const
+			{
+				return (value_compare());
+			}
 
 			/* Operations */
 			

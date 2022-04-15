@@ -9,17 +9,21 @@ namespace ft
 	template <class Key, class T, class Compare, class Alloc>
 	class value_comp
 	{
+		friend ft::map;
+		
 		protected:
-			Compare compare;
+			Compare comp;
 			value_comp (Compare c) : comp(c) {}
+		
 		public:
-            typedef ft::pair<const Key, T>		value_type;
-			typedef value_comp					value_compare;
+			typedef bool								result_type;
+			typedef value_type							first_argument_type;
+			typedef value_type							second_argument_type;
 			bool operator() (const value_type& x, const value_type& y) const
 			{
-				return compare(x.first, y.first);
+				return comp(x.first, y.first);
 			}
-    };
+	};
 }
 
 #endif
