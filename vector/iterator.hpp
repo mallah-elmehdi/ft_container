@@ -1,7 +1,7 @@
 #ifndef _ITERATOR_HPP_
 #define _ITERATOR_HPP_
 
-#include "../ft.hpp"
+#include "ft.hpp"
 
 template <class T>
 class ra_iterator {

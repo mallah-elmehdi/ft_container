@@ -1,7 +1,7 @@
 #ifndef _VECTOR_HPP_
 #define _VECTOR_HPP_
 
-#include "../ft.hpp"
+#include "ft.hpp"
 
 template <class T, class Allocator = std::allocator<T> >
 class vector {

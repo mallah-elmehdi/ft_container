@@ -1,7 +1,7 @@
 #ifndef _REVERSE_ITERATOR_HPP_
 #define _REVERSE_ITERATOR_HPP_
 
-#include "../ft.hpp"
+#include "ft.hpp"
 
 template <class Iterator>
 class reverse_iterator {

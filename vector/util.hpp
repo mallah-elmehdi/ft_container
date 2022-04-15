@@ -1,7 +1,7 @@
 #ifndef _UTIL_HPP_
 #define _UTIL_HPP_
 
-#include "../ft.hpp"
+#include "ft.hpp"
 
 template <class Iterator, class T, class Allocator>
 void fill(Iterator first, Iterator last, const T &val, Allocator allocator)

@@ -1,18 +1,10 @@
 #ifndef _RED_BLACK_TREE_UTIL_
 #define _RED_BLACK_TREE_UTIL_
 
-// aliases
 # define BLACK 1
 # define RED 0
 
-// inclues
-# include <iostream>
-# include <memory>
-# include "make_pair.hpp"
-# include "pair.hpp"
-# include "node.hpp"
-# include "less.hpp"
-
+#include "ft.hpp"
 
 template <class Key, class T, class Compare = ft::less<Key>, class Allocator = std::allocator<ft::pair<const Key,T> > >
     class Red_Black_Tree_Util {

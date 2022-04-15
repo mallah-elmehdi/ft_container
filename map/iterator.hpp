@@ -1,6 +1,8 @@
 #ifndef _BD_ITERATOR_
 #define _BD_ITERATOR_
 
+#include "ft.hpp"
+
 template <class pair_type>
 class bd_iterator {
 	public:

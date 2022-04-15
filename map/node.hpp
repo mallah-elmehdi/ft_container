@@ -1,6 +1,7 @@
 #ifndef _NODE_
 #define _NODE_
 
+#include "ft.hpp"
 
 template <class value_type>
     class Node {

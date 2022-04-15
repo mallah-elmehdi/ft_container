@@ -1,15 +1,7 @@
 #ifndef _RED_BLACK_TREE_
 #define _RED_BLACK_TREE_
 
-
-// inclues
-# include <iostream>
-# include <memory>
-# include "rbt_util.hpp"
-# include "make_pair.hpp"
-# include "pair.hpp"
-# include "less.hpp"
-# include "iterator.hpp"
+#include "ft.hpp"
 
 template <class Key, class T, class Compare = ft::less<Key>, class Allocator = std::allocator<ft::pair<const Key,T> > >
     class Red_Black_Tree : public Red_Black_Tree_Util<Key, T, Compare, Allocator> {

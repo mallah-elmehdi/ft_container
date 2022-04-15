@@ -1,10 +1,4 @@
-#include <iostream>
-#include <map>
-#include <vector>
-#include <memory>
-#include "map.hpp"
-#include "make_pair.hpp"
-#include "pair.hpp"
+#include "ft.hpp"
 
 char a = 'a';
 int b = 1;
@@ -19,7 +13,7 @@ void ok()
 
 int main()
 {
-    ft::map<char,int> mymap;
+    ft::map<char,int> mymap; 
     // ft::map<char,int> mymap2;
     // //
     // mymap.insert(ft::make_pair('b', 200));
