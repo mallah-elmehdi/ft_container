@@ -1,8 +1,6 @@
 #ifndef _IS_INTEGRAL_HPP_
 #define _IS_INTEGRAL_HPP_
 # include "integral_constant.hpp"
-# include <uchar.h>
-# include <stdint.h>
 // * LIBRARIES *
 namespace ft
 {

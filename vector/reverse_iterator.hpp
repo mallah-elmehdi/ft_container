@@ -1,11 +1,8 @@
 #ifndef _REVERSE_ITERATOR_HPP_
 #define _REVERSE_ITERATOR_HPP_
-// * LIBRARIES *
-# include <iostream>
-# include "../util/iterator_traits.hpp"
-// * FT NAMESPACE - [REVERSE ITERATOR] *
-namespace ft
-{
+
+#include "../ft.hpp"
+
 template <class Iterator>
 class reverse_iterator {
 	public:
@@ -145,5 +142,5 @@ template <class Iterator>
 {
 	return (reverse_iterator<Iterator> (x.base() - n));
 }
-}
+
 #endif

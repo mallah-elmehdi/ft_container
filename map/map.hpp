@@ -4,14 +4,14 @@
 # include <cstddef>
 # include <memory>
 
+# include "value_comp.hpp"
 # include "../util/is_integral.hpp"
 # include "../util/enable_if.hpp"
-# include "pair.hpp"
 # include "less.hpp"
+# include "pair.hpp"
 # include "iterator.hpp"
 # include "reverse_iterator.hpp"
 # include "red_black_tree.hpp"
-# include "value_comp.hpp"
 
 namespace ft
 {

@@ -1,10 +1,8 @@
 #ifndef _ITERATOR_HPP_
 #define _ITERATOR_HPP_
-// * LIBRARIES *
-# include <iterator>
-// * FT NAMESPACE - [ITERATOR] *
-namespace ft
-{
+
+#include "../ft.hpp"
+
 template <class T>
 class ra_iterator {
 	public:
@@ -143,6 +141,5 @@ template <class Iterator>
 	ra_iterator<Iterator>operator+(typename ra_iterator<Iterator>::difference_type n, const ra_iterator<Iterator>& x)
 {
 	return (ra_iterator<Iterator> (x.base() + n));
-}
 }
 #endif
