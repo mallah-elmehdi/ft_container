@@ -3,7 +3,7 @@
 
 #include "ft.hpp"
 
-template <class Key, class T, class Compare = ft::less<Key>, class Allocator = std::allocator<ft::pair<const Key,T> > >
+template <class Key, class T, class Compare, class Allocator>
     class Red_Black_Tree : public Red_Black_Tree_Util<Key, T, Compare, Allocator> {
         private:
             typedef Key                                             key_type;

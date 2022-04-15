@@ -15,9 +15,9 @@ namespace ft
 	#include "node.hpp"
 	#include "make_pair.hpp"
 	#include "iterator.hpp"
+	#include "reverse_iterator.hpp"
 	#include "rbt_util.hpp"
 	#include "red_black_tree.hpp"
-	#include "reverse_iterator.hpp"
 	#include "map.hpp"
 }
 
