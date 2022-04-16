@@ -5,12 +5,14 @@
 
 class Node {
 	public:
-		Node	parent;
-		Node	left;
-		Node	right;
+		Node	*parent;
+		Node	*left;
+		Node	*right;
 		int		color;
 		bool	root;
 		bool	nil;
+
+		virtual void ok() {};
 };
 
 template <class value_type>

@@ -16,38 +16,48 @@ template <class key_type, class mapped_type, class node, class compare, class al
             allocator	alloc;
             rebind		reb;
 			compare		comp;
-            node		nil;
-            node		root;
+            node		*nil;
+            node		*root;
 
 		public:
 			// -------------------------------
 			void initTree()
 			{
-				root = reb.allocate(sizeof(node));
-				reb.construct($root, node());
-				root.color = BLACK;
-				root.nil = true;
-				root.root = true;
-				// 
-				nil = reb.allocate(sizeof(node));
-				reb.construct(&nil, node());
-				nil.color = BLACK;
-				nil.nil = true;
-				nil.root = true;
+				nil = reb.allocate(sizeof(nodePair));
+				reb.construct(nil, nodePair());
+
+				nil->pairv = alloc.allocate(sizeof(value_type));
+                reb->construct(nil->pairv, ft::make_pair(key_type(), mapped_type()));;
+
+				nil->color = BLACK;
+				nil->nil = true;
+				nil->root = false;
+
+                nil->right = nil;
+                nil->left = nil;
+                nil->parent = nil;
+
+				root = nil;
 			}
 			// -------------------------------
-            nodePair initPair(const value_type &val)
+            node *initPair(const value_type &val)
             {
-                nodePair newNode;
-                newNode.pairv = allocator.allocate(sizeof(value_type));
-                allocator.construct(&newNode.pairv, ft::make_pair(val.first, val.second));;
-                newNode.color = RED;
-                newNode.right = nil;
-                newNode.left = nil;
-                newNode.parent = nil;
-                newNode.nil = false;
-                newNode.root = false;
-                return (newNode);
+                node *newNode;
+				newNode = reb.allocate(sizeof(nodePair));
+				reb.construct(newNode, nodePair());
+				
+				newNode->pairv = alloc.allocate(sizeof(value_type));
+                reb->construct(newNode->pairv, ft::make_pair(val.first(), val.second()));
+				
+				newNode->color = RED;
+				newNode->nil = false;
+				newNode->root = fasle;
+                
+                newNode->right = nil;
+                newNode->left = nil;
+                newNode->parent = nil;
+                
+				return (newNode);
             }
 			// -------------------------------
 			node first()
@@ -63,11 +73,6 @@ template <class key_type, class mapped_type, class node, class compare, class al
 				return (nodeHold);
 			}
 			// -------------------------------
-			node nil()
-			{
-				return (nil);
-			}
-			// -------------------------------
 			node last()
 			{
                 node nodeCheck = this.root;
@@ -79,6 +84,16 @@ template <class key_type, class mapped_type, class node, class compare, class al
 					nodeCheck = nodeCheck->right;
 				}
 				return (nodeHold);
+			}
+			// -------------------------------
+			node get_root()
+			{
+				return (root);
+			}
+			// -------------------------------
+			node get_nil()
+			{
+				return (nil);
 			}
 			// -------------------------------
             bool insert(const value_type &val)
@@ -101,7 +116,7 @@ template <class key_type, class mapped_type, class node, class compare, class al
                         nodeHold = nodeCheck;
 						if (newNode.pairv.first == nodeCheck.pairv.first)
 						{
-							alloc.destroy(newNode->pairv);
+							alloc.destroy(newNode.pairv);
 							allocator.deallocate(newNode->pairv, sizeof(value_type));
 							delete newNode;
 							return(ft::make_pair(iterator(nodeCheck), false));
