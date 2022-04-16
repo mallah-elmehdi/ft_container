@@ -12,8 +12,8 @@ template <class key_type, class mapped_type, class value_type, class node, class
             allocator		alloc;
             rebind			reb;
 			compare			comp;
-            node_pair		*nil;
-            node_pair		*root;
+            node		*nil;
+            node		*root;
 
 		public:
 			// -------------------------------
@@ -59,13 +59,11 @@ template <class key_type, class mapped_type, class value_type, class node, class
 			template <class InputIterator>
 			node *first()
 			{
-				typedef typename InputIterator::value_type										value_type;
-				typedef typedef ft::NodePair<value_type>										node;
-				typedef typename allocator::template rebind<ft::NodePair<value_type> >::other	allocator_rebind;
+				typedef typename InputIterator::value_type	new_value_type;
+				typedef ft::Node<new_value_type>			new_node;
 				
-				node* nodeCheck = root;
+				node_new* nodeCheck = root;
                 node* nodeHold = nodeCheck;
-				// allocator_rebind reb;
 
 				while (nodeCheck->nil == false)
 				{
@@ -75,8 +73,12 @@ template <class key_type, class mapped_type, class value_type, class node, class
 				return (nodeHold);
 			}
 			// -------------------------------
+			template <class InputIterator>
 			node *last()
 			{
+				typedef typename InputIterator::value_type	new_value_type;
+				typedef typedef ft::Node<new_value_type>	node;
+
                 node* nodeCheck = this->root;
                 node* nodeHold = nodeCheck;
 
@@ -100,7 +102,7 @@ template <class key_type, class mapped_type, class value_type, class node, class
 			// -------------------------------
             bool insert(const value_type &val)
             {
-                node_pair *newNode = initPair(val);
+                node *newNode = initPair(val);
                 // creat root node
                 if (root == nil)
                 {
@@ -111,8 +113,8 @@ template <class key_type, class mapped_type, class value_type, class node, class
                 // add new nodes after the this->root
                 else
                 {
-                    node_pair *nodeCheck = root;
-                    node_pair *nodeHold;
+                    node *nodeCheck = root;
+                    node *nodeHold;
                     while (nodeCheck != nil)
                     {
                         nodeHold = nodeCheck;
