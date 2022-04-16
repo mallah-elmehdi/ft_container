@@ -88,7 +88,7 @@ class map
 	// 		x.begin();
 	// 	}
 
-		map& operator= (map& x)
+		map& operator= (const map& x)
 		{
 			x.begin();
 			// *this = map(x.begin(), x.end());
@@ -103,21 +103,20 @@ class map
 		/* --------------------------------------------- Iterators */
 		iterator begin()
 		{
-			std::cout <<  tree.first()->pairv->first << "\n"; 
-			// return (iterator(tree.first()));
+			return (iterator(tree.first()));
 		}
 		const_iterator begin() const
 		{
-			// return (const_iterator(tree.first()));
+			return (const_iterator(tree.first()));
 		}
-	// 	iterator end()
-	// 	{
-	// 		return (iterator(tree.end()));
-	// 	}
-	// 	const_iterator end() const
-	// 	{
-	// 		return (const_iterator(tree.end()));
-	// 	}
+		iterator end()
+		{
+			return (iterator(tree.get_nil()));
+		}
+		const_iterator end() const
+		{
+			return (const_iterator(tree.end()));
+		}
 	// 	reverse_iterator rbegin()
 	// 	{
 	// 		return (reverse_iterator(tree.last()));

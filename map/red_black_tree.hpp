@@ -16,7 +16,7 @@ template <class value_type, class compare, class allocator>
 				this->initTree();
 			}
 			// -------------------------------
-			node *first()
+			node *first() const
 			{
 				node* nodeCheck = this->root;
 				node* nodeHold = nodeCheck;
@@ -27,9 +27,9 @@ template <class value_type, class compare, class allocator>
 					nodeCheck = nodeCheck->left;
 				}
 				return (nodeHold);
-			}				
+			}
 			// -------------------------------
-			node *last()
+			node *last() const
 			{
                 node* nodeCheck = this->root;
                 node* nodeHold = nodeCheck;
@@ -42,12 +42,12 @@ template <class value_type, class compare, class allocator>
 				return (nodeHold);
 			}
 			//-------------------------------
-			node *get_root()
+			node *get_root() const
 			{
 				return (this->root);
 			}
 			// -------------------------------
-			node *get_nil()
+			node *get_nil() const
 			{
 				return (this->nil);
 			}

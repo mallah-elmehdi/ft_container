@@ -21,13 +21,13 @@ class bd_iterator {
 	public:
 		operator bd_iterator<const pair_type> () const
 		{
-			return bd_iterator<const pair_type>(iter, _node);
+			return bd_iterator<const pair_type>(_node);
 		}
 		//default constuctor
 		bd_iterator(void) : iter(), _node() {}
 		
 		//copy constuctor
-		bd_iterator(const node *x) : iter(x->pairv), _node(x) {}
+		bd_iterator(node *x) : iter(x->pairv), _node(x) {}
 		
 		bd_iterator(const bd_iterator &it) : iter(it.iter), _node(it._node) {}
 		

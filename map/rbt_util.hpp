@@ -61,8 +61,6 @@ template <class value_type, class compare, class allocator>
 				return (newNode);
             }
 			// -------------------------------
-
-			// -------------------------------
             bool insert(const value_type &val)
             {
                 node *newNode = initPair(val);
