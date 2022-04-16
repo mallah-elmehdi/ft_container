@@ -3,19 +3,18 @@
 
 #include "ft.hpp"
 
-template <class Key_T, class Compare, class Allocator>
-    class Red_Black_Tree : public Red_Black_Tree_Util<Key_T, Compare, Allocator> {
-		private:
-			typedef typename Red_Black_Tree_Util<Key_T, Compare, Allocator>::value_type				value_type;
-			typedef typename Red_Black_Tree_Util<Key_T, Compare, Allocator>::iterator				iterator;
-			typedef typename Red_Black_Tree_Util<Key_T, Compare, Allocator>::const_iterator			const_iterator;
+template <class key_value, class mapped_type, class node, class compare, class allocator>
+    class Red_Black_Tree : public Red_Black_Tree_Util<key_value, mapped_type, node, compare, allocator> {
+		// private:
+		// 	typedef typename Red_Black_Tree_Util<Key_T, Compare, Allocator>::value_type				value_type;
 
-		private:	
-			Compare compare = Red_Black_Tree_Util<Key_T, Compare, Allocator>::compare;
+		// private:	
+		// 	Compare compare = Red_Black_Tree_Util<Key_T, Compare, Allocator>::compare;
 
 		public:
             Red_Black_Tree()
             {
+				this->initTree();
                 this->nil = new Node<value_type>();
                 this->nil->color = BLACK;
                 this->nil->right = this->nil;
