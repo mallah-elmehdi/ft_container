@@ -98,130 +98,129 @@ template <class value_type, class compare, class allocator>
                         nodeHold->left = newNode;
                     else
                         nodeHold->right = newNode;
-                    // this->checkTree(newNode);
+                    checkTree(newNode);
                 }
                 return(true);
             }
 // >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+			// -------------------------------
+            void recolor(node *_node)
+            {
+                if (_node->color == RED) _node->color = BLACK;
+                else _node->color = RED;
+            }
+			// -------------------------------
+            void leftRotate(node *_node)
+            {
+                node *nodeHold = _node->right;
+                _node->right = nodeHold->left;
 
-        //     // recolor methode
-        //     void recolor(Node<value_type> *node)
-        //     {
-        //         if (node->color == RED) node->color = BLACK;
-        //         else node->color = RED;
-        //     }
-        //     // leftRotate
-        //     void leftRotate(Node<value_type> *node)
-        //     {
-        //         Node<value_type> *nodeHold = node->right;
-        //         node->right = nodeHold->left;
+                if (nodeHold->left != nil)
+                    nodeHold->left->parent = _node;
 
-        //         if (nodeHold->left != nil)
-        //             nodeHold->left->parent = node;
+                nodeHold->parent = _node->parent;
 
-        //         nodeHold->parent = node->parent;
+                if (_node->parent == nil)
+                {
+                    root = nodeHold;
+                    root->color = BLACK;
+                }
+                else if (_node == _node->parent->left)
+                    _node->parent->left = nodeHold;
+                else
+                    _node->parent->right = nodeHold;
 
-        //         if (node->parent == nil)
-        //         {
-        //             root = nodeHold;
-        //             root->color = BLACK;
-        //         }
-        //         else if (node == node->parent->left)
-        //             node->parent->left = nodeHold;
-        //         else
-        //             node->parent->right = nodeHold;
+                nodeHold->left = _node;
+                _node->parent = nodeHold;
 
-        //         nodeHold->left = node;
-        //         node->parent = nodeHold;
+            }
+			// -------------------------------
+            void rightRotate(node *_node)
+            {
+                node *nodeHold = _node->left;
+                _node->left = nodeHold->right;
 
-        //     }
-        //     // rightRotate
-        //     void rightRotate(Node<value_type> *node)
-        //     {
-        //         Node<value_type> *nodeHold = node->left;
-        //         node->left = nodeHold->right;
+                if (nodeHold->right != nil)
+                    nodeHold->right->parent = _node;
 
-        //         if (nodeHold->right != nil)
-        //             nodeHold->right->parent = node;
+                nodeHold->parent = _node->parent;
+                if (_node->parent == nil)
+                {
+                    root = nodeHold;
+                    root->color = BLACK;
+                }
+                else if (_node == _node->parent->right)
+                    _node->parent->right = nodeHold;
+                else
+                    _node->parent->left = nodeHold;
 
-        //         nodeHold->parent = node->parent;
-        //         if (node->parent == nil)
-        //         {
-        //             root = nodeHold;
-        //             root->color = BLACK;
-        //         }
-        //         else if (node == node->parent->right)
-        //             node->parent->right = nodeHold;
-        //         else
-        //             node->parent->left = nodeHold;
-
-        //         nodeHold->right = node;
-        //         node->parent = nodeHold;
-        //     }
-        //     // make suitableRotation
-        //     void suitableRotation(Node<value_type> *node)
-        //     {
-        //         if (node == node->parent->right && node->parent == node->parent->parent->left)
-        //         {
-        //             recolor(node);
-        //             recolor(node->parent->parent);
-        //             leftRotate(node->parent);
-        //             rightRotate(node->parent);
-        //         }
-        //         else if (node == node->parent->left && node->parent == node->parent->parent->right)
-        //         {
-        //             recolor(node);
-        //             recolor(node->parent->parent);
-        //             rightRotate(node->parent);
-        //             leftRotate(node->parent);
-        //         }
-        //         else if (node == node->parent->right && node->parent == node->parent->parent->right)
-        //         {
-        //             recolor(node->parent);
-        //             recolor(node->parent->parent);
-        //             leftRotate(node->parent->parent);
-        //         }
-        //         else if (node == node->parent->left && node->parent == node->parent->parent->left)
-        //         {
-        //             recolor(node->parent);
-        //             recolor(node->parent->parent);
-        //             rightRotate(node->parent->parent);
-        //         }
-        //     }
-        //     // check the conflict
-        //     bool conflict(Node<value_type> *node)
-        //     {
-        //         if (node && node->parent && node->color == RED && node->parent->color == RED)
-        //             return (true);
-        //         return (false);
-        //     }
-        //     // check the Tree
-        //     void checkTree(Node<value_type> *newNode)
-        //     {
-        //         Node<value_type> *nodeParent, *nodeUncle;
-        //         int  i = 0;
-        //         while (conflict(newNode))
-        //         {
-        //             // get the new node parent and new node uncle
-        //             nodeParent = newNode->parent;
-        //             if (nodeParent->parent->left == nodeParent)
-        //                 nodeUncle = nodeParent->parent->right;
-        //             else
-        //                 nodeUncle = nodeParent->parent->left;
-        //             // check if the nodeUncle is RED
-        //             if (nodeUncle->color == RED)
-        //             {
-        //                 recolor(nodeParent);
-        //                 recolor(nodeUncle);
-        //                 if (nodeParent->parent != root)
-        //                     recolor(nodeParent->parent);
-        //             }
-        //             else
-        //                 suitableRotation(newNode);
-        //             // loop iteration
-        //             newNode = newNode->parent->parent;
-        //         }
-        //     }
+                nodeHold->right = _node;
+                _node->parent = nodeHold;
+            }
+			// -------------------------------
+            void suitableRotation(node *_node)
+            {
+                if (_node == _node->parent->right && _node->parent == _node->parent->parent->left)
+                {
+                    recolor(_node);
+                    recolor(_node->parent->parent);
+                    leftRotate(_node->parent);
+                    rightRotate(_node->parent);
+                }
+                else if (_node == _node->parent->left && _node->parent == _node->parent->parent->right)
+                {
+                    recolor(_node);
+                    recolor(_node->parent->parent);
+                    rightRotate(_node->parent);
+                    leftRotate(_node->parent);
+                }
+                else if (_node == _node->parent->right && _node->parent == _node->parent->parent->right)
+                {
+                    recolor(_node->parent);
+                    recolor(_node->parent->parent);
+                    leftRotate(_node->parent->parent);
+                }
+                else if (_node == _node->parent->left && _node->parent == _node->parent->parent->left)
+                {
+                    recolor(_node->parent);
+                    recolor(_node->parent->parent);
+                    rightRotate(_node->parent->parent);
+                }
+            }
+			// -------------------------------
+            bool conflict(node *_node)
+            {
+                if (_node && _node->parent && _node->color == RED && _node->parent->color == RED)
+                    return (true);
+                return (false);
+            }
+			// -------------------------------
+            void checkTree(node *newNode)
+            {
+                node *nodeParent, *nodeUncle;
+                int  i = 0;
+                while (conflict(newNode))
+                {
+                    // get the new node parent and new node uncle
+                    nodeParent = newNode->parent;
+                    if (nodeParent->parent->left == nodeParent)
+                        nodeUncle = nodeParent->parent->right;
+                    else
+                        nodeUncle = nodeParent->parent->left;
+                    // check if the nodeUncle is RED
+                    if (nodeUncle->color == RED)
+                    {
+                        recolor(nodeParent);
+                        recolor(nodeUncle);
+                        if (nodeParent->parent != root)
+                            recolor(nodeParent->parent);
+                    }
+                    else
+                        suitableRotation(newNode);
+                    // loop iteration
+                    newNode = newNode->parent->parent;
+                }
+            }
         //     void printHelper(Node<value_type> *root, std::string indent, bool last) {
         //         if (root != nil) {
         //             std::cout << indent;
