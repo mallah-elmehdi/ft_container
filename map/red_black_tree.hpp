@@ -74,7 +74,7 @@ template <class Key_T, class Compare, class Allocator>
 				return (nodeHold);
 			}
 			// last()
-			const Node<value_type>* last() const 
+			Node<value_type>* last() const 
 			{
                 Node<value_type> *nodeCheck = this->root;
                 Node<value_type> *nodeHold = nodeCheck;
@@ -90,7 +90,7 @@ template <class Key_T, class Compare, class Allocator>
 			{
 				return (this->nil);
 			}
-			const Node<value_type>* first() const
+			Node<value_type>* first() const
 			{
 				return (this->nil);
 			}

@@ -3,14 +3,14 @@
 
 #include "ft.hpp"
 
-template < class Key, class T, class Compare = ft::less<Key>, class Allocator = std::allocator<ft::pair<const Key, T> > >
+template < class Key, class T, class Compare = ft::less<Key>, class Allocator = std::allocator<ft::pair< Key, T> > >
 class map
 {
 	public:
 		// +++++++ Member types
 		typedef Key                                            	key_type;
 		typedef T                                              	mapped_type;
-		typedef ft::pair<const key_type, mapped_type>          	value_type;
+		typedef ft::pair<key_type, mapped_type>          		value_type;
 		typedef Compare                                        	key_compare;
 		typedef Allocator	                                   	allocator_type;
 		typedef typename allocator_type::reference				reference;
