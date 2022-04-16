@@ -14,7 +14,7 @@ class map
 		typedef ft::Node				                                        							node;
 		typedef Compare                                        												key_compare;
 		typedef Allocator	                                   												allocator_type;
-		typedef typename allocator_type::template rebind<node>::other										allocator_rebind;
+		typedef typename allocator_type::template rebind<ft::NodePair<> >::other								allocator_rebind;
 		typedef typename allocator_type::reference															reference;
 		typedef typename allocator_type::const_reference													const_reference;
 		typedef typename allocator_type::pointer															pointer;
