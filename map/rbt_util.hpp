@@ -6,19 +6,13 @@
 
 #include "ft.hpp"
 
-template <class _key_type, class _mapped_type, class _value_type, class _node, class compare, class allocator, class rebind>
+template <class key_type, class mapped_type, class value_type, class node, class compare, class allocator, class rebind>
     class Red_Black_Tree_Util {
 
 		protected:
-			typedef typename ft::Rbt_Traits<_key_type, _mapped_type, _value_type, _node>::key_type		key_type;	
-			typedef typename ft::Rbt_Traits<_key_type, _mapped_type, _value_type, _node>::mapped_type	mapped_type;	
-			typedef typename ft::Rbt_Traits<_key_type, _mapped_type, _value_type, _node>::value_type	value_type;
-			typedef typename ft::Rbt_Traits<_key_type, _mapped_type, _value_type, _node>::node			node;
-
-		protected:
-            allocator		alloc;
-            rebind			reb;
-			compare			comp;
+            allocator	alloc;
+            rebind		reb;
+			compare		comp;
             node		*nil;
             node		*root;
 
@@ -102,14 +96,14 @@ template <class _key_type, class _mapped_type, class _value_type, class _node, c
             bool insert(const value_type &val)
             {
                 node *newNode = initPair(val);
-                // creat root node
+
                 if (root == nil)
                 {
                     root = newNode;
                     root->root = true;
                     root->color = BLACK;
                 }
-                // add new nodes after the this->root
+
                 else
                 {
                     node *nodeCheck = root;

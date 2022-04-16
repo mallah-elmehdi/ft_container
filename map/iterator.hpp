@@ -3,7 +3,7 @@
 
 #include "ft.hpp"
 
-template <class pair_type>
+template <class pair_type, class key_compare, class allocator_type>
 class bd_iterator {
 	public:
 		// + + + + + + + + + Member type
