@@ -8,10 +8,10 @@ class map
 {
 	public:
 		// +++++++ Member types
-		typedef ft::Node                                        											node;
 		typedef Key                                            												key_type;
 		typedef T                                              												mapped_type;
 		typedef ft::pair<key_type, mapped_type>          													value_type;
+		typedef ft::NodePair<value_type>                                        							node;
 		typedef Compare                                        												key_compare;
 		typedef Allocator	                                   												allocator_type;
 		typedef typename allocator_type::template rebind<node>::other										allocator_rebind;
@@ -21,8 +21,8 @@ class map
 		typedef typename allocator_type::const_pointer														const_pointer;
 		typedef ptrdiff_t																					difference_type;
 		typedef size_t																						size_type;
-		typedef ft::bd_iterator<key_type, mapped_type, allocator_type, allocator_rebind>					iterator;
-		typedef ft::bd_iterator<const key_type, const mapped_type, allocator_type, allocator_rebind>		const_iterator;
+		typedef ft::bd_iterator<key_type>																	iterator;
+		typedef ft::bd_iterator<const key_type>																const_iterator;
 		typedef ft::reverse_iterator<iterator>																reverse_iterator;
 		typedef ft::reverse_iterator<const_iterator>														const_reverse_iterator;
 		template <class __Key, class __T, class __Compare, class __Alloc>

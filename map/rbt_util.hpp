@@ -10,7 +10,6 @@ template <class key_type, class mapped_type, class node, class compare, class al
     class Red_Black_Tree_Util {		
 		protected:
 			typedef ft::pair<key_type, mapped_type>		value_type;
-			typedef ft::NodePair<value_type>			node_pair;
 
 		protected:
             allocator	alloc;
@@ -23,11 +22,11 @@ template <class key_type, class mapped_type, class node, class compare, class al
 			// -------------------------------
 			void initTree()
 			{
-				nil = reb.allocate(sizeof(nodePair));
-				reb.construct(nil, nodePair());
+				nil = reb.allocate(sizeof(node));
+				reb.construct(nil, node());
 
 				nil->pairv = alloc.allocate(sizeof(value_type));
-                reb->construct(nil->pairv, ft::make_pair(key_type(), mapped_type()));;
+                alloc.construct(nil->pairv, ft::make_pair(key_type(), mapped_type()));;
 
 				nil->color = BLACK;
 				nil->nil = true;
@@ -43,15 +42,15 @@ template <class key_type, class mapped_type, class node, class compare, class al
             node *initPair(const value_type &val)
             {
                 node *newNode;
-				newNode = reb.allocate(sizeof(nodePair));
-				reb.construct(newNode, nodePair());
+				newNode = reb.allocate(sizeof(node));
+				reb.construct(newNode, node());
 				
 				newNode->pairv = alloc.allocate(sizeof(value_type));
-                reb->construct(newNode->pairv, ft::make_pair(val.first(), val.second()));
+                alloc.construct(newNode->pairv, ft::make_pair(val.first(), val.second()));
 				
 				newNode->color = RED;
 				newNode->nil = false;
-				newNode->root = fasle;
+				newNode->root = false;
                 
                 newNode->right = nil;
                 newNode->left = nil;
@@ -98,42 +97,44 @@ template <class key_type, class mapped_type, class node, class compare, class al
 			// -------------------------------
             bool insert(const value_type &val)
             {
-                nodePair newNode = initPair(val);
+                node *newNode = initPair(val);
                 // creat root node
-                if (root.nil == true)
+                if (root == nil)
                 {
                     root = newNode;
-                    root.root = true;
-                    root.color = BLACK;
+                    root->root = true;
+                    root->color = BLACK;
                 }
                 // add new nodes after the this->root
                 else
                 {
-                    nodePair nodeCheck = root;
-                    nodePair nodeHold;
-                    while (nodeCheck->nil == false)
+                    node *nodeCheck = root;
+                    node *nodeHold;
+                    while (nodeCheck != nil)
                     {
                         nodeHold = nodeCheck;
-						if (newNode.pairv.first == nodeCheck.pairv.first)
+						if (newNode->pairv->first == nodeCheck->pairv->first)
 						{
-							alloc.destroy(newNode.pairv);
-							allocator.deallocate(newNode->pairv, sizeof(value_type));
-							delete newNode;
-							return(ft::make_pair(iterator(nodeCheck), false));
+							reb.destroy(newNode->pairv);
+							reb.deallocate(newNode->pairv, sizeof(value_type));
+							
+							alloc.destroy(newNode);
+							alloc.deallocate(newNode->pairv, sizeof(node));
+							return(false);
 						}
-                        else if (compare(newNode->pairv->first, nodeCheck->pairv->first))
+                        else if (comp(newNode->pairv->first, nodeCheck->pairv->first))
                             nodeCheck = nodeCheck->left;
 						else
                             nodeCheck = nodeCheck->right;
                     }
                     newNode->parent = nodeHold;
-                    if (compare(newNode->pairv->first, nodeHold->pairv->first))
+                    if (comp(newNode->pairv->first, nodeHold->pairv->first))
                         nodeHold->left = newNode;
                     else
                         nodeHold->right = newNode;
-                    this->checkTree(newNode);
+                    // this->checkTree(newNode);
                 }
-                return(ft::make_pair(iterator(newNode), true));
+                return(true);
             }
 // >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 

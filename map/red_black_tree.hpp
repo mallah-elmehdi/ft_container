@@ -21,44 +21,6 @@ template <class key_value, class mapped_type, class node, class compare, class a
 				// typedef ft::NodePair<value_type>*			node_pair;
 
 // >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-            ft::pair<iterator, bool> insert(const value_type &val)
-            {
-                Node<value_type> *newNode = this->initNode(val);
-                // creat root node
-                if (this->root == this->nil)
-                {
-                    this->root = newNode;
-                    this->root->color = BLACK;
-                }
-                // add new nodes after the this->root
-                else
-                {
-                    Node<value_type> *nodeCheck = this->root;
-                    Node<value_type> *nodeHold;
-                    while (nodeCheck != this->nil)
-                    {
-                        nodeHold = nodeCheck;
-						if (newNode->pairv->first == nodeCheck->pairv->first)
-						{
-							this->allocator.destroy(newNode->pairv);
-							this->allocator.deallocate(newNode->pairv, sizeof(value_type));
-							delete newNode;
-							return(ft::make_pair(iterator(nodeCheck), false));
-						}
-                        else if (compare(newNode->pairv->first, nodeCheck->pairv->first))
-                            nodeCheck = nodeCheck->left;
-						else
-                            nodeCheck = nodeCheck->right;
-                    }
-                    newNode->parent = nodeHold;
-                    if (compare(newNode->pairv->first, nodeHold->pairv->first))
-                        nodeHold->left = newNode;
-                    else
-                        nodeHold->right = newNode;
-                    this->checkTree(newNode);
-                }
-                return(ft::make_pair(iterator(newNode), true));
-            }
             // // clearing the Tree
             // void clear()
             // {

@@ -12,13 +12,13 @@ class Node {
 		bool	root;
 		bool	nil;
 
-		virtual void ok() {};
+		virtual ~Node(void);
 };
 
 template <class value_type>
 class NodePair : public Node {
 	public:
-		value_type	pairv;
+		value_type	*pairv;
 };
 
 #endif
