@@ -8,21 +8,22 @@ class map
 {
 	public:
 		// +++++++ Member types
-		typedef Key                                            												key_type;
-		typedef T                                              												mapped_type;
-		typedef ft::pair<key_type, mapped_type>          													value_type;
-		typedef Compare                                        												key_compare;
-		typedef Allocator	                                   												allocator_type;
-		typedef typename allocator_type::reference															reference;
-		typedef typename allocator_type::const_reference													const_reference;
-		typedef typename allocator_type::pointer															pointer;
-		typedef typename allocator_type::const_pointer														const_pointer;
-		typedef ptrdiff_t																					difference_type;
-		typedef size_t																						size_type;
-		typedef ft::bd_iterator<value_type, key_compare, allocator_type>									iterator;
-		typedef ft::bd_iterator<value_type, key_compare, allocator_type>									const_iterator;
-		typedef ft::reverse_iterator<iterator>																reverse_iterator;
-		typedef ft::reverse_iterator<const_iterator>														const_reverse_iterator;
+		typedef Key                                            				key_type;
+		typedef T                                              				mapped_type;
+		typedef ft::pair<key_type, mapped_type>          					value_type;
+		typedef Compare                                        				key_compare;
+		typedef Allocator	                                   				allocator_type;
+		typedef typename allocator_type::reference							reference;
+		typedef typename allocator_type::const_reference					const_reference;
+		typedef typename allocator_type::pointer							pointer;
+		typedef typename allocator_type::const_pointer						const_pointer;
+		typedef ptrdiff_t													difference_type;
+		typedef size_t														size_type;
+		typedef ft::bd_iterator<value_type>									iterator;
+		typedef ft::bd_iterator<value_type>									const_iterator;
+		typedef ft::reverse_iterator<iterator>								reverse_iterator;
+		typedef ft::reverse_iterator<const_iterator>						const_reverse_iterator;
+		
 		template <class __Key, class __T, class __Compare, class __Alloc>
 		class value_comp_class
 		{
@@ -87,12 +88,12 @@ class map
 	// 		x.begin();
 	// 	}
 
-	// 	map& operator= (const map& x)
-	// 	{
-	// 		x.begin();
-	// 		// *this = map(x.begin(), x.end());
-	// 		return (*this);
-	// 	}
+		map& operator= (map& x)
+		{
+			x.begin();
+			// *this = map(x.begin(), x.end());
+			return (*this);
+		}
 
 	// 	~map()
 	// 	{
@@ -102,11 +103,12 @@ class map
 		/* --------------------------------------------- Iterators */
 		iterator begin()
 		{
-			return (iterator(tree.first()));
+			std::cout <<  tree.first()->pairv->first << "\n"; 
+			// return (iterator(tree.first()));
 		}
 		const_iterator begin() const
 		{
-			return (const_iterator(tree.first()));
+			// return (const_iterator(tree.first()));
 		}
 	// 	iterator end()
 	// 	{

@@ -3,7 +3,7 @@
 
 #include "ft.hpp"
 
-template <class pair_type, class key_compare, class allocator_type>
+template <class pair_type>
 class bd_iterator {
 	public:
 		// + + + + + + + + + Member type
@@ -12,32 +12,33 @@ class bd_iterator {
 		typedef value_type*  							pointer;
 		typedef value_type&								reference;
 		typedef std::bidirectional_iterator_tag			iterator_category;
+		typedef ft::Node<value_type>					node;
 	
 	private:
-		pointer				iter;
-		Node<value_type>	*node;
+		pointer	iter;
+		node	*_node;
 	
 	public:
-		operator bd_iterator<const pair_type, key_compare, allocator_type> () const
+		operator bd_iterator<const pair_type> () const
 		{
-			return bd_iterator<const pair_type, key_compare, allocator_type>(iter, node);
+			return bd_iterator<const pair_type>(iter, _node);
 		}
 		//default constuctor
-		bd_iterator(void) : iter(), node() {}
+		bd_iterator(void) : iter(), _node() {}
 		
 		//copy constuctor
-		bd_iterator(const Node<value_type> *x) : iter(x->pairv), node(x) {}
+		bd_iterator(const node *x) : iter(x->pairv), _node(x) {}
 		
-		bd_iterator(const bd_iterator &it) : iter(it.iter), tree(it.node) {}
+		bd_iterator(const bd_iterator &it) : iter(it.iter), _node(it._node) {}
 		
 		template <class _pair_type>
-		bd_iterator(const bd_iterator<_pair_type> &it) : iter(it.iter), node(it.node) {}
+		bd_iterator(const bd_iterator<_pair_type> &it) : iter(it.iter), _node(it._node) {}
 		// + + + + + + + + + Operator overload
 		//operator=
 		bd_iterator& operator=(bd_iterator const &it)
 		{
 			iter = it.iter;
-			node = it.node;
+			_node = it._node;
 			return (*this);
 		}
 		//operator*
@@ -53,26 +54,26 @@ class bd_iterator {
 		//operator++ (pre)
 		bd_iterator& operator++(void)
 		{
-			if (node->right->nil == false)
+			if (_node->right->nil == false)
 			{
-				node = node->right;
+				_node =_node->right;
 				
-				while (node->left->nil == false)
+				while (_node->left->nil == false)
 				{
-					node = node->left;
+					_node =_node->left;
 				}
 			}
 			else
 			{
-				Node<value_type> *p = node->parent;
-				while (p->nil == false && node == p->right)
+				node *p = _node->parent;
+				while (p->nil == false && _node == p->right)
 				{
-					node = p;
+					_node = p;
 					p = p->parent;
 				}
-				node = p;
+				_node = p;
 			}
-			iter = node->pairv;
+			iter = _node->pairv;
 			return (*this);
 		}
 		//operator++ (post)
@@ -85,26 +86,26 @@ class bd_iterator {
 		//operator-- (pre)
 		bd_iterator& operator--(void)
 		{
-			if (node->left->nil == false)
+			if (_node->left->nil == false)
 			{
-				node = node->left;
+				_node = _node->left;
 				
-				while (node->right->nil == false)
+				while (_node->right->nil == false)
 				{
-					node = node->right;
+					_node = _node->right;
 				}
 			}
 			else
 			{
-				Node<value_type> *p = node->parent;
-				while (p->nil == false && node == p->left)
+				node *p = _node->parent;
+				while (p->nil == false && _node == p->left)
 				{
-					node = p;
+					_node = p;
 					p = p->parent;
 				}
-				node = p;
+				_node = p;
 			}
-			iter = node->pairv;
+			iter = _node->pairv;
 			return (*this);
 		}
 		//operator-- (post)

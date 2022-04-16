@@ -10,6 +10,7 @@ template <class value_type, class compare, class allocator>
     class Red_Black_Tree_Util {
 
 		public:
+			typedef ft::Node<value_type>								node;
 			typedef typename allocator::template rebind<node>::other	rebind;
 
 		protected:
@@ -27,7 +28,7 @@ template <class value_type, class compare, class allocator>
 				reb.construct(nil, node());
 
 				nil->pairv = alloc.allocate(sizeof(value_type));
-                alloc.construct(nil->pairv, ft::make_pair(key_type(), mapped_type()));
+                alloc.construct(nil->pairv, ft::make_pair(typename value_type::first_type(), typename value_type::second_type()));
 
 				nil->color = BLACK;
 				nil->nil = true;
@@ -60,41 +61,7 @@ template <class value_type, class compare, class allocator>
 				return (newNode);
             }
 			// -------------------------------
-			node *first()
-			{
-				node* nodeCheck = root;
-				node* nodeHold = nodeCheck;
 
-				while (nodeCheck->nil == false)
-				{
-					nodeHold = nodeCheck;
-					nodeCheck = nodeCheck->left;
-				}
-				return (nodeHold);
-			}				
-			// -------------------------------
-			node *last()
-			{
-                node* nodeCheck = this->root;
-                node* nodeHold = nodeCheck;
-
-				while (nodeCheck->nil == false)
-				{
-                    nodeHold = nodeCheck;
-					nodeCheck = nodeCheck->right;
-				}
-				return (nodeHold);
-			}
-			//-------------------------------
-			node *get_root()
-			{
-				return (root);
-			}
-			// -------------------------------
-			node *get_nil()
-			{
-				return (nil);
-			}
 			// -------------------------------
             bool insert(const value_type &val)
             {
