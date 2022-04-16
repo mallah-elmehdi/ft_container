@@ -21,8 +21,8 @@ class map
 		typedef typename allocator_type::const_pointer						const_pointer;
 		typedef ptrdiff_t													difference_type;
 		typedef size_t														size_type;
-		typedef ft::bd_iterator<value_type>									iterator;
-		typedef ft::bd_iterator<const value_type>							const_iterator;
+		typedef ft::bd_iterator<key_type, mapped_type, allocator_type, allocator_rebind>									iterator;
+		typedef ft::bd_iterator<const key_type, const mapped_type, allocator_type, allocator_rebind>							const_iterator;
 		typedef ft::reverse_iterator<iterator>								reverse_iterator;
 		typedef ft::reverse_iterator<const_iterator>						const_reverse_iterator;
 		template <class __Key, class __T, class __Compare, class __Alloc>
@@ -49,6 +49,7 @@ class map
 		Red_Black_Tree<key_type, mapped_type, node, key_compare, allocator_type, allocator_rebind>	tree;
 		size_t						_size;
 		allocator_type				alloc;
+		allocator_rebind			reb;
 		key_compare					comp;
 // >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 	// private:

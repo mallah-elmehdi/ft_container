@@ -18,14 +18,14 @@ template <class key_type, class mapped_type, class node, class compare, class al
 		protected:
 			void initTree()
 			{
-				root = rebind_alloc.allocate(sizeof(node));
-				rebind_alloc.construct(root, node());
+				root = reb.allocate(sizeof(node));
+				reb.construct(root, node());
 				root->color = BLACK;
 				root->nil = true;
 				root->root = true;
 				// 
-				nil = rebind_alloc.allocate(sizeof(node));
-				rebind_alloc.construct(nil, node());
+				nil = reb.allocate(sizeof(node));
+				reb.construct(nil, node());
 				nil->color = BLACK;
 				nil->nil = true;
 				nil->root = true;
