@@ -101,18 +101,16 @@ class map
 	// 	{
 	// 		clear();
 	// 	}
-	// 	/* Iterators */
 
-	// 	iterator begin()
-	// 	{
-	// 		std::cout  << "begin\n";
-	// 		return (iterator(tree.begin()));
-	// 	}
-	// 	const_iterator begin() const
-	// 	{
-	// 		std::cout  << "const begin\n";
-	// 		return (const_iterator(tree.begin()));
-	// 	}
+		/* --------------------------------------------- Iterators */
+		iterator begin()
+		{
+			// return (iterator(tree.begin()));
+		}
+		const_iterator begin() const
+		{
+			// return (const_iterator(tree.begin()));
+		}
 	// 	iterator end()
 	// 	{
 	// 		return (iterator(tree.end()));

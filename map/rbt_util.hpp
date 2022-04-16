@@ -15,7 +15,8 @@ template <class key_type, class mapped_type, class node, class compare, class al
             node		*nil;
             node		*root;
 
-		protected:
+		public:
+			// -------------------------------
 			void initTree()
 			{
 				root = reb.allocate(sizeof(node));
@@ -30,6 +31,76 @@ template <class key_type, class mapped_type, class node, class compare, class al
 				nil->nil = true;
 				nil->root = true;
 			}
+			// -------------------------------
+			node first()
+			{
+				node *nodeCheck = root;
+                node *nodeHold = nodeCheck;
+
+				while (nodeCheck->nil == false)
+				{
+                    nodeHold = nodeCheck;
+					nodeCheck = nodeCheck->left;
+				}
+				return (nodeHold);
+			}
+			// -------------------------------
+			node nil()
+			{
+				return (nil);
+			}
+			// -------------------------------
+			node last()
+			{
+                node *nodeCheck = this->root;
+                node *nodeHold = nodeCheck;
+
+				while (nodeCheck->nil == false)
+				{
+                    nodeHold = nodeCheck;
+					nodeCheck = nodeCheck->right;
+				}
+				return (nodeHold);
+			}
+			// -------------------------------
+            bool insert(const value_type &val)
+            {
+                Node<value_type> *newNode = this->initNode(val);
+                // creat root node
+                if (this->root == this->nil)
+                {
+                    this->root = newNode;
+                    this->root->color = BLACK;
+                }
+                // add new nodes after the this->root
+                else
+                {
+                    Node<value_type> *nodeCheck = this->root;
+                    Node<value_type> *nodeHold;
+                    while (nodeCheck != this->nil)
+                    {
+                        nodeHold = nodeCheck;
+						if (newNode->pairv->first == nodeCheck->pairv->first)
+						{
+							this->allocator.destroy(newNode->pairv);
+							this->allocator.deallocate(newNode->pairv, sizeof(value_type));
+							delete newNode;
+							return(ft::make_pair(iterator(nodeCheck), false));
+						}
+                        else if (compare(newNode->pairv->first, nodeCheck->pairv->first))
+                            nodeCheck = nodeCheck->left;
+						else
+                            nodeCheck = nodeCheck->right;
+                    }
+                    newNode->parent = nodeHold;
+                    if (compare(newNode->pairv->first, nodeHold->pairv->first))
+                        nodeHold->left = newNode;
+                    else
+                        nodeHold->right = newNode;
+                    this->checkTree(newNode);
+                }
+                return(ft::make_pair(iterator(newNode), true));
+            }
 // >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
         //     Node<value_type> *initNode(const value_type &val)
         //     {
