@@ -6,8 +6,11 @@
 
 #include "ft.hpp"
 
-template <class key_type, class mapped_type, class value_type, class node, class compare, class allocator, class rebind>
+template <class value_type, class compare, class allocator>
     class Red_Black_Tree_Util {
+
+		public:
+			typedef typename allocator::template rebind<node>::other	rebind;
 
 		protected:
             allocator	alloc;

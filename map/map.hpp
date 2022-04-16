@@ -11,10 +11,8 @@ class map
 		typedef Key                                            												key_type;
 		typedef T                                              												mapped_type;
 		typedef ft::pair<key_type, mapped_type>          													value_type;
-		typedef ft::Node<value_type>				                                        				node;
 		typedef Compare                                        												key_compare;
 		typedef Allocator	                                   												allocator_type;
-		typedef typename allocator_type::template rebind<node>::other										allocator_rebind;
 		typedef typename allocator_type::reference															reference;
 		typedef typename allocator_type::const_reference													const_reference;
 		typedef typename allocator_type::pointer															pointer;
@@ -46,11 +44,10 @@ class map
 		typedef	value_comp_class<key_type, mapped_type, Compare, allocator_type>	value_compare;
 
 	private:
-		Red_Black_Tree<key_type, mapped_type, value_type, node, key_compare, allocator_type, allocator_rebind>	tree;
-		size_t						_size;
-		allocator_type				alloc;
-		allocator_rebind			reb;
-		key_compare					comp;
+		Red_Black_Tree<value_type, key_compare, allocator_type>	tree;
+		size_t													_size;
+		allocator_type											alloc;
+		key_compare												comp;
 // >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 	// private:
 	// 	void clearHelp(iterator it)
@@ -105,11 +102,11 @@ class map
 		/* --------------------------------------------- Iterators */
 		iterator begin()
 		{
-			// return (iterator(tree.begin()));
+			return (iterator(tree.first()));
 		}
 		const_iterator begin() const
 		{
-			// return (const_iterator(tree.begin()));
+			return (const_iterator(tree.first()));
 		}
 	// 	iterator end()
 	// 	{
