@@ -7,40 +7,58 @@
 #include "ft.hpp"
 
 template <class key_type, class mapped_type, class node, class compare, class allocator, class rebind>
-    class Red_Black_Tree_Util {			
+    class Red_Black_Tree_Util {		
+		protected:
+			typedef ft::pair<key_type, mapped_type>		value_type;
+			typedef ft::NodePair<value_type>			node_pair;
+
 		protected:
             allocator	alloc;
             rebind		reb;
 			compare		comp;
-            node		*nil;
-            node		*root;
+            node		nil;
+            node		root;
 
 		public:
 			// -------------------------------
 			void initTree()
 			{
 				root = reb.allocate(sizeof(node));
-				reb.construct(root, node());
-				root->color = BLACK;
-				root->nil = true;
-				root->root = true;
+				reb.construct($root, node());
+				root.color = BLACK;
+				root.nil = true;
+				root.root = true;
 				// 
 				nil = reb.allocate(sizeof(node));
-				reb.construct(nil, node());
-				nil->color = BLACK;
-				nil->nil = true;
-				nil->root = true;
+				reb.construct(&nil, node());
+				nil.color = BLACK;
+				nil.nil = true;
+				nil.root = true;
 			}
+			// -------------------------------
+            nodePair initPair(const value_type &val)
+            {
+                nodePair newNode;
+                newNode.pairv = allocator.allocate(sizeof(value_type));
+                allocator.construct(&newNode.pairv, ft::make_pair(val.first, val.second));;
+                newNode.color = RED;
+                newNode.right = nil;
+                newNode.left = nil;
+                newNode.parent = nil;
+                newNode.nil = false;
+                newNode.root = false;
+                return (newNode);
+            }
 			// -------------------------------
 			node first()
 			{
-				node *nodeCheck = root;
-                node *nodeHold = nodeCheck;
+				node nodeCheck = root;
+                node nodeHold = nodeCheck;
 
-				while (nodeCheck->nil == false)
+				while (nodeCheck.nil == false)
 				{
                     nodeHold = nodeCheck;
-					nodeCheck = nodeCheck->left;
+					nodeCheck = nodeCheck.left;
 				}
 				return (nodeHold);
 			}
@@ -52,10 +70,10 @@ template <class key_type, class mapped_type, class node, class compare, class al
 			// -------------------------------
 			node last()
 			{
-                node *nodeCheck = this->root;
-                node *nodeHold = nodeCheck;
+                node nodeCheck = this.root;
+                node nodeHold = nodeCheck;
 
-				while (nodeCheck->nil == false)
+				while (nodeCheck.nil == false)
 				{
                     nodeHold = nodeCheck;
 					nodeCheck = nodeCheck->right;
@@ -65,25 +83,26 @@ template <class key_type, class mapped_type, class node, class compare, class al
 			// -------------------------------
             bool insert(const value_type &val)
             {
-                Node<value_type> *newNode = this->initNode(val);
+                nodePair newNode = initPair(val);
                 // creat root node
-                if (this->root == this->nil)
+                if (root.nil == true)
                 {
-                    this->root = newNode;
-                    this->root->color = BLACK;
+                    root = newNode;
+                    root.root = true;
+                    root.color = BLACK;
                 }
                 // add new nodes after the this->root
                 else
                 {
-                    Node<value_type> *nodeCheck = this->root;
-                    Node<value_type> *nodeHold;
-                    while (nodeCheck != this->nil)
+                    nodePair nodeCheck = root;
+                    nodePair nodeHold;
+                    while (nodeCheck->nil == false)
                     {
                         nodeHold = nodeCheck;
-						if (newNode->pairv->first == nodeCheck->pairv->first)
+						if (newNode.pairv.first == nodeCheck.pairv.first)
 						{
-							this->allocator.destroy(newNode->pairv);
-							this->allocator.deallocate(newNode->pairv, sizeof(value_type));
+							alloc.destroy(newNode->pairv);
+							allocator.deallocate(newNode->pairv, sizeof(value_type));
 							delete newNode;
 							return(ft::make_pair(iterator(nodeCheck), false));
 						}
@@ -102,22 +121,7 @@ template <class key_type, class mapped_type, class node, class compare, class al
                 return(ft::make_pair(iterator(newNode), true));
             }
 // >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-        //     Node<value_type> *initNode(const value_type &val)
-        //     {
-        //         // creat new node
-        //         Node<value_type> *newNode = new Node<value_type>();
-        //         // reserve memory to the pair
-        //         newNode->pairv = allocator.allocate(sizeof(value_type));
-        //         // construct the pair
-        //         allocator.construct(newNode->pairv, ft::make_pair(val.first, val.second));;
-        //         // add other node info
-        //         newNode->color = RED;
-        //         newNode->right = nil;
-        //         newNode->left = nil;
-        //         newNode->parent = nil;
-        //         newNode->nil = false;
-        //         return (newNode);
-        //     }
+
         //     // recolor methode
         //     void recolor(Node<value_type> *node)
         //     {

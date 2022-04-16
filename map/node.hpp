@@ -5,9 +5,9 @@
 
 class Node {
 	public:
-		Node	*parent;
-		Node	*left;
-		Node	*right;
+		Node	parent;
+		Node	left;
+		Node	right;
 		int		color;
 		bool	root;
 		bool	nil;
@@ -16,7 +16,7 @@ class Node {
 template <class value_type>
 class NodePair : public Node {
 	public:
-		value_type	*pairv;
+		value_type	pairv;
 };
 
 #endif
