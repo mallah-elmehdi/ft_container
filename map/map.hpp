@@ -118,7 +118,7 @@ class map
 		const_iterator begin() const
 		{
 			std::cout  << "const begin\n";
-			return (const_iterator(tree.begin()));
+			// return (const_iterator(tree.begin()));
 		}
 		iterator end()
 		{
