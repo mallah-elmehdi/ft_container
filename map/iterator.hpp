@@ -13,8 +13,8 @@ class bd_iterator {
 		typedef value_type&								reference;
 		typedef std::bidirectional_iterator_tag			iterator_category;
 	private:
-		pointer				iter;
-		const Node<value_type>	*node;
+		pointer					iter;
+		Node<value_type>	*node;
 	public:
 		// + + + + + + + + + Member functions
 		//default constuctor
@@ -29,7 +29,7 @@ class bd_iterator {
 		{
 			return iter;
 		}
-		const Node<value_type> *nodeBase(void) const
+		Node<value_type> *nodeBase(void) const
 		{
 			return node;
 		}
