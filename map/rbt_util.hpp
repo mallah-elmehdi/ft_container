@@ -6,8 +6,15 @@
 
 #include "ft.hpp"
 
-template <class key_type, class mapped_type, class value_type, class node, class compare, class allocator, class rebind>
-    class Red_Black_Tree_Util {		
+template <class _key_type, class _mapped_type, class _value_type, class _node, class compare, class allocator, class rebind>
+    class Red_Black_Tree_Util {
+
+		protected:
+			typedef typename ft::Rbt_Traits<_key_type, _mapped_type, _value_type, _node>::key_type		key_type;	
+			typedef typename ft::Rbt_Traits<_key_type, _mapped_type, _value_type, _node>::mapped_type	mapped_type;	
+			typedef typename ft::Rbt_Traits<_key_type, _mapped_type, _value_type, _node>::value_type	value_type;
+			typedef typename ft::Rbt_Traits<_key_type, _mapped_type, _value_type, _node>::node			node;
+
 		protected:
             allocator		alloc;
             rebind			reb;
@@ -56,29 +63,21 @@ template <class key_type, class mapped_type, class value_type, class node, class
 				return (newNode);
             }
 			// -------------------------------
-			template <class InputIterator>
 			node *first()
 			{
-				typedef typename InputIterator::value_type	new_value_type;
-				typedef ft::Node<new_value_type>			new_node;
-				
-				node_new* nodeCheck = root;
-                node* nodeHold = nodeCheck;
+				node* nodeCheck = root;
+				node* nodeHold = nodeCheck;
 
 				while (nodeCheck->nil == false)
 				{
-                    nodeHold = nodeCheck;
+					nodeHold = nodeCheck;
 					nodeCheck = nodeCheck->left;
 				}
 				return (nodeHold);
-			}
+			}				
 			// -------------------------------
-			template <class InputIterator>
 			node *last()
 			{
-				typedef typename InputIterator::value_type	new_value_type;
-				typedef typedef ft::Node<new_value_type>	node;
-
                 node* nodeCheck = this->root;
                 node* nodeHold = nodeCheck;
 
@@ -89,7 +88,7 @@ template <class key_type, class mapped_type, class value_type, class node, class
 				}
 				return (nodeHold);
 			}
-			// -------------------------------
+			//-------------------------------
 			node *get_root()
 			{
 				return (root);
@@ -124,7 +123,7 @@ template <class key_type, class mapped_type, class value_type, class node, class
 							reb.deallocate(newNode->pairv, sizeof(value_type));
 							
 							alloc.destroy(newNode);
-							alloc.deallocate(newNode->pairv, sizeof(node_pair));
+							alloc.deallocate(newNode->pairv, sizeof(node));
 							return(false);
 						}
                         else if (comp(newNode->pairv->first, nodeCheck->pairv->first))

@@ -1,20 +1,14 @@
-// #ifndef _RBT_TRAITS_HPP
-// #define _RBT_TRAITS_HPP
+#ifndef _RBT_TRAITS_HPP
+#define _RBT_TRAITS_HPP
 
-// #include "ft.hpp"
+template <class _key_type, class _mapped_type, class _value_type, class _node>
+class Rbt_Traits
+{
+	public:
+		typedef _key_type		key_type;
+		typedef _mapped_type	mapped_type;
+		typedef _value_type		value_type;
+		typedef _node			node;
+};
 
-// template <class Key_T>
-// class Rbt_Traits
-// {
-// 	public:
-// 		typedef Key_T			value_type;
-// };
-
-// template <class Key_T>
-// class Rbt_Traits<const Key_T>
-// {
-// 	public:
-// 		typedef const Key_T		value_type;
-// };
-
-// #endif
+#endif
