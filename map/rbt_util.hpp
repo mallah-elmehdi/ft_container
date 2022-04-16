@@ -6,27 +6,26 @@
 
 #include "ft.hpp"
 
-template <class key_type, class mapped_type, class node, class compare, class allocator>
-    class Red_Black_Tree_Util {
-
+template <class key_type, class mapped_type, class node, class compare, class allocator, class rebind>
+    class Red_Black_Tree_Util {			
 		protected:
-            allocator					alloc;
-            allocator::rebind<node>		rebind;
-			compare						comp;
-            node						*nil;
-            node						*root;
+            allocator	alloc;
+            rebind		reb;
+			compare		comp;
+            node		*nil;
+            node		*root;
 
 		protected:
 			void initTree()
 			{
-				root = rebind.allocate(sizeof(node));
-				rebind.construct(root, node());
+				root = rebind_alloc.allocate(sizeof(node));
+				rebind_alloc.construct(root, node());
 				root->color = BLACK;
 				root->nil = true;
 				root->root = true;
 				// 
-				nil = rebind.allocate(sizeof(node));
-				rebind.construct(nil, node());
+				nil = rebind_alloc.allocate(sizeof(node));
+				rebind_alloc.construct(nil, node());
 				nil->color = BLACK;
 				nil->nil = true;
 				nil->root = true;
