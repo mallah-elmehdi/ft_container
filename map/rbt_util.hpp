@@ -6,17 +6,24 @@
 
 #include "ft.hpp"
 
-template <class key_type, class mapped_type, class node,class compare, class allocator>
+template <class key_type, class mapped_type, class node, class compare, class allocator>
     class Red_Black_Tree_Util {
 
 		protected:
-			compare		comp;
-            ft::Node	*nil;
-            ft::Node	*root;
             allocator	alloc;
+			compare		comp;
+            node		*nil;
+            node		*root;
 
 		protected:
-		
+			void initTree()
+			{
+				root = alloc.allocator(sizeof(node));
+				alloc.construct(root, node());
+				root->color = BLACK;
+				root->nil = true;
+				root->root = true;
+			}
             Node<value_type> *initNode(const value_type &val)
             {
                 // creat new node
