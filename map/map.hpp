@@ -24,8 +24,6 @@ class map
 		typedef ft::bd_iterator<const value_type>				const_iterator;
 		typedef ft::reverse_iterator<iterator>					reverse_iterator;
 		typedef ft::reverse_iterator<const_iterator>			const_reverse_iterator;
-
-	public:
 		template <class __Key, class __T, class __Compare, class __Alloc>
 		class value_comp_class
 		{
@@ -49,9 +47,9 @@ class map
 	private:
 		Red_Black_Tree<key_type, mapped_type, node, key_compare, allocator_type>	tree;
 		size_t																		_size;
-		allocator_type																allocator;
-		key_compare																	compare;
-
+		allocator_type																alloc;
+		key_compare																	comp;
+// >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 	// private:
 	// 	void clearHelp(iterator it)
 	// 	{
@@ -64,17 +62,9 @@ class map
 	// 			delete nodeHold;
 	// 		}
 	// 	}
-
-	// public:
-
-	// 	/* Member functions */
-
-	// 	explicit map (const key_compare& comp = key_compare(), const allocator_type& alloc = allocator_type())
-	// 	: _size(0), allocator(alloc), compare(comp) {
-	// 		std::cout << "ok\n";
-	// 		// const_iterator it = tree.begin();
-	// 	}
-
+	public:
+		explicit map (const key_compare& compare = key_compare(), const allocator_type& allocator = allocator_type())
+		: _size(0), alloc(allocator), comp(compare) {}
 
 	// 	template <class InputIterator>
 	// 	map(InputIterator first, InputIterator last, const key_compare& comp = key_compare(), const allocator_type& alloc = allocator_type(), typename ft::enable_if<!ft::is_integral<InputIterator>::value, bool>::type = false)

@@ -13,7 +13,7 @@ class Node {
 		bool	nil;
 };
 
-template <class value_value>
+template <class value_type>
 class NodePair : public Node {
 	public:
 		value_type	*pairv;
