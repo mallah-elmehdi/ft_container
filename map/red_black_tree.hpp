@@ -3,8 +3,8 @@
 
 #include "ft.hpp"
 
-template <class key_value, class mapped_type, class node, class compare, class allocator, class rebind>
-    class Red_Black_Tree : public Red_Black_Tree_Util<key_value, mapped_type, node, compare, allocator, rebind> {
+template <class key_value, class mapped_type, class value_type, class node, class compare, class allocator, class rebind>
+    class Red_Black_Tree : public Red_Black_Tree_Util<key_value, mapped_type, value_type, node, compare, allocator, rebind> {
 
 		// private:	
 		// 	Compare compare = Red_Black_Tree_Util<Key_T, Compare, Allocator>::compare;

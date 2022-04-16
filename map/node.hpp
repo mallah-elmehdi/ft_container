@@ -3,22 +3,17 @@
 
 #include "ft.hpp"
 
+template <class value_type>
 class Node {
 	public:
-		Node	*parent;
-		Node	*left;
-		Node	*right;
-		int		color;
-		bool	root;
-		bool	nil;
-
-		virtual ~Node(void);
-};
-
-template <class value_type>
-class NodePair : public Node {
-	public:
 		value_type	*pairv;
+		Node		*parent;
+		Node		*left;
+		Node		*right;
+		int			color;
+		bool		root;
+		bool		nil;
+
 };
 
 #endif

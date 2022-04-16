@@ -6,12 +6,8 @@
 
 #include "ft.hpp"
 
-template <class key_type, class mapped_type, class node, class compare, class allocator, class rebind>
+template <class key_type, class mapped_type, class value_type, class node, class compare, class allocator, class rebind>
     class Red_Black_Tree_Util {		
-		protected:
-			typedef ft::pair<key_type, mapped_type>		value_type;
-			typedef typedef ft::NodePair<value_type>	node_pair;
-
 		protected:
             allocator		alloc;
             rebind			reb;
@@ -23,8 +19,8 @@ template <class key_type, class mapped_type, class node, class compare, class al
 			// -------------------------------
 			void initTree()
 			{
-				nil = reb.allocate(sizeof(node_pair));
-				reb.construct(nil, node_pair());
+				nil = reb.allocate(sizeof(node));
+				reb.construct(nil, node());
 
 				nil->pairv = alloc.allocate(sizeof(value_type));
                 alloc.construct(nil->pairv, ft::make_pair(key_type(), mapped_type()));
@@ -40,11 +36,11 @@ template <class key_type, class mapped_type, class node, class compare, class al
 				root = nil;
 			}
 			// -------------------------------
-            node_pair *initPair(const value_type &val)
+            node *initPair(const value_type &val)
             {
-                node_pair *newNode;
-				newNode = reb.allocate(sizeof(node_pair));
-				reb.construct(newNode, node_pair());
+                node *newNode;
+				newNode = reb.allocate(sizeof(node));
+				reb.construct(newNode, node());
 				
 				newNode->pairv = alloc.allocate(sizeof(value_type));
                 alloc.construct(newNode->pairv, ft::make_pair(val.first, val.second));
@@ -63,11 +59,13 @@ template <class key_type, class mapped_type, class node, class compare, class al
 			template <class InputIterator>
 			node *first()
 			{
-				typedef typename InputIterator::value_type								value_type;
-				typedef typedef ft::NodePair<value_type>								node_pair;
+				typedef typename InputIterator::value_type										value_type;
+				typedef typedef ft::NodePair<value_type>										node;
 				typedef typename allocator::template rebind<ft::NodePair<value_type> >::other	allocator_rebind;
+				
 				node* nodeCheck = root;
                 node* nodeHold = nodeCheck;
+				// allocator_rebind reb;
 
 				while (nodeCheck->nil == false)
 				{
