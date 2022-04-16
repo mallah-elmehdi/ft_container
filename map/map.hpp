@@ -8,23 +8,23 @@ class map
 {
 	public:
 		// +++++++ Member types
-		typedef ft::Node                                        			node;
-		typedef Key                                            				key_type;
-		typedef T                                              				mapped_type;
-		typedef ft::pair<key_type, mapped_type>          					value_type;
-		typedef Compare                                        				key_compare;
-		typedef Allocator	                                   				allocator_type;
-		typedef typename allocator_type::template rebind<node>::other		allocator_rebind;
-		typedef typename allocator_type::reference							reference;
-		typedef typename allocator_type::const_reference					const_reference;
-		typedef typename allocator_type::pointer							pointer;
-		typedef typename allocator_type::const_pointer						const_pointer;
-		typedef ptrdiff_t													difference_type;
-		typedef size_t														size_type;
-		typedef ft::bd_iterator<key_type, mapped_type, allocator_type, allocator_rebind>									iterator;
-		typedef ft::bd_iterator<const key_type, const mapped_type, allocator_type, allocator_rebind>							const_iterator;
-		typedef ft::reverse_iterator<iterator>								reverse_iterator;
-		typedef ft::reverse_iterator<const_iterator>						const_reverse_iterator;
+		typedef ft::Node                                        											node;
+		typedef Key                                            												key_type;
+		typedef T                                              												mapped_type;
+		typedef ft::pair<key_type, mapped_type>          													value_type;
+		typedef Compare                                        												key_compare;
+		typedef Allocator	                                   												allocator_type;
+		typedef typename allocator_type::template rebind<node>::other										allocator_rebind;
+		typedef typename allocator_type::reference															reference;
+		typedef typename allocator_type::const_reference													const_reference;
+		typedef typename allocator_type::pointer															pointer;
+		typedef typename allocator_type::const_pointer														const_pointer;
+		typedef ptrdiff_t																					difference_type;
+		typedef size_t																						size_type;
+		typedef ft::bd_iterator<key_type, mapped_type, allocator_type, allocator_rebind>					iterator;
+		typedef ft::bd_iterator<const key_type, const mapped_type, allocator_type, allocator_rebind>		const_iterator;
+		typedef ft::reverse_iterator<iterator>																reverse_iterator;
+		typedef ft::reverse_iterator<const_iterator>														const_reverse_iterator;
 		template <class __Key, class __T, class __Compare, class __Alloc>
 		class value_comp_class
 		{
@@ -68,16 +68,16 @@ class map
 		explicit map (const key_compare& compare = key_compare(), const allocator_type& allocator = allocator_type())
 		: _size(0), alloc(allocator), comp(compare) {}
 
-	// 	template <class InputIterator>
-	// 	map(InputIterator first, InputIterator last, const key_compare& comp = key_compare(), const allocator_type& alloc = allocator_type(), typename ft::enable_if<!ft::is_integral<InputIterator>::value, bool>::type = false)
-	// 	: _size(0), compare(comp), allocator(alloc)
-	// 	{
-	// 		while (first != last)
-	// 		{
-	// 			insert(*first);
-	// 			first++;
-	// 		}
-	// 	}
+		// template <class InputIterator>
+		// map(InputIterator first, InputIterator last, const key_compare& comp = key_compare(), const allocator_type& alloc = allocator_type(), typename ft::enable_if<!ft::is_integral<InputIterator>::value, bool>::type = false)
+		// : _size(0), compare(comp), allocator(alloc)
+		// {
+		// 	while (first != last)
+		// 	{
+		// 		insert(*first);
+		// 		first++;
+		// 	}
+		// }
 
 	// 	map (const map& x) : _size(0), allocator(x.allocator), compare(x.compare)
 	// 	{
