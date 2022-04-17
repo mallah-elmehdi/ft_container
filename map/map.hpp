@@ -62,7 +62,9 @@ class map
 				node* nodeHold = it.nodes();
 				alloc.destroy(it.base());
 				alloc.deallocate(it.base(), sizeof(value_type));
+				
 				clearHelp(++it);
+				
 				reb.destroy(nodeHold);
 				reb.deallocate(nodeHold, sizeof(node));
 			}
@@ -203,10 +205,9 @@ class map
 		}
 		void clear()
 		{
-			if (tree.get_nil())
+			if (size())
 			{
 				clearHelp(begin());
-				tree.clear();
 				_size = 0;
 			}
 		}
