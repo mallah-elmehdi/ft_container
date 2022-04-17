@@ -45,15 +45,29 @@ class map
 		typedef	value_comp_class<key_type, mapped_type, Compare, allocator_type>	value_compare;
 
 	private:
-		Red_Black_Tree<value_type, key_compare, allocator_type>	tree;
-		size_t													_size;
-		allocator_type											alloc;
-		key_compare												comp;
-// >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+		typedef ft::Node<value_type>									node;
+		typedef typename allocator_type::template rebind<node>::other	rebind;
+		Red_Black_Tree<value_type, key_compare, allocator_type>			tree;
+		size_t															_size;
+		allocator_type													alloc;
+		rebind															reb;
+		key_compare														comp;
+	private:
+		void clearHelp(iterator it)
+		{
+			if (it != end())
+			{
+				node* nodeHold = it.nodes();
+				alloc.destroy(it.base());
+				alloc.deallocate(it.base(), sizeof(value_type));
+				clearHelp(++it);
+				reb.destroy(nodeHold);
+				reb.deallocate(nodeHold, sizeof(node));
+			}
+		}
 	public:
 		explicit map (const key_compare& compare = key_compare(), const allocator_type& allocator = allocator_type())
 		: _size(0), alloc(allocator), comp(compare) {}
-
 		template <class InputIterator>
 		map(InputIterator first, InputIterator last, const key_compare& compare = key_compare(), const allocator_type& allocator = allocator_type(), typename ft::enable_if<!ft::is_integral<InputIterator>::value, bool>::type = false)
 		: _size(0), alloc(allocator), comp(compare)
@@ -64,25 +78,23 @@ class map
 				first++;
 			}
 		}
-
 		map (const map& x) : _size(0), alloc(x.alloc), comp(x.comp)
 		{
 			map(begin(), end());
 		}
-
 		map& operator= (const map& x)
 		{
-			// clear();
-			// *this = map(x.begin(), x.end());
+			clear();
+			// map(x.begin(), x.end());
 			return (*this);
 		}
-
-	// 	~map()
-	// 	{
-	// 		clear();
-	// 	}
+		~map()
+		{
+			clear();
+		}
 
 		/* --------------------------------------------- Iterators */
+		
 		iterator begin()
 		{
 			return (iterator(tree.first()));
@@ -133,10 +145,10 @@ class map
 
 		/* Element access */
 
-		// mapped_type& operator[] (const key_type& k)
-		// {
-		// 	return insert(ft::make_pair(k, mapped_type())).first->second;
-		// }
+		mapped_type& operator[] (const key_type& k)
+		{
+			return insert(ft::make_pair(k, mapped_type())).first->second;
+		}
 
 		/* Modifiers */
 
@@ -149,12 +161,10 @@ class map
 			}
 			return (ft::make_pair(find(val.first), false));
 		}
-
 		iterator insert (iterator position, const value_type& val)
 		{
 			return (insert(val).first);
 		}
-
 		template <class InputIterator>
 		void insert (InputIterator first, InputIterator last)
 		{

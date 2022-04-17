@@ -220,6 +220,15 @@ template <class value_type, class compare, class allocator>
                     newNode = newNode->parent->parent;
                 }
             }
+			// -------------------------------
+            void clear()
+            {
+				alloc.destroy(nil->pairv);
+				alloc.deallocate(nil->pairv, sizeof(value_type));
+				
+				reb.destroy(nil);
+				reb.deallocate(nil, sizeof(node));
+            }
 // >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
         //     void printHelper(Node<value_type> *root, std::string indent, bool last) {
         //         if (root != nil) {

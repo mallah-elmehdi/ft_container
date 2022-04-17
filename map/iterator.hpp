@@ -34,6 +34,14 @@ class bd_iterator {
 		template <class _pair_type>
 		bd_iterator(const bd_iterator<_pair_type> &it) : iter(it.iter), _node(it._node) {}
 		// + + + + + + + + + Operator overload
+		pointer base()
+		{
+			return (iter);
+		}
+		node *nodes()
+		{
+			return (_node);
+		}
 		//operator=
 		bd_iterator& operator=(bd_iterator const &it)
 		{

@@ -51,15 +51,6 @@ template <class value_type, class compare, class allocator>
 			{
 				return (this->nil);
 			}
-// >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-            // // clearing the Tree
-            // void clear()
-            // {
-            //     this->allocator.destroy(this->nil->pairv);
-            //     this->allocator.deallocate(this->nil->pairv, sizeof(value_type));
-            //     delete this->nil;
-            // }
-
 };
 
 

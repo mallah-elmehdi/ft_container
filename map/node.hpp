@@ -13,7 +13,6 @@ class Node {
 		int			color;
 		bool		root;
 		bool		nil;
-
 };
 
 #endif
