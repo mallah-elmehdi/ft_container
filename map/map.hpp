@@ -66,32 +66,26 @@ class map
 		explicit map (const key_compare& compare = key_compare(), const allocator_type& allocator = allocator_type())
 		: _size(0), alloc(allocator), comp(compare) {}
 
-		// template <class InputIterator>
-		// map(InputIterator first, InputIterator last, const key_compare& comp = key_compare(), const allocator_type& alloc = allocator_type(), typename ft::enable_if<!ft::is_integral<InputIterator>::value, bool>::type = false)
-		// : _size(0), compare(comp), allocator(alloc)
-		// {
-		// 	while (first != last)
-		// 	{
-		// 		insert(*first);
-		// 		first++;
-		// 	}
-		// }
+		template <class InputIterator>
+		map(InputIterator first, InputIterator last, const key_compare& compare = key_compare(), const allocator_type& allocator = allocator_type(), typename ft::enable_if<!ft::is_integral<InputIterator>::value, bool>::type = false)
+		: _size(0), alloc(allocator), comp(compare)
+		{
+			while (first != last)
+			{
+				insert(*first);
+				first++;
+			}
+		}
 
-	// 	map (const map& x) : _size(0), allocator(x.allocator), compare(x.compare)
-	// 	{
-	// 		// map temp;
-	// 		// for (size_t i = 0; i < count; i++)
-	// 		// {
-	// 		// 	/* code */
-	// 		// }
-			
-	// 		x.begin();
-	// 	}
+		map (const map& x) : _size(0), alloc(x.alloc), comp(x.comp)
+		{
+			map(begin(), end());
+		}
 
 		map& operator= (const map& x)
 		{
-			x.begin();
-			// *this = map(x.begin(), x.end());
+			// clear();
+			*this = map(x.begin(), x.end());
 			return (*this);
 		}
 
@@ -193,7 +187,7 @@ class map
 
 		key_compare key_comp() const
 		{
-			return (compare);
+			return (comp);
 		}
 		value_compare value_comp() const
 		{
@@ -286,7 +280,7 @@ class map
 
 		allocator_type get_allocator() const
 		{
-			return (allocator);
+			return (alloc);
 		}
 
 };
