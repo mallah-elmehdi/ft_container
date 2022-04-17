@@ -42,7 +42,7 @@ template <class value_type, class compare, class allocator>
 
 				root = nil_node();
 
-				
+
 			}
 			// -------------------------------
 			node *nil_node() const
@@ -59,7 +59,7 @@ template <class value_type, class compare, class allocator>
 
                 nil->right = NULL;
                 nil->left = NULL;
-                nil->parent = NULL;
+                nil->parent =  ;
 			}
 			// -------------------------------
 			node *first() const
@@ -120,14 +120,15 @@ template <class value_type, class compare, class allocator>
 			// -------------------------------
             bool insert(const value_type &val)
             {
-				if (nil == NULL) initTree();
+				// if (root == NULL) initTree();
 
                 node *newNode = initPair(val);
 
-                if (root == nil)
+                if (root == NULL)
                 {
                     root = newNode;
                     root->root = true;
+                    root->nil = false;
                     root->color = BLACK;
                 }
 
