@@ -22,8 +22,9 @@ template <class value_type, class compare, class allocator>
 
 		public:
 			// -------------------------------
-			node *nil_node(node *parent) const
+			node *nil_node(node *parent)
 			{
+				node	*nil;
 				nil = reb.allocate(sizeof(node));
 				reb.construct(nil, node());
 
@@ -37,6 +38,8 @@ template <class value_type, class compare, class allocator>
                 nil->right = NULL;
                 nil->left = NULL;
                 nil->parent = parent;
+
+				return (nil);
 			}
 			// -------------------------------
             node *initPair(const value_type &val)
@@ -75,7 +78,7 @@ template <class value_type, class compare, class allocator>
                 {
                     node *nodeCheck = root;
                     node *nodeHold;
-                    while (nodeCheck != nil)
+                    while (nodeCheck->nil == false)
                     {
                         nodeHold = nodeCheck;
 						if (newNode->pairv->first == nodeCheck->pairv->first)
@@ -144,6 +147,17 @@ template <class value_type, class compare, class allocator>
 				return (nodeHold);
 			}
 			//-------------------------------
+			node *end() const
+			{
+                node* nodeCheck = this->root;
+
+				while (nodeCheck->nil == false)
+				{
+					nodeCheck = nodeCheck->right;
+				}
+				return (nodeCheck);
+			}
+			//-------------------------------
 			node *get_root() const
 			{
 				return (this->root);
@@ -160,7 +174,7 @@ template <class value_type, class compare, class allocator>
                 node *nodeHold = _node->right;
                 _node->right = nodeHold->left;
 
-                if (nodeHold->left == false)
+                if (nodeHold->left->nil == false)
                     nodeHold->left->parent = _node;
 
                 nodeHold->parent = _node->parent;
@@ -185,7 +199,7 @@ template <class value_type, class compare, class allocator>
                 node *nodeHold = _node->left;
                 _node->left = nodeHold->right;
 
-                if (nodeHold->right->nill == false)
+                if (nodeHold->right->nil == false)
                     nodeHold->right->parent = _node;
 
                 nodeHold->parent = _node->parent;
@@ -267,19 +281,19 @@ template <class value_type, class compare, class allocator>
                 }
             }
 			// -------------------------------
-            void clear()
-            {
-				if (nil != NULL)
-				{
-					alloc.destroy(nil->pairv);
-					alloc.deallocate(nil->pairv, sizeof(value_type));
+            // void clear()
+            // {
+			// 	if (nil != NULL)
+			// 	{
+			// 		alloc.destroy(nil->pairv);
+			// 		alloc.deallocate(nil->pairv, sizeof(value_type));
 					
-					reb.destroy(nil);
-					reb.deallocate(nil, sizeof(node));
+			// 		reb.destroy(nil);
+			// 		reb.deallocate(nil, sizeof(node));
 
-					nil = NULL;
-				}
-            }
+			// 		nil = NULL;
+			// 	}
+            // }
 // >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
         //     void printHelper(Node<value_type> *root, std::string indent, bool last) {
         //         if (root != nil) {

@@ -60,6 +60,7 @@ class map
 			if (it != end())
 			{
 				node* nodeHold = it.nodes();
+				
 				alloc.destroy(it.base());
 				alloc.deallocate(it.base(), sizeof(value_type));
 				
@@ -67,6 +68,11 @@ class map
 				
 				reb.destroy(nodeHold);
 				reb.deallocate(nodeHold, sizeof(node));
+
+				if (nodeHold->right->nil == true)
+					tree.destroy_node(nodeHold->right);
+				if (nodeHold->left->nil == true)
+					tree.destroy_node(nodeHold->left);
 			}
 		}
 	public:
@@ -113,11 +119,11 @@ class map
 		}
 		iterator end()
 		{
-			return (iterator(tree.get_nil()));
+			return (iterator(tree.end()));
 		}
 		const_iterator end() const
 		{
-			return (const_iterator(tree.get_nil()));
+			return (const_iterator(tree.end()));
 		}
 		reverse_iterator rbegin()
 		{

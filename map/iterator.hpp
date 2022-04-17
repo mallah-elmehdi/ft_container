@@ -94,7 +94,9 @@ class bd_iterator {
 		//operator-- (pre)
 		bd_iterator& operator--(void)
 		{
-			if (_node->left->nil == false)
+			if (_node->nil == true)
+				_node = _node->parent;
+			else if (_node->left->nil == false)
 			{
 				_node = _node->left;
 				
