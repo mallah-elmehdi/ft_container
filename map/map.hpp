@@ -66,13 +66,13 @@ class map
 				
 				clearHelp(++it);
 				
+				// if (nodeHold->right->nil == true)
+				// 	tree.destroy_node(nodeHold->right);
+				// if (nodeHold->left->nil == true)
+				// 	tree.destroy_node(nodeHold->left);
+
 				reb.destroy(nodeHold);
 				reb.deallocate(nodeHold, sizeof(node));
-
-				if (nodeHold->right->nil == true)
-					tree.destroy_node(nodeHold->right);
-				if (nodeHold->left->nil == true)
-					tree.destroy_node(nodeHold->left);
 			}
 		}
 	public:
