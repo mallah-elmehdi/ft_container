@@ -108,8 +108,8 @@ template <class value_type, class compare, class allocator>
             }
 			void destroy(node *_node)
 			{
-				if (_node->right) destroy_node(_node->right);
-				if (_node->left) destroy_node(_node->left);
+				if (_node->right && _node->right->nil) destroy_node(_node->right);
+				if (_node->left && _node->left->nil) destroy_node(_node->left);
 				destroy_node(_node);
 			}
 			void destroy_node(node *_node)

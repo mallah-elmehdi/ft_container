@@ -130,11 +130,11 @@ class bd_iterator {
 		}
 		bool operator==(const bd_iterator& it)
 		{
-			return (iter->first == it.iter->first);
+			return (iter == it.iter);
 		}
 		bool operator!=(const bd_iterator& it)
 		{
-			return (iter->first != it.iter->first);
+			return (iter != it.iter);
 		}
 };
 
