@@ -95,5 +95,6 @@ mymap.insert(ft::make_pair(2000, 200000));
 	
 
 	for (ft::map<int,int>::iterator it = mymap.begin(); it != mymap.end(); it++)
-        std::cout << it->first << " => " << it->second << "\n";
+        std::cout << mymap[it->first] << " => " << it->second << "\n";
+	mymap.clear();
 }
