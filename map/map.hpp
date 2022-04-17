@@ -59,11 +59,13 @@ class map
 		{
 			if (it != eit)
 			{
-				node* nodeHold = it.nodes();
-				if (nodeHold->right && nodeHold->right->nil) tree.destroy_node(nodeHold->right);
-				if (nodeHold->left && nodeHold->left->nil) tree.destroy_node(nodeHold->left);
+				node* nodeHoldCore = it.nodes();
+				node* nodeHoldRight = nodeHoldCore->right->nil ? nodeHoldCore->right : NULL;
+				node* nodeHoldLeft = nodeHoldCore->left->nil ? nodeHoldCore->left : NULL;
 				clearCore(++it, eit);
-				tree.destroy_node(nodeHold);
+				if (nodeHoldRight) tree.destroy_node(nodeHoldRight);
+				if (nodeHoldLeft) tree.destroy_node(nodeHoldLeft);
+				tree.destroy_node(nodeHoldCore);
 			}
 		}
 	public:
