@@ -17,12 +17,35 @@ template <class value_type, class compare, class allocator>
             allocator	alloc;
             rebind		reb;
 			compare		comp;
-            node		*nil;
+            // node		*nil;
             node		*root;
 
 		public:
 			// -------------------------------
 			void initTree()
+			{
+				// nil = reb.allocate(sizeof(node));
+				// reb.construct(nil, node());
+
+				// nil->pairv = alloc.allocate(sizeof(value_type));
+                // alloc.construct(nil->pairv, ft::make_pair(typename value_type::first_type(), typename value_type::second_type()));
+
+				// nil->color = BLACK;
+				// nil->nil = true;
+				// nil->root = false;
+
+                // nil->right = nil;
+                // nil->left = nil;
+                // nil->parent = nil;
+
+				// root = nil;
+
+				root = nil_node();
+
+				
+			}
+			// -------------------------------
+			node *nil_node() const
 			{
 				nil = reb.allocate(sizeof(node));
 				reb.construct(nil, node());
@@ -34,11 +57,45 @@ template <class value_type, class compare, class allocator>
 				nil->nil = true;
 				nil->root = false;
 
-                nil->right = nil;
-                nil->left = nil;
-                nil->parent = nil;
+                nil->right = NULL;
+                nil->left = NULL;
+                nil->parent = NULL;
+			}
+			// -------------------------------
+			node *first() const
+			{
+				node* nodeCheck = this->root;
+				node* nodeHold = nodeCheck;
 
-				root = nil;
+				while (nodeCheck->nil == false)
+				{
+					nodeHold = nodeCheck;
+					nodeCheck = nodeCheck->left;
+				}
+				return (nodeHold);
+			}
+			// -------------------------------
+			node *last() const
+			{
+                node* nodeCheck = this->root;
+                node* nodeHold = nodeCheck;
+
+				while (nodeCheck->nil == false)
+				{
+                    nodeHold = nodeCheck;
+					nodeCheck = nodeCheck->right;
+				}
+				return (nodeHold);
+			}
+			//-------------------------------
+			node *get_root() const
+			{
+				return (this->root);
+			}
+			// -------------------------------
+			node *get_nil() const
+			{
+				return (this->nil);
 			}
 			// -------------------------------
             node *initPair(const value_type &val)
