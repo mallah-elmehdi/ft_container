@@ -81,11 +81,11 @@ template <class value_type, class compare, class allocator>
                         nodeHold = nodeCheck;
 						if (newNode->pairv->first == nodeCheck->pairv->first)
 						{
-							reb.destroy(newNode->pairv);
-							reb.deallocate(newNode->pairv, sizeof(value_type));
+							alloc.destroy(newNode->pairv);
+							alloc.deallocate(newNode->pairv, sizeof(value_type));
 							
-							alloc.destroy(newNode);
-							alloc.deallocate(newNode->pairv, sizeof(node));
+							reb.destroy(newNode);
+							reb.deallocate(newNode, sizeof(node));
 							return(false);
 						}
                         else if (comp(newNode->pairv->first, nodeCheck->pairv->first))
@@ -102,7 +102,6 @@ template <class value_type, class compare, class allocator>
                 }
                 return(true);
             }
-// >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 			// -------------------------------
             void recolor(node *_node)
             {
@@ -221,6 +220,7 @@ template <class value_type, class compare, class allocator>
                     newNode = newNode->parent->parent;
                 }
             }
+// >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
         //     void printHelper(Node<value_type> *root, std::string indent, bool last) {
         //         if (root != nil) {
         //             std::cout << indent;

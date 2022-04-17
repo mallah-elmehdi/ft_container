@@ -3,7 +3,7 @@
 
 #include "ft.hpp"
 
-template < class Key, class T, class Compare = ft::less<Key>, class Allocator = std::allocator<ft::pair< Key, T> > >
+template < class Key, class T, class Compare = ft::less<Key>, class Allocator = std::allocator<ft::pair<Key, T> > >
 class map
 {
 	public:
@@ -50,18 +50,6 @@ class map
 		allocator_type											alloc;
 		key_compare												comp;
 // >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-	// private:
-	// 	void clearHelp(iterator it)
-	// 	{
-	// 		if (it != end())
-	// 		{
-	// 			Node<value_type> *nodeHold = it.nodeBase();
-	// 			allocator.destroy(it.base());
-	// 			allocator.deallocate(it.base(), sizeof(value_type));
-	// 			clearHelp(++it);
-	// 			delete nodeHold;
-	// 		}
-	// 	}
 	public:
 		explicit map (const key_compare& compare = key_compare(), const allocator_type& allocator = allocator_type())
 		: _size(0), alloc(allocator), comp(compare) {}
@@ -85,7 +73,7 @@ class map
 		map& operator= (const map& x)
 		{
 			// clear();
-			*this = map(x.begin(), x.end());
+			// *this = map(x.begin(), x.end());
 			return (*this);
 		}
 
@@ -176,12 +164,33 @@ class map
 				++first;
 			}
 		}
-		// void clear()
-		// {
-		// 	clearHelp(begin());
-		// 	tree.clear();
-		// 	_size = 0;
-		// }
+    	void erase (iterator position)
+		{
+			erase(position->first);
+		}
+		size_type erase (const key_type& k)
+		{
+			if (tree.destroy(k))
+			{
+				_size--;
+				return (1);
+			}
+			return (0);
+		}
+		void erase (iterator first, iterator last)
+		{
+			while (first != last)
+			{
+				erase(first);
+				++first;
+			}
+		}
+		void clear()
+		{
+			clearHelp(begin());
+			tree.clear();
+			_size = 0;
+		}
 
 		/* Observers */
 
