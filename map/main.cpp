@@ -43,9 +43,12 @@ int main()
 	
 	// mymap2.insert(mymap.begin(), mymap.end());
 	// mymap2 = mymap;
-	ft::map<int,int>::iterator it = mymap.end();
-	std::cout << it->first << " => " << it->second << '\n';
+	// ft::map<int,int>::iterator it = mymap.begin();
+	// it--;
+	// std::cout << it->first << " => " << it->second << '\n';
+	
 
-	// for (ft::map<int,int>::iterator it = mymap.end(); it != mymap.begin(); it--)
-    //     std::cout << it->first << " => " << it->second << '\n';
+	std::cout << "----------------------------------------------------------------------\n";
+	for (ft::map<int,int>::iterator it = mymap.begin(); it != mymap.end(); it++)
+        std::cout << it->first << " => " << it->second << '\n';
 }

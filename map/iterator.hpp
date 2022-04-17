@@ -62,6 +62,7 @@ class bd_iterator {
 		//operator++ (pre)
 		bd_iterator& operator++(void)
 		{
+			std::cout <<  "[" << iter->first << "]\n";
 			if (_node->right->nil == false)
 			{
 				_node =_node->right;
@@ -127,11 +128,13 @@ class bd_iterator {
 		}
 		bool operator==(const bd_iterator& it)
 		{
-			return (iter == it.iter);
+			std::cout << iter->first << " == " << it.iter->first << "\n";
+			return (iter->first == it.iter->first);
 		}
 		bool operator!=(const bd_iterator& it)
 		{
-			return (iter != it.iter);
+			std::cout << iter->first << " != " << it.iter->first << "\n";
+			return (iter->first != it.iter->first);
 		}
 };
 

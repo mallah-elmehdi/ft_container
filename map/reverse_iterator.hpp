@@ -72,13 +72,13 @@ class reverse_iterator {
 			++iter;
 			return (temp);
 		}
-		bool operator==(const reverse_iterator& x)
+		bool operator==(const reverse_iterator& it)
 		{
-			return (iter == x.iter);
+			return (iter->first == it.iter->first);
 		}
-		bool operator!=(const reverse_iterator& x)
+		bool operator!=(const reverse_iterator& it)
 		{
-			return (iter != x.iter);
+			return (iter->first != it.iter->first);
 		}
 };
 
