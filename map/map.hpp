@@ -55,40 +55,35 @@ class map
 		key_compare														comp;
 
 	private:
-		void clearHelp(iterator it)
+		void clearLeft(iterator it)
 		{
 			if (it != end())
 			{
 				node* nodeHold = it.nodes();
-				
-				// alloc.destroy(it.base());
-				// alloc.deallocate(it.base(), sizeof(value_type));
-
-					// std::cout << &nodeHold->left << "\n";
-					std::cout 
-						<< "("
-						<< nodeHold->left->pairv->first 
-						<< ")<--("
-						<< nodeHold->pairv->first 
-						<< ")-->("
-						<< nodeHold->right->pairv->first 
-						<< ")\n";
-				if (nodeHold->left->nil) tree.destroy_node(nodeHold->left);
-				std::cout << "====================\n";
-				
-				clearHelp(++it);
-				if (nodeHold->right->nil) tree.destroy_node(nodeHold->right);
-				// if (nodeHold->right->nil == true)
-				// 	std::cout << &nodeHold->right << "\n";
-				// if (nodeHold->left->nil == true)
+				if (nodeHold->left->nil)
+					tree.destroy_node(nodeHold->left);
+				clearLeft(++it);
+				if (nodeHold->right->nil) 
+					tree.destroy_node(nodeHold->right);
+			}
+		}
+		void clearRight(iterator it)
+		{
+			if (it != end())
+			{
+				node* nodeHold = it.nodes();
+				clearRight(++it);
+				if (nodeHold->right->nil) 
+					tree.destroy_node(nodeHold->right);
+			}
+		}
+		void clearCore(iterator it)
+		{
+			if (it != end())
+			{
+				node* nodeHold = it.nodes();
+				clearCore(++it);
 				tree.destroy_node(nodeHold);
-				// if (nodeHold->right && nodeHold->right->nil == true)
-				// 	tree.destroy_node(nodeHold->right);
-				// if (nodeHold->left && nodeHold->left->nil == true)
-				// 	tree.destroy_node(nodeHold->left);
-
-				// reb.destroy(nodeHold);
-				// reb.deallocate(nodeHold, sizeof(node));
 			}
 		}
 	public:
@@ -229,7 +224,9 @@ class map
 		{
 			if (size())
 			{
-				clearHelp(begin());
+				clearLeft(begin());
+				// clearRight(begin());
+				// clearCore(begin());
 				_size = 0;
 			}
 		}

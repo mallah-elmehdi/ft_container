@@ -279,7 +279,10 @@ template <class value_type, class compare, class allocator>
                     else
                         suitableRotation(newNode);
                     // loop iteration
-                    newNode = newNode->parent->parent;
+					if (newNode->parent == NULL)
+						newNode = newNode->parent;
+					else
+						newNode = newNode->parent->parent;
                 }
             }
 			// -------------------------------
