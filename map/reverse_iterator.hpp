@@ -15,73 +15,71 @@ class reverse_iterator {
 		typedef typename iterator_traits<Iterator>::iterator_category		iterator_category;
 	private:
 		Iterator iter;
-	// public:
-	// 	// + + + + + + + + + Member functions
-	// 	//default constuctor
-	// 	reverse_iterator(void) : iter() {}
-	// 	//copy constuctor
-	// 	explicit reverse_iterator(Iterator x) : iter(x) {}
-	// 	template <class Ty>
-	// 	reverse_iterator(const reverse_iterator<Ty> &it) : iter(it.base()) {}
-	// 	// base
-	// 	Iterator base(void) const
-	// 	{
-	// 		return iter;
-	// 	}
-	// 	// + + + + + + + + + Operator overload
-	// 	//operator=
-	// 	reverse_iterator& operator=(reverse_iterator const &it)
-	// 	{
-	// 		iter = it.base();
-	// 		return (*this);
-	// 	}
-	// 	//operator*
-	// 	reference operator*(void) const
-	// 	{
-	// 		Iterator tmp = iter;
-	// 		return *tmp;
-	// 	}
-	// 	//operator->
-	// 	pointer operator->(void) const
-	// 	{
-	// 		return &(operator*());;
-	// 	}
-	// 	//operator++ (pre)
-	// 	reverse_iterator& operator++(void)
-	// 	{
-	// 		--iter;
-	// 		return (*this);
-	// 	}
-	// 	//operator++ (post)
-	// 	reverse_iterator operator++(int)
-	// 	{
-	// 		reverse_iterator temp(*this);
-	// 		--iter;
-	// 		return (temp);
-	// 	}
-	// 	//operator-- (pre)
-	// 	reverse_iterator& operator--(void)
-	// 	{
-	// 		++iter;
-	// 		return (*this);
-	// 	}
-	// 	//operator-- (post)
-	// 	reverse_iterator operator--(int)
-	// 	{
-	// 		reverse_iterator temp(*this);
-	// 		++iter;
-	// 		return (temp);
-	// 	}
+	public:
+		// + + + + + + + + + Member functions
+		//default constuctor
+		reverse_iterator(void) : iter() {}
+		//copy constuctor
+		explicit reverse_iterator(Iterator x) : iter(x) {}
+		template <class Ty>
+		reverse_iterator(const reverse_iterator<Ty> &it) : iter(it.base()) {}
+		// base
+		Iterator base(void) const
+		{
+			return iter;
+		}
+		// + + + + + + + + + Operator overload
+		//operator=
+		reverse_iterator& operator=(reverse_iterator const &it)
+		{
+			iter = it.base();
+			return (*this);
+		}
+		//operator*
+		reference operator*(void) const
+		{
+			Iterator tmp = iter;
+			return *tmp;
+		}
+		//operator->
+		pointer operator->(void) const
+		{
+			return &(operator*());;
+		}
+		//operator++ (pre)
+		reverse_iterator& operator++(void)
+		{
+			--iter;
+			return (*this);
+		}
+		//operator++ (post)
+		reverse_iterator operator++(int)
+		{
+			reverse_iterator temp(*this);
+			--iter;
+			return (temp);
+		}
+		//operator-- (pre)
+		reverse_iterator& operator--(void)
+		{
+			++iter;
+			return (*this);
+		}
+		//operator-- (post)
+		reverse_iterator operator--(int)
+		{
+			reverse_iterator temp(*this);
+			++iter;
+			return (temp);
+		}
+		bool operator==(const reverse_iterator& x)
+		{
+			return (iter == x.iter);
+		}
+		bool operator!=(const reverse_iterator& x)
+		{
+			return (iter != x.iter);
+		}
 };
-// template <class Iterator>
-// bool operator==(const reverse_iterator<Iterator>& x, const reverse_iterator<Iterator>& y)
-// {
-// 	return (x.base() == y.base());
-// }
-// template <class Iterator>
-// bool operator!=(const reverse_iterator<Iterator>& x, const reverse_iterator<Iterator>& y)
-// {
-// 	return (x.base() != y.base());
-// }
 
 #endif

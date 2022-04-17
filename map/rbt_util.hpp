@@ -38,8 +38,32 @@ template <class value_type, class compare, class allocator>
                 nil->left = nil;
                 nil->parent = nil;
 
-				root = nil;
+				// root = nil_node();
+
+				// root->root = true;
+				// root->nil = false;
 			}
+			// -------------------------------
+			// node *nil_node() const
+			// {
+			// 	node		*nil;
+
+			// 	nil = reb.allocate(sizeof(node));
+			// 	reb.construct(nil, node());
+
+			// 	nil->pairv = alloc.allocate(sizeof(value_type));
+            //     alloc.construct(nil->pairv, ft::make_pair(typename value_type::first_type(), typename value_type::second_type()));
+
+			// 	nil->color = BLACK;
+			// 	nil->nil = true;
+			// 	nil->root = false;
+
+            //     nil->right = NULL;
+            //     nil->left = NULL;
+            //     nil->parent = NULL;
+				
+			// 	return (nil);
+			// }
 			// -------------------------------
             node *initPair(const value_type &val)
             {
@@ -63,6 +87,8 @@ template <class value_type, class compare, class allocator>
 			// -------------------------------
             bool insert(const value_type &val)
             {
+				if (nil == NULL) initTree();
+
                 node *newNode = initPair(val);
 
                 if (root == nil)
@@ -223,11 +249,16 @@ template <class value_type, class compare, class allocator>
 			// -------------------------------
             void clear()
             {
-				alloc.destroy(nil->pairv);
-				alloc.deallocate(nil->pairv, sizeof(value_type));
-				
-				reb.destroy(nil);
-				reb.deallocate(nil, sizeof(node));
+				if (nil != NULL)
+				{
+					alloc.destroy(nil->pairv);
+					alloc.deallocate(nil->pairv, sizeof(value_type));
+					
+					reb.destroy(nil);
+					reb.deallocate(nil, sizeof(node));
+
+					nil = NULL;
+				}
             }
 // >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
         //     void printHelper(Node<value_type> *root, std::string indent, bool last) {

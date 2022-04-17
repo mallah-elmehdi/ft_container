@@ -47,11 +47,13 @@ class map
 	private:
 		typedef ft::Node<value_type>									node;
 		typedef typename allocator_type::template rebind<node>::other	rebind;
+
 		Red_Black_Tree<value_type, key_compare, allocator_type>			tree;
 		size_t															_size;
 		allocator_type													alloc;
 		rebind															reb;
 		key_compare														comp;
+
 	private:
 		void clearHelp(iterator it)
 		{
@@ -68,6 +70,7 @@ class map
 	public:
 		explicit map (const key_compare& compare = key_compare(), const allocator_type& allocator = allocator_type())
 		: _size(0), alloc(allocator), comp(compare) {}
+		
 		template <class InputIterator>
 		map(InputIterator first, InputIterator last, const key_compare& compare = key_compare(), const allocator_type& allocator = allocator_type(), typename ft::enable_if<!ft::is_integral<InputIterator>::value, bool>::type = false)
 		: _size(0), alloc(allocator), comp(compare)
@@ -85,7 +88,10 @@ class map
 		map& operator= (const map& x)
 		{
 			clear();
-			// map(x.begin(), x.end());
+			for (iterator it = x.begin(); it != x.end(); it++)
+			{
+				insert(*it);
+			}
 			return (*this);
 		}
 		~map()
@@ -197,9 +203,12 @@ class map
 		}
 		void clear()
 		{
-			clearHelp(begin());
-			tree.clear();
-			_size = 0;
+			if (tree.get_nil())
+			{
+				clearHelp(begin());
+				tree.clear();
+				_size = 0;
+			}
 		}
 
 		/* Observers */

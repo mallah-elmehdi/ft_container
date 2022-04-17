@@ -51,6 +51,61 @@ template <class value_type, class compare, class allocator>
 			{
 				return (this->nil);
 			}
+
+// >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+			// void deleteNode(int data) {
+			// 	deleteNodeHelper(this->root, data);
+			// }
+			// void deleteNodeHelper(NodePtr node, int key) {
+			// 	NodePtr z = TNULL;
+			// 	NodePtr x, y;
+			// 	while (node != TNULL) {
+			// 	if (node->data == key) {
+			// 		z = node;
+			// 	}
+
+			// 	if (node->data <= key) {
+			// 		node = node->right;
+			// 	} else {
+			// 		node = node->left;
+			// 	}
+			// 	}
+
+			// 	if (z == TNULL) {
+			// 	cout << "Key not found in the tree" << endl;
+			// 	return;
+			// 	}
+
+			// 	y = z;
+			// 	int y_original_color = y->color;
+			// 	if (z->left == TNULL) {
+			// 	x = z->right;
+			// 	rbTransplant(z, z->right);
+			// 	} else if (z->right == TNULL) {
+			// 	x = z->left;
+			// 	rbTransplant(z, z->left);
+			// 	} else {
+			// 	y = minimum(z->right);
+			// 	y_original_color = y->color;
+			// 	x = y->right;
+			// 	if (y->parent == z) {
+			// 		x->parent = y;
+			// 	} else {
+			// 		rbTransplant(y, y->right);
+			// 		y->right = z->right;
+			// 		y->right->parent = y;
+			// 	}
+
+			// 	rbTransplant(z, y);
+			// 	y->left = z->left;
+			// 	y->left->parent = y;
+			// 	y->color = z->color;
+			// 	}
+			// 	delete z;
+			// 	if (y_original_color == 0) {
+			// 	deleteFix(x);
+			// 	}
+			// }
 };
 
 
