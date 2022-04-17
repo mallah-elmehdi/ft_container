@@ -63,21 +63,25 @@ class map
 				
 				// alloc.destroy(it.base());
 				// alloc.deallocate(it.base(), sizeof(value_type));
+
+					// std::cout << &nodeHold->left << "\n";
+					std::cout 
+						<< "("
+						<< nodeHold->left->pairv->first 
+						<< ")<--("
+						<< nodeHold->pairv->first 
+						<< ")-->("
+						<< nodeHold->right->pairv->first 
+						<< ")\n";
+				if (nodeHold->left->nil) tree.destroy_node(nodeHold->left);
+				std::cout << "====================\n";
 				
 				clearHelp(++it);
+				if (nodeHold->right->nil) tree.destroy_node(nodeHold->right);
 				// if (nodeHold->right->nil == true)
 				// 	std::cout << &nodeHold->right << "\n";
 				// if (nodeHold->left->nil == true)
-					// std::cout << &nodeHold->left << "\n";
-					// std::cout 
-					// 	<< "("
-					// 	<< nodeHold->left->pairv->first 
-					// 	<< ")<--("
-					// 	<< nodeHold->pairv->first 
-					// 	<< ")-->("
-					// 	<< nodeHold->right->pairv->first 
-					// 	<< ")\n";
-				tree.destroy(nodeHold);
+				tree.destroy_node(nodeHold);
 				// if (nodeHold->right && nodeHold->right->nil == true)
 				// 	tree.destroy_node(nodeHold->right);
 				// if (nodeHold->left && nodeHold->left->nil == true)
