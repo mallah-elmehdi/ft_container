@@ -69,15 +69,15 @@ class map
 				// 	std::cout << &nodeHold->right << "\n";
 				// if (nodeHold->left->nil == true)
 					// std::cout << &nodeHold->left << "\n";
-					std::cout 
-						<< "("
-						<< &nodeHold->left 
-						<< ")<--("
-						<< &nodeHold 
-						<< ")-->("
-						<< &nodeHold->right 
-						<< ")\n";
-				// tree.destroy(nodeHold);
+					// std::cout 
+					// 	<< "("
+					// 	<< nodeHold->left->pairv->first 
+					// 	<< ")<--("
+					// 	<< nodeHold->pairv->first 
+					// 	<< ")-->("
+					// 	<< nodeHold->right->pairv->first 
+					// 	<< ")\n";
+				tree.destroy(nodeHold);
 				// if (nodeHold->right && nodeHold->right->nil == true)
 				// 	tree.destroy_node(nodeHold->right);
 				// if (nodeHold->left && nodeHold->left->nil == true)
@@ -85,7 +85,6 @@ class map
 
 				// reb.destroy(nodeHold);
 				// reb.deallocate(nodeHold, sizeof(node));
-				
 			}
 		}
 	public:
