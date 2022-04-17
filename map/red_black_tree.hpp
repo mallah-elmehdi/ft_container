@@ -116,9 +116,11 @@ template <class value_type, class compare, class allocator>
 			{
 				alloc.destroy(_node->pairv);
 				alloc.deallocate(_node->pairv, sizeof(value_type));
+				_node->pairv = NULL; 
 				
 				reb.destroy(_node);
 				reb.deallocate(_node, sizeof(node));
+				_node = NULL;
 			}
 			// -------------------------------
 			node *first() const

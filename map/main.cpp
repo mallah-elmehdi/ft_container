@@ -29,12 +29,25 @@ int main()
 	mymap.insert(ft::make_pair(7, 700));
 	mymap.insert(ft::make_pair(17, 1700));
 	mymap.insert(ft::make_pair(19, 1900));
+	mymap.insert(ft::make_pair(19, 1900));
+	mymap.insert(ft::make_pair(15, 1500));
+	mymap.insert(ft::make_pair(13, 1300));
+	mymap.insert(ft::make_pair(19, 1900));
+	mymap.insert(ft::make_pair(19, 1900));
+	mymap.insert(ft::make_pair(19, 1900));
+	mymap.insert(ft::make_pair(19, 1900));
+	mymap.insert(ft::make_pair(19, 1900));
+	mymap.insert(ft::make_pair(19, 1900));
+	mymap.insert(ft::make_pair(19, 1900));
+	mymap.insert(ft::make_pair(19, 1900));
+	mymap.insert(ft::make_pair(19, 1900));
+	mymap.insert(ft::make_pair(19, 1900));
 	mymap.insert(ft::make_pair(20, 2000));
 	mymap.insert(ft::make_pair(3, 300));
-	mymap.insert(ft::make_pair(13, 1300));
 	mymap.insert(ft::make_pair(2, 200));
+	mymap.insert(ft::make_pair(19, 1900));
 	mymap.insert(ft::make_pair(12, 1200));
-	mymap.insert(ft::make_pair(15, 1500));
+	mymap.insert(ft::make_pair(16, 1600));
 	mymap.insert(ft::make_pair(16, 1600));
 	mymap.insert(ft::make_pair(18, 1800));
 	mymap.insert(ft::make_pair(11, 1100));
@@ -48,7 +61,6 @@ int main()
 	// std::cout << it->first << " => " << it->second << '\n';
 	
 
-	std::cout << "----------------------------------------------------------------------\n";
 	for (ft::map<int,int>::iterator it = mymap.begin(); it != mymap.end(); it++)
         std::cout << it->first << " => " << it->second << '\n';
 }
