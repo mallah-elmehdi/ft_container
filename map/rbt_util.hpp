@@ -38,32 +38,8 @@ template <class value_type, class compare, class allocator>
                 nil->left = nil;
                 nil->parent = nil;
 
-				// root = nil_node();
-
-				// root->root = true;
-				// root->nil = false;
+				root = nil;
 			}
-			// -------------------------------
-			// node *nil_node() const
-			// {
-			// 	node		*nil;
-
-			// 	nil = reb.allocate(sizeof(node));
-			// 	reb.construct(nil, node());
-
-			// 	nil->pairv = alloc.allocate(sizeof(value_type));
-            //     alloc.construct(nil->pairv, ft::make_pair(typename value_type::first_type(), typename value_type::second_type()));
-
-			// 	nil->color = BLACK;
-			// 	nil->nil = true;
-			// 	nil->root = false;
-
-            //     nil->right = NULL;
-            //     nil->left = NULL;
-            //     nil->parent = NULL;
-				
-			// 	return (nil);
-			// }
 			// -------------------------------
             node *initPair(const value_type &val)
             {

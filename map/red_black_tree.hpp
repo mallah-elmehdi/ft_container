@@ -15,43 +15,6 @@ template <class value_type, class compare, class allocator>
 			{
 				this->initTree();
 			}
-			// -------------------------------
-			node *first() const
-			{
-				node* nodeCheck = this->root;
-				node* nodeHold = nodeCheck;
-
-				while (nodeCheck->nil == false)
-				{
-					nodeHold = nodeCheck;
-					nodeCheck = nodeCheck->left;
-				}
-				return (nodeHold);
-			}
-			// -------------------------------
-			node *last() const
-			{
-                node* nodeCheck = this->root;
-                node* nodeHold = nodeCheck;
-
-				while (nodeCheck->nil == false)
-				{
-                    nodeHold = nodeCheck;
-					nodeCheck = nodeCheck->right;
-				}
-				return (nodeHold);
-			}
-			//-------------------------------
-			node *get_root() const
-			{
-				return (this->root);
-			}
-			// -------------------------------
-			node *get_nil() const
-			{
-				return (this->nil);
-			}
-
 // >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 			// void deleteNode(int data) {
 			// 	deleteNodeHelper(this->root, data);
