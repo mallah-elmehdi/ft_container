@@ -55,34 +55,14 @@ class map
 		key_compare														comp;
 
 	private:
-		void clearLeft(iterator it)
+		void clearCore(iterator it, iterator eit)
 		{
-			if (it != end())
+			if (it != eit)
 			{
 				node* nodeHold = it.nodes();
-				if (nodeHold->left->nil)
-					tree.destroy_node(nodeHold->left);
-				clearLeft(++it);
-				if (nodeHold->right->nil) 
-					tree.destroy_node(nodeHold->right);
-			}
-		}
-		void clearRight(iterator it)
-		{
-			if (it != end())
-			{
-				node* nodeHold = it.nodes();
-				clearRight(++it);
-				if (nodeHold->right->nil) 
-					tree.destroy_node(nodeHold->right);
-			}
-		}
-		void clearCore(iterator it)
-		{
-			if (it != end())
-			{
-				node* nodeHold = it.nodes();
-				clearCore(++it);
+				if (nodeHold->right && nodeHold->right->nil) tree.destroy_node(nodeHold->right);
+				if (nodeHold->left && nodeHold->left->nil) tree.destroy_node(nodeHold->left);
+				clearCore(++it, eit);
 				tree.destroy_node(nodeHold);
 			}
 		}
@@ -224,9 +204,7 @@ class map
 		{
 			if (size())
 			{
-				clearLeft(begin());
-				// clearRight(begin());
-				// clearCore(begin());
+				clearCore(begin(), end());
 				_size = 0;
 			}
 		}
