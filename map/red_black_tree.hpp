@@ -336,33 +336,45 @@ template <class value_type, class compare, class allocator>
 				return (_node->color == BLACK && _node->right->color == BLACK && _node->left->color == BLACK)
 			}
 			// -------------------------------
+			bool check_sibling(node *_node)
+			{
+				node *nodeSibling;
+
+				nodeSibling = _node->parent->right == _node ? _node->parent->left : _node->parent->right;
+
+				if (node_family_black(nodeSibling))
+				{
+					nodeSibling->color = RED;
+					if (_node->parent->color == RED)
+					{
+						_node->parent->color = BLACK;
+						return (true)
+					}
+					return (false);
+				}
+				else if (nodeSibling->color == RED)
+				{
+					nodeSibling->color = BLACK;
+					_node->parent->color = RED;
+					if (_node->parent->left == _node)
+						leftRotate(_node->parent);
+					else
+						rightRotate(_node->parent);
+					return (false);
+				}
+			}
+			// -------------------------------
 			void del_after_replace(node *_node)
 			{
-				if (_node->color == RED)
+				node *nodeHold = _node;
+				while (_node->color == RED)
 				{
-					// change node that you destroy to nil_node
-					destroy(_node);
+					if (_node->root) break;
+					if (check_sibling(_node)) break;
+					_node = _node->parent;
 				}
-				else
-				{
-					if (_node->root)
-						return;
-					node *nodeSibling = _node->parent->right == _node ? _node->parent->left : _node->parent->right;
-					if (node_family_black(nodeSibling))
-					{
-						nodeSibling->color = RED;
-						if (_node->parent->color == RED)
-						{
-							_node->parent->color = BLACK;
-							// change node that you destroy to nil_node
-							destroy(_node);
-						}
-						else
-						{
-							del_after_replace(_node->parent);
-						}
-					}
-				}
+				_node = nil_node(_node->parent);
+				destroy(nodeHold);
 			}
 			// -------------------------------
 			void del(node *_node)
