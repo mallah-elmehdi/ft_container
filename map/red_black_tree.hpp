@@ -430,7 +430,7 @@ template <class value_type, class compare, class allocator>
 					else
 						leftRotate(nodeSibling);
 				}
-				if (check_family_color_2(_node, nodeSibling))
+				else if (check_family_color_2(_node, nodeSibling))
 				{
 					node *nodeFarChildSibling = far_node_child_sibling(_node, nodeSibling);
 
