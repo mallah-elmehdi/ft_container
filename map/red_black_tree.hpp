@@ -484,30 +484,29 @@ template <class value_type, class compare, class allocator>
 				del_after_replace(_node);
 			}
 // >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-        //     void printHelper(Node<value_type> *root, std::string indent, bool last) {
-        //         if (root != nil) {
-        //             std::cout << indent;
-        //             if (last) {
-        //                 std::cout << "R----";
-        //                 indent += "   ";
-        //             } else {
-        //                 std::cout << "L----";
-        //                 indent += "|  ";
-        //             }
+            void printHelper(Node<value_type> *root, std::string indent, bool last) {
+                if (root != NULL) {
+                    std::cout << indent;
+                    if (last) {
+                        std::cout << "R----";
+                        indent += "   ";
+                    } else {
+                        std::cout << "L----";
+                        indent += "|  ";
+                    }
 
-        //           std::string sColor = root->color == RED ? "RED" : "BLACK";
-        //           std::cout << root->pairv->first << "(" << sColor << ")" << std::endl;
-        //           printHelper(root->left, indent, false);
-        //           printHelper(root->right, indent, true);
-        //         }
-        //     }
-		// public :
-        //     void printTree()
-        //     {
-        //         if (root) {
-        //           printHelper(root, "", true);
-        //         }
-        //     }
+                  std::string sColor = root->color == RED ? "RED" : "BLACK";
+                  std::cout << root->pairv->first << "(" << sColor << ")" << std::endl;
+                  printHelper(root->left, indent, false);
+                  printHelper(root->right, indent, true);
+                }
+            }
+            void printTree()
+            {
+                if (root) {
+                  printHelper(root, "", true);
+                }
+            }
 };
 
 #endif

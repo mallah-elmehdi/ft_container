@@ -190,7 +190,9 @@ class map
 			iterator it = find(k); 
 			if (it != end())
 			{
+				tree.printTree();
 				tree.del(it.nodes());
+				// tree.printTree(); 
 				_size--;
 				return (1);
 			}
