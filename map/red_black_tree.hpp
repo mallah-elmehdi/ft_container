@@ -293,25 +293,51 @@ template <class value_type, class compare, class allocator>
 				return (child);
 			}
 			// -------------------------------
-			void replace_children_2(node *_node)
+			node *replace_children_2(node *_node)
 			{
-				node *nodeHold = _node;
-				node *nodeSmall = _node->right;
+				node *nodeHold = _node->right;
+				node *nodeSmall;
+				// node *nodeTemp = _node;
 				
-				while (nodeSmall->nil == false)
+				while (nodeHold->nil == false)
 				{
-					nodeSmall = nodeSmall->left;
+					nodeSmall = nodeHold;
+					nodeHold = nodeHold->left;
 				}
 
-				nodeSmall->parent->pairv;
+				nodeHold = _node;
+				_node = nodeSmall;
+				nodeSmall = nodeHold;
+				return (_node);
+			}
+			node *replace_children_1(node *_node)
+			{
+				node *nodeChild = _node->left->nil ? _node->right : _node->left;
+				node *nodeHold = nodeChild;
 
+				nodeChild = _node;
+				_node = nodeHold;
+				return (_node);
 			}
 			// -------------------------------
 			bool del(node *_node)
 			{
 				size_t number_of_children = num_of_child(_node);
 				if (number_of_children == 2)
-					replace_children_2(_node);
+				{
+					return (del(replace_children_2(_node)));
+				}
+				else if (number_of_children == 1)
+				{
+					return (del(replace_children_1(_node)));
+				}
+				else
+				{
+					if (_node->color == RED)
+					{
+						
+					}
+				}
 			}
 // >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
         //     void printHelper(Node<value_type> *root, std::string indent, bool last) {
