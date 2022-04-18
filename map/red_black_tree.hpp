@@ -28,7 +28,7 @@ template <class value_type, class compare, class allocator>
 				nil = reb.allocate(sizeof(node));
 				reb.construct(nil, node());
 
-				nil_pair(nil->pairv);
+				nil->pairv = nil_pair();
 
 				nil->color = BLACK;
 				nil->nil = true;
@@ -41,10 +41,11 @@ template <class value_type, class compare, class allocator>
 				return (nil);
 			}
 			// -------------------------------
-			void nil_pair(value_type *_pair)
+			value_type * nil_pair()
 			{
-				_pair = alloc.allocate(sizeof(value_type));
+				value_type *_pair = alloc.allocate(sizeof(value_type));
                 alloc.construct(_pair, ft::make_pair(typename value_type::first_type(), typename value_type::second_type()));
+				return (_pair);
 			}
 			// -------------------------------
             node *initPair(const value_type &val)
@@ -459,7 +460,7 @@ template <class value_type, class compare, class allocator>
 				destroy_node(_node->left);
 				destroy_node(_node->right);
 				destroy_pair(_node->pairv);
-				nil_pair(_node->pairv);
+				_node->pairv = nil_pair();
 				_node->nil = true;
 				_node->root = false;
 				_node->color = BLACK;
