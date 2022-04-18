@@ -28,8 +28,7 @@ template <class value_type, class compare, class allocator>
 				nil = reb.allocate(sizeof(node));
 				reb.construct(nil, node());
 
-				nil->pairv = alloc.allocate(sizeof(value_type));
-                alloc.construct(nil->pairv, ft::make_pair(typename value_type::first_type(), typename value_type::second_type()));
+				nil_pair(nil->pairv);
 
 				nil->color = BLACK;
 				nil->nil = true;
@@ -42,6 +41,12 @@ template <class value_type, class compare, class allocator>
 				return (nil);
 			}
 			// -------------------------------
+			void nil_pair(value_type *_pair)
+			{
+				_pair = alloc.allocate(sizeof(value_type));
+                alloc.construct(_pair, ft::make_pair(typename value_type::first_type(), typename value_type::second_type()));
+			}
+			// -------------------------------
             node *initPair(const value_type &val)
             {
                 node *newNode;
@@ -51,7 +56,7 @@ template <class value_type, class compare, class allocator>
 				
 				newNode->pairv = alloc.allocate(sizeof(value_type));
                 alloc.construct(newNode->pairv, ft::make_pair(val.first, val.second));
-				
+
 				newNode->color = RED;
 				newNode->nil = false;
 				newNode->root = false;
@@ -114,13 +119,17 @@ template <class value_type, class compare, class allocator>
 			}
 			void destroy_node(node *_node)
 			{
-				alloc.destroy(_node->pairv);
-				alloc.deallocate(_node->pairv, sizeof(value_type));
-				_node->pairv = NULL; 
+				destroy_pair(_node->pairv);
 				
 				reb.destroy(_node);
 				reb.deallocate(_node, sizeof(node));
 				_node = NULL;
+			}
+			void destroy_pair(value_type *_pair)
+			{
+				alloc.destroy(_pair);
+				alloc.deallocate(_pair, sizeof(value_type));
+				_pair = NULL; 
 			}
 			// -------------------------------
 			node *first() const
@@ -441,19 +450,24 @@ template <class value_type, class compare, class allocator>
 			void del_after_replace(node *_node)
 			{
 				node *nodeHold = _node;
-				while (_node->color == RED)
+				while (_node->color == BLACK)
 				{
 					if (_node->root) break;
 					if (check_sibling(_node)) break;
 					_node = _node->parent;
 				}
-				_node = nil_node(_node->parent);
-				destroy(nodeHold);
+				destroy_node(_node->left);
+				destroy_node(_node->right);
+				destroy_pair(_node->pairv);
+				nil_pair(_node->pairv);
+				_node->nil = true;
+				_node->root = false;
+				_node->color = BLACK;
+				// destroy(nodeHold);
 			}
 			// -------------------------------
 			void del(node *_node)
 			{
-				size_t number_of_children = num_of_child(_node);
 				while (num_of_child(_node) != 0)
 				{
 					if (num_of_child(_node) == 2)
@@ -465,6 +479,7 @@ template <class value_type, class compare, class allocator>
 						_node = replace_children_1(_node);
 					}
 				}
+				// std::cout << "_node->color : " << _node->color <<"\n";
 				del_after_replace(_node);
 			}
 // >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
