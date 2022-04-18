@@ -293,50 +293,74 @@ template <class value_type, class compare, class allocator>
 				return (child);
 			}
 			// -------------------------------
+			void swap_colors(node *_node1, node *_node2)
+			{
+				int color = _node1->color;
+				_node1->color = _node2->color;
+				_node2->color = color;
+			}
+			// -------------------------------
 			node *replace_children_2(node *_node)
 			{
-				node *nodeHold = _node->right;
-				node *nodeSmall;
-				// node *nodeTemp = _node;
+				node *nodeSmall = _node->right;
+				value_type *pairHold;
 				
-				while (nodeHold->nil == false)
+				while (nodeSmall->nil == false)
 				{
-					nodeSmall = nodeHold;
-					nodeHold = nodeHold->left;
+					nodeSmall = nodeHold->left;
 				}
+				nodeSmall = nodeSmall->parent;
 
-				nodeHold = _node;
-				_node = nodeSmall;
-				nodeSmall = nodeHold;
-				return (_node);
+				pairHold = _node->pairv;
+				
+				_node->pairv = nodeSmall->pairv;
+				nodeSmall->pairv = pairHold;
+
+				return (nodeSmall);
 			}
 			node *replace_children_1(node *_node)
 			{
 				node *nodeChild = _node->left->nil ? _node->right : _node->left;
-				node *nodeHold = nodeChild;
+				value_type *pairHold;
 
-				nodeChild = _node;
-				_node = nodeHold;
-				return (_node);
+				pairHold = _node->pairv;
+				
+				_node->pairv = nodeChild->pairv;
+				nodeChild->pairv = pairHold;
+
+				return (nodeChild);
 			}
 			// -------------------------------
-			bool del(node *_node)
+			void del_after_replace(node *_node)
+			{
+				if (_node->color == RED)
+				{
+					// change node that you destroy to 
+					destroy(_node);
+				}
+				else
+				{
+					if (_node->parent->color == BLACK)
+					{
+						if ()
+					}
+				}
+			}
+			// -------------------------------
+			void del(node *_node)
 			{
 				size_t number_of_children = num_of_child(_node);
 				if (number_of_children == 2)
 				{
-					return (del(replace_children_2(_node)));
+					del(replace_children_2(_node));
 				}
 				else if (number_of_children == 1)
 				{
-					return (del(replace_children_1(_node)));
+					del(replace_children_1(_node));
 				}
 				else
 				{
-					if (_node->color == RED)
-					{
-						
-					}
+					del_after_replace(_node);
 				}
 			}
 // >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
