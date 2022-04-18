@@ -331,18 +331,36 @@ template <class value_type, class compare, class allocator>
 				return (nodeChild);
 			}
 			// -------------------------------
+			bool node_family_black(node *_node)
+			{
+				return (_node->color == BLACK && _node->right->color == BLACK && _node->left->color == BLACK)
+			}
+			// -------------------------------
 			void del_after_replace(node *_node)
 			{
 				if (_node->color == RED)
 				{
-					// change node that you destroy to 
+					// change node that you destroy to nil_node
 					destroy(_node);
 				}
 				else
 				{
-					if (_node->parent->color == BLACK)
+					if (_node->root)
+						return;
+					node *nodeSibling = _node->parent->right == _node ? _node->parent->left : _node->parent->right;
+					if (node_family_black(nodeSibling))
 					{
-						if ()
+						nodeSibling->color = RED;
+						if (_node->parent->color == RED)
+						{
+							_node->parent->color = BLACK;
+							// change node that you destroy to nil_node
+							destroy(_node);
+						}
+						else
+						{
+							del_after_replace(_node->parent);
+						}
 					}
 				}
 			}
@@ -350,18 +368,18 @@ template <class value_type, class compare, class allocator>
 			void del(node *_node)
 			{
 				size_t number_of_children = num_of_child(_node);
-				if (number_of_children == 2)
+				while (num_of_child(_node) != 0)
 				{
-					del(replace_children_2(_node));
+					if (num_of_child(_node) == 2)
+					{
+						_node = replace_children_2(_node);
+					}
+					else if (num_of_child(_node) == 1)
+					{
+						_node = replace_children_1(_node);
+					}
 				}
-				else if (number_of_children == 1)
-				{
-					del(replace_children_1(_node));
-				}
-				else
-				{
-					del_after_replace(_node);
-				}
+				del_after_replace(_node);
 			}
 // >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
         //     void printHelper(Node<value_type> *root, std::string indent, bool last) {
