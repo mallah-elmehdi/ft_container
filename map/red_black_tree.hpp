@@ -285,19 +285,34 @@ template <class value_type, class compare, class allocator>
                 }
             }
 			// -------------------------------
-            // void clear()
-            // {
-			// 	if (nil != NULL)
-			// 	{
-			// 		alloc.destroy(nil->pairv);
-			// 		alloc.deallocate(nil->pairv, sizeof(value_type));
-					
-			// 		reb.destroy(nil);
-			// 		reb.deallocate(nil, sizeof(node));
+			size_t num_of_child(node *_node)
+			{
+				size_t child = 0;
+				if (_node->right->nil == false) child++;
+				if (_node->left->nil == false) child++;
+				return (child);
+			}
+			// -------------------------------
+			void replace_children_2(node *_node)
+			{
+				node *nodeHold = _node;
+				node *nodeSmall = _node->right;
+				
+				while (nodeSmall->nil == false)
+				{
+					nodeSmall = nodeSmall->left;
+				}
 
-			// 		nil = NULL;
-			// 	}
-            // }
+				nodeSmall->parent->pairv;
+
+			}
+			// -------------------------------
+			bool del(node *_node)
+			{
+				size_t number_of_children = num_of_child(_node);
+				if (number_of_children == 2)
+					replace_children_2(_node);
+			}
 // >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
         //     void printHelper(Node<value_type> *root, std::string indent, bool last) {
         //         if (root != nil) {
