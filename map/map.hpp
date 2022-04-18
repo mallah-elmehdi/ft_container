@@ -187,8 +187,10 @@ class map
 		}
 		size_type erase (const key_type& k)
 		{
-			if (tree.destroy(k))
+			iterator it = find(k); 
+			if (it != end())
 			{
+				tree.del(it.nodes());
 				_size--;
 				return (1);
 			}

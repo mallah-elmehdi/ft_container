@@ -307,7 +307,7 @@ template <class value_type, class compare, class allocator>
 				
 				while (nodeSmall->nil == false)
 				{
-					nodeSmall = nodeHold->left;
+					nodeSmall = nodeSmall->left;
 				}
 				nodeSmall = nodeSmall->parent;
 
@@ -333,10 +333,10 @@ template <class value_type, class compare, class allocator>
 			// -------------------------------
 			bool all_family_black(node *_node)
 			{
-				return (_node->color == BLACK && _node->right->color == BLACK && _node->left->color == BLACK)
+				return (_node->color == BLACK && _node->right->color == BLACK && _node->left->color == BLACK);
 			}
 			// ------------------------------- 
-			bool check_family_color(node *_node, node *nodeSibling)
+			bool check_family_color_1(node *_node, node *nodeSibling)
 			{
 				if (_node->parent->left == _node)
 				{
@@ -347,6 +347,22 @@ template <class value_type, class compare, class allocator>
 				else
 				{
 					if (nodeSibling->right->color == RED && nodeSibling->left->color == BLACK)
+						return (true);
+				}
+				return (false);
+			}
+			// ------------------------------- 
+			bool check_family_color_2(node *_node, node *nodeSibling)
+			{
+				if (_node->parent->left == _node)
+				{
+					if (nodeSibling->right->color == RED)
+						return (true);
+					return (false);
+				}
+				else
+				{
+					if (nodeSibling->left->color == RED)
 						return (true);
 				}
 				return (false);
@@ -378,7 +394,7 @@ template <class value_type, class compare, class allocator>
 					if (_node->parent->color == RED)
 					{
 						_node->parent->color = BLACK;
-						return (true)
+						return (true);
 					}
 					return (false);
 				}
@@ -392,10 +408,9 @@ template <class value_type, class compare, class allocator>
 						rightRotate(_node->parent);
 					return (false);
 				}
-				else if (check_family_color(_node, nodeSibling))
+				else if (check_family_color_1(_node, nodeSibling))
 				{
 					node *nodeNearChildSibling = near_node_child_sibling(_node, nodeSibling);
-					node *nodeFarChildSibling = far_node_child_sibling(_node, nodeSibling);
 					
 					nodeSibling->color = RED;
 					nodeNearChildSibling->color = BLACK;
@@ -404,9 +419,23 @@ template <class value_type, class compare, class allocator>
 						rightRotate(nodeSibling);
 					else
 						leftRotate(nodeSibling);
-					
-					return (false);
 				}
+				if (check_family_color_2(_node, nodeSibling))
+				{
+					node *nodeFarChildSibling = far_node_child_sibling(_node, nodeSibling);
+
+					swap_colors(_node->parent, nodeSibling);
+
+					nodeFarChildSibling->color = BLACK;
+
+					if (_node->parent->left == _node)
+						leftRotate(_node->parent);
+					else
+						rightRotate(_node->parent);
+
+					return (true);
+				}
+				return (false);
 			}
 			// -------------------------------
 			void del_after_replace(node *_node)
