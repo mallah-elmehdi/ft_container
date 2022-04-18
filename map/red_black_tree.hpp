@@ -331,9 +331,39 @@ template <class value_type, class compare, class allocator>
 				return (nodeChild);
 			}
 			// -------------------------------
-			bool node_family_black(node *_node)
+			bool all_family_black(node *_node)
 			{
 				return (_node->color == BLACK && _node->right->color == BLACK && _node->left->color == BLACK)
+			}
+			// ------------------------------- 
+			bool check_family_color(node *_node, node *nodeSibling)
+			{
+				if (_node->parent->left == _node)
+				{
+					if (nodeSibling->left->color == RED && nodeSibling->right->color == BLACK)
+						return (true);
+					return (false);
+				}
+				else
+				{
+					if (nodeSibling->right->color == RED && nodeSibling->left->color == BLACK)
+						return (true);
+				}
+				return (false);
+			}
+			// -------------------------------
+			node *near_node_child_sibling(node *_node, node *nodeSibling)
+			{
+				if (_node->parent->left == _node)
+					return (nodeSibling->left);
+				return (nodeSibling->right);
+			}
+			// -------------------------------
+			node *far_node_child_sibling(node *_node, node *nodeSibling)
+			{
+				if (_node->parent->right == _node)
+					return (nodeSibling->left);
+				return (nodeSibling->right);
 			}
 			// -------------------------------
 			bool check_sibling(node *_node)
@@ -342,7 +372,7 @@ template <class value_type, class compare, class allocator>
 
 				nodeSibling = _node->parent->right == _node ? _node->parent->left : _node->parent->right;
 
-				if (node_family_black(nodeSibling))
+				if (all_family_black(nodeSibling))
 				{
 					nodeSibling->color = RED;
 					if (_node->parent->color == RED)
@@ -360,6 +390,21 @@ template <class value_type, class compare, class allocator>
 						leftRotate(_node->parent);
 					else
 						rightRotate(_node->parent);
+					return (false);
+				}
+				else if (check_family_color(_node, nodeSibling))
+				{
+					node *nodeNearChildSibling = near_node_child_sibling(_node, nodeSibling);
+					node *nodeFarChildSibling = far_node_child_sibling(_node, nodeSibling);
+					
+					nodeSibling->color = RED;
+					nodeNearChildSibling->color = BLACK;
+					
+					if (_node->parent->left == _node)
+						rightRotate(nodeSibling);
+					else
+						leftRotate(nodeSibling);
+					
 					return (false);
 				}
 			}
