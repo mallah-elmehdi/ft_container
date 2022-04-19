@@ -21,7 +21,7 @@
 #include <random>
 
 #define BLUE "\e[0;34m"
-#define RED "\e[0;31m"
+#define LRED "\e[0;31m"
 #define GREEN "\e[0;32m"
 #define YELLOW "\e[1;33m"
 #define RESET "\e[0m"
@@ -33,6 +33,7 @@ typedef std::pair<std::map<int, std::string>::iterator, std::map<int, std::strin
 typedef ft::pair<ft::map<int, std::string>::iterator, ft::map<int, std::string>::iterator> ft_iter_def;
 typedef std::pair<std::map<int, std::string>::const_iterator, std::map<int, std::string>::const_iterator> const_iter_def;
 typedef ft::pair<ft::map<int, std::string>::const_iterator, ft::map<int, std::string>::const_iterator> ft_const_iter_def;
+
 
 #define TEST_CASE(fn)                                                                                                             \
     cout << GREEN << "\t======================================================================================" << RESET << endl; \
@@ -2214,9 +2215,9 @@ void alarm_handler(int seg)
 int main()
 {
 
-    std::cout << RED << "________________________________________________________________________________________________________" << std::endl;
-    std::cout << RED << "**** The test is taking so much time to test the all cases and the time complexity of each method ****" << std::endl;
-    std::cout << RED << "--------------------------------------------------------------------------------------------------------" << RESET << std::endl;
+    std::cout << LRED << "________________________________________________________________________________________________________" << std::endl;
+    std::cout << LRED << "**** The test is taking so much time to test the all cases and the time complexity of each method ****" << std::endl;
+    std::cout << LRED << "--------------------------------------------------------------------------------------------------------" << RESET << std::endl;
     signal(SIGALRM, alarm_handler);
 
     std::cout << YELLOW << "Testing Iterators;" << RESET << std::endl;
