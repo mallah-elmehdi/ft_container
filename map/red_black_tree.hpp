@@ -124,13 +124,11 @@ template <class value_type, class compare, class allocator>
 				
 				reb.destroy(_node);
 				reb.deallocate(_node, sizeof(node));
-				_node = NULL;
 			}
 			void destroy_pair(value_type *_pair)
 			{
 				alloc.destroy(_pair);
 				alloc.deallocate(_pair, sizeof(value_type));
-				_pair = NULL; 
 			}
 			// -------------------------------
 			node *first() const
@@ -453,13 +451,15 @@ template <class value_type, class compare, class allocator>
 				node *nodeHold = _node;
 				while (_node->color == BLACK)
 				{
-					// if (_node->root) break;
+					if (_node->root) break;
 					if (check_sibling(_node)) break;
 					_node = _node->parent;
 				}
 				destroy_node(nodeHold->left);
 				destroy_node(nodeHold->right);
 				destroy_pair(nodeHold->pairv);
+				nodeHold->left = NULL;
+				nodeHold->right = NULL;
 				nodeHold->pairv = nil_pair();
 				nodeHold->nil = true;
 				nodeHold->root = false;

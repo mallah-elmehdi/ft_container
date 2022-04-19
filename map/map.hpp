@@ -192,7 +192,7 @@ class map
 			{
 				tree.printTree();
 				tree.del(it.nodes());
-				// tree.printTree(); 
+				tree.printTree(); 
 				_size--;
 				return (1);
 			}

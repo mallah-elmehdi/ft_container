@@ -95,7 +95,8 @@ int main()
 	// mymap.insert(std::make_pair(1999, 199900));
 	// mymap.insert(std::make_pair(2000, 200000));
 
-	std::cout << mymap.erase(9) << "\n";
+	std::cout << mymap.erase(4) << "\n";
+	mymap.insert(ft::make_pair(4, 40));
 	// mymap2.insert(mymap.begin(), mymap.end());
 	// mymap2 = mymap;
 	// std::map<int,int>::iterator it = mymap.begin();
