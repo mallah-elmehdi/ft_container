@@ -453,17 +453,17 @@ template <class value_type, class compare, class allocator>
 				node *nodeHold = _node;
 				while (_node->color == BLACK)
 				{
-					if (_node->root) break;
+					// if (_node->root) break;
 					if (check_sibling(_node)) break;
 					_node = _node->parent;
 				}
-				destroy_node(_node->left);
-				destroy_node(_node->right);
-				destroy_pair(_node->pairv);
-				_node->pairv = nil_pair();
-				_node->nil = true;
-				_node->root = false;
-				_node->color = BLACK;
+				destroy_node(nodeHold->left);
+				destroy_node(nodeHold->right);
+				destroy_pair(nodeHold->pairv);
+				nodeHold->pairv = nil_pair();
+				nodeHold->nil = true;
+				nodeHold->root = false;
+				nodeHold->color = BLACK;
 				// destroy(nodeHold);
 			}
 			// -------------------------------
