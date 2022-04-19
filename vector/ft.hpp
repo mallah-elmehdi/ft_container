@@ -6,15 +6,12 @@
 # include <stdexcept>
 # include <memory>
 # include <cstddef>
+# include "../util/ft.hpp"
 
 namespace ft
 {
-	#include "lexicographical_compare.hpp"
-	#include "util.hpp"
 	#include "vector.hpp"
-	#include "ft.hpp"
 	#include "reverse_iterator.hpp"
-	#include "equal.hpp"
 	#include "iterator.hpp"
 }
 

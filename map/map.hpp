@@ -250,6 +250,10 @@ class map
 			}
 			return (it);
 		}
+		void swap (map& x)
+		{
+			ft::swap(*this, x);
+		}
 		size_type count (const key_type& k) const
 		{
 			if (find(k) != end()) return (1);
@@ -314,7 +318,25 @@ class map
 		{
 			return (alloc);
 		}
-
 };
+	
+template <class Key, class T, class Compare, class Alloc>
+bool operator==(const ft::map<Key,T,Compare,Alloc>& lhs, const ft::map<Key,T,Compare,Alloc>& rhs)
+{}
+	
+template <class Key, class T, class Compare, class Alloc>
+bool operator!=(const ft::map<Key,T,Compare,Alloc>& lhs, const ft::map<Key,T,Compare,Alloc>& rhs);
+
+template <class Key, class T, class Compare, class Alloc>
+bool operator< (const ft::map<Key,T,Compare,Alloc>& lhs, const ft::map<Key,T,Compare,Alloc>& rhs);
+
+template <class Key, class T, class Compare, class Alloc>
+bool operator<=(const ft::map<Key,T,Compare,Alloc>& lhs, const ft::map<Key,T,Compare,Alloc>& rhs);
+
+template <class Key, class T, class Compare, class Alloc>
+bool operator> (const ft::map<Key,T,Compare,Alloc>& lhs, const ft::map<Key,T,Compare,Alloc>& rhs);
+
+template <class Key, class T, class Compare, class Alloc>
+bool operator>=(const ft::map<Key,T,Compare,Alloc>& lhs, const ft::map<Key,T,Compare,Alloc>& rhs);
 
 #endif
