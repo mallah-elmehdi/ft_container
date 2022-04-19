@@ -39,12 +39,12 @@ class reverse_iterator {
 		reference operator*(void) const
 		{
 			Iterator tmp = iter;
-			return *tmp;
+			return *--tmp;
 		}
 		//operator->
 		pointer operator->(void) const
 		{
-			return &(operator*());;
+			return &(operator*());
 		}
 		//operator++ (pre)
 		reverse_iterator& operator++(void)

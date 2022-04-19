@@ -63,7 +63,7 @@ class bd_iterator {
 		bd_iterator& operator++(void)
 		{
 			node *nodeHold = _node;
-			if (_node->right->nil == false)
+			if (_node->right && _node->right->nil == false)
 			{
 				_node =_node->right;
 				
@@ -97,27 +97,28 @@ class bd_iterator {
 		//operator-- (pre)
 		bd_iterator& operator--(void)
 		{
-			if (_node->nil == true)
-				_node = _node->parent;
-			else if (_node->left->nil == false)
+			node *nodeHold = _node;
+			if (_node->left && _node->left->nil == false)
 			{
-				_node = _node->left;
+				_node =_node->left;
 				
 				while (_node->right->nil == false)
 				{
-					_node = _node->right;
+					_node =_node->right;
 				}
 			}
 			else
 			{
 				node *p = _node->parent;
-				while (p->nil == false && _node == p->left)
+				while (p && p->nil == false && _node == p->left)
 				{
 					_node = p;
 					p = p->parent;
 				}
 				_node = p;
 			}
+			if (_node == NULL)
+				_node = nodeHold->left;
 			iter = _node->pairv;
 			return (*this);
 		}

@@ -17,10 +17,14 @@ template <class value_type, class compare, class allocator>
             allocator	alloc;
             rebind		reb;
 			compare		comp;
-            // node		*nil;
+            node		*nil;
             node		*root = NULL;
 
 		public:
+			Red_Black_Tree()
+			{
+				nil = nil_node(NULL);
+			}
 			// -------------------------------
 			node *nil_node(node *parent)
 			{
@@ -41,7 +45,7 @@ template <class value_type, class compare, class allocator>
 				return (nil);
 			}
 			// -------------------------------
-			value_type * nil_pair()
+			value_type *nil_pair()
 			{
 				value_type *_pair = alloc.allocate(sizeof(value_type));
                 alloc.construct(_pair, ft::make_pair(typename value_type::first_type(), typename value_type::second_type()));
@@ -124,6 +128,8 @@ template <class value_type, class compare, class allocator>
 				
 				reb.destroy(_node);
 				reb.deallocate(_node, sizeof(node));
+
+				_node = NULL;
 			}
 			void destroy_pair(value_type *_pair)
 			{
@@ -135,6 +141,9 @@ template <class value_type, class compare, class allocator>
 			{
 				node* nodeCheck = this->root;
 				node* nodeHold = nodeCheck;
+
+				if (nodeHold == NULL)
+					return (nil);
 
 				while (nodeCheck->nil == false)
 				{
@@ -149,6 +158,9 @@ template <class value_type, class compare, class allocator>
                 node* nodeCheck = this->root;
                 node* nodeHold = nodeCheck;
 
+				if (nodeHold == NULL)
+					return (nil);
+
 				while (nodeCheck->nil == false)
 				{
                     nodeHold = nodeCheck;
@@ -161,9 +173,26 @@ template <class value_type, class compare, class allocator>
 			{
                 node* nodeCheck = this->root;
 
+				if (nodeCheck == NULL)
+					return (nil);
+
 				while (nodeCheck->nil == false)
 				{
 					nodeCheck = nodeCheck->right;
+				}
+				return (nodeCheck);
+			}
+			//-------------------------------
+			node *begin() const
+			{
+                node* nodeCheck = this->root;
+
+				if (nodeCheck == NULL)
+					return (nil);
+
+				while (nodeCheck->nil == false)
+				{
+					nodeCheck = nodeCheck->left;
 				}
 				return (nodeCheck);
 			}
@@ -482,6 +511,35 @@ template <class value_type, class compare, class allocator>
 				}
 				// std::cout << "_node->color : " << _node->color <<"\n";
 				del_after_replace(_node);
+			}
+			void clear()
+			{
+				destroy(nil);
+				nil = NULL;
+			}
+			void clearRoot()
+			{
+				root = NULL;
+			}
+			node *search(const value_type &val) const
+			{
+				if (root == NULL)
+					return (end());
+
+				node *nodeCheck = root;
+				
+				while (nodeCheck->nil == false)
+				{
+					if (val.first == nodeCheck->pairv->first)
+					{
+						return(nodeCheck);
+					}
+					else if (comp(val.first, nodeCheck->pairv->first))
+						nodeCheck = nodeCheck->left;
+					else
+						nodeCheck = nodeCheck->right;
+				}
+				return (end());
 			}
 // >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
             void printHelper(Node<value_type> *root, std::string indent, bool last) {

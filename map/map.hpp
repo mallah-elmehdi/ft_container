@@ -10,7 +10,7 @@ class map
 		// +++++++ Member types
 		typedef Key                                            				key_type;
 		typedef T                                              				mapped_type;
-		typedef ft::pair<const key_type, mapped_type>          					value_type;
+		typedef ft::pair<const key_type, mapped_type>          				value_type;
 		typedef Compare                                        				key_compare;
 		typedef Allocator	                                   				allocator_type;
 		typedef typename allocator_type::reference							reference;
@@ -37,6 +37,7 @@ class map
 				typedef bool								result_type;
 				typedef value_type							first_argument_type;
 				typedef value_type							second_argument_type;
+
 				bool operator() (const value_type& x, const value_type& y) const
 				{
 					return comp(x.first, y.first);
@@ -62,9 +63,16 @@ class map
 				node* nodeHoldRight = nodeHoldCore->right->nil ? nodeHoldCore->right : NULL;
 				node* nodeHoldLeft = nodeHoldCore->left->nil ? nodeHoldCore->left : NULL;
 				clearCore(++it, eit);
-				if (nodeHoldRight) tree.destroy_node(nodeHoldRight);
-				if (nodeHoldLeft) tree.destroy_node(nodeHoldLeft);
+				if (nodeHoldRight) {
+					tree.destroy_node(nodeHoldRight);
+					nodeHoldRight = NULL;
+				};
+				if (nodeHoldLeft) {
+					tree.destroy_node(nodeHoldLeft);
+					nodeHoldLeft = NULL;
+				}
 				tree.destroy_node(nodeHoldCore);
+				nodeHoldCore = NULL;
 			}
 		}
 	public:
@@ -75,28 +83,22 @@ class map
 		map(InputIterator first, InputIterator last, const key_compare& compare = key_compare(), const allocator_type& allocator = allocator_type(), typename ft::enable_if<!ft::is_integral<InputIterator>::value, bool>::type = false)
 		: _size(0), alloc(allocator), comp(compare)
 		{
-			while (first != last)
-			{
-				insert(*first);
-				first++;
-			}
+			insert(first, last);
 		}
 		map (const map& x) : _size(0), alloc(x.alloc), comp(x.comp)
 		{
-			map(begin(), end());
+			insert(x.begin(), x.end());
 		}
 		map& operator= (const map& x)
 		{
 			clear();
-			for (iterator it = x.begin(); it != x.end(); it++)
-			{
-				insert(*it);
-			}
+			insert(x.begin(), x.end());
 			return (*this);
 		}
 		~map()
 		{
 			clear();
+			tree.clear();
 		}
 
 		/* --------------------------------------------- Iterators */
@@ -117,21 +119,22 @@ class map
 		{
 			return (const_iterator(tree.end()));
 		}
+		
 		reverse_iterator rbegin()
 		{
-			return (reverse_iterator(tree.last()));
+			return (reverse_iterator(end()));
 		}
 		const_reverse_iterator rbegin() const
 		{
-			return (const_reverse_iterator(tree.last()));
+			return (const_reverse_iterator(end()));
 		}
 		reverse_iterator rend()
 		{
-			return (reverse_iterator(tree.first()));
+			return (reverse_iterator(begin()));
 		}
 		const_reverse_iterator rend() const
 		{
-			return (const_reverse_iterator(tree.first()));
+			return (const_reverse_iterator(begin()));
 		}
 
 		/* Capacity */
@@ -189,9 +192,7 @@ class map
 			iterator it = find(k); 
 			if (it != end())
 			{
-				tree.printTree();
 				tree.del(it.nodes());
-				tree.printTree(); 
 				_size--;
 				return (1);
 			}
@@ -210,6 +211,7 @@ class map
 			if (size())
 			{
 				clearCore(begin(), end());
+				tree.clearRoot();
 				_size = 0;
 			}
 		}
@@ -222,31 +224,19 @@ class map
 		}
 		value_compare value_comp() const
 		{
-			return (value_compare(comp));
+			return (value_compare(key_comp()));
 		}
 
 		/* Operations */
 		
 		iterator find (const key_type& k)
 		{
-			iterator it = begin();
-			while (it != end())
-			{
-				if (it->first == k)
-					break;
-				++it;
-			}
+			iterator it(tree.search(ft::make_pair(k, mapped_type())));
 			return (it);
 		}
 		const_iterator find (const key_type& k) const
 		{
-			const_iterator it = begin();
-			while (it != end())
-			{
-				if (it->first == k)
-					break;
-				++it;
-			}
+			const_iterator it(tree.search(ft::make_pair(k, mapped_type())));
 			return (it);
 		}
 		void swap (map& x)
