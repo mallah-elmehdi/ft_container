@@ -366,8 +366,11 @@ void observers()
 	
 	std::map<int,int> std_mymap;
 	std::map<int,int>::key_compare std_mycomp = std_mymap.key_comp();
+	std::map<int,int>::iterator std_myit;
+	
 	ft::map<int,int> ft_mymap;
 	ft::map<int,int>::key_compare ft_mycomp = ft_mymap.key_comp();
+	ft::map<int,int>::iterator ft_myit;
 
 	std_mymap[1]=100;
 	std_mymap[2]=200;
@@ -377,11 +380,14 @@ void observers()
 	ft_mymap[2]=200;
 	ft_mymap[3]=300;
 
-	int std_highest = std_mymap.rbegin()->first; 
-	int ft_highest = ft_mymap.rbegin()->first; 
+	std_myit = std_mymap.begin();
+	ft_myit = ft_mymap.begin();
 
 	title("key_comp"); 
 	{
+		int std_highest = std_mymap.rbegin()->first; 
+		int ft_highest = ft_mymap.rbegin()->first; 
+
 		for (int i = 1; i <= 3; i++)
 		{
 			if (std_mycomp(std_mymap[i], std_highest) != ft_mycomp(ft_mymap[i], ft_highest))
@@ -393,11 +399,14 @@ void observers()
 		ok();
 	}
 
-	title("key_comp"); 
+	title("value_comp"); 
 	{
+		std::pair<int,int>  std_highest = *std_mymap.rbegin(); 
+		ft::pair<int,int> ft_highest = *ft_mymap.rbegin(); 
+		
 		for (int i = 1; i <= 3; i++)
 		{
-			if (std_mymap.value_comp()(std_mymap[i], std_highest) != ft_mymap.value_comp()(ft_mymap[i], ft_highest))
+			if (std_mymap.value_comp()(*std_myit++, std_highest) != ft_mymap.value_comp()(*ft_myit++, ft_highest))
 			{
 				ko();
 				return;
@@ -407,7 +416,100 @@ void observers()
 	}
 }
 
+void operations()
+{
+	big_title("Operations");
+	
+	std::map<int,int> std_mymap;
+	ft::map<int,int> ft_mymap;
 
+	std_mymap[1]=100;
+	std_mymap[2]=200;
+	std_mymap[3]=300;
+	
+	ft_mymap[1]=100;
+	ft_mymap[2]=200;
+	ft_mymap[3]=300;
+
+	title("find"); 
+	{
+		for (int i = 1; i <= 3; i++)
+		{
+			if (std_mymap.find(i)->first != ft_mymap.find(i)->first)
+			{
+				ko();
+				return;
+			}
+		}
+		ok();
+	}
+
+	title("count"); 
+	{
+		for (int i = 1; i <= 3; i++)
+		{
+			if (std_mymap.count(i) != ft_mymap.count(i))
+			{
+				ko();
+				return;
+			}
+		}
+		ok();
+	}
+
+	title("lower_bound"); 
+	{
+		for (int i = 0; i <= 4; i++)
+		{
+			if (std_mymap.lower_bound(i)->second != ft_mymap.lower_bound(i)->second)
+			{
+				ko();
+				return;
+			}
+		}
+		ok();
+	}
+
+	title("upper_bound"); 
+	{
+		for (int i = 0; i <= 4; i++)
+		{
+			if (std_mymap.upper_bound(i)->second != ft_mymap.upper_bound(i)->second)
+			{
+				ko();
+				return;
+			}
+		}
+		ok();
+	}
+
+	title("equal_range"); 
+	{
+		for (int i = 0; i <= 4; i++)
+		{
+			if ((std_mymap.equal_range(i).first)->second != (ft_mymap.equal_range(i).first)->second
+			|| (std_mymap.equal_range(i).second)->second != (ft_mymap.equal_range(i).second)->second)
+			{
+				ko();
+				return;
+			}
+		}
+		ok();
+	}
+}
+
+void allocator()
+{
+	big_title("Allocator");
+	
+	std::map<int,int> std_mymap;
+	ft::map<int,int> ft_mymap;
+
+	std::pair<const char,int>* p;
+
+	title("get_allocator");
+
+}
 
 int main()
 {
@@ -418,30 +520,8 @@ int main()
 	element_access();
 	modifiers();
 	observers();
+	operations();
+	allocator();
 
-
-
-	// ft::map<int, int> ft_m;
-	// for (int i = 1; i <= 10; i++)
-	// {
-	// 	ft_m.insert(ft::make_pair(i, i*10));
-	// }
-
-	// ft_m.erase(++ft_m.begin(), --ft_m.end());
-
-	// // for (int i = 1; i <= 1; i++)
-	// // {
-	// // 	ft_m.insert(ft::make_pair(i, i*10));
-	// // }
-
-	// for (ft::map<int, int>::iterator it = ft_m.begin(); it != ft_m.end(); it++)
-	// {
-	// 	std::cout << it->first << "\n";
-	// }
-	// ft_m.erase(ft_m.begin(), ft_m.end());
-
-
-	
-	// std::cout << "\n";
-	// std::cout << "size : " << ft_m.size() << "\n";
+	std::cout << "\n";
 }
