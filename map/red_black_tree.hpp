@@ -517,7 +517,6 @@ template <class value_type, class compare, class allocator>
 						_node = replace_children_1(_node);
 					}
 				}
-				// std::cout << "_node->color : " << _node->color <<"\n";
 				del_after_replace(_node);
 			}
 			void clear()

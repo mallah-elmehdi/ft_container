@@ -194,7 +194,7 @@ class map
 		{
 			if (size())
 			{
-				iterator it = find(k); 
+				iterator it = find(k);
 				if (it != end())
 				{
 					tree.del(it.nodes());

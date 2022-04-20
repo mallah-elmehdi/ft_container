@@ -334,6 +334,7 @@ void modifiers()
 	// ft_map.erase(--ft_map.end());
 	// LENGTH -= 1;
 	// check_values(std_map, ft_map);
+
 	title("erase - [range]");
 	std_map_default.erase(std_map_default.begin(), std_map_default.end());
 	ft_map_default.erase(ft_map_default.begin(), ft_map_default.end());
@@ -343,11 +344,20 @@ void modifiers()
 
 int main()
 {
-	init_map();
+	// init_map();
 	// member_functions();
 	// iterators();
 	// capacity();
 	// element_access();
-	modifiers();
+	// modifiers();
+	ft::map<int, int> ft_m;
+	for (int i = 1; i <= LENGTH; i++)
+	{
+		ft_m.insert(ft::make_pair(i, i*10));
+	}
+	
+	ft_m.erase(ft_m.begin(), ft_m.end());
+	std::cout << ft_m.size() << "\n";
+	
 	std::cout << "\n";
 }
