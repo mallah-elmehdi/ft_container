@@ -10,9 +10,9 @@
 
 namespace ft
 {
-	#include "vector.hpp"
-	#include "reverse_iterator.hpp"
 	#include "iterator.hpp"
+	#include "reverse_iterator.hpp"
+	#include "vector.hpp"
 }
 
 #endif

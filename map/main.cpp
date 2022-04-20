@@ -505,10 +505,17 @@ void allocator()
 	std::map<int,int> std_mymap;
 	ft::map<int,int> ft_mymap;
 
-	std::pair<const char,int>* p;
+	std::pair<const int, int>* std_p;
+	ft::pair<const int, int>* ft_p;
 
 	title("get_allocator");
+	std_p = std_mymap.get_allocator().allocate(5);
+	ft_p = ft_mymap.get_allocator().allocate(5);
 
+	std_mymap.get_allocator().deallocate(std_p, 5);
+	ft_mymap.get_allocator().deallocate(ft_p, 5);
+
+	ok();
 }
 
 int main()
