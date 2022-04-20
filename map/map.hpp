@@ -212,7 +212,6 @@ class map
 				{
 					iterator it = first;
 					erase(++first, last);
-					std::cout << it->first << "]\n";
 					erase(it);
 				}
 			}

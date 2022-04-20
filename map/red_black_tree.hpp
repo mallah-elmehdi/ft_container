@@ -372,6 +372,12 @@ template <class value_type, class compare, class allocator>
 			// -------------------------------
 			bool all_family_black(node *_node)
 			{
+				if (_node == NULL)
+					std::cout << "----------- _node hnaaaaaaaaaaaaaaaaaaaaaaaaa\n";
+				if (_node->right == NULL)
+					std::cout << "----------- right hnaaaaaaaaaaaaaaaaaaaaaaaaa\n";
+				if (_node->left == NULL)
+					std::cout << "----------- left hnaaaaaaaaaaaaaaaaaaaaaaaaa\n";
 				return (_node->color == BLACK && _node->right->color == BLACK && _node->left->color == BLACK);
 			}
 			// ------------------------------- 
@@ -424,9 +430,10 @@ template <class value_type, class compare, class allocator>
 			bool check_sibling(node *_node)
 			{
 				node *nodeSibling;
+				
 				nodeSibling = _node->parent->right == _node ? _node->parent->left : _node->parent->right;
 
-				if (all_family_black(nodeSibling))
+				if (nodeSibling->nil || all_family_black(nodeSibling))
 				{
 					nodeSibling->color = RED;
 					if (_node->parent->color == RED)

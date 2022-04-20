@@ -2362,7 +2362,7 @@ int main()
         if (!ft_m3.empty())
         {
             ft_m3.erase(ft_m3.begin(), ft_m3.end());
-            // ft_m3.erase(ft_m3.begin(), ft_m3.end());
+            ft_m3.erase(ft_m3.begin(), ft_m3.end());
         }
 
 	
