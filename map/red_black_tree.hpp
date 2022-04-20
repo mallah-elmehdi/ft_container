@@ -222,6 +222,7 @@ template <class value_type, class compare, class allocator>
                 {
                     root = nodeHold;
                     root->color = BLACK;
+                    root->root = true;
                 }
                 else if (_node == _node->parent->left)
                     _node->parent->left = nodeHold;
@@ -246,6 +247,7 @@ template <class value_type, class compare, class allocator>
                 {
                     root = nodeHold;
                     root->color = BLACK;
+                    root->root = true;
                 }
                 else if (_node == _node->parent->right)
                     _node->parent->right = nodeHold;
@@ -422,7 +424,6 @@ template <class value_type, class compare, class allocator>
 			bool check_sibling(node *_node)
 			{
 				node *nodeSibling;
-
 				nodeSibling = _node->parent->right == _node ? _node->parent->left : _node->parent->right;
 
 				if (all_family_black(nodeSibling))

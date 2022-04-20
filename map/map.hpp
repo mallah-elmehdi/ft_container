@@ -185,26 +185,36 @@ class map
 		}
     	void erase (iterator position)
 		{
-			erase(position->first);
+			if (size())
+			{
+				erase(position->first);
+			}
 		}
 		size_type erase (const key_type& k)
 		{
-			iterator it = find(k); 
-			if (it != end())
+			if (size())
 			{
-				tree.del(it.nodes());
-				_size--;
-				return (1);
+				iterator it = find(k); 
+				if (it != end())
+				{
+					tree.del(it.nodes());
+					_size--;
+					return (1);
+				}
 			}
 			return (0);
 		}
 		void erase (iterator first, iterator last)
 		{
-			if (first != last)
+			if (size())
 			{
-				iterator it = first;
-				erase(++first, last);
-				erase(it);
+				if (first != last)
+				{
+					iterator it = first;
+					erase(++first, last);
+					std::cout << it->first << "]\n";
+					erase(it);
+				}
 			}
 		}
 		void clear()
