@@ -260,52 +260,119 @@ void element_access()
 
 void modifiers()
 {
-	big_title("Modifiers");
+	// big_title("Modifiers");
 	
-	title("insert - [single new element]");
-	bool val_std = std_map.insert(std::make_pair(LENGTH + 1, 33)).second;
-	bool val_ft = ft_map.insert(ft::make_pair(LENGTH + 1, 33)).second;
-	LENGTH += 1;
-	check_values(std_map, ft_map);
+	// title("insert - [single new element]");
+	// bool val_std = std_map.insert(std::make_pair(LENGTH + 1, 33)).second;
+	// bool val_ft = ft_map.insert(ft::make_pair(LENGTH + 1, 33)).second;
+	// LENGTH += 1;
+	// check_values(std_map, ft_map);
 	
-	title("insert - [single new element result]");
-	check_capacity(val_std == val_ft);
+	// title("insert - [single new element result]");
+	// check_capacity(val_std == val_ft);
 
-	title("insert - [single new multiple elements]");
-	std_map.insert(std::make_pair(LENGTH + 1, 343));
-	std_map.insert(std::make_pair(LENGTH + 1, 3123));
-	std_map.insert(std::make_pair(LENGTH + 1, 33));
-	ft_map.insert(ft::make_pair(LENGTH + 1, 343));
-	ft_map.insert(ft::make_pair(LENGTH + 1, 3123));
-	ft_map.insert(ft::make_pair(LENGTH + 1, 33));
-	LENGTH += 3;
-	check_values(std_map, ft_map);
+	// title("insert - [single new multiple elements]");
+	// std_map.insert(std::make_pair(LENGTH + 1, 343));
+	// std_map.insert(std::make_pair(LENGTH + 1, 3123));
+	// std_map.insert(std::make_pair(LENGTH + 1, 33));
+	// ft_map.insert(ft::make_pair(LENGTH + 1, 343));
+	// ft_map.insert(ft::make_pair(LENGTH + 1, 3123));
+	// ft_map.insert(ft::make_pair(LENGTH + 1, 33));
+	// LENGTH += 3;
+	// check_values(std_map, ft_map);
 
-	title("insert - [single existing element]");
-	val_std = std_map.insert(std::make_pair(1, 33)).second;
-	val_ft = ft_map.insert(ft::make_pair(1, 33)).second;
-	check_values(std_map, ft_map);
+	// title("insert - [single existing element]");
+	// val_std = std_map.insert(std::make_pair(1, 33)).second;
+	// val_ft = ft_map.insert(ft::make_pair(1, 33)).second;
+	// check_values(std_map, ft_map);
 
-	title("insert - [single existing element result]");
-	check_capacity(val_std == val_ft);
+	// title("insert - [single existing element result]");
+	// check_capacity(val_std == val_ft);
 
-	title("insert - [single existing multiple elements]");
-	std_map.insert(std::make_pair(6, 343));
-	std_map.insert(std::make_pair(10, 3123));
-	std_map.insert(std::make_pair(3, 33));
-	ft_map.insert(ft::make_pair(567, 343));
-	ft_map.insert(ft::make_pair(13123, 3123));
-	check_values(std_map, ft_map);
+	// title("insert - [single existing multiple elements]");
+	// std_map.insert(std::make_pair(6, 343));
+	// std_map.insert(std::make_pair(10, 3123));
+	// std_map.insert(std::make_pair(3, 33));
+	// ft_map.insert(ft::make_pair(6, 343));
+	// ft_map.insert(ft::make_pair(10, 3123));
+	// ft_map.insert(ft::make_pair(3, 33));
+	// check_values(std_map, ft_map);
+
+	// title("insert - [with hint]");
+	// std_map.insert(++std_map.begin(), std::make_pair(LENGTH + 1, 67543));
+	// ft_map.insert(++ft_map.begin(), ft::make_pair(LENGTH + 1, 67543));
+	// LENGTH += 1;
+	// check_values(std_map, ft_map);
+
+	// title("insert - [range]");
+	// std::map<int, int> std_map_default;
+	// ft::map<int, int> ft_map_default;
+	// std_map_default.insert(++std_map.begin(), --std_map.end());
+	// ft_map_default.insert(++ft_map.begin(), --ft_map.end());
+	// check_values(std_map_default, ft_map_default);
+
+	// title("erase - [single existing element]");
+	// size_t size_std = std_map.erase(10);
+	// size_t size_ft = ft_map.erase(10);
+	// LENGTH -= 1;
+	// check_values(std_map, ft_map);
+
+	// title("erase - [single other element]");
+	// size_std = std_map.erase(-10);
+	// size_ft = ft_map.erase(-10);
+	// check_values(std_map, ft_map);
+	
+	// title("erase - [iterator]");
+	// std_map.erase(++std_map.begin());
+	// ft_map.erase(++ft_map.begin());
+	// LENGTH -= 1;
+	// check_capacity(val_std == val_ft);
+
+// -----------------------------------------------
+
+	// title("erase - [iterator]");
+	// std_map.erase(++std_map.end());
+	++ft_map.end();
+	// ft_map.erase(++ft_map.end());
+	// LENGTH -= 1;
+	// check_capacity(val_std == val_ft);
+
+	// title("insert - [single new multiple elements]");
+	// std_map.insert(std::make_pair(LENGTH + 1, 343));
+	// std_map.insert(std::make_pair(LENGTH + 1, 3123));
+	// std_map.insert(std::make_pair(LENGTH + 1, 33));
+	// ft_map.insert(ft::make_pair(LENGTH + 1, 343));
+	// ft_map.insert(ft::make_pair(LENGTH + 1, 3123));
+	// ft_map.insert(ft::make_pair(LENGTH + 1, 33));
+	// LENGTH += 3;
+	// check_values(std_map, ft_map);
+
+	// title("insert - [single existing element]");
+	// val_std = std_map.insert(std::make_pair(1, 33)).second;
+	// val_ft = ft_map.insert(ft::make_pair(1, 33)).second;
+	// check_values(std_map, ft_map);
+
+	// title("insert - [single existing element result]");
+	// check_capacity(val_std == val_ft);
+
+	// title("insert - [single existing multiple elements]");
+	// std_map.insert(std::make_pair(6, 343));
+	// std_map.insert(std::make_pair(10, 3123));
+	// std_map.insert(std::make_pair(3, 33));
+	// ft_map.insert(ft::make_pair(6, 343));
+	// ft_map.insert(ft::make_pair(10, 3123));
+	// ft_map.insert(ft::make_pair(3, 33));
+	// check_values(std_map, ft_map);
 }
 
 
 int main()
 {
 	init_map();
-	member_functions();
-	iterators();
-	capacity();
-	element_access();
+	// member_functions();
+	// iterators();
+	// capacity();
+	// element_access();
 	modifiers();
 	std::cout << "\n";
 }

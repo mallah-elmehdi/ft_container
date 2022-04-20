@@ -63,7 +63,7 @@ class bd_iterator {
 		bd_iterator& operator++(void)
 		{
 			node *nodeHold = _node;
-
+			if ()
 			if (_node->right && _node->right->nil == false)
 			{
 				_node =_node->right;
