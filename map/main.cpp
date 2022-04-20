@@ -5,43 +5,46 @@
 
 #define LENGTH 100
 // Reset
-#define Color_Off '\033[0m'       // Text Reset
+#define Color_Off "\e[0m"       // Text Reset
 // Bold
-#define BBlack '\033[1;30m'       // Black
-#define BRed '\033[1;31m'         // Red
-#define BGreen '\033[1;32m'       // Green
-#define BYellow '\033[1;33m'      // Yellow
-#define BBlue '\033[1;34m'        // Blue
-#define BPurple '\033[1;35m'      // Purple
-#define BCyan '\033[1;36m'        // Cyan
-#define BWhite '\033[1;37m'       // White
+#define BBlack "\e[1;30m"       // Black
+#define BRed "\e[1;31m"         // Red
+#define BGreen "\e[1;32m"       // Green
+#define BYellow "\e[1;33m"      // Yellow
+#define BBlue "\e[1;34m"        // Blue
+#define BPurple "\e[1;35m"      // Purple
+#define BCyan "\e[1;36m"        // Cyan
+#define BWhite "\e[1;37m"       // White
 // Background
-#define On_Black '\033[40m'       // Black
-#define On_Red '\033[41m'         // Red
-#define On_Green '\033[42m'       // Green
-#define On_Yellow '\033[43m'      // Yellow
-#define On_Blue '\033[44m'        // Blue
-#define On_Purple '\033[45m'      // Purple
-#define On_Cyan '\033[46m'        // Cyan
-#define On_White '\033[47m'       // White
+#define On_Black "\e[40m"       // Black
+#define On_Red "\e[41m"         // Red
+#define On_Green "\e[42m"       // Green
+#define On_Yellow "\e[43m"      // Yellow
+#define On_Blue "\e[44m"        // Blue
+#define On_Purple "\e[45m"      // Purple
+#define On_Cyan "\e[46m"        // Cyan
+#define On_White "\e[47m"       // White
 
+// ======================================================== GLOBAL VARIABLES
 
 std::map<int, int> std_map;
 ft::map<int, int> ft_map;
 
+// ======================================================== HELP FUNCTIONS
+
 void ok()
 {
-	std::cout << " =========== [OK]\n";
+	std::cout << BGreen << "[OK]\n" << Color_Off;
 }
 
 void ko()
 {
-	std::cout << " =========== [KO]\n";
+	std::cout << BRed << "[KO]\n" << Color_Off;
 }
 
 void title(std::string str)
 {
-	std::cout << "+ " << std::setw(20) << std::left << str;
+	std::cout << BBlue << "+ " << std::setw(20) << std::left << str << Color_Off;
 }
 
 void init_map()
@@ -66,10 +69,12 @@ void check_values(std::map<int, int> _std, ft::map<int, int> _ft)
 	ok();
 }
 
+// ======================================================== TEST FUNCTIONS
+
 void member_functions()
 {
 	//
-	std::cout << "\n-------------------- Member functions\n\n";
+	std::cout << On_Purple << BWhite << "\n-------------------- Member functions" << Color_Off << "\n\n";
 	
 	title("copy constructor");
 	std::map<int, int> std_map_copy(std_map);
@@ -85,6 +90,9 @@ void member_functions()
 int main()
 {
 	//
+	title("default constructor");
+	check_values(std_map, ft_map);
+	// 
 	init_map();
 	// 
 	member_functions();
