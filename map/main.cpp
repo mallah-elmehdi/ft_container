@@ -356,14 +356,18 @@ int main()
 		ft_m.insert(ft::make_pair(i, i*10));
 	}
 
-	// ft_m.erase(6);
+	ft_m.erase(++ft_m.begin(), --ft_m.end());
 
-	ft_m.erase(ft_m.begin(), ft_m.end());
+	// for (int i = 1; i <= 1; i++)
+	// {
+	// 	ft_m.insert(ft::make_pair(i, i*10));
+	// }
 
 	for (ft::map<int, int>::iterator it = ft_m.begin(); it != ft_m.end(); it++)
 	{
 		std::cout << it->first << "\n";
 	}
+	// ft_m.erase(ft_m.begin(), ft_m.end());
 
 
 	

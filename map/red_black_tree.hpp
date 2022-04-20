@@ -372,12 +372,6 @@ template <class value_type, class compare, class allocator>
 			// -------------------------------
 			bool all_family_black(node *_node)
 			{
-				if (_node == NULL)
-					std::cout << "----------- _node hnaaaaaaaaaaaaaaaaaaaaaaaaa\n";
-				if (_node->right == NULL)
-					std::cout << "----------- right hnaaaaaaaaaaaaaaaaaaaaaaaaa\n";
-				if (_node->left == NULL)
-					std::cout << "----------- left hnaaaaaaaaaaaaaaaaaaaaaaaaa\n";
 				return (_node->color == BLACK && _node->right->color == BLACK && _node->left->color == BLACK);
 			}
 			// ------------------------------- 
@@ -445,9 +439,6 @@ template <class value_type, class compare, class allocator>
 				}
 				else if (nodeSibling->color == RED)
 				{
-					// nodeSibling->color = BLACK;
-					// _node->parent->color = RED;
-
 					swap_colors(nodeSibling, _node->parent);
 					
 					if (_node->parent->left == _node)
@@ -459,9 +450,6 @@ template <class value_type, class compare, class allocator>
 				else if (check_family_color_1(_node, nodeSibling))
 				{
 					node *nodeNearChildSibling = near_node_child_sibling(_node, nodeSibling);
-					
-					// nodeSibling->color = RED;
-					// nodeNearChildSibling->color = BLACK;
 
 					swap_colors(nodeSibling, nodeNearChildSibling);
 					
@@ -498,14 +486,22 @@ template <class value_type, class compare, class allocator>
 				}
 				destroy_node(nodeHold->left);
 				destroy_node(nodeHold->right);
-				destroy_pair(nodeHold->pairv);
 				nodeHold->left = NULL;
 				nodeHold->right = NULL;
-				nodeHold->pairv = nil_pair();
-				nodeHold->nil = true;
-				nodeHold->root = false;
-				nodeHold->color = BLACK;
-				// destroy(nodeHold);
+				if (nodeHold->root == false)
+				{
+					destroy_pair(nodeHold->pairv);
+					nodeHold->pairv = nil_pair();
+					nodeHold->nil = true;
+					nodeHold->root = false;
+					nodeHold->color = BLACK;
+				}
+				else
+				{
+					destroy_node(nodeHold);
+					root = NULL;
+					nodeHold = NULL;
+				}
 			}
 			// -------------------------------
 			void del(node *_node)
