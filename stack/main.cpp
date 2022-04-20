@@ -32,18 +32,6 @@ int LENGTH = 100;
 std::vector<int> std_vector(LENGTH);
 ft::vector<int> ft_vector(LENGTH);
 
-// std::map<int, int>::iterator std_it;
-// ft::map<int, int>::iterator ft_it;
-
-// std::map<int, int>::const_iterator std_cit;
-// ft::map<int, int>::const_iterator ft_cit;
-
-// std::map<int, int>::reverse_iterator std_rit;
-// ft::map<int, int>::reverse_iterator ft_rit;
-
-// std::map<int, int>::const_reverse_iterator std_crit;
-// ft::map<int, int>::const_reverse_iterator ft_crit;
-
 // ======================================================== HELP FUNCTIONS
 
 void ok()
@@ -68,77 +56,29 @@ void big_title(std::string str)
 
 void init_map()
 {
-	for (int i = 1; i <= LENGTH; i++)
+	for (int i = 0; i < LENGTH; i++)
 	{
-		
+		std_vector[i] = i + 1;
+		ft_vector[i] = i + 1;
 	}
 }
 
-void check_values(std::map<int, int> _std, ft::map<int, int> _ft)
+void check_values(std::stack<int, std::vector<int> > _std, ft::stack<int, ft::vector<int> >_ft)
 {
 	if (_std.size() != _ft.size())
 	{
-		std::cout << _std.size() << " != " << _ft.size() << "\n";
 		ko();
 		return ;
 	}
 	for (int i = 1; i <= LENGTH; i++)
 	{
-		if (_std[i] != _ft[i])
+		if (_std.top() != _ft.top())
 		{
 			ko();
 			return ;
 		}
-	}
-	ok();
-}
-
-void check_iterator()
-{
-	if (std_it->first != ft_it->first || std_it->second != ft_it->second)
-	{
-		ko();
-		return ;
-	}
-	ok();
-}
-
-void check_const_iterator()
-{
-	if (std_cit->first != ft_cit->first || std_cit->second != ft_cit->second)
-	{
-		ko();
-		return ;
-	}
-	ok();
-}
-
-void check_reverse_iterator()
-{
-	if (std_rit->first != ft_rit->first || std_rit->second != ft_rit->second)
-	{
-		ko();
-		return ;
-	}
-	ok();
-}
-
-void check_const_reverse_iterator()
-{
-	if (std_crit->first != ft_crit->first || std_crit->second != ft_crit->second)
-	{
-		ko();
-		return ;
-	}
-	ok();
-}
-
-void check_capacity(bool results)
-{
-	if (!results)
-	{
-		ko();
-		return ;
+		_std.pop();
+		_ft.pop();
 	}
 	ok();
 }
@@ -149,84 +89,88 @@ void member_functions()
 {
 	big_title("Member functions");
 	
-	title("default constructor");
-	std::map<int, int> std_map_default;
-	ft::map<int, int> ft_map_default;
-	check_values(std_map_default, ft_map_default);
+	_title("constructor");
+	std::stack<int, std::vector<int> > std_stack_default(std_vector);
+	ft::stack<int, ft::vector<int> > ft_stack_default(ft_vector);
+	check_values(std_stack_default, ft_stack_default);
 
-	title("copy constructor");
-	std::map<int, int> std_map_copy(std_map);
-	ft::map<int, int> ft_map_copy(ft_map);
-	check_values(std_map_copy, ft_map_copy);
-	
-	title("range constructor");
-	std::map<int, int> std_map_range(std_map.begin(), std_map.end());
-	ft::map<int, int> ft_map_range(ft_map.begin(), ft_map.end());
-	check_values(std_map_range, ft_map_range);
-	
+	_title("empty");
 	{
-		title("destructor");
-		std::map<int, int> std_map_destructor;
-		ft::map<int, int> ft_map_destructor;
-		check_values(std_map_destructor, ft_map_destructor);
+		if (std_stack_default.empty() != ft_stack_default.empty())
+		{
+			ko();
+			return;
+		}
+		ok();
 	}
 
-	title("operator=");
-	std::map<int, int> std_map_operator = std_map;
-	ft::map<int, int> ft_map_operator = ft_map;
-	check_values(std_map_operator, ft_map_operator);
-}
+	_title("size");
+	{
+		if (std_stack_default.size() != ft_stack_default.size())
+		{
+			ko();
+			return;
+		}
+		ok();
+	}
 
-void iterators()
-{
-	big_title("Iterators");
-	
-	title("begin - [iterator]");
-	std_it = std_map.begin();
-	ft_it = ft_map.begin();
-	check_iterator();
+	_title("top");
+	{
+		if (std_stack_default.top() != ft_stack_default.top())
+		{
+			ko();
+			return;
+		}
+		ok();
+	}
 
-	title("begin - [const iterator]");
-	std_cit = std_map.begin();
-	ft_cit = ft_map.begin();
-	check_const_iterator();
+	_title("push");
+	{
+		std_stack_default.push(5);
+		ft_stack_default.push(5);
+		if (std_stack_default.top() != ft_stack_default.top())
+		{
+			ko();
+			return;
+		}
+		ok();
+	}
+	_title("pop");
+	{
+		std_stack_default.pop();
+		ft_stack_default.pop();
+		if (std_stack_default.top() != ft_stack_default.top())
+		{
+			ko();
+			return;
+		}
+		ok();
+	}
 
-	title("end - [iterator]");
-	std_it = --std_map.end();
-	ft_it = --ft_map.end();
-	check_iterator();
+	big_title("Non-member function overloads");
 
-	title("end - [const iterator]");
-	std_cit = --std_map.end();
-	ft_cit = --ft_map.end();
-	check_const_iterator();
+	_title("relational operators");
+	{
+		std::vector<int> std_vector_help(LENGTH);
+		ft::vector<int> ft_vector_help(LENGTH);
+		
+		std::stack<int, std::vector<int> > std_stack_help(std_vector_help);
+		ft::stack<int, ft::vector<int> > ft_stack_help(ft_vector_help);
+		
+		if ((std_stack_default == std_stack_help) != ft_stack_default.top())
+		{
+			ko();
+			return;
+		}
+		ok();
+	}
 
-	title("rbegin - [reverse iterator]");
-	std_rit = std_map.rbegin();
-	ft_rit = ft_map.rbegin();
-	check_reverse_iterator();
-
-	title("rbegin - [const reverse iterator]");
-	std_crit = std_map.rbegin();
-	ft_crit = ft_map.rbegin();
-	check_const_reverse_iterator();
-
-	title("rend - [reverse iterator]");
-	std_rit = --std_map.rend();
-	ft_rit = --ft_map.rend();
-	check_reverse_iterator();
-
-	title("rend - [const reverse iterator]");
-	std_crit = --std_map.rend();
-	ft_crit = --ft_map.rend();
-	check_const_reverse_iterator();
 }
 
 int main()
 {
 	init_map();
 	member_functions();
-	iterators();
 
 	std::cout << "\n";
 }
