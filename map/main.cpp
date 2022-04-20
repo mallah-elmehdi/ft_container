@@ -30,11 +30,17 @@
 std::map<int, int> std_map;
 ft::map<int, int> ft_map;
 
-std::map<int, int>::iterator std_map_it;
-ft::map<int, int>::iterator ft_map_it;
+std::map<int, int>::iterator std_it;
+ft::map<int, int>::iterator ft_it;
 
-std::map<int, int>::const_iterator std_map_cit;
-ft::map<int, int>::const_iterator ft_map_cit;
+std::map<int, int>::const_iterator std_cit;
+ft::map<int, int>::const_iterator ft_cit;
+
+std::map<int, int>::reverse_iterator std_rit;
+ft::map<int, int>::reverse_iterator ft_rit;
+
+std::map<int, int>::const_reverse_iterator std_crit;
+ft::map<int, int>::const_reverse_iterator ft_crit;
 
 // ======================================================== HELP FUNCTIONS
 
@@ -50,7 +56,7 @@ void ko()
 
 void title(std::string str)
 {
-	std::cout << BBlue << "+ " << std::setw(20) << std::left << str << Color_Off;
+	std::cout << BBlue << "+ " << std::setw(40) << std::left << str << Color_Off;
 }
 
 void big_title(std::string str)
@@ -76,6 +82,56 @@ void check_values(std::map<int, int> _std, ft::map<int, int> _ft)
 			ko();
 			return ;
 		}
+	}
+	ok();
+}
+
+void check_iterator()
+{
+	if (std_it->first != ft_it->first || std_it->second != ft_it->second)
+	{
+		ko();
+		return ;
+	}
+	ok();
+}
+
+void check_const_iterator()
+{
+	if (std_cit->first != ft_cit->first || std_cit->second != ft_cit->second)
+	{
+		ko();
+		return ;
+	}
+	ok();
+}
+
+void check_reverse_iterator()
+{
+	if (std_rit->first != ft_rit->first || std_rit->second != ft_rit->second)
+	{
+		ko();
+		return ;
+	}
+	ok();
+}
+
+void check_const_reverse_iterator()
+{
+	if (std_crit->first != ft_crit->first || std_crit->second != ft_crit->second)
+	{
+		ko();
+		return ;
+	}
+	ok();
+}
+
+void check_capacity()
+{
+	if (std_crit->first != ft_crit->first || std_crit->second != ft_crit->second)
+	{
+		ko();
+		return ;
 	}
 	ok();
 }
@@ -118,18 +174,61 @@ void iterators()
 {
 	big_title("Iterators");
 	
-	title("begin");
-	std_map_it = std_map_it;
-	ft::map<int, int>::iterator ft_map_it;
-	check_values(std_map_default, ft_map_default);
+	title("begin - [iterator]");
+	std_it = std_map.begin();
+	ft_it = ft_map.begin();
+	check_iterator();
 
+	title("begin - [const iterator]");
+	std_cit = std_map.begin();
+	ft_cit = ft_map.begin();
+	check_const_iterator();
+
+	title("end - [iterator]");
+	std_it = --std_map.end();
+	ft_it = --ft_map.end();
+	check_iterator();
+
+	title("end - [const iterator]");
+	std_cit = --std_map.end();
+	ft_cit = --ft_map.end();
+	check_const_iterator();
+
+	title("rbegin - [reverse iterator]");
+	std_rit = std_map.rbegin();
+	ft_rit = ft_map.rbegin();
+	check_reverse_iterator();
+
+	title("rbegin - [const reverse iterator]");
+	std_crit = std_map.rbegin();
+	ft_crit = ft_map.rbegin();
+	check_const_reverse_iterator();
+
+	title("rend - [reverse iterator]");
+	std_rit = --std_map.rend();
+	ft_rit = --ft_map.rend();
+	check_reverse_iterator();
+
+	title("rend - [const reverse iterator]");
+	std_crit = --std_map.rend();
+	ft_crit = --ft_map.rend();
+	check_const_reverse_iterator();
 }
+
+void capacity()
+{
+	big_title("Capacity");
+	
+	title("empty");
+	std::map<int, int> std_map_default;
+	ft::map<int, int> ft_map_default;
+	check_capacity(std_map_default, ft_map_default);
+}
+
 
 int main()
 {
-	// 
 	init_map();
-	// 
 	member_functions();
-
+	iterators();
 }
