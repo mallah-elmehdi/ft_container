@@ -2216,56 +2216,159 @@ void alarm_handler(int seg)
 
 int main()
 {
-    std::cout << LRED << "________________________________________________________________________________________________________" << std::endl;
-    std::cout << LRED << "**** The test is taking so much time to test the all cases and the time complexity of each method ****" << std::endl;
-    std::cout << LRED << "--------------------------------------------------------------------------------------------------------" << RESET << std::endl;
-    signal(SIGALRM, alarm_handler);
+    // std::cout << LRED << "________________________________________________________________________________________________________" << std::endl;
+    // std::cout << LRED << "**** The test is taking so much time to test the all cases and the time complexity of each method ****" << std::endl;
+    // std::cout << LRED << "--------------------------------------------------------------------------------------------------------" << RESET << std::endl;
+    // signal(SIGALRM, alarm_handler);
 
-    std::cout << YELLOW << "Testing Iterators;" << RESET << std::endl;
-    TEST_CASE(iterator_tests);
-    TEST_CASE(const_iterator_tests);
-    TEST_CASE(reverse_iterator_tests);
-    std::cout << std::endl;
+    // std::cout << YELLOW << "Testing Iterators;" << RESET << std::endl;
+    // TEST_CASE(iterator_tests);
+    // TEST_CASE(const_iterator_tests);
+    // TEST_CASE(reverse_iterator_tests);
+    // std::cout << std::endl;
 
-    std::cout << YELLOW << "Testing Constructors;" << RESET << std::endl;
-    TEST_CASE(testConstructors);
-    std::cout << std::endl;
+    // std::cout << YELLOW << "Testing Constructors;" << RESET << std::endl;
+    // TEST_CASE(testConstructors);
+    // std::cout << std::endl;
 
-    std::cout << YELLOW << "Testing Iterator Methods;" << RESET << std::endl;
-    TEST_CASE(testIterators);
-    std::cout << std::endl;
+    // std::cout << YELLOW << "Testing Iterator Methods;" << RESET << std::endl;
+    // TEST_CASE(testIterators);
+    // std::cout << std::endl;
 
-    std::cout << YELLOW << "Testing Capacity Methods;" << RESET << std::endl;
-    TEST_CASE(testCapacityMethods)
-    std::cout << std::endl;
+    // std::cout << YELLOW << "Testing Capacity Methods;" << RESET << std::endl;
+    // TEST_CASE(testCapacityMethods)
+    // std::cout << std::endl;
 
-    std::cout << YELLOW << "Testing Access Element Methods; " << RESET << std::endl;
-    TEST_CASE(testElementAccess);
-    std::cout << std::endl;
+    // std::cout << YELLOW << "Testing Access Element Methods; " << RESET << std::endl;
+    // TEST_CASE(testElementAccess);
+    // std::cout << std::endl;
 
-    std::cout << YELLOW << "Testing Modifiers Methods;" << RESET << std::endl;
-    TEST_CASE(testModifiers)
-    std::cout << std::endl;
+    // std::cout << YELLOW << "Testing Modifiers Methods;" << RESET << std::endl;
+    // TEST_CASE(testModifiers)
+    // std::cout << std::endl;
 
-    std::cout << YELLOW << "Testing Observers Methods;" << RESET << std::endl;
-    TEST_CASE(testObservers)
-    std::cout << std::endl;
+    // std::cout << YELLOW << "Testing Observers Methods;" << RESET << std::endl;
+    // TEST_CASE(testObservers)
+    // std::cout << std::endl;
 
-    std::cout << YELLOW << "Testing Operations Methods;" << RESET << std::endl;
-    TEST_CASE(testOperations)
-    std::cout << std::endl;
+    // std::cout << YELLOW << "Testing Operations Methods;" << RESET << std::endl;
+    // TEST_CASE(testOperations)
+    // std::cout << std::endl;
 
-    std::cout << YELLOW << "Testing Allocator Methods;" << RESET << std::endl;
-    TEST_CASE(testAllocatorMethodes)
-    std::cout << std::endl;
+    // std::cout << YELLOW << "Testing Allocator Methods;" << RESET << std::endl;
+    // TEST_CASE(testAllocatorMethodes)
+    // std::cout << std::endl;
 
-    std::cout << YELLOW << "Testing Retional Operators; " << RESET << std::endl;
-    TEST_CASE(testRetionalOperators);
-    std::cout << std::endl;
+    // std::cout << YELLOW << "Testing Retional Operators; " << RESET << std::endl;
+    // TEST_CASE(testRetionalOperators);
+    // std::cout << std::endl;
 
-    std::cout << YELLOW << "Testing Non-Member Swap  ; " << RESET << std::endl;
-    TEST_CASE(testNonMemberSwap);
-    std::cout << std::endl;
+    // std::cout << YELLOW << "Testing Non-Member Swap  ; " << RESET << std::endl;
+    // TEST_CASE(testNonMemberSwap);
+    // std::cout << std::endl;
+
+        std::map<char, int> m;
+        ft::map<char, int> ft_m;
+
+        // insert some values:
+        ft_m['a'] = 10;
+        ft_m['b'] = 20;
+        ft_m['c'] = 30;
+        ft_m['d'] = 40;
+        ft_m['e'] = 50;
+        ft_m['f'] = 60;
+
+        m['a'] = 10;
+        m['b'] = 20;
+        m['c'] = 30;
+        m['d'] = 40;
+        m['e'] = 50;
+        m['f'] = 60;
+
+		std::map<char, int>::iterator it;
+        ft::map<char, int>::iterator ft_it;
+
+        it = m.find('b');
+        ft_it = ft_m.find('b');
+
+        m.erase(it);       // erasing by iterator
+        ft_m.erase(ft_it); // erasing by iterator
+
+
+        int ret = m.erase('c');       // erasing by key
+        int ft_ret = ft_m.erase('c'); // erasing by key
+
+		std::cout << ret << " " << ft_ret << "\n";
+
+        it = m.find('e');
+        ft_it = ft_m.find('e');
+
+        m.erase(it, m.end());          // erasing by range
+        ft_m.erase(ft_it, ft_m.end()); // erasing by range
+
+        // /* ---------- Testing some edge cases ---------- */
+
+        // std::map<int, std::string> m2;
+        // ft::map<int, std::string> ft_m2;
+
+        // for (size_t i = 0; i < 1e5; i++)
+        // {
+        //     m2.insert(std::make_pair(i, "string1"));
+        //     ft_m2.insert(ft::make_pair(i, "string1"));
+        // }
+
+        // std::map<int, std::string>::reverse_iterator it2 = m2.rbegin();
+        // ft::map<int, std::string>::reverse_iterator ft_it2 = ft_m2.rbegin();
+
+        // m2.erase(m2.begin());
+        // ft_m2.erase(ft_m2.begin());
+
+        // cond = cond && m2.size() == ft_m2.size() && comparemaps(m2.begin(), m2.end(), ft_m2.begin(), ft_m2.end());
+
+        // m2.erase(it2->first);
+        // ft_m2.erase(ft_it2->first);
+
+        // cond = cond && m2.size() == ft_m2.size() && comparemaps(m2.begin(), m2.end(), ft_m2.begin(), ft_m2.end());
+
+        // std::map<int, std::string> m3;
+        // ft::map<int, std::string> ft_m3;
+        // std::vector<int> vec;
+        // std::vector<int> ft_vec;
+        // std::random_device randDev;
+        // std::mt19937 generator(randDev());
+        // std::uniform_int_distribution<int> distr(0, 1e8);
+
+        // for (size_t i = 0; i < 100; i++)
+        // {
+        //     m3.insert(std::make_pair(i, "string1"));
+        //     ft_m3.insert(ft::make_pair(i, "string1"));
+        // }
+
+        // for (size_t i = 0; i < 100; ++i)
+        // {
+        //     int n = distr(generator);
+        //     int ret1 = m3.erase(n);
+        //     int ret2 = ft_m3.erase(n);
+
+        //     if (ret1 != ret2)
+        //     {
+        //         cond = false;
+        //         break;
+        //     }
+        // }
+
+        // if (!m3.empty())
+        // {
+        //     m3.erase(m3.begin(), m3.end());
+        //     m3.erase(m3.begin(), m3.end());
+        // }
+        // if (!ft_m3.empty())
+        // {
+        //     ft_m3.erase(ft_m3.begin(), ft_m3.end());
+        //     ft_m3.erase(ft_m3.begin(), ft_m3.end());
+        // }
+        // cond = cond && (m3.size() == ft_m3.size() && comparemaps(m3.begin(), m3.end(), ft_m3.begin(), ft_m3.end()));
+
 	
     return 0;
 }

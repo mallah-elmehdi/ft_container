@@ -202,8 +202,7 @@ class map
 		{
 			while (first != last)
 			{
-				erase(first);
-				++first;
+				erase(first++, last);
 			}
 		}
 		void clear()
