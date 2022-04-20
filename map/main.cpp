@@ -78,6 +78,7 @@ void check_values(std::map<int, int> _std, ft::map<int, int> _ft)
 {
 	if (_std.size() != _ft.size())
 	{
+		std::cout << _std.size() << " != " << _ft.size() << "\n";
 		ko();
 		return ;
 	}
@@ -304,12 +305,12 @@ void modifiers()
 	// LENGTH += 1;
 	// check_values(std_map, ft_map);
 
-	// title("insert - [range]");
-	// std::map<int, int> std_map_default;
-	// ft::map<int, int> ft_map_default;
-	// std_map_default.insert(++std_map.begin(), --std_map.end());
-	// ft_map_default.insert(++ft_map.begin(), --ft_map.end());
-	// check_values(std_map_default, ft_map_default);
+	title("insert - [range]");
+	std::map<int, int> std_map_default;
+	ft::map<int, int> ft_map_default;
+	std_map_default.insert(++std_map.begin(), --std_map.end());
+	ft_map_default.insert(++ft_map.begin(), --ft_map.end());
+	check_values(std_map_default, ft_map_default);
 
 	// title("erase - [single existing element]");
 	// size_t size_std = std_map.erase(10);
@@ -322,47 +323,21 @@ void modifiers()
 	// size_ft = ft_map.erase(-10);
 	// check_values(std_map, ft_map);
 	
-	// title("erase - [iterator]");
+	// title("erase - [iterator example 1]");
 	// std_map.erase(++std_map.begin());
 	// ft_map.erase(++ft_map.begin());
 	// LENGTH -= 1;
 	// check_capacity(val_std == val_ft);
 
-// -----------------------------------------------
-
-	// title("erase - [iterator]");
-	// std_map.erase(++std_map.end());
-	++ft_map.end();
-	// ft_map.erase(++ft_map.end());
+	// title("erase - [iterator example 2]");
+	// std_map.erase(--std_map.end());
+	// ft_map.erase(--ft_map.end());
 	// LENGTH -= 1;
-	// check_capacity(val_std == val_ft);
-
-	// title("insert - [single new multiple elements]");
-	// std_map.insert(std::make_pair(LENGTH + 1, 343));
-	// std_map.insert(std::make_pair(LENGTH + 1, 3123));
-	// std_map.insert(std::make_pair(LENGTH + 1, 33));
-	// ft_map.insert(ft::make_pair(LENGTH + 1, 343));
-	// ft_map.insert(ft::make_pair(LENGTH + 1, 3123));
-	// ft_map.insert(ft::make_pair(LENGTH + 1, 33));
-	// LENGTH += 3;
 	// check_values(std_map, ft_map);
-
-	// title("insert - [single existing element]");
-	// val_std = std_map.insert(std::make_pair(1, 33)).second;
-	// val_ft = ft_map.insert(ft::make_pair(1, 33)).second;
-	// check_values(std_map, ft_map);
-
-	// title("insert - [single existing element result]");
-	// check_capacity(val_std == val_ft);
-
-	// title("insert - [single existing multiple elements]");
-	// std_map.insert(std::make_pair(6, 343));
-	// std_map.insert(std::make_pair(10, 3123));
-	// std_map.insert(std::make_pair(3, 33));
-	// ft_map.insert(ft::make_pair(6, 343));
-	// ft_map.insert(ft::make_pair(10, 3123));
-	// ft_map.insert(ft::make_pair(3, 33));
-	// check_values(std_map, ft_map);
+	title("erase - [range]");
+	std_map_default.erase(std_map_default.begin(), std_map_default.end());
+	ft_map_default.erase(ft_map_default.begin(), ft_map_default.end());
+	check_values(std_map_default, ft_map_default);
 }
 
 
