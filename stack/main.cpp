@@ -70,112 +70,114 @@ void member_functions()
 	big_title("Member functions");
 	
 	_title("constructor");
-	// std::stack<int, std::vector<int> > std_stack_default(std_vector);
+	std::stack<int, std::vector<int> > std_stack_default(std_vector);
 	ft::stack<int, ft::vector<int> > ft_stack_default(ft_vector);
 
 	{
-		// if (_std.size() != _ft.size())
-		// {
-		// 	ko();
-		// 	return ;
-		// }
-		// for (int i = 1; i <= LENGTH; i++)
-		// {
-			// if (_std.top() != _ft.top())
-			// {
-			// 	ko();
-			// 	return ;
-			// }
-			std::cout << "std_stack_default.top()" << " " << ft_stack_default.top() << "\n";
-			// std_stack_default.pop();
-			// ft_stack_default.pop();
-			// _ft.pop();
-		// }
+		if (std_stack_default.size() != ft_stack_default.size())
+		{
+			ko();
+			return ;
+		}
+		for (int i = 1; i <= LENGTH; i++)
+		{
+			if (std_stack_default.top() != ft_stack_default.top())
+			{
+				ko();
+				return ;
+			}
+			std_stack_default.pop();
+			ft_stack_default.pop();
+		}
+		ok();
+	}
+	_title("empty");
+	{
+		if (std_stack_default.empty() != ft_stack_default.empty())
+		{
+			ko();
+			return;
+		}
+		ok();
 	}
 
+	for (int i = 0; i < LENGTH; i++)
+	{
+		std_stack_default.push(i);
+		ft_stack_default.push(i);
+	}
 
+	_title("size");
+	{
+		if (std_stack_default.size() != ft_stack_default.size())
+		{
+			ko();
+			return;
+		}
+		ok();
+	}
 
-	// _title("empty");
-	// {
-	// 	if (std_stack_default.empty() != ft_stack_default.empty())
-	// 	{
-	// 		ko();
-	// 		return;
-	// 	}
-	// 	ok();
-	// }
+	_title("top");
+	{
+		if (std_stack_default.top() != ft_stack_default.top())
+		{
+			ko();
+			return;
+		}
+		ok();
+	}
 
-	// _title("size\n");
-	// {
-	// 	if (std_stack_default.size() != ft_stack_default.size())
-	// 	{
-	// 		ko();
-	// 		return;
-	// 	}
-	// 	ok();
-	// }
+	_title("push");
+	{
+		std_stack_default.push(5);
+		ft_stack_default.push(5);
+		if (std_stack_default.top() != ft_stack_default.top())
+		{
+			ko();
+			return;
+		}
+		ok();
+	}
+	_title("pop");
+	{
+		std_stack_default.pop();
+		ft_stack_default.pop();
+		if (std_stack_default.top() != ft_stack_default.top())
+		{
+			ko();
+			return;
+		}
+		ok();
+	}
+	big_title("Non-member function overloads");
 
-	// _title("top");
-	// {
-	// 	if (std_stack_default.top() != ft_stack_default.top())
-	// 	{
-	// 		ko();
-	// 		return;
-	// 	}
-	// 	ok();
-	// }
-
-	// _title("push");
-	// {
-	// 	std_stack_default.push(5);
-	// 	ft_stack_default.push(5);
-	// 	if (std_stack_default.top() != ft_stack_default.top())
-	// 	{
-	// 		ko();
-	// 		return;
-	// 	}
-	// 	ok();
-	// }
-	// _title("pop");
-	// {
-	// 	std_stack_default.pop();
-	// 	ft_stack_default.pop();
-	// 	if (std_stack_default.top() != ft_stack_default.top())
-	// 	{
-	// 		ko();
-	// 		return;
-	// 	}
-	// 	ok();
-	// }
-	// big_title("Non-member function overloads");
-
-	// _title("relational operators");
-	// {
-	// 	std::vector<int> std_vector_help(LENGTH);
-	// 	ft::vector<int> ft_vector_help(LENGTH);
+	_title("relational operators");
+	{
+		std::vector<int> std_vector_help(LENGTH);
+		ft::vector<int> ft_vector_help(LENGTH);
 		
-	// 	std::stack<int, std::vector<int> > std_stack_help(std_vector_help);
-	// 	ft::stack<int, ft::vector<int> > ft_stack_help(ft_vector_help);
+		std::stack<int, std::vector<int> > std_stack_help(std_vector_help);
+		ft::stack<int, ft::vector<int> > ft_stack_help(ft_vector_help);
 		
-	// 	if (
-	// 		(std_stack_default == std_stack_help) != (std_stack_default == std_stack_help)
-	// 		|| 
-	// 		(std_stack_default != std_stack_help) != (std_stack_default != std_stack_help)
-	// 		||
-	// 		(std_stack_default < std_stack_help) != (std_stack_default < std_stack_help)
-	// 		||
-	// 		(std_stack_default <= std_stack_help) != (std_stack_default <= std_stack_help)
-	// 		||
-	// 		(std_stack_default > std_stack_help) != (std_stack_default > std_stack_help)
-	// 		||
-	// 		(std_stack_default >= std_stack_help) != (std_stack_default >= std_stack_help)
-	// 	)
-	// 	{
-	// 		ko();
-	// 		return;
-	// 	}
-	// 	ok();
-	// }
+		if (
+			(std_stack_default == std_stack_help) != (std_stack_default == std_stack_help)
+			|| 
+			(std_stack_default != std_stack_help) != (std_stack_default != std_stack_help)
+			||
+			(std_stack_default < std_stack_help) != (std_stack_default < std_stack_help)
+			||
+			(std_stack_default <= std_stack_help) != (std_stack_default <= std_stack_help)
+			||
+			(std_stack_default > std_stack_help) != (std_stack_default > std_stack_help)
+			||
+			(std_stack_default >= std_stack_help) != (std_stack_default >= std_stack_help)
+		)
+		{
+			ko();
+			return;
+		}
+		ok();
+	}
 
 }
 

@@ -12,7 +12,7 @@ public:
 protected:
 	Container c;
 public:
-	explicit stack(const Container& = Container()) {}
+	explicit stack(const Container& _c = Container()) : c(_c) {}
 	bool empty() const { return c.empty(); }
 	size_type size() const { return c.size(); }
 	value_type& top() { return c.back(); }
