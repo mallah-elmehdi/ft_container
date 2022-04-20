@@ -30,6 +30,12 @@
 std::map<int, int> std_map;
 ft::map<int, int> ft_map;
 
+std::map<int, int>::iterator std_map_it;
+ft::map<int, int>::iterator ft_map_it;
+
+std::map<int, int>::const_iterator std_map_cit;
+ft::map<int, int>::const_iterator ft_map_cit;
+
 // ======================================================== HELP FUNCTIONS
 
 void ok()
@@ -45,6 +51,11 @@ void ko()
 void title(std::string str)
 {
 	std::cout << BBlue << "+ " << std::setw(20) << std::left << str << Color_Off;
+}
+
+void big_title(std::string str)
+{
+	std::cout << On_Purple << BWhite << "\n-------------------- " << str << Color_Off << "\n\n";
 }
 
 void init_map()
@@ -73,9 +84,13 @@ void check_values(std::map<int, int> _std, ft::map<int, int> _ft)
 
 void member_functions()
 {
-	//
-	std::cout << On_Purple << BWhite << "\n-------------------- Member functions" << Color_Off << "\n\n";
+	big_title("Member functions");
 	
+	title("default constructor");
+	std::map<int, int> std_map_default;
+	ft::map<int, int> ft_map_default;
+	check_values(std_map_default, ft_map_default);
+
 	title("copy constructor");
 	std::map<int, int> std_map_copy(std_map);
 	ft::map<int, int> ft_map_copy(ft_map);
@@ -85,13 +100,33 @@ void member_functions()
 	std::map<int, int> std_map_range(std_map.begin(), std_map.end());
 	ft::map<int, int> ft_map_range(ft_map.begin(), ft_map.end());
 	check_values(std_map_range, ft_map_range);
+	
+	{
+		title("destructor");
+		std::map<int, int> std_map_destructor;
+		ft::map<int, int> ft_map_destructor;
+		check_values(std_map_destructor, ft_map_destructor);
+	}
+
+	title("operator=");
+	std::map<int, int> std_map_operator = std_map;
+	ft::map<int, int> ft_map_operator = ft_map;
+	check_values(std_map_operator, ft_map_operator);
+}
+
+void iterators()
+{
+	big_title("Iterators");
+	
+	title("begin");
+	std_map_it = std_map_it;
+	ft::map<int, int>::iterator ft_map_it;
+	check_values(std_map_default, ft_map_default);
+
 }
 
 int main()
 {
-	//
-	title("default constructor");
-	check_values(std_map, ft_map);
 	// 
 	init_map();
 	// 
