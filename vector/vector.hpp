@@ -166,6 +166,7 @@ class vector {
 		}
 		reference back()
 		{
+			std::cout << *(--end()) << "\n";
 			return (*(end() - 1));
 		}
 		const_reference back() const

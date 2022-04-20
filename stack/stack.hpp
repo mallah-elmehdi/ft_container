@@ -20,17 +20,22 @@ public:
 	void push(const value_type& x) { c.push_back(x); }
 	void pop() { c.pop_back(); }
 private:
-	template <class T, class Container>
+	template <class _T, class _Container>
 	friend bool operator==(const stack<T, Container>& x, const stack<T, Container>& y);
-	template <class T, class Container>
+	
+	template <class _T, class _Container>
 	friend bool operator< (const stack<T, Container>& x, const stack<T, Container>& y);
-	template <class T, class Container>
+	
+	template <class _T, class _Container>
 	friend bool operator!=(const stack<T, Container>& x, const stack<T, Container>& y);
-	template <class T, class Container>
+	
+	template <class _T, class _Container>
 	friend bool operator> (const stack<T, Container>& x, const stack<T, Container>& y);
-	template <class T, class Container>
+	
+	template <class _T, class _Container>
 	friend bool operator>=(const stack<T, Container>& x, const stack<T, Container>& y);
-	template <class T, class Container>
+	
+	template <class _T, class _Container>
 	friend bool operator<=(const stack<T, Container>& x,const stack<T, Container>& y);
 };
 template <class T, class Container>
@@ -61,7 +66,7 @@ bool operator>=(const stack<T, Container>& x, const stack<T, Container>& y)
 template <class T, class Container>
 bool operator<=(const stack<T, Container>& x,const stack<T, Container>& y)
 {
-	return (x.c <= y.c)
+	return (x.c <= y.c);
 }
 
 #endif
