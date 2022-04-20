@@ -3,7 +3,6 @@
 #include <iomanip>
 #include <map>
 
-#define LENGTH 100
 // Reset
 #define Color_Off "\e[0m"       // Text Reset
 // Bold
@@ -26,6 +25,8 @@
 #define On_White "\e[47m"       // White
 
 // ======================================================== GLOBAL VARIABLES
+
+int LENGTH = 100;
 
 std::map<int, int> std_map;
 ft::map<int, int> ft_map;
@@ -56,7 +57,7 @@ void ko()
 
 void title(std::string str)
 {
-	std::cout << BBlue << "+ " << std::setw(40) << std::left << str << Color_Off;
+	std::cout << BBlue << "+ " << std::setw(60) << std::left << str << Color_Off;
 }
 
 void big_title(std::string str)
@@ -75,6 +76,11 @@ void init_map()
 
 void check_values(std::map<int, int> _std, ft::map<int, int> _ft)
 {
+	if (_std.size() != _ft.size())
+	{
+		ko();
+		return ;
+	}
 	for (int i = 1; i <= LENGTH; i++)
 	{
 		if (_std[i] != _ft[i])
@@ -234,6 +240,7 @@ void capacity()
 	ft_map.erase(1);
 	ft_map.erase(2);
 	ft_map.erase(-4);
+	LENGTH -= 3;
 	check_capacity(std_map.size() == ft_map.size());
 
 	// title("max_size");
@@ -255,20 +262,40 @@ void modifiers()
 {
 	big_title("Modifiers");
 	
-	title("operator[] - [example 1]");
-	std_map.insert(std::make_pair(2623, 33));
-	std_map.insert(std::make_pair(567, 343));
-	std_map.insert(std::make_pair(13123, 3123));
+	title("insert - [single new element]");
+	bool val_std = std_map.insert(std::make_pair(LENGTH + 1, 33)).second;
+	bool val_ft = ft_map.insert(ft::make_pair(LENGTH + 1, 33)).second;
+	LENGTH += 1;
+	check_values(std_map, ft_map);
+	
+	title("insert - [single new element result]");
+	check_capacity(val_std == val_ft);
+
+	title("insert - [single new multiple elements]");
+	std_map.insert(std::make_pair(LENGTH + 1, 343));
+	std_map.insert(std::make_pair(LENGTH + 1, 3123));
+	std_map.insert(std::make_pair(LENGTH + 1, 33));
+	ft_map.insert(ft::make_pair(LENGTH + 1, 343));
+	ft_map.insert(ft::make_pair(LENGTH + 1, 3123));
+	ft_map.insert(ft::make_pair(LENGTH + 1, 33));
+	LENGTH += 3;
+	check_values(std_map, ft_map);
+
+	title("insert - [single existing element]");
+	val_std = std_map.insert(std::make_pair(1, 33)).second;
+	val_ft = ft_map.insert(ft::make_pair(1, 33)).second;
+	check_values(std_map, ft_map);
+
+	title("insert - [single existing element result]");
+	check_capacity(val_std == val_ft);
+
+	title("insert - [single existing multiple elements]");
+	std_map.insert(std::make_pair(6, 343));
+	std_map.insert(std::make_pair(10, 3123));
 	std_map.insert(std::make_pair(3, 33));
-
-	ft_map.insert(std::make_pair(2623, 33));
-	ft_map.insert(std::make_pair(567, 343));
-	ft_map.insert(std::make_pair(13123, 3123));
-	ft_map.insert(std::make_pair(3, 33));
-	check_capacity([10] == ft_map[10]);
-
-	title("operator[] - [example 2]");
-	check_capacity(std_map[-10] == ft_map[-10]);
+	ft_map.insert(ft::make_pair(567, 343));
+	ft_map.insert(ft::make_pair(13123, 3123));
+	check_values(std_map, ft_map);
 }
 
 
@@ -279,4 +306,6 @@ int main()
 	iterators();
 	capacity();
 	element_access();
+	modifiers();
+	std::cout << "\n";
 }
