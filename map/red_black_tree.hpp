@@ -220,6 +220,7 @@ template <class value_type, class compare, class allocator>
 
                 if (_node->parent == NULL)
                 {
+					root->root = false;
                     root = nodeHold;
                     root->color = BLACK;
                     root->root = true;
@@ -245,6 +246,7 @@ template <class value_type, class compare, class allocator>
                 nodeHold->parent = _node->parent;
                 if (_node->parent == NULL)
                 {
+					root->root = false;
                     root = nodeHold;
                     root->color = BLACK;
                     root->root = true;
