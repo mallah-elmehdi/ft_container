@@ -126,9 +126,9 @@ void check_const_reverse_iterator()
 	ok();
 }
 
-void check_capacity()
+void check_capacity(bool results)
 {
-	if (std_crit->first != ft_crit->first || std_crit->second != ft_crit->second)
+	if (!results)
 	{
 		ko();
 		return ;
@@ -219,10 +219,56 @@ void capacity()
 {
 	big_title("Capacity");
 	
-	title("empty");
+	title("empty [empty maps]");
 	std::map<int, int> std_map_default;
 	ft::map<int, int> ft_map_default;
-	check_capacity(std_map_default, ft_map_default);
+	check_capacity(std_map_default.empty() == ft_map_default.empty());
+
+	title("empty [filled maps]");
+	check_capacity(std_map.empty() == ft_map.empty());
+
+	title("size");
+	std_map.erase(1);
+	std_map.erase(2);
+	std_map.erase(-4);
+	ft_map.erase(1);
+	ft_map.erase(2);
+	ft_map.erase(-4);
+	check_capacity(std_map.size() == ft_map.size());
+
+	// title("max_size");
+	// check_capacity(std_map.max_size() == ft_map.max_size());
+}
+
+void element_access()
+{
+	big_title("Element access");
+	
+	title("operator[] - [example 1]");
+	check_capacity(std_map[10] == ft_map[10]);
+
+	title("operator[] - [example 2]");
+	check_capacity(std_map[-10] == ft_map[-10]);
+}
+
+void modifiers()
+{
+	big_title("Modifiers");
+	
+	title("operator[] - [example 1]");
+	std_map.insert(std::make_pair(2623, 33));
+	std_map.insert(std::make_pair(567, 343));
+	std_map.insert(std::make_pair(13123, 3123));
+	std_map.insert(std::make_pair(3, 33));
+
+	ft_map.insert(std::make_pair(2623, 33));
+	ft_map.insert(std::make_pair(567, 343));
+	ft_map.insert(std::make_pair(13123, 3123));
+	ft_map.insert(std::make_pair(3, 33));
+	check_capacity([10] == ft_map[10]);
+
+	title("operator[] - [example 2]");
+	check_capacity(std_map[-10] == ft_map[-10]);
 }
 
 
@@ -231,4 +277,6 @@ int main()
 	init_map();
 	member_functions();
 	iterators();
+	capacity();
+	element_access();
 }
