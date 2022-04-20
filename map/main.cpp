@@ -348,7 +348,65 @@ void modifiers()
 	std_map_swap.swap(std_map_default);
 	ft_map_swap.swap(ft_map_default);
 	check_values(std_map_swap, ft_map_swap);
+
+	title("clear");
+	std_map.clear();
+	std_map.clear();
+	std_map.clear();
+	ft_map.clear();
+	ft_map.clear();
+	ft_map.clear();
+	LENGTH = 0;
+	check_values(std_map_swap, ft_map_swap);
 }
+
+void observers()
+{
+	big_title("Observers");
+	
+	std::map<int,int> std_mymap;
+	std::map<int,int>::key_compare std_mycomp = std_mymap.key_comp();
+	ft::map<int,int> ft_mymap;
+	ft::map<int,int>::key_compare ft_mycomp = ft_mymap.key_comp();
+
+	std_mymap[1]=100;
+	std_mymap[2]=200;
+	std_mymap[3]=300;
+	
+	ft_mymap[1]=100;
+	ft_mymap[2]=200;
+	ft_mymap[3]=300;
+
+	int std_highest = std_mymap.rbegin()->first; 
+	int ft_highest = ft_mymap.rbegin()->first; 
+
+	title("key_comp"); 
+	{
+		for (int i = 1; i <= 3; i++)
+		{
+			if (std_mycomp(std_mymap[i], std_highest) != ft_mycomp(ft_mymap[i], ft_highest))
+			{
+				ko();
+				return;
+			}
+		}
+		ok();
+	}
+
+	title("key_comp"); 
+	{
+		for (int i = 1; i <= 3; i++)
+		{
+			if (std_mymap.value_comp()(std_mymap[i], std_highest) != ft_mymap.value_comp()(ft_mymap[i], ft_highest))
+			{
+				ko();
+				return;
+			}
+		}
+		ok();
+	}
+}
+
 
 
 int main()
@@ -359,7 +417,7 @@ int main()
 	capacity();
 	element_access();
 	modifiers();
-
+	observers();
 
 
 
