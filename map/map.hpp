@@ -200,9 +200,11 @@ class map
 		}
 		void erase (iterator first, iterator last)
 		{
-			while (first != last)
+			if (first != last)
 			{
-				erase(first++, last);
+				iterator it = first;
+				erase(++first, last);
+				erase(it);
 			}
 		}
 		void clear()
