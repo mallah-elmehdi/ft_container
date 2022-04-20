@@ -251,7 +251,12 @@ class map
 		}
 		void swap (map& x)
 		{
-			ft::swap(*this, x);
+			ft::_swap(*this, x);
+
+			// ft::_swap(vect, x.vect);
+			// ft::_swap(_size, x._size);
+			// ft::_swap(_capacity, x._capacity);
+			// ft::_swap(alloc, x.alloc);
 		}
 		size_type count (const key_type& k) const
 		{

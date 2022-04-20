@@ -33,7 +33,7 @@ void copy_backward(Iterator1 first, Iterator1 last, Iterator2 result, Allocator 
 	}
 }
 
-template <class T> void swap(T& a, T& b)
+template <class T> void _swap(T& a, T& b)
 {
 	T c(a);
 	a = b;

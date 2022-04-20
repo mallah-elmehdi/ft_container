@@ -253,10 +253,10 @@ class vector {
 		}
 		void swap(vector& x)
 		{
-			ft::swap(vect, x.vect);
-			ft::swap(_size, x._size);
-			ft::swap(_capacity, x._capacity);
-			ft::swap(allocator, x.allocator);
+			ft::_swap(vect, x.vect);
+			ft::_swap(_size, x._size);
+			ft::_swap(_capacity, x._capacity);
+			ft::_swap(allocator, x.allocator);
 		}
 		void clear()
 		{

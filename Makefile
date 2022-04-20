@@ -2,11 +2,11 @@ OUTPUT = ft
 
 FLAG = -g -fsanitize=address #-std=c++98 #-Wall -Wextra -Werror
 
-VECTOR_FILES = vector/*.cpp
+VECTOR_FILES = vector/main.cpp
 
-STACK_FILES = stack/*.cpp
+STACK_FILES = stack/main.cpp
 
-MAP_FILES = map/*.cpp
+MAP_FILES = map/main.cpp
 
 all: vector stack map
 
