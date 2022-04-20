@@ -445,39 +445,43 @@ template <class value_type, class compare, class allocator>
 				}
 				else if (nodeSibling->color == RED)
 				{
-					nodeSibling->color = BLACK;
-					_node->parent->color = RED;
+					// nodeSibling->color = BLACK;
+					// _node->parent->color = RED;
+
+					swap_colors(nodeSibling, _node->parent);
+					
 					if (_node->parent->left == _node)
 						leftRotate(_node->parent);
 					else
 						rightRotate(_node->parent);
-					return (false);
+					return (check_sibling(_node));
 				}
 				else if (check_family_color_1(_node, nodeSibling))
 				{
 					node *nodeNearChildSibling = near_node_child_sibling(_node, nodeSibling);
 					
-					nodeSibling->color = RED;
-					nodeNearChildSibling->color = BLACK;
+					// nodeSibling->color = RED;
+					// nodeNearChildSibling->color = BLACK;
+
+					swap_colors(nodeSibling, nodeNearChildSibling);
 					
 					if (_node->parent->left == _node)
 						rightRotate(nodeSibling);
 					else
 						leftRotate(nodeSibling);
+					return (check_sibling(_node));
 				}
 				else if (check_family_color_2(_node, nodeSibling))
 				{
 					node *nodeFarChildSibling = far_node_child_sibling(_node, nodeSibling);
 
 					swap_colors(_node->parent, nodeSibling);
-
 					nodeFarChildSibling->color = BLACK;
 
 					if (_node->parent->left == _node)
 						leftRotate(_node->parent);
 					else
 						rightRotate(_node->parent);
-
 					return (true);
 				}
 				return (false);

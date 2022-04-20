@@ -351,13 +351,22 @@ int main()
 	// element_access();
 	// modifiers();
 	ft::map<int, int> ft_m;
-	for (int i = 1; i <= LENGTH; i++)
+	for (int i = 1; i <= 10; i++)
 	{
 		ft_m.insert(ft::make_pair(i, i*10));
 	}
-	
+
+	// ft_m.erase(6);
+
 	ft_m.erase(ft_m.begin(), ft_m.end());
-	std::cout << ft_m.size() << "\n";
+
+	for (ft::map<int, int>::iterator it = ft_m.begin(); it != ft_m.end(); it++)
+	{
+		std::cout << it->first << "\n";
+	}
+
+
 	
 	std::cout << "\n";
+	std::cout << "size : " << ft_m.size() << "\n";
 }
