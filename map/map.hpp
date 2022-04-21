@@ -23,16 +23,16 @@ class map
 		typedef ft::bd_iterator<value_type>									const_iterator;
 		typedef ft::reverse_iterator<iterator>								reverse_iterator;
 		typedef ft::reverse_iterator<const_iterator>						const_reverse_iterator;
-		
+
 		// template <class __Key, class __T, class __Compare, class __Alloc>
 		class value_compare
 		{
 			friend map;
-			
+
 			protected:
 				Compare comp;
 				value_compare (Compare c) : comp(c) {}
-			
+
 			public:
 				typedef bool								result_type;
 				typedef value_type							first_argument_type;
@@ -78,7 +78,7 @@ class map
 	public:
 		explicit map (const key_compare& compare = key_compare(), const allocator_type& allocator = allocator_type())
 		: _size(0), alloc(allocator), comp(compare) {}
-		
+
 		template <class InputIterator>
 		map(InputIterator first, InputIterator last, const key_compare& compare = key_compare(), const allocator_type& allocator = allocator_type(), typename ft::enable_if<!ft::is_integral<InputIterator>::value, bool>::type = false)
 		: _size(0), alloc(allocator), comp(compare)
@@ -102,7 +102,7 @@ class map
 		}
 
 		/* --------------------------------------------- Iterators */
-		
+
 		iterator begin()
 		{
 			return (iterator(tree.first()));
@@ -119,7 +119,7 @@ class map
 		{
 			return (const_iterator(tree.end()));
 		}
-		
+
 		reverse_iterator rbegin()
 		{
 			return (reverse_iterator(end()));
@@ -238,7 +238,7 @@ class map
 		}
 
 		/* Operations */
-		
+
 		iterator find (const key_type& k)
 		{
 			iterator it(tree.search(ft::make_pair(k, mapped_type())));
@@ -251,12 +251,11 @@ class map
 		}
 		void swap (map& x)
 		{
-			ft::_swap(*this, x);
-
-			// ft::_swap(vect, x.vect);
-			// ft::_swap(_size, x._size);
-			// ft::_swap(_capacity, x._capacity);
-			// ft::_swap(alloc, x.alloc);
+			ft::_swap(x.tree, tree);
+			ft::_swap(x._size, _size);
+			ft::_swap(x.alloc, alloc);
+			ft::_swap(x.comp, comp);
+			ft::_swap(x.reb, reb);
 		}
 		size_type count (const key_type& k) const
 		{
@@ -325,13 +324,13 @@ class map
 };
 
 /* Non-member function overloads */
-	
+
 template <class Key, class T, class Compare, class Alloc>
 bool operator==(const ft::map<Key,T,Compare,Alloc>& lhs, const ft::map<Key,T,Compare,Alloc>& rhs)
 {
 	return (lhs.size() == rhs.size() && ft::equal(lhs.begin(), lhs.end(), rhs.begin()));
 }
-	
+
 template <class Key, class T, class Compare, class Alloc>
 bool operator!=(const ft::map<Key,T,Compare,Alloc>& lhs, const ft::map<Key,T,Compare,Alloc>& rhs)
 {

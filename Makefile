@@ -8,8 +8,6 @@ STACK_FILES = stack/main.cpp
 
 MAP_FILES = map/main_tester.cpp
 
-all: vector stack map
-
 vector: $(VECTOR_FILES)
 	@g++ $(FLAG) $(VECTOR_FILES) -o $(OUTPUT)
 

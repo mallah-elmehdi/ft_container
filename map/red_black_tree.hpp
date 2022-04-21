@@ -55,21 +55,21 @@ template <class value_type, class compare, class allocator>
             node *initPair(const value_type &val)
             {
                 node *newNode;
-				
+
 				newNode = reb.allocate(sizeof(node));
 				reb.construct(newNode, node());
-				
+
 				newNode->pairv = alloc.allocate(sizeof(value_type));
                 alloc.construct(newNode->pairv, ft::make_pair(val.first, val.second));
 
 				newNode->color = RED;
 				newNode->nil = false;
 				newNode->root = false;
-                
+
                 newNode->right = nil_node(newNode);
                 newNode->left = nil_node(newNode);
                 newNode->parent = NULL;
-                
+
 				return (newNode);
             }
 			// -------------------------------
@@ -125,7 +125,7 @@ template <class value_type, class compare, class allocator>
 			void destroy_node(node *_node)
 			{
 				destroy_pair(_node->pairv);
-				
+
 				reb.destroy(_node);
 				reb.deallocate(_node, sizeof(node));
 
@@ -345,7 +345,7 @@ template <class value_type, class compare, class allocator>
 			{
 				node *nodeSmall = _node->right;
 				value_type *pairHold;
-				
+
 				while (nodeSmall->nil == false)
 				{
 					nodeSmall = nodeSmall->left;
@@ -353,7 +353,7 @@ template <class value_type, class compare, class allocator>
 				nodeSmall = nodeSmall->parent;
 
 				pairHold = _node->pairv;
-				
+
 				_node->pairv = nodeSmall->pairv;
 				nodeSmall->pairv = pairHold;
 
@@ -365,7 +365,7 @@ template <class value_type, class compare, class allocator>
 				value_type *pairHold;
 
 				pairHold = _node->pairv;
-				
+
 				_node->pairv = nodeChild->pairv;
 				nodeChild->pairv = pairHold;
 
@@ -376,7 +376,7 @@ template <class value_type, class compare, class allocator>
 			{
 				return (_node->color == BLACK && _node->right->color == BLACK && _node->left->color == BLACK);
 			}
-			// ------------------------------- 
+			// -------------------------------
 			bool check_family_color_1(node *_node, node *nodeSibling)
 			{
 				if (_node->parent->left == _node)
@@ -392,7 +392,7 @@ template <class value_type, class compare, class allocator>
 				}
 				return (false);
 			}
-			// ------------------------------- 
+			// -------------------------------
 			bool check_family_color_2(node *_node, node *nodeSibling)
 			{
 				if (_node->parent->left == _node)
@@ -426,7 +426,7 @@ template <class value_type, class compare, class allocator>
 			bool check_sibling(node *_node)
 			{
 				node *nodeSibling;
-				
+
 				nodeSibling = _node->parent->right == _node ? _node->parent->left : _node->parent->right;
 
 				if (nodeSibling->nil || all_family_black(nodeSibling))
@@ -442,7 +442,7 @@ template <class value_type, class compare, class allocator>
 				else if (nodeSibling->color == RED)
 				{
 					swap_colors(nodeSibling, _node->parent);
-					
+
 					if (_node->parent->left == _node)
 						leftRotate(_node->parent);
 					else
@@ -454,7 +454,7 @@ template <class value_type, class compare, class allocator>
 					node *nodeNearChildSibling = near_node_child_sibling(_node, nodeSibling);
 
 					swap_colors(nodeSibling, nodeNearChildSibling);
-					
+
 					if (_node->parent->left == _node)
 						rightRotate(nodeSibling);
 					else
@@ -536,7 +536,7 @@ template <class value_type, class compare, class allocator>
 					return (end());
 
 				node *nodeCheck = root;
-				
+
 				while (nodeCheck->nil == false)
 				{
 					if (val.first == nodeCheck->pairv->first)
