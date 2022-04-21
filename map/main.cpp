@@ -520,6 +520,10 @@ void allocator()
 
 int main()
 {
+    std::cout << On_Cyan << BBlack << "\n*********************************\n" << Color_Off;
+    std::cout << On_Cyan << BBlack << "************** MAP **************\n" << Color_Off;
+    std::cout << On_Cyan << BBlack << "*********************************\n" << Color_Off;
+
 	init_map();
 	member_functions();
 	iterators();

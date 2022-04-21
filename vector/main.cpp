@@ -3329,8 +3329,33 @@ void alarm_handler(int seg)
     kill(getpid(), SIGINT);
 }
 
+// Reset
+#define Color_Off "\e[0m"       // Text Reset
+// Bold
+#define BBlack "\e[1;30m"       // Black
+#define BRed "\e[1;31m"         // Red
+#define BGreen "\e[1;32m"       // Green
+#define BYellow "\e[1;33m"      // Yellow
+#define BBlue "\e[1;34m"        // Blue
+#define BPurple "\e[1;35m"      // Purple
+#define BCyan "\e[1;36m"        // Cyan
+#define BWhite "\e[1;37m"       // White
+// Background
+#define On_Black "\e[40m"       // Black
+#define On_Red "\e[41m"         // Red
+#define On_Green "\e[42m"       // Green
+#define On_Yellow "\e[43m"      // Yellow
+#define On_Blue "\e[44m"        // Blue
+#define On_Purple "\e[45m"      // Purple
+#define On_Cyan "\e[46m"        // Cyan
+#define On_White "\e[47m"       // White
+
 int main(void)
 {
+    std::cout << On_Cyan << BBlack << "\n************************************\n" << Color_Off;
+    std::cout << On_Cyan << BBlack << "************** VECTOR **************\n" << Color_Off;
+    std::cout << On_Cyan << BBlack << "************************************\n" << Color_Off;
+
     std::cout << RED << "________________________________________________________________________________________________________" << std::endl;
     std::cout << RED << "**** The test is taking so much time to test the all cases and the time complexity of each method ****" << std::endl;
     std::cout << RED << "--------------------------------------------------------------------------------------------------------" << RESET << std::endl;

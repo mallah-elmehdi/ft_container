@@ -183,8 +183,10 @@ void member_functions()
 
 int main()
 {
+    std::cout << On_Cyan << BBlack << "\n***********************************\n" << Color_Off;
+    std::cout << On_Cyan << BBlack << "************** STACK **************\n" << Color_Off;
+    std::cout << On_Cyan << BBlack << "***********************************\n" << Color_Off;
 	init_map();
-	std::cout << "===========asds\n";
 	member_functions();
 	std::cout << "\n";
 }
