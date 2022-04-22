@@ -72,7 +72,7 @@ void init_map()
 		std_map.insert(std::make_pair(i, i*10));
 		ft_map.insert(ft::make_pair(i, i*10));
 	}
-}
+} 
 
 void check_values(std::map<int, int> _std, ft::map<int, int> _ft)
 {

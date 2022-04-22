@@ -6,7 +6,7 @@ VECTOR_FILES = vector/main.cpp
 
 STACK_FILES = stack/main.cpp
 
-MAP_FILES = map/main.cpp
+MAP_FILES = map/main_tester.cpp
 
 vector: $(VECTOR_FILES)
 	@clang++ $(FLAG) $(VECTOR_FILES) -o $(OUTPUT)
