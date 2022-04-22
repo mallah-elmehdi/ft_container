@@ -37,13 +37,13 @@ class vector {
 			ft::fill(begin(), begin() + n, val, allocator);
 		}
 		template <class InputIterator>
-		vector (InputIterator first, InputIterator last, const allocator_type& alloc = allocator_type(), typename ft::enable_if<!ft::is_integral<InputIterator>::value, bool>::type = false) : _capacity(last - first), allocator(alloc)
+		vector (InputIterator first, InputIterator last, const allocator_type& alloc = allocator_type(), typename ft::enable_if<!ft::is_integral<InputIterator>::value, bool>::type = false) : allocator(alloc), _capacity(last - first)
 		{
 			_size = _capacity;
 			vect = allocator.allocate(_capacity);
 			ft::copy(first, last, begin(), allocator);
 		}
-		vector(const vector& x) : _size(x._size), _capacity(x._capacity), allocator(x.allocator)
+		vector(const vector& x) : allocator(x.allocator), _size(x._size), _capacity(x._capacity)
 		{
 			vect = allocator.allocate(capacity());
 			ft::copy(x.begin(), x.end(), begin(), allocator);
@@ -177,7 +177,7 @@ class vector {
 		void assign (InputIterator first, InputIterator last, typename ft::enable_if<!ft::is_integral<InputIterator>::value, bool>::type = false)
 		{
 			clear();
-			difference_type n = last - first;
+			size_type n = last - first;
 			if (n > capacity()) reserve(n);
 			ft::copy(first, last, begin(), allocator);
 			_size = n;

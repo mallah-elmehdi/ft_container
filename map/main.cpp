@@ -2,7 +2,7 @@
 #include <iostream>
 #include <iomanip>
 #include <map>
-
+ 
 // Reset
 #define Color_Off "\e[0m"       // Text Reset
 // Bold
@@ -459,7 +459,7 @@ void operations()
 
 	title("lower_bound"); 
 	{
-		for (int i = 0; i <= 4; i++)
+		for (int i = 1; i <= 3; i++)
 		{
 			if (std_mymap.lower_bound(i)->second != ft_mymap.lower_bound(i)->second)
 			{
@@ -469,10 +469,9 @@ void operations()
 		}
 		ok();
 	}
-
 	title("upper_bound"); 
 	{
-		for (int i = 0; i <= 4; i++)
+		for (int i = 1; i <= 2; i++)
 		{
 			if (std_mymap.upper_bound(i)->second != ft_mymap.upper_bound(i)->second)
 			{
@@ -485,7 +484,7 @@ void operations()
 
 	title("equal_range"); 
 	{
-		for (int i = 0; i <= 4; i++)
+		for (int i = 1; i <= 2; i++)
 		{
 			if ((std_mymap.equal_range(i).first)->second != (ft_mymap.equal_range(i).first)->second
 			|| (std_mymap.equal_range(i).second)->second != (ft_mymap.equal_range(i).second)->second)

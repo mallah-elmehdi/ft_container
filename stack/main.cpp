@@ -133,7 +133,7 @@ void member_functions()
 		ft_stack_default.push(5);
 		if (std_stack_default.top() != ft_stack_default.top())
 		{
-			ko();
+			ko(); 
 			return;
 		}
 		ok();

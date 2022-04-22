@@ -18,11 +18,12 @@ template <class value_type, class compare, class allocator>
             rebind		reb;
 			compare		comp;
             node		*nil;
-            node		*root = NULL;
+            node		*root;
 
 		public:
 			Red_Black_Tree()
 			{
+				root = NULL;
 				nil = nil_node(NULL);
 			}
 			// -------------------------------
@@ -300,7 +301,7 @@ template <class value_type, class compare, class allocator>
             void checkTree(node *newNode)
             {
                 node *nodeParent, *nodeUncle;
-                int  i = 0;
+                //int  i = 0;
                 while (conflict(newNode))
                 {
                     // get the new node parent and new node uncle

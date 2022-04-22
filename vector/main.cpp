@@ -2786,6 +2786,7 @@ void vector_tests(void)
             ft::vector<int> ft_v(100, 5);
             ft::vector<int> ft_v1(100, 5);
 
+
             cond = ((v != v1) == (ft_v != ft_v1));
             v[80] = 4;
             ft_v[80] = 4;

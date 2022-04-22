@@ -1,6 +1,6 @@
 OUTPUT = ft
 
-FLAG = -g -fsanitize=address #-std=c++98 #-Wall -Wextra -Werror
+FLAG = -std=c++98 -Wall -Wextra -Werror
 
 VECTOR_FILES = vector/main.cpp
 
@@ -9,10 +9,13 @@ STACK_FILES = stack/main.cpp
 MAP_FILES = map/main.cpp
 
 vector: $(VECTOR_FILES)
-	@g++ $(FLAG) $(VECTOR_FILES) -o $(OUTPUT)
+	@clang++ $(FLAG) $(VECTOR_FILES) -o $(OUTPUT)
 
 stack: $(STACK_FILES)
-	@g++ $(FLAG) $(STACK_FILES) -o $(OUTPUT)
+	@clang++ $(FLAG) $(STACK_FILES) -o $(OUTPUT)
 
 map: $(MAP_FILES)
-	@g++ $(FLAG) $(MAP_FILES) -o $(OUTPUT)
+	@clang++ $(FLAG) $(MAP_FILES) -o $(OUTPUT)
+
+clear:
+	@rm -f $(OUTPUT)

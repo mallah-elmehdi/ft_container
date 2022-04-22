@@ -27,7 +27,7 @@ class map
 		// template <class __Key, class __T, class __Compare, class __Alloc>
 		class value_compare
 		{
-			friend map;
+			friend class map;
 
 			protected:
 				Compare comp;
@@ -172,6 +172,7 @@ class map
 		}
 		iterator insert (iterator position, const value_type& val)
 		{
+			(void)position;
 			return (insert(val).first);
 		}
 		template <class InputIterator>
